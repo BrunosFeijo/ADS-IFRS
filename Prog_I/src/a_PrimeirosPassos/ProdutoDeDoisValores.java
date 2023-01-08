@@ -1,4 +1,4 @@
-package PrimeirosPassos;
+package a_PrimeirosPassos;
 
 import java.util.Scanner;
 
