@@ -1,4 +1,6 @@
-package Metodos_Funcoes;
+package e_Metodos_Funcoes;
+
+//Crie uma interação com o usuário incluindo e excluindo valores em um vetor (use metodos)
 
 import java.util.Scanner;
 
