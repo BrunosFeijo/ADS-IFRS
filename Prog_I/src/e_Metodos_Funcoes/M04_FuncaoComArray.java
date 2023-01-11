@@ -4,7 +4,7 @@ package e_Metodos_Funcoes;
 
 import java.util.Scanner;
 
-public class FuncaoComArray {
+public class M04_FuncaoComArray {
 
     public static int maior(int vet[]) {
         int maior = 0, i = 0;

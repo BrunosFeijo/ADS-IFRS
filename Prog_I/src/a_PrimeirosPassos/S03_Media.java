@@ -7,7 +7,7 @@ package a_PrimeirosPassos;
 
 import java.util.Scanner;
 
-public class Media {
+public class S03_Media {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         double priValor = teclado.nextDouble();

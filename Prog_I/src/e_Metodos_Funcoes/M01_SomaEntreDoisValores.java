@@ -9,7 +9,7 @@ package e_Metodos_Funcoes;
 
 import java.util.Scanner;
 
-public class SomaEntreDoisValoresComMetodo {
+public class M01_SomaEntreDoisValores {
     public static void main(String[] args) {
         int valor1, valor2;
 

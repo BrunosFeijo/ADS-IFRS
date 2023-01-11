@@ -11,7 +11,7 @@ package a_PrimeirosPassos;
 
 import java.util.Scanner;
 
-public class MediaPonderada {
+public class S04_MediaPonderada {
     public static void main(String[] args){
         Scanner teclado = new Scanner(System.in);
         double priValor = teclado.nextDouble();

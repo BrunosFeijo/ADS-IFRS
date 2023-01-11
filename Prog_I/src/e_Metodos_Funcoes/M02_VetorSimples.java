@@ -4,6 +4,7 @@ package e_Metodos_Funcoes;
 // Para cada elemento subsequente desse vetor, atribua o valor correspondente à metade do valor
 // armazenado no elemento anterior. Por fim, mostre tod o conteúdo do vetor, no formato "v[indice] =
 //  valor", onde valor possui 4 casas decimais,  conforme determinado nos exemplos abaixo.
+
 //ENTRADA
 //6
 //8
@@ -14,10 +15,12 @@ package e_Metodos_Funcoes;
 //v[3] = 1.0000
 //v[4] = 0.5000
 //v[5] = 0.2500
+
 //ENTRADA
 //-3
 // SAÍDA
 // -
+
 //ENTRADA
 //4
 //15.8
@@ -26,7 +29,7 @@ package e_Metodos_Funcoes;
 //v[1] = 7.9000
 //v[2] = 3.9500
 //v[3] = 1.9750
-//
+
 //Este programa deverá ter, além do método main(), métodos para as seguintes funcionalidades :
 //a) ler um valor inteiro
 //b) ler um valor double
@@ -34,7 +37,7 @@ package e_Metodos_Funcoes;
 
 import java.util.Scanner;
 
-public class Vetor_Metodo {
+public class M02_VetorSimples {
     public static void main(String[] args) {
 //        Scanner teclado = new Scanner(System.in);
         int tam = 0;

@@ -6,7 +6,7 @@ package a_PrimeirosPassos;
 
 import java.util.Scanner;
 
-public class SomaDeDoisValores {
+public class S01_SomaDeDoisValores {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         int priValor = teclado.nextInt();
