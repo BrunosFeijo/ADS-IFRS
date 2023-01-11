@@ -18,7 +18,6 @@ public class M03_InverterSequencia {
         for (int i = 0;i< vetor.length;i++){
             vetor[i] = teclado.nextInt();
         }
-
         mostrarVetor(vetor);
         System.out.println();
 
