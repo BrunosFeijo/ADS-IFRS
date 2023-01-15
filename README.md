@@ -1,2 +1,2 @@
 # ADS-IFRS
- Exercícios propostos em aula
+**Exercícios propostos durante a graduação em ADS**
