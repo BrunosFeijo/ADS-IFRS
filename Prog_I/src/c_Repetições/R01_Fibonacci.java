@@ -5,7 +5,7 @@ package c_Repetições;
 //Construa um programa que, a partir de uma estratégia que usa repetições,
 // gere os primeiros dez elementos da Série de Fibonacci e apresenta uma mensagem informando o resultado
 
-public class R02_Fibonacci {
+public class R01_Fibonacci {
     public static void main(String[] args) {
         int ultValor = 1;
         int penValor = 0;
