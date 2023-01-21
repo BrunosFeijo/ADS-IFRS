@@ -14,10 +14,11 @@ package b_Condicionais;
 //12
 //10
 
-import java.util.Scanner;
-
 //SAIDA
 //15:20
+
+import java.util.Scanner;
+
 public class C07_DuracaoPartidaEmHorasEMinutos {
     public static void main(String[]args){
         Scanner entrada = new Scanner(System.in);
