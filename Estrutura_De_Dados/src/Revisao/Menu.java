@@ -65,13 +65,19 @@ public class Menu {
                 case 6://maior valor
                     maiorValor();
                 case 7://menor valor
-
+                    menorValor();
                 case 8://listar vetor
+                    if(tamanho > 0){
+                        for(int i = 0; i < tamanho;i++){
+                            System.out.println("[" + i + "] = " + vetor[i]);
+                        }
 
+                    }else {
+                        System.out.println("Vetor vazio");
+                    }
             }
         }
         System.out.println("Fim do Programa");
-
     }
 
     public static int menu(Scanner entrada) {
@@ -95,9 +101,23 @@ public class Menu {
 
     public static void maiorValor() {
         int maior = vetor[0];
-        for (int i = 0; i < tamanho; i++) {
-            
+        int posicao = 0;
+        for (int i = 1; i < tamanho; i++) {
+            if(vetor[i] > maior){
+                maior = vetor[i];
+            }
         }
+        System.out.println("O maior valor é " + maior + " e está na posição " + posicao);
+    }
+    public static void menorValor() {
+        int menor = vetor[0];
+        int posicao = 0;
+        for (int i = 1; i < tamanho; i++) {
+            if(vetor[i] < menor){
+                menor = vetor[i];
+            }
+        }
+        System.out.println("O maior valor é " + menor + " e está na posição " + posicao);
     }
 
 
