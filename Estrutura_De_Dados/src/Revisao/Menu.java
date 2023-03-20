@@ -16,50 +16,27 @@ package Revisao;
 import java.util.Scanner;
 
 public class Menu {
+    static Scanner entrada = new Scanner(System.in);
     static int vetor[] = new int[20];
     static int tamanho = 0;
     static int opcao = -1, valor = -1;
 
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
 
 
         while (opcao != 0) {
-            opcao = menu(entrada);
+            opcao = menu();
             switch (opcao) {
                 case 1: // zerar vetor
-                    for (int i = 0; i < tamanho; i++) {
-                        vetor[i] = 0;
-                    }
+                    zerarVetor();
+                    System.out.println("Vetor Zerado");
                 case 2: // inserir valor
-                    System.out.print("Digite um valor a ser armazenado no vetor: ");
-                    vetor[tamanho++] = entrada.nextInt();
+                    adicionarValor();
+                    System.out.println("Valor adicionado");
                 case 3://apagar valor
-                    System.out.print("Digite o valor a ser apagado do vetor: ");
-                    valor = entrada.nextInt();
-                    for (int i = 0; i < tamanho; i++) {
-                        if (vetor[i] == valor) {
-                            vetor[i] = 0;
-                            System.out.println("Valor " + valor + " foi apagado do índice " + i);
-                            i = tamanho;
-                            tamanho--;
-                        }
-                        if (i == tamanho - 1) {
-                            System.out.println("Valor não encontrado");
-                        }
-                    }
+                    apagarValor();
                 case 4://procurar valor
-                    System.out.print("Digite um valor a ser procurado no vetor");
-                    valor = entrada.nextInt();
-                    for (int i = 0; i < tamanho; i++) {
-                        if (vetor[i] == valor) {
-                            System.out.println("O valor procurado está no índice " + i);
-                            i = tamanho;
-                        }
-                        if (i == tamanho - 1) {
-                            System.out.println("Valor não encontrado");
-                        }
-                    }
+                    procurarValor();
                 case 5://tamanho do vetor
                     System.out.println("Este vetor tem " + tamanho + " elementos preenchidos");
                 case 6://maior valor
@@ -67,20 +44,13 @@ public class Menu {
                 case 7://menor valor
                     menorValor();
                 case 8://listar vetor
-                    if(tamanho > 0){
-                        for(int i = 0; i < tamanho;i++){
-                            System.out.println("[" + i + "] = " + vetor[i]);
-                        }
-
-                    }else {
-                        System.out.println("Vetor vazio");
-                    }
+                    listarVetor();
             }
         }
         System.out.println("Fim do Programa");
     }
 
-    public static int menu(Scanner entrada) {
+    public static int menu() {
         int opcao = 0;
         System.out.println("------------------------Menu----------------------");
         System.out.println("1) Zerar vetor");
@@ -99,25 +69,77 @@ public class Menu {
         return opcao;
     }
 
+    public static void zerarVetor() {
+        for (int i = 0; i < tamanho; i++) {
+            vetor[i] = 0;
+        }
+    }
+
+    public static void adicionarValor() {
+        System.out.print("Digite um valor a ser armazenado no vetor: ");
+        vetor[tamanho++] = entrada.nextInt();
+    }
+
+    public static void apagarValor() {
+        System.out.print("Digite o valor a ser apagado do vetor: ");
+        valor = entrada.nextInt();
+        for (int i = 0; i < tamanho; i++) {
+            if (vetor[i] == valor) {
+                vetor[i] = 0;
+                System.out.println("Valor " + valor + " foi apagado do índice " + i);
+                i = tamanho;
+                tamanho--;
+            }
+            if (i == tamanho - 1) {
+                System.out.println("Valor não encontrado");
+            }
+        }
+    }
+
+    public static void procurarValor() {
+        System.out.print("Digite um valor a ser procurado no vetor");
+        valor = entrada.nextInt();
+        for (int i = 0; i < tamanho; i++) {
+            if (vetor[i] == valor) {
+                System.out.println("O valor procurado está no índice " + i);
+                i = tamanho;
+            }
+            if (i == tamanho - 1) {
+                System.out.println("Valor não encontrado");
+            }
+        }
+    }
+
     public static void maiorValor() {
         int maior = vetor[0];
         int posicao = 0;
         for (int i = 1; i < tamanho; i++) {
-            if(vetor[i] > maior){
+            if (vetor[i] > maior) {
                 maior = vetor[i];
             }
         }
         System.out.println("O maior valor é " + maior + " e está na posição " + posicao);
     }
+
     public static void menorValor() {
         int menor = vetor[0];
         int posicao = 0;
         for (int i = 1; i < tamanho; i++) {
-            if(vetor[i] < menor){
+            if (vetor[i] < menor) {
                 menor = vetor[i];
             }
         }
         System.out.println("O maior valor é " + menor + " e está na posição " + posicao);
+    }
+
+    public static void listarVetor() {
+        if (tamanho > 0) {
+            for (int i = 0; i < tamanho; i++) {
+                System.out.println("[" + i + "] = " + vetor[i]);
+            }
+        } else {
+            System.out.println("Vetor vazio");
+        }
     }
 
 
