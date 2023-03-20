@@ -15,7 +15,7 @@ package Revisao;
 
 import java.util.Scanner;
 
-public class Menu {
+public class BRUNOFEIJO_ExeVetor {
     static Scanner entrada = new Scanner(System.in);
     static int vetor[] = new int[20];
     static int tamanho = 0;
