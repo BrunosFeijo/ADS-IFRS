@@ -22,7 +22,7 @@ public class BuscaBinaria {
 
     public static void main(String[] args) {
         int[] array = {2, 4, 6, 8, 10, 12, 14};
-        int chave = 8;
+        int chave = 4;
 
         int indice = buscaBinaria(array, chave);
 
