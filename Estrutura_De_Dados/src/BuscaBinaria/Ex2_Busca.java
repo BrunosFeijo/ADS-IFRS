@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class Ex2_Busca {
     static Scanner entrada = new Scanner(System.in);
-    static int vetor[] = new int[20];
+    static int vetor[] = new int[10000];
     static int tamanho = 0;
     static int opcao = -1, valor = -1, indice;
 
@@ -39,7 +39,9 @@ public class Ex2_Busca {
                     apagarValor();
                     break;
                 case 4://procurar valor
-                    procurarValor();
+                    System.out.print("Digite um valor a ser procurado no vetor");
+                    valor = entrada.nextInt();
+                    procurarValor(valor);
                     break;
                 case 5://tamanho do vetor
                     System.out.println("Este vetor tem " + tamanho + " elementos preenchidos");
@@ -59,14 +61,12 @@ public class Ex2_Busca {
                 case 10:
                     System.out.print("Digite o valor a ser procurado: ");
                     valor = entrada.nextInt();
-                    indice = buscaBinaria(valor, 0, tamanho-1);
-
-                    if (indice == -1) {
-                        System.out.println("Valor não encontrado");
-                    } else {
-                        System.out.println("O valor procurado está no índice " + indice);
-                    }
+                    buscaBinaria(valor, 0, tamanho - 1);
                     break;
+                case 11:
+                    System.out.print("Digite o valor a ser procurado: ");
+                    valor = entrada.nextInt();
+                    comparadorTempoExecucao(valor);
             }
         }
         System.out.println("Fim do Programa");
@@ -128,9 +128,7 @@ public class Ex2_Busca {
 
     }
 
-    public static void procurarValor() {
-        System.out.print("Digite um valor a ser procurado no vetor");
-        valor = entrada.nextInt();
+    public static void procurarValor(int valor) {
         for (int i = 0; i < tamanho; i++) {
             if (vetor[i] == valor) {
                 System.out.println("O valor procurado está no índice " + i);
@@ -188,20 +186,33 @@ public class Ex2_Busca {
         }
     }
 
-    public static int buscaBinaria(int procurado, int inicio, int fim) {
+    public static void buscaBinaria(int procurado, int inicio, int fim) {
         int meio = (inicio + fim) / 2;
 
         if (fim >= inicio) {
             if (vetor[meio] == procurado) {
-                return meio;
+                System.out.println("O valor procurado está no índice " + meio);
             } else if (vetor[meio] > procurado) {
                 buscaBinaria(procurado, inicio, meio - 1);
             } else {
                 buscaBinaria(procurado, meio + 1, fim);
             }
+        } else {
+            System.out.println("Valor não encontrado");
         }
+    }
 
-        return -1;
+    public static void comparadorTempoExecucao(int valor) {
+        double inicio = System.nanoTime();
+        procurarValor(valor);
+        double fim = System.nanoTime();
+        System.out.println("A busca do valor " + valor + " na busca sequencial foi de " + (fim - inicio)  + " ns");
+
+        inicio = System.nanoTime();
+        buscaBinaria(valor, 0, tamanho - 1);
+        fim = System.nanoTime();
+
+        System.out.println("A busca do valor " + valor + " na busca binária foi de " + (fim - inicio)  + " ns");
     }
 
 
