@@ -47,7 +47,7 @@ public class Ex2_Busca {
                             : "O valor procurado está no índice " + indice);
                     break;
                 case 5://tamanho do vetor
-                    System.out.println("Este vetor tem " + tamanho + " elementos preenchidos");
+                    setTamanho();
                     break;
                 case 6://maior valor
                     maiorValor();
@@ -113,20 +113,24 @@ public class Ex2_Busca {
     }
 
     public static void apagarValor() {
-        System.out.print("Digite o valor a ser apagado do vetor: ");
-        valor = entrada.nextInt();
-        for (int i = 0; i < tamanho; i++) {
-            if (vetor[i] == valor) {
-                vetor[i] = 0;
-                System.out.println("Valor " + valor + " foi apagado do índice " + i);
-                for (int j = i; j < tamanho - 1; j++) {
-                    vetor[j] = vetor[j + 1];
+        if (tamanho == 0) {
+            System.out.println("Vetor vazio");
+        } else {
+            System.out.print("Digite o valor a ser apagado do vetor: ");
+            valor = entrada.nextInt();
+            for (int i = 0; i < tamanho; i++) {
+                if (vetor[i] == valor) {
+                    vetor[i] = 0;
+                    System.out.println("Valor " + valor + " foi apagado do índice " + i);
+                    for (int j = i; j < tamanho - 1; j++) {
+                        vetor[j] = vetor[j + 1];
+                    }
+                    i = tamanho;
+                    tamanho--;
                 }
-                i = tamanho;
-                tamanho--;
-            }
-            if (i == tamanho - 1) {
-                System.out.println("Valor não encontrado");
+                if (i == tamanho - 1) {
+                    System.out.println("Valor não encontrado");
+                }
             }
         }
 
@@ -140,29 +144,44 @@ public class Ex2_Busca {
         }
         return -1;
     }
+    public static void setTamanho(){
+        if (tamanho == 0) {
+            System.out.println("Vetor vazio");
+        } else {
+            System.out.println("Este vetor tem " + tamanho + " elementos preenchidos");
+        }
+    }
 
     public static void maiorValor() {
-        int maior = vetor[0];
-        int posicao = 0;
-        for (int i = 1; i < tamanho; i++) {
-            if (vetor[i] > maior) {
-                maior = vetor[i];
-                posicao = i;
+        if (tamanho == 0) {
+            System.out.println("Vetor vazio");
+        } else {
+            int maior = vetor[0];
+            int posicao = 0;
+            for (int i = 1; i < tamanho; i++) {
+                if (vetor[i] > maior) {
+                    maior = vetor[i];
+                    posicao = i;
+                }
             }
+            System.out.println("O maior valor é " + maior + " e está na posição " + posicao);
         }
-        System.out.println("O maior valor é " + maior + " e está na posição " + posicao);
     }
 
     public static void menorValor() {
-        int menor = vetor[0];
-        int posicao = 0;
-        for (int i = 1; i < tamanho; i++) {
-            if (vetor[i] < menor) {
-                menor = vetor[i];
-                posicao = i;
+        if (tamanho == 0) {
+            System.out.println("Vetor vazio");
+        } else {
+            int menor = vetor[0];
+            int posicao = 0;
+            for (int i = 1; i < tamanho; i++) {
+                if (vetor[i] < menor) {
+                    menor = vetor[i];
+                    posicao = i;
+                }
             }
+            System.out.println("O maior valor é " + menor + " e está na posição " + posicao);
         }
-        System.out.println("O maior valor é " + menor + " e está na posição " + posicao);
     }
 
     public static void listarVetor() {
@@ -194,9 +213,9 @@ public class Ex2_Busca {
             if (vetor[meio] == procurado) {
                 return meio;
             } else if (vetor[meio] > procurado) {
-                buscaBinaria(procurado, inicio, meio - 1);
+                return buscaBinaria(procurado, inicio, meio - 1);
             } else {
-                buscaBinaria(procurado, meio + 1, fim);
+                return buscaBinaria(procurado, meio + 1, fim);
             }
         }
         return -1;
