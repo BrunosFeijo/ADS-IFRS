@@ -1,12 +1,17 @@
 package Metodos_De_Ordenacao.BubbleSort;
 
+import Metodos_De_Ordenacao.VetorAleatorio;
+
 import java.util.Arrays;
 
 public class ExemploBubbleSort {
     public static void main(String[] args) {
-        int vetor[] = {5,13,2,78,89,22,10,15,3,0,17,30};
-        bubbleSort(vetor);
+        VetorAleatorio vetorAleatorio = new VetorAleatorio();
+        int vetor[] = vetorAleatorio.preencherVetor(10);
+
         System.out.println(Arrays.toString(vetor));
+        bubbleSort(vetor);
+        System.out.println("BubbleSort: " + Arrays.toString(vetor));
     }
     public static void bubbleSort(int[] vetor){
         for (int ultimo = vetor.length-1; ultimo > 0 ; ultimo--){
