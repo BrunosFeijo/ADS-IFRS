@@ -61,6 +61,10 @@ public class Ex3_Busca_Ordenacao {
                     System.out.print("Digite o valor a ser procurado: ");
                     valor = entrada.nextInt();
                     comparadorTempoExecucao(valor);
+                    break;
+                case 12:
+                    vetor = preencherVetorNaoOrdenado(vetor.length);
+                    break;
             }
         }
         System.out.println("Fim do Programa");
@@ -80,6 +84,7 @@ public class Ex3_Busca_Ordenacao {
         System.out.println("9) Preencher vetor aleatóriamente");
         System.out.println("10) Buscar valor usando busca binária");
         System.out.println("11) Comparar Buscas <Sequencial -- Binária>");
+        System.out.println("12) Preencher vetor não ordenado");
         System.out.println("0) Sair");
         System.out.println("---------------------------------------------------");
 
@@ -132,7 +137,8 @@ public class Ex3_Busca_Ordenacao {
         }
         return -1;
     }
-    public static void setTamanho(){
+
+    public static void setTamanho() {
         if (tamanho == 0) {
             System.out.println("Vetor vazio");
         } else {
@@ -224,11 +230,13 @@ public class Ex3_Busca_Ordenacao {
 
         System.out.println("A busca do valor " + valor + " na busca binária foi de " + (fim - inicio) + " ns");
     }
-    public static int[] preencherVetorJaOrdenado(int qtd) {
+
+    public static int[] preencherVetorNaoOrdenado(int qtd) {
         Random valores = new Random(100);
         int[] v = new int[qtd];
-        for (int i = 0; i < qtd; i++) {
-            v[i] = valores.nextInt(100)+1;
+        while (tamanho < qtd) {
+            v[tamanho] = valores.nextInt(10000) + 1;
+            tamanho++;
         }
         return v;
     }
