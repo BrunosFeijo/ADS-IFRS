@@ -240,4 +240,24 @@ public class Ex3_Busca_Ordenacao {
         }
         return v;
     }
+    public static int[] bubbleSort(int qtd){
+        int[] v = new int[qtd];
+
+        return v;
+    }
+    public static int[] selectionSort(int qtd){
+        int[] v = new int[qtd];
+
+        return v;
+    }
+    public static int[] insertionSort(int qtd){
+        int[] v = new int[qtd];
+
+        return v;
+    }
+    public static int[] QuickSort(int qtd){
+        int[] v = new int[qtd];
+
+        return v;
+    }
 }
