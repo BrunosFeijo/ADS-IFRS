@@ -1,4 +1,4 @@
-package BuscaBinaria;
+package Exercicios;
 //Monte um programa conforme descrito abaixo.
 //
 //1) Considerar que vetor terá tamanho 10.000 elementos e que só armazenará valores inteiros e positivos. Dessa forma,

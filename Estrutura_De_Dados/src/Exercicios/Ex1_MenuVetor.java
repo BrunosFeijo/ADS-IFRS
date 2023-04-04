@@ -1,4 +1,4 @@
-package BuscaBinaria;
+package Exercicios;
 
 import java.util.Scanner;
 
