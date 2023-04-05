@@ -289,7 +289,7 @@ public class Ex3_Busca_Ordenacao {
         boolean aindaNaoOrdenado = true;
         int menor;
 
-        for (int i = 0; i < tamanho; i++) {
+        for (int i = 0; aindaNaoOrdenado && i < tamanho; i++) {
             menor = i;
             for (int j = i + 1; j < tamanho; j++) {
                 if (vetor[menor] > vetor[j]) {
