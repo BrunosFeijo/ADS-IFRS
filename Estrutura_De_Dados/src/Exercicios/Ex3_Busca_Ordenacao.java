@@ -82,7 +82,7 @@ public class Ex3_Busca_Ordenacao {
                 case 14:
                     break;
                 case 15:
-                    System.out.println("Foram feitas " + selectionSort(vetor) + " iterações");
+                    System.out.println("Foram feitas " + selectionSort() + " iterações");
                     break;
             }
         }
@@ -284,7 +284,7 @@ public class Ex3_Busca_Ordenacao {
         }
     }
 
-    public static int selectionSort(int[] v) {
+    public static int selectionSort() {
         int iteradorTrocas = 0;
         boolean aindaNaoOrdenado = true;
         int menor;
@@ -302,23 +302,23 @@ public class Ex3_Busca_Ordenacao {
         return iteradorTrocas;
     }
 
-    public static int[] insertionSort(int qtd) {
-        int[] v = new int[qtd];
+    public static int[] insertionSort() {
+        int[] v = new int[0];
 
         return v;
     }
 
-    public static int[] QuickSort(int qtd) {
-        int[] v = new int[qtd];
+    public static int[] quickSort() {
+        int[] v = new int[0];
 
         return v;
     }
-
-    public static void compararOrdenadores() {
-
+    public static void zerarVetorEPreencherNumerosFixos(){
+        zerarVetor();
+        preencherVetorNaoOrdenado(vetor.length);
     }
 
-    public static int bubbleSort(int[] v) {
+    public static int bubbleSort() {
         int iteradorTrocas = 0;
         boolean aindaNaoOrdenado = true;
 
@@ -340,5 +340,18 @@ public class Ex3_Busca_Ordenacao {
         int aux = vetor[i];
         vetor[i] = vetor[j];
         vetor[j] = aux;
+    }
+
+    public static void compararOrdenadores() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        zerarVetorEPreencherNumerosFixos();
+        stringBuilder.append("BubbleSort fez ").append(bubbleSort()).append(" trocas/iterações.\n");
+        zerarVetorEPreencherNumerosFixos();
+        stringBuilder.append("SelectionSort fez ").append(selectionSort()).append(" trocas/iterações.\n");
+        zerarVetorEPreencherNumerosFixos();
+        stringBuilder.append("InsertionSort fez ").append(insertionSort()).append(" trocas/iterações.\n");
+        zerarVetorEPreencherNumerosFixos();
+        stringBuilder.append("QuickSort fez ").append(quickSort()).append(" trocas/iterações.\n");
     }
 }
