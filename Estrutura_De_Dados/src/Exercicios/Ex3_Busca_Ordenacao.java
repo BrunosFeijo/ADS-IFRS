@@ -291,15 +291,15 @@ public class Ex3_Busca_Ordenacao {
 
         for (int i = 0; aindaNaoOrdenado && i < tamanho; i++) {
             menor = i;
-            aindaNaoOrdenado = false;
+            //aindaNaoOrdenado = false;
             for (int j = i + 1; j < tamanho; j++) {
                 if (vetor[menor] > vetor[j]) {
                     menor = j;
                     iteradorTrocas++;
-                    aindaNaoOrdenado = true;
+                    //aindaNaoOrdenado = true;
                 }
             }
-            if (aindaNaoOrdenado) trocarElementos(vetor, i, menor);
+            trocarElementos(vetor, i, menor);
         }
         return iteradorTrocas;
     }
