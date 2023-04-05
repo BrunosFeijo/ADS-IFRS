@@ -82,7 +82,7 @@ public class Ex3_Busca_Ordenacao {
                 case 14:
                     break;
                 case 15:
-                    bubbleSort(vetor);
+                    System.out.println("Foram feitas " + bubbleSort(vetor) + " iterações");
                     break;
             }
         }
@@ -285,14 +285,7 @@ public class Ex3_Busca_Ordenacao {
             System.out.println("Vetor não está ordenado");
         }
     }
-
-    public static int[] bubbleSort(int qtd) {
-        int[] v = new int[qtd];
-
-
-        return v;
-    }
-
+    
     public static int[] selectionSort(int qtd) {
         int[] v = new int[qtd];
 
