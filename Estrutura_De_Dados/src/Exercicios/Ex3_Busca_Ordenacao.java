@@ -8,6 +8,7 @@ public class Ex3_Busca_Ordenacao {
     static int vetor[] = new int[10000];
     static int tamanho = 0;
     static int opcao = -1, valor = -1, indice;
+    static boolean vetorOrdenado = false;
 
     public static void main(String[] args) {
 
@@ -65,6 +66,9 @@ public class Ex3_Busca_Ordenacao {
                 case 12:
                     vetor = preencherVetorNaoOrdenado(vetor.length);
                     break;
+                case 13:
+                    darRetornoDeVetorOrdenado();
+                    break;
             }
         }
         System.out.println("Fim do Programa");
@@ -85,6 +89,7 @@ public class Ex3_Busca_Ordenacao {
         System.out.println("10) Buscar valor usando busca binária");
         System.out.println("11) Comparar Buscas <Sequencial -- Binária>");
         System.out.println("12) Preencher vetor não ordenado");
+        System.out.println("13) Verificar se vetor está ordenado");
         System.out.println("0) Sair");
         System.out.println("---------------------------------------------------");
 
@@ -194,6 +199,10 @@ public class Ex3_Busca_Ordenacao {
         if (tamanho == 0) {
             v[0] = random.nextInt(100);
             tamanho++;
+        }else {
+            for (int i = 0; i < tamanho;i++ ){
+                v[i] = vetor[i];
+            }
         }
         while (v.length != tamanho) {
             v[tamanho] = v[tamanho - 1] + random.nextInt(100) + 1;
@@ -240,7 +249,24 @@ public class Ex3_Busca_Ordenacao {
         }
         return v;
     }
+    public static boolean validarVetorOrdenado(){
+        for (int i = 0; i < tamanho -1;i++){
+            if (vetor[i] > vetor[i+1] || vetor[0] == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    public static void darRetornoDeVetorOrdenado(){
+        if(validarVetorOrdenado()){
+            System.out.println("Vetor está ordenado");
+        }else{
+            System.out.println("Vetor não está ordenado");
+        }
+    }
     public static int[] bubbleSort(int qtd){
+
         int[] v = new int[qtd];
 
         return v;
@@ -259,5 +285,8 @@ public class Ex3_Busca_Ordenacao {
         int[] v = new int[qtd];
 
         return v;
+    }
+    public static void compararOrdenadores(){
+
     }
 }

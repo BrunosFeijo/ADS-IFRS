@@ -6,4 +6,9 @@ Entidade relacional: (Banco de Dados)
  3- Relações: Conexão entre os objetos
 
 Cardinalidades
+
+1-1
+1-N
+N-N
+
 */
