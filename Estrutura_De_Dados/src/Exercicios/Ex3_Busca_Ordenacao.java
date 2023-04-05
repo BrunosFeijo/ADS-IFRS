@@ -353,5 +353,7 @@ public class Ex3_Busca_Ordenacao {
         stringBuilder.append("InsertionSort fez ").append(insertionSort()).append(" trocas/iterações.\n");
         zerarVetorEPreencherNumerosFixos();
         stringBuilder.append("QuickSort fez ").append(quickSort()).append(" trocas/iterações.\n");
+
+        System.out.println(stringBuilder.toString());
     }
 }
