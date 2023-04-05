@@ -90,7 +90,7 @@ public class Ex3_Busca_Ordenacao {
     }
 
     public static int menu() {
-        int opcao = 0;
+        int opcao;
         System.out.println("------------------------Menu----------------------");
         System.out.println("1) Zerar vetor");
         System.out.println("2) Inserir um valor no vetor");
@@ -217,9 +217,7 @@ public class Ex3_Busca_Ordenacao {
             v[0] = random.nextInt(100);
             tamanho++;
         } else {
-            for (int i = 0; i < tamanho; i++) {
-                v[i] = vetor[i];
-            }
+            if (tamanho > 0) System.arraycopy(vetor, 0, v, 0, tamanho);
         }
         while (v.length != tamanho) {
             v[tamanho] = v[tamanho - 1] + random.nextInt(100) + 1;
@@ -285,7 +283,7 @@ public class Ex3_Busca_Ordenacao {
             System.out.println("Vetor não está ordenado");
         }
     }
-    
+
     public static int[] selectionSort(int qtd) {
         int[] v = new int[qtd];
 
