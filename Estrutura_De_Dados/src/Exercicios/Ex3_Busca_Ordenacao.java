@@ -281,6 +281,7 @@ public class Ex3_Busca_Ordenacao {
     public static int[] bubbleSort(int qtd){
         int[] v = new int[qtd];
 
+
         return v;
     }
     public static int[] selectionSort(int qtd){
@@ -301,14 +302,22 @@ public class Ex3_Busca_Ordenacao {
     public static void compararOrdenadores(){
 
     }
-    public static void bubbleSort(int[] v){
-        for (int ultimo = tamanho -1; ultimo > 0 ; ultimo--){
+    public static int bubbleSort(int[] v){
+        int iteradorTrocas = 0;
+        boolean aindaNaoOrdenado = true;
+
+        for (int ultimo = tamanho -1; aindaNaoOrdenado ; ultimo--){
+            aindaNaoOrdenado = false;
             for (int i = 0; i < ultimo; i++){
                 if (vetor[i] > vetor[i+1]) {
                     trocarElementos(vetor,i,i+1);
+                    iteradorTrocas++;
+                    aindaNaoOrdenado = true;
                 }
             }
         }
+
+        return iteradorTrocas;
     }
     public static void trocarElementos(int [] vetor,int i, int j){
         int aux = vetor[i];
