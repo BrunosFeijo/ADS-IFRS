@@ -51,17 +51,27 @@ public class Ex3_Busca_Ordenacao {
                     vetor = preencherVetorJaOrdenado();
                     break;
                 case 10:
-                    System.out.print("Digite o valor a ser procurado: ");
-                    valor = entrada.nextInt();
-                    indice = buscaBinaria(valor, 0, tamanho - 1);
-                    System.out.println(indice == -1
-                            ? "Valor não encontrado"
-                            : "O valor procurado está no índice " + indice);
+                    if (validarVetorOrdenado()){
+                        System.out.print("Digite o valor a ser procurado: ");
+                        valor = entrada.nextInt();
+                        indice = buscaBinaria(valor, 0, tamanho - 1);
+                        System.out.println(indice == -1
+                                ? "Valor não encontrado"
+                                : "O valor procurado está no índice " + indice);
+                    }else{
+                        System.out.println("Vetor não está ordenado. Refaça a operação");
+                    }
+
                     break;
                 case 11:
-                    System.out.print("Digite o valor a ser procurado: ");
-                    valor = entrada.nextInt();
-                    comparadorTempoExecucao(valor);
+                    if (validarVetorOrdenado()){
+                        System.out.print("Digite o valor a ser procurado: ");
+                        valor = entrada.nextInt();
+                        comparadorTempoExecucao(valor);
+                    }else{
+                        System.out.println("Vetor não está ordenado. Refaça a operação");
+                    }
+
                     break;
                 case 12:
                     vetor = preencherVetorNaoOrdenado(vetor.length);
@@ -90,6 +100,8 @@ public class Ex3_Busca_Ordenacao {
         System.out.println("11) Comparar Buscas <Sequencial -- Binária>");
         System.out.println("12) Preencher vetor não ordenado");
         System.out.println("13) Verificar se vetor está ordenado");
+        System.out.println("14) Comparar métodos de ordenação");
+        System.out.println("15) Ordenar Vetor");
         System.out.println("0) Sair");
         System.out.println("---------------------------------------------------");
 
@@ -213,6 +225,7 @@ public class Ex3_Busca_Ordenacao {
     }
 
     public static int buscaBinaria(int procurado, int inicio, int fim) {
+
         int meio = (inicio + fim) / 2;
 
         if (fim >= inicio) {
@@ -266,7 +279,6 @@ public class Ex3_Busca_Ordenacao {
         }
     }
     public static int[] bubbleSort(int qtd){
-
         int[] v = new int[qtd];
 
         return v;
@@ -288,5 +300,19 @@ public class Ex3_Busca_Ordenacao {
     }
     public static void compararOrdenadores(){
 
+    }
+    public static void bubbleSort(int[] v){
+        for (int ultimo = tamanho -1; ultimo > 0 ; ultimo--){
+            for (int i = 0; i < ultimo; i++){
+                if (vetor[i] > vetor[i+1]) {
+                    trocarElementos(vetor,i,i+1);
+                }
+            }
+        }
+    }
+    public static void trocarElementos(int [] vetor,int i, int j){
+        int aux = vetor[i];
+        vetor[i] = vetor[j];
+        vetor[j] = aux;
     }
 }
