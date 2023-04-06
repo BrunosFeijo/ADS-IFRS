@@ -82,7 +82,7 @@ public class Ex3_Busca_Ordenacao {
                 case 14:
                     break;
                 case 15:
-                    if (tamanho >=2) System.out.println("Foram feitas " + selectionSort() + " iterações");
+                    if (tamanho >= 2) System.out.println("Foram feitas " + insertionSort() + " iterações");
                     break;
             }
         }
@@ -307,7 +307,16 @@ public class Ex3_Busca_Ordenacao {
     public static int insertionSort() {
         int iteradorTrocas = 0;
         boolean aindaNaoOrdenado = true;
+        for (int i = 1; i < tamanho; i++) {
+            int elemento = vetor[i];
+            int j = i - 1;
 
+            for (; j >= 0 && vetor[j] > elemento; j--) {
+                vetor[j+1] = vetor[j];
+                iteradorTrocas++;
+            }
+            vetor[j + 1] = elemento;
+        }
 
         return iteradorTrocas;
     }
