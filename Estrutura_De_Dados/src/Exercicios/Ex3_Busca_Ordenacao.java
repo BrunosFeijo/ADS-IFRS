@@ -82,7 +82,10 @@ public class Ex3_Busca_Ordenacao {
                 case 14:
                     break;
                 case 15:
+                    double inicio = System.nanoTime();
                     System.out.println("Foram feitas " + selectionSort() + " iterações");
+                    double fim = System.nanoTime();
+                    System.out.println("Ordenação " + (fim - inicio) + " ns");
                     break;
             }
         }
@@ -289,17 +292,17 @@ public class Ex3_Busca_Ordenacao {
         boolean aindaNaoOrdenado = true;
         int menor;
 
-        for (int i = 0; aindaNaoOrdenado && i < tamanho; i++) {
+        for (int i = 0; i < tamanho; i++) {
             menor = i;
-            //aindaNaoOrdenado = false;
+            aindaNaoOrdenado = false;
             for (int j = i + 1; j < tamanho; j++) {
                 if (vetor[menor] > vetor[j]) {
                     menor = j;
                     iteradorTrocas++;
-                    //aindaNaoOrdenado = true;
+                    aindaNaoOrdenado = true;
                 }
             }
-            trocarElementos(vetor, i, menor);
+            if (aindaNaoOrdenado)trocarElementos(vetor, i, menor);
         }
         return iteradorTrocas;
     }
