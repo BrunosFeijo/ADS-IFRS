@@ -28,12 +28,17 @@ public class Ex3_Busca_Ordenacao {
                     apagarValor();
                     break;
                 case 4://procurar valor
-                    System.out.print("Digite um valor a ser procurado no vetor: ");
-                    valor = entrada.nextInt();
-                    indice = procurarValor(valor);
-                    System.out.println(indice == -1
-                            ? "Valor não encontrado"
-                            : "O valor procurado está no índice " + indice);
+                    if (validarVetorOrdenado()){
+                        System.out.print("Digite um valor a ser procurado no vetor: ");
+                        valor = entrada.nextInt();
+                        indice = procurarValor(valor);
+                        System.out.println(indice == -1
+                                ? "Valor não encontrado"
+                                : "O valor procurado está no índice " + indice);
+                    }else {
+                        System.out.println("Vetor não está ordenado. Refaça a operação");
+                    }
+
                     break;
                 case 5://tamanho do vetor
                     setTamanho();
@@ -74,12 +79,13 @@ public class Ex3_Busca_Ordenacao {
 
                     break;
                 case 12:
-                    vetor = preencherVetorNaoOrdenado(vetor.length);
+                    if (tamanho < vetor.length) vetor = preencherVetorNaoOrdenado(vetor.length);
                     break;
                 case 13:
-                    darRetornoDeVetorOrdenado();
+                    if (tamanho >= 2) darRetornoDeVetorOrdenado();
                     break;
                 case 14:
+                    if (tamanho >= 2)compararOrdenadores();
                     break;
                 case 15:
                     if (tamanho >= 2) System.out.println("Foram feitas " + insertionSort() + " iterações");
@@ -295,11 +301,10 @@ public class Ex3_Busca_Ordenacao {
             for (int j = i + 1; j < tamanho; j++) {
                 if (vetor[menor] > vetor[j]) {
                     menor = j;
-                    iteradorTrocas++;
                     aindaNaoOrdenado = true;
                 }
             }
-            if (aindaNaoOrdenado) trocarElementos(vetor, i, menor);
+            if (aindaNaoOrdenado) iteradorTrocas += trocarElementos(vetor, i, menor);
         }
         return iteradorTrocas;
     }
@@ -312,7 +317,7 @@ public class Ex3_Busca_Ordenacao {
             int j = i - 1;
 
             for (; j >= 0 && vetor[j] > elemento; j--) {
-                vetor[j+1] = vetor[j];
+                vetor[j + 1] = vetor[j];
                 iteradorTrocas++;
             }
             vetor[j + 1] = elemento;
@@ -340,8 +345,7 @@ public class Ex3_Busca_Ordenacao {
             aindaNaoOrdenado = false;
             for (int i = 0; i < ultimo; i++) {
                 if (vetor[i] > vetor[i + 1]) {
-                    trocarElementos(vetor, i, i + 1);
-                    iteradorTrocas++;
+                    iteradorTrocas += trocarElementos(vetor, i, i + 1);
                     aindaNaoOrdenado = true;
                 }
             }
@@ -350,10 +354,12 @@ public class Ex3_Busca_Ordenacao {
         return iteradorTrocas;
     }
 
-    public static void trocarElementos(int[] vetor, int i, int j) {
+    public static int trocarElementos(int[] vetor, int i, int j) {
         int aux = vetor[i];
         vetor[i] = vetor[j];
         vetor[j] = aux;
+
+        return 1;
     }
 
     public static void compararOrdenadores() {
