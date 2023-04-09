@@ -17,7 +17,7 @@ public class Ex3_Busca_Ordenacao {
             opcao = menu();
             switch (opcao) {
                 case 1: // zerar vetor
-                    zerarVetor();
+                    zerarVetorEPreencherNumerosFixos();
                     System.out.println("Vetor Zerado");
                     break;
                 case 2: // inserir valor
@@ -28,14 +28,14 @@ public class Ex3_Busca_Ordenacao {
                     apagarValor();
                     break;
                 case 4://procurar valor
-                    if (validarVetorOrdenado()){
+                    if (validarVetorOrdenado()) {
                         System.out.print("Digite um valor a ser procurado no vetor: ");
                         valor = entrada.nextInt();
                         indice = procurarValor(valor);
                         System.out.println(indice == -1
                                 ? "Valor não encontrado"
                                 : "O valor procurado está no índice " + indice);
-                    }else {
+                    } else {
                         System.out.println("Vetor não está ordenado. Refaça a operação");
                     }
 
@@ -85,10 +85,12 @@ public class Ex3_Busca_Ordenacao {
                     if (tamanho >= 2) darRetornoDeVetorOrdenado();
                     break;
                 case 14:
-                    if (tamanho >= 2)compararOrdenadores();
+                    if (tamanho >= 2) compararOrdenadores();
                     break;
                 case 15:
-                    if (tamanho >= 2) System.out.println("Foram feitas " + insertionSort() + " iterações");
+                    if (tamanho >= 2)
+                        System.out.println("Foram feitas " + quickSort(0, vetor.length - 1)
+                                + " iterações");
                     break;
             }
         }
@@ -326,15 +328,28 @@ public class Ex3_Busca_Ordenacao {
         return iteradorTrocas;
     }
 
-    public static int[] quickSort() {
-        int[] v = new int[0];
+    public static int quickSort(int menor, int maior) {
+        int iteradorTrocas = 0;
+        if (menor < maior) {
 
-        return v;
-    }
+            int pivo = vetor[maior];
+            int i = menor - 1;
 
-    public static void zerarVetorEPreencherNumerosFixos() {
-        zerarVetor();
-        preencherVetorNaoOrdenado(vetor.length);
+            for (int j = menor; j < maior; j++) {
+                if (vetor[j] <= pivo) {
+                    i++;
+                    iteradorTrocas += trocarElementos(vetor, i, j);
+                }
+            }
+
+            int aux = vetor[i + 1];
+            vetor[i + 1] = pivo;
+            vetor[maior] = aux;
+
+            iteradorTrocas += quickSort(menor, i);
+            iteradorTrocas += quickSort(i + 2, maior);
+        }
+        return iteradorTrocas;
     }
 
     public static int bubbleSort() {
@@ -362,6 +377,11 @@ public class Ex3_Busca_Ordenacao {
         return 1;
     }
 
+    public static void zerarVetorEPreencherNumerosFixos() {
+        zerarVetor();
+        preencherVetorNaoOrdenado(vetor.length);
+    }
+
     public static void compararOrdenadores() {
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -372,7 +392,7 @@ public class Ex3_Busca_Ordenacao {
         zerarVetorEPreencherNumerosFixos();
         stringBuilder.append("InsertionSort fez ").append(insertionSort()).append(" trocas/iterações.\n");
         zerarVetorEPreencherNumerosFixos();
-        stringBuilder.append("QuickSort fez ").append(quickSort()).append(" trocas/iterações.\n");
+        stringBuilder.append("QuickSort fez ").append(quickSort(0, vetor.length - 1)).append(" trocas/iterações.\n");
 
         System.out.println(stringBuilder.toString());
     }
