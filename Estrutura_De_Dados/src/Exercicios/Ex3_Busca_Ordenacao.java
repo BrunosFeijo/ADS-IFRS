@@ -265,7 +265,7 @@ public class Ex3_Busca_Ordenacao {
     }
 
     public static int[] preencherVetorNaoOrdenado(int qtd) {
-        Random valores = new Random(100);
+        Random valores = new Random(200);
         int[] v = new int[qtd];
         while (tamanho < qtd) {
             v[tamanho] = valores.nextInt(10000) + 1;
@@ -280,7 +280,6 @@ public class Ex3_Busca_Ordenacao {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -304,6 +303,7 @@ public class Ex3_Busca_Ordenacao {
                 if (vetor[menor] > vetor[j]) {
                     menor = j;
                     aindaNaoOrdenado = true;
+                    iteradorTrocas++;
                 }
             }
             if (aindaNaoOrdenado) iteradorTrocas += trocarElementos(vetor, i, menor);
@@ -379,7 +379,7 @@ public class Ex3_Busca_Ordenacao {
 
     public static void zerarVetorEPreencherNumerosFixos() {
         zerarVetor();
-        preencherVetorNaoOrdenado(vetor.length);
+        vetor = preencherVetorNaoOrdenado(vetor.length);
     }
 
     public static void compararOrdenadores() {
