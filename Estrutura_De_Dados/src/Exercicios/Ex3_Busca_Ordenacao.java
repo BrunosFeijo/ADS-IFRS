@@ -17,7 +17,7 @@ public class Ex3_Busca_Ordenacao {
             opcao = menu();
             switch (opcao) {
                 case 1: // zerar vetor
-                    zerarVetorEPreencherNumerosFixos();
+                    zerarVetor();
                     System.out.println("Vetor Zerado");
                     break;
                 case 2: // inserir valor
@@ -53,7 +53,11 @@ public class Ex3_Busca_Ordenacao {
                     listarVetor();
                     break;
                 case 9://preencher vetor com números aleatórios
-                    vetor = preencherVetorJaOrdenado();
+                    if (tamanho < vetor.length){
+                        vetor = preencherVetorJaOrdenado();
+                    }else {
+                        System.out.println("Vetor já está cheio!");
+                    }
                     break;
                 case 10:
                     if (validarVetorOrdenado()) {
@@ -79,7 +83,11 @@ public class Ex3_Busca_Ordenacao {
 
                     break;
                 case 12:
-                    if (tamanho < vetor.length) vetor = preencherVetorNaoOrdenado(vetor.length);
+                    if (tamanho < vetor.length){
+                        preencherVetorNaoOrdenado(vetor.length);
+                    }else {
+                        System.out.println("Vetor já está cheio!");
+                    }
                     break;
                 case 13:
                     if (tamanho >= 2) darRetornoDeVetorOrdenado();
@@ -264,14 +272,12 @@ public class Ex3_Busca_Ordenacao {
         System.out.println("A busca do valor " + valor + " na busca binária foi de " + (fim - inicio) + " ns");
     }
 
-    public static int[] preencherVetorNaoOrdenado(int qtd) {
+    public static void preencherVetorNaoOrdenado(int qtd) {
         Random valores = new Random(200);
-        int[] v = new int[qtd];
         while (tamanho < qtd) {
-            v[tamanho] = valores.nextInt(10000) + 1;
+            vetor[tamanho] = valores.nextInt(10000) + 1;
             tamanho++;
         }
-        return v;
     }
 
     public static boolean validarVetorOrdenado() {
@@ -379,20 +385,49 @@ public class Ex3_Busca_Ordenacao {
 
     public static void zerarVetorEPreencherNumerosFixos() {
         zerarVetor();
-        vetor = preencherVetorNaoOrdenado(vetor.length);
+        preencherVetorNaoOrdenado(vetor.length);
     }
 
     public static void compararOrdenadores() {
+        int iteracoes = 0;
         StringBuilder stringBuilder = new StringBuilder();
 
         zerarVetorEPreencherNumerosFixos();
-        stringBuilder.append("BubbleSort fez ").append(bubbleSort()).append(" trocas/iterações.\n");
+
+        double inicio = System.nanoTime();
+        iteracoes = bubbleSort();
+        double fim = System.nanoTime();
+
+        stringBuilder.append("BubbleSort fez ").append(iteracoes).append(" trocas/iterações.\n");
+        stringBuilder.append("A ordenação ocorreu em  ").append(fim - inicio).append(" ns\n\n");
+
         zerarVetorEPreencherNumerosFixos();
-        stringBuilder.append("SelectionSort fez ").append(selectionSort()).append(" trocas/iterações.\n");
+
+        inicio = System.nanoTime();
+        iteracoes = selectionSort();
+        fim = System.nanoTime();
+
+        stringBuilder.append("SelectionSort fez ").append(iteracoes).append(" trocas/iterações.\n");
+        stringBuilder.append("A ordenação ocorreu em  ").append(fim - inicio).append(" ns\n\n");
+
+
         zerarVetorEPreencherNumerosFixos();
-        stringBuilder.append("InsertionSort fez ").append(insertionSort()).append(" trocas/iterações.\n");
+
+        inicio = System.nanoTime();
+        iteracoes = insertionSort();
+        fim = System.nanoTime();
+
+        stringBuilder.append("InsertionSort fez ").append(iteracoes).append(" trocas/iterações.\n");
+        stringBuilder.append("A ordenação ocorreu em  ").append(fim - inicio).append(" ns\n\n");
+
         zerarVetorEPreencherNumerosFixos();
-        stringBuilder.append("QuickSort fez ").append(quickSort(0, vetor.length - 1)).append(" trocas/iterações.\n");
+
+        inicio = System.nanoTime();
+        iteracoes = quickSort(0, vetor.length - 1);
+        fim = System.nanoTime();
+
+        stringBuilder.append("QuickSort fez ").append(iteracoes).append(" trocas/iterações.\n");
+        stringBuilder.append("A ordenação ocorreu em  ").append(fim - inicio).append(" ns\n\n");
 
         System.out.println(stringBuilder.toString());
     }
