@@ -1,4 +1,4 @@
-package Revisao;
+package Ex2_CriarClasses;
 
 //O programa deverá possuir um menu de alternativas para que o usuário escolha o que deve ser realizado,
 // conforme sugestão abaixo:
