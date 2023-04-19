@@ -11,4 +11,16 @@ Cardinalidades
 1-N
 N-N
 
+Modelo Conceitual
+Modelo Lógico
+Modelo Físico
+
+Domínio
+                            Constraints
+Chave primária (not null)   >  Identidade  - Primary Key
+Chave estrangeira           >  Referencial - 
+                            >  Nulo
+                            >  Domínio
+
+Tupla
 */
