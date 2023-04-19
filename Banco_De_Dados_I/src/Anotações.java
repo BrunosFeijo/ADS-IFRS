@@ -18,7 +18,7 @@ Modelo Físico
 Domínio
                             Constraints
 Chave primária (not null)   >  Identidade  - Primary Key
-Chave estrangeira           >  Referencial - 
+Chave estrangeira           >  Referencial -
                             >  Nulo
                             >  Domínio
 
