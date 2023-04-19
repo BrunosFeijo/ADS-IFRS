@@ -33,5 +33,28 @@ public class Main {
         System.out.println(livro1 + "\n");
         System.out.println(livro2 + "\n");
         System.out.println(livro3);
+
+        System.out.println("\nMétodo para empresa1 (Novo Endereço:");
+        empresa1.novoEndereco("Rua D,Bairro AA, Cidade Muito Alta");
+        System.out.println(empresa1 + "\n");
+
+        System.out.println("\nMétodo para remedio1 (Novo valor, estoque, incremento e decremento)");
+        remedio1.novoValor(12.5);
+        remedio1.novoEstoque(20);
+        remedio1.decrementaEstoque(5);
+        remedio1.incrementaEstoque(25);
+        System.out.println(remedio1 + "\n");
+
+        System.out.println("\nMétodos para funcionario1 (Novo Cargo e salário)");
+        funcionario1.novoCargo("Analista I");
+        funcionario1.novoSalario(3700.0);
+        System.out.println(funcionario1 + "\n");
+
+        System.out.println("\nMétodos para livro1 (Novo valor, estoque, incremento e decremento)");
+        livro1.novoValor(52.0);
+        livro1.novoEstoque(5);
+        livro1.decrementaEstoque(3);
+        livro1.incrementaEstoque(7);
+        System.out.println(livro1 + "\n");
     }
 }

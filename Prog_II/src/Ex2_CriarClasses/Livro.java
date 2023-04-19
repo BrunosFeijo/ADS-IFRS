@@ -16,6 +16,18 @@ public class Livro {
         this.editora = editora;
         this.estoque = estoque;
     }
+    public void novoValor(double valor){
+        this.valor = valor;
+    }
+    public void novoEstoque(int estoque){
+        this.estoque = estoque;
+    }
+    public void incrementaEstoque(int estoque){
+        this.estoque += estoque;
+    }
+    public void decrementaEstoque(int estoque){
+        this.estoque -= estoque;
+    }
 
     @Override
     public String toString() {

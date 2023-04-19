@@ -14,6 +14,12 @@ public class Funcionario {
         this.salario = salario;
         this.cargo = cargo;
     }
+    public void novoSalario(double salario){
+        this.salario = salario;
+    }
+    public void novoCargo(String cargo){
+        this.cargo = cargo;
+    }
 
     @Override
     public String toString() {

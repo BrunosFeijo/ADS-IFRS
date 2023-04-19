@@ -12,6 +12,9 @@ public class Empresa {
         this.endereco = endereco;
         this.servico = servico;
     }
+    public void novoEndereco(String endereco){
+        this.endereco = endereco;
+    }
 
     @Override
     public String toString() {
