@@ -6,12 +6,12 @@ import java.util.Date;
 public class Usuario {
 
     private final String nome;
-    private int senha;
+    private String senha;
     private String email;
     private final Date dataNascimento;
 
 
-    public Usuario(String nome, int senha, String email, Date dataNascimento) {
+    public Usuario(String nome, String senha, String email, Date dataNascimento) {
         this.nome = nome;
         this.senha = senha;
         this.email = email;
@@ -22,13 +22,13 @@ public class Usuario {
         return nome;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public boolean setSenha(int senhaAntiga, int senhaNova) {
+    public boolean setSenha(String senhaAntiga, String senhaNova) {
         if (validaSenha(senhaAntiga)) {
-            this.senha = senhaNova;
+            this.senha.equals(senhaNova) ;
             return true;
         }
         return false;
@@ -38,7 +38,7 @@ public class Usuario {
         return email;
     }
 
-    public boolean setEmail(String email, int senha) {
+    public boolean setEmail(String email, String senha) {
         if (validaSenha(senha)) {
             this.email = email;
             return true;
@@ -56,9 +56,9 @@ public class Usuario {
     }
     */
 
-    public boolean validaSenha(int senha) {
+    public boolean validaSenha(String senha) {
 
-        return this.senha == senha;
+        return this.senha.equals(senha) ;
     }
 
     public boolean isMaiorDeIdade() {
@@ -83,10 +83,10 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{\n" +
-                "nome='" + nome + '\'' + "\n" +
-                "senha=" + senha + "\n" +
-                "email='" + email + '\'' + "\n" +
-                "dataNascimento=" + dataNascimento +
+                "nome=' " + nome + '\'' + "\n" +
+                "senha= " + senha + "\n" +
+                "email=' " + email + '\'' + "\n" +
+                "dataNascimento= " + dataNascimento.getDate() + "/" + dataNascimento.getMonth() + "/" + dataNascimento.getYear() +
                 '}';
     }
 }
