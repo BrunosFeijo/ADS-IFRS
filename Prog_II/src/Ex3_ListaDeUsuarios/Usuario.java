@@ -5,10 +5,11 @@ import java.util.Date;
 
 public class Usuario {
 
-    private String nome;
+    private final String nome;
     private int senha;
     private String email;
-    private Date dataNascimento;
+    private final Date dataNascimento;
+
 
     public Usuario(String nome, int senha, String email, Date dataNascimento) {
         this.nome = nome;
@@ -26,7 +27,7 @@ public class Usuario {
     }
 
     public boolean setSenha(int senhaAntiga, int senhaNova) {
-        if (validaSenha(senhaAntiga)){
+        if (validaSenha(senhaAntiga)) {
             this.senha = senhaNova;
             return true;
         }
@@ -38,7 +39,7 @@ public class Usuario {
     }
 
     public boolean setEmail(String email, int senha) {
-        if (validaSenha(senha)){
+        if (validaSenha(senha)) {
             this.email = email;
             return true;
         }
@@ -49,21 +50,36 @@ public class Usuario {
         return dataNascimento;
     }
 
+    /*
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
+    */
 
-    public boolean validaSenha(int senha){
+    public boolean validaSenha(int senha) {
 
         return this.senha == senha;
     }
-    public boolean isMaiorDeIdade(){
-        LocalDate hoje = LocalDate.now();
 
-        return false;
+    public boolean isMaiorDeIdade() {
+
+        return idade() >= 18;
     }
 
+    public int idade() {
+        Date hoje = new Date();
 
+        if (hoje.getMonth() > dataNascimento.getMonth()) {
+            return (1900 + hoje.getYear()) - dataNascimento.getYear();
+        } else if (hoje.getMonth() == dataNascimento.getMonth()) {
+            if (hoje.getDate() >= dataNascimento.getDate()) {
+                return (1900 + hoje.getYear()) - dataNascimento.getYear();
+            } else {
+                return (1900 + hoje.getYear()) - dataNascimento.getYear() - 1;
+            }
+        }
+        return (1900 + hoje.getYear()) - dataNascimento.getYear() - 1;
+    }
     @Override
     public String toString() {
         return "Usuario{\n" +
