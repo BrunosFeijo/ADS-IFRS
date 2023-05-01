@@ -20,14 +20,17 @@ public class Vetor {
 
     public boolean preencherVetor() {
         Random valores = new Random();
-        for (int i = tamanho; i < vetor.length; i++) {
-            vetor[i] = valores.nextInt(100000) + 1;
-            cheio = true;
+
+        if (!cheio){
+            for (int i = tamanho; i < vetor.length; i++) {
+                vetor[i] = valores.nextInt(100000) + 1;
+            }
+            tamanho = vetor.length;
+            return cheio = true;
+        }else {
+            System.out.println("Vetor já está cheio");
+            return false;
         }
-
-        tamanho = vetor.length;
-
-        return cheio;
     }
 
     public boolean preencherVetorOrdenado() {
@@ -38,7 +41,7 @@ public class Vetor {
     }
 
     public void inserirValor(int valor) {
-        
+
     }
 
     public void inserirValor(int valor, int posicao) {
