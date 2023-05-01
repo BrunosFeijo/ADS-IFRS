@@ -44,16 +44,17 @@ public class Vetor {
     }
 
     public boolean inserirValor(int valor) {
-        if (!cheio) {
+        if (!cheio && valor != 0) {
             vetor[tamanho++] = valor;
             return true;
         }
+        System.out.println("Vetor está cheio ou valor é igual a 0!");
         return false;
     }
 
     public boolean inserirValor(int valor, int posicao) {
-        if (posicao >= tamanho || posicao < 0) {
-            System.out.println("A posição é menor que 0 ou maior que o tamanho atual do vetor!");
+        if (posicao >= tamanho || posicao < 0 || valor == 0) {
+            System.out.println("A posição é menor que 0, maior que o tamanho atual do vetor ou o valor é igual a 0!");
             return false;
         }
         int valorAtual = vetor[posicao];
@@ -110,12 +111,31 @@ public class Vetor {
     }
 
     public int menorValor() {
-        
-        return 0;
+        if (tamanho == 0){
+            System.out.println("Vetor está vazio");
+            return 0;
+        }
+        int menor = vetor[0];
+        for (int i = 0; i < tamanho;i++){
+            if (menor > vetor[i]){
+                menor = vetor[i];
+            }
+        }
+        return menor;
     }
 
     public int maiorValor() {
-        return 0;
+        if (tamanho == 0){
+            System.out.println("Vetor está vazio");
+            return 0;
+        }
+        int maior = vetor[0];
+        for (int i = 0; i < tamanho;i++){
+            if (maior < vetor[i]){
+                maior = vetor[i];
+            }
+        }
+        return maior;
     }
 
     public int buscaSequencial() {
