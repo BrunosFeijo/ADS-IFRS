@@ -82,7 +82,7 @@ public class Vetor {
     }
 
     public boolean removerValor(int valor) {
-        int posicao = buscaBinaria(valor, 0, tamanho -1);
+        int posicao = buscaBinaria(valor, 0, tamanho - 1);
         if (posicao == -1) {
             System.out.println("Número não localizado!");
             return false;
@@ -111,13 +111,13 @@ public class Vetor {
     }
 
     public int menorValor() {
-        if (tamanho == 0){
+        if (tamanho == 0) {
             System.out.println("Vetor está vazio");
             return 0;
         }
         int menor = vetor[0];
-        for (int i = 0; i < tamanho;i++){
-            if (menor > vetor[i]){
+        for (int i = 0; i < tamanho; i++) {
+            if (menor > vetor[i]) {
                 menor = vetor[i];
             }
         }
@@ -125,13 +125,13 @@ public class Vetor {
     }
 
     public int maiorValor() {
-        if (tamanho == 0){
+        if (tamanho == 0) {
             System.out.println("Vetor está vazio");
             return 0;
         }
         int maior = vetor[0];
-        for (int i = 0; i < tamanho;i++){
-            if (maior < vetor[i]){
+        for (int i = 0; i < tamanho; i++) {
+            if (maior < vetor[i]) {
                 maior = vetor[i];
             }
         }
@@ -139,8 +139,8 @@ public class Vetor {
     }
 
     public int buscaSequencial(int valor) {
-        for (int i = 0; i < tamanho; i++){
-            if (valor == vetor[i]){
+        for (int i = 0; i < tamanho; i++) {
+            if (valor == vetor[i]) {
                 return i;
             }
         }
@@ -148,7 +148,7 @@ public class Vetor {
     }
 
     public int buscaBinaria(int valor, int inicio, int fim) {
-        if(!validarVetorOrdenado()){
+        if (!validarVetorOrdenado()) {
             System.out.println("Vetor não está ordenado");
             return -1;
         }
@@ -166,6 +166,7 @@ public class Vetor {
         }
         return -1;
     }
+
     public boolean validarVetorOrdenado() {
         for (int i = 0; i < tamanho - 1; i++) {
             if (vetor[i] > vetor[i + 1] || vetor[0] == 0) {
@@ -174,6 +175,7 @@ public class Vetor {
         }
         return true;
     }
+
     public int trocarElementos(int i, int j) {
         int aux = vetor[i];
         vetor[i] = vetor[j];
@@ -183,7 +185,7 @@ public class Vetor {
     }
 
     public int bubbleSort() {
-        if (tamanho == 0){
+        if (tamanho == 0) {
             System.out.println("Vetor vazio");
             return 0;
         }
@@ -202,12 +204,50 @@ public class Vetor {
         return iteradorTrocas;
     }
 
-    public void insertionSort() {
+    public int insertionSort() {
+        if (tamanho == 0) {
+            System.out.println("Vetor vazio");
+            return 0;
+        }
+        int iteradorTrocas = 0;
+        boolean aindaNaoOrdenado = true;
 
+        for (int i = 1; i < tamanho; i++) {
+            int valor = vetor[i];
+            int j = i - 1;
+
+            for (; j >= 0 && vetor[j] > valor; j--) {
+                vetor[j + 1] = vetor[j];
+                iteradorTrocas++;
+            }
+            vetor[j + 1] = valor;
+        }
+
+        return iteradorTrocas;
     }
 
-    public void selectionSort() {
+    public int selectionSort() {
+        if (tamanho == 0) {
+            System.out.println("Vetor vazio");
+            return 0;
+        }
+        int iteradorTrocas = 0;
+        boolean aindaNaoOrdenado = true;
+        int menor;
 
+        for (int i = 0; i < tamanho; i++) {
+            menor = i;
+            aindaNaoOrdenado = false;
+            for (int j = i + 1; j < tamanho; j++) {
+                if (vetor[menor] > vetor[j]) {
+                    menor = j;
+                    aindaNaoOrdenado = true;
+                    iteradorTrocas++;
+                }
+            }
+            if (aindaNaoOrdenado) iteradorTrocas += trocarElementos(i, menor);
+        }
+        return iteradorTrocas;
     }
 
     public void quickSort() {
