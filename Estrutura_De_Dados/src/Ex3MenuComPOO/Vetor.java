@@ -138,8 +138,13 @@ public class Vetor {
         return maior;
     }
 
-    public int buscaSequencial() {
-        return 0;
+    public int buscaSequencial(int valor) {
+        for (int i = 0; i < tamanho; i++){
+            if (valor == vetor[i]){
+                return i;
+            }
+        }
+        return (vetor[0] == valor ? 0 : -1);
     }
 
     public int buscaBinaria(int valor) {
