@@ -1,4 +1,4 @@
-package Exercicios;
+package Ex1_MenuVetorMain;
 
 import java.util.Scanner;
 

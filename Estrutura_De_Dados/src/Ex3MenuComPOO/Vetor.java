@@ -82,7 +82,7 @@ public class Vetor {
     }
 
     public boolean removerValor(int valor) {
-        int posicao = buscaBinaria(valor);
+        int posicao = buscaBinaria(valor, 0, tamanho -1);
         if (posicao == -1) {
             System.out.println("Número não localizado!");
             return false;
@@ -147,12 +147,59 @@ public class Vetor {
         return (vetor[0] == valor ? 0 : -1);
     }
 
-    public int buscaBinaria(int valor) {
-        return 0;
+    public int buscaBinaria(int valor, int inicio, int fim) {
+        if(!validarVetorOrdenado()){
+            System.out.println("Vetor não está ordenado");
+            return -1;
+        }
+
+        int meio = (inicio + fim) / 2;
+
+        if (fim >= inicio) {
+            if (vetor[meio] == valor) {
+                return meio;
+            } else if (vetor[meio] > valor) {
+                return buscaBinaria(valor, inicio, meio - 1);
+            } else {
+                return buscaBinaria(valor, meio + 1, fim);
+            }
+        }
+        return -1;
+    }
+    public boolean validarVetorOrdenado() {
+        for (int i = 0; i < tamanho - 1; i++) {
+            if (vetor[i] > vetor[i + 1] || vetor[0] == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public int trocarElementos(int i, int j) {
+        int aux = vetor[i];
+        vetor[i] = vetor[j];
+        vetor[j] = aux;
+
+        return 1;
     }
 
-    public void bubbleSort() {
+    public int bubbleSort() {
+        if (tamanho == 0){
+            System.out.println("Vetor vazio");
+            return 0;
+        }
+        int iteradorTrocas = 0;
+        boolean aindaNaoOrdenado = true;
 
+        for (int ultimo = tamanho - 1; aindaNaoOrdenado && ultimo > 0; ultimo--) {
+            aindaNaoOrdenado = false;
+            for (int i = 0; i < ultimo; i++) {
+                if (vetor[i] > vetor[i + 1]) {
+                    iteradorTrocas += trocarElementos(i, i + 1);
+                    aindaNaoOrdenado = true;
+                }
+            }
+        }
+        return iteradorTrocas;
     }
 
     public void insertionSort() {
