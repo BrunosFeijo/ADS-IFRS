@@ -6,6 +6,7 @@ import java.util.Random;
 public class Vetor {
     private int[] vetor;
     private int tamanho;
+    private boolean cheio = false;
 
     Vetor() {
         vetor = new int[10];
@@ -19,25 +20,25 @@ public class Vetor {
 
     public boolean preencherVetor() {
         Random valores = new Random();
-        boolean preechido = false;
-
         for (int i = tamanho; i < vetor.length; i++) {
             vetor[i] = valores.nextInt(100000) + 1;
-            preechido = true;
+            cheio = true;
         }
 
         tamanho = vetor.length;
 
-        return preechido;
+        return cheio;
     }
 
-    public void preencherVetorOrdenado() {
+    public boolean preencherVetorOrdenado() {
         preencherVetor();
         quickSort();
+
+        return cheio;
     }
 
     public void inserirValor(int valor) {
-
+        
     }
 
     public void inserirValor(int valor, int posicao) {
