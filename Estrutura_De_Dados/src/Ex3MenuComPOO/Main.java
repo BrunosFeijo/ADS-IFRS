@@ -4,6 +4,13 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Vetor vetor = new Vetor(10000);
+        int opcao = menu(vetor);
+
+        while(opcao != 0){
+            opcao = menu(vetor);
+        }
+        System.out.println("Fim do programa");
 
     }
 
@@ -46,46 +53,110 @@ public class Main {
         switch (op) {
             case 1:
                 vetor.preencherVetor();
+                break;
             case 2:
                 vetor.preencherVetorOrdenado();
+                break;
             case 3:
                 System.out.println("Este vetor possui " + vetor.getTamanho() + "elementos válidos");
+                break;
             case 4:
                 System.out.println("O menor valor é: " + vetor.menorValor() + "\n" +
                         "O maior valor é: " + vetor.maiorValor());
+                break;
             case 5:
                 System.out.println(vetor);
+                break;
             case 6:
                 System.out.print("\nInforme o valor a ser inserido: ");
                 valor = entrada.nextInt();
                 System.out.print("\nInforme a posição a ser subsituída: ");
                 posicao = entrada.nextInt();
                 vetor.inserirValor(valor, posicao);
+                break;
             case 7:
                 System.out.print("\nInforme o valor a ser inserido: ");
                 valor = entrada.nextInt();
                 vetor.inserirValor(valor);
+                break;
             case 8:
                 System.out.print("\nInforme a posição a ser removida: ");
                 posicao = entrada.nextInt();
                 vetor.removerValorDaPosicao(posicao);
+                break;
             case 9:
                 System.out.print("\nInforme o valor a ser removido: ");
                 valor = entrada.nextInt();
                 vetor.removerValor(valor);
+                break;
             case 10:
                 System.out.print("\nInforme o valor a ser buscado: ");
                 valor = entrada.nextInt();
-                vetor.buscaSequencial(valor);
+                posicao = vetor.buscaSequencial(valor);
+                if (posicao == -1) {
+                    System.out.println("Valor não encontrado");
+                } else {
+                    System.out.println("Valor encontrado na posição " + posicao);
+                }
+                break;
             case 11:
                 System.out.print("\nInforme o valor a ser buscado: ");
                 valor = entrada.nextInt();
-                vetor.buscaBinaria(valor, 0, vetor.getTamanho() - 1);
+                posicao = vetor.buscaBinaria(valor, 0, vetor.getTamanho() - 1);
 
+                if (posicao == -1) {
+                    System.out.println("Valor não encontrado");
+                } else {
+                    System.out.println("Valor encontrado na posição " + posicao);
+                }
+                break;
             case 12:
+                if (!vetor.validarVetorOrdenado()) {
+                    vetor.bubbleSort();
+                    System.out.println("Vetor ordenado com sucesso");
+                } else if (vetor.vazio()) {
+                    System.out.println("Vetor vazio");
+                } else {
+                    System.out.println("Vetor já está ordenado");
+                }
+                break;
             case 13:
+                if (!vetor.validarVetorOrdenado()) {
+                    vetor.insertionSort();
+                    System.out.println("Vetor ordenado com sucesso");
+                } else if (vetor.vazio()) {
+                    System.out.println("Vetor vazio");
+                } else {
+                    System.out.println("Vetor já está ordenado");
+                }
+                break;
             case 14:
+                if (!vetor.validarVetorOrdenado()) {
+                    vetor.selectionSort();
+                    System.out.println("Vetor ordenado com sucesso");
+                } else if (vetor.vazio()) {
+                    System.out.println("Vetor vazio");
+                } else {
+                    System.out.println("Vetor já está ordenado");
+                }
+                break;
             case 15:
+                if (!vetor.validarVetorOrdenado()) {
+                    vetor.quickSort(0, vetor.getTamanho() - 1);
+                    System.out.println("Vetor ordenado com sucesso");
+                } else if (vetor.vazio()) {
+                    System.out.println("Vetor vazio");
+                } else {
+                    System.out.println("Vetor já está ordenado");
+                }
+                break;
+            case 16:
+                if (vetor.limparVetor()){
+                    System.out.println("Vetor vazio novamente");
+                }else {
+                    System.out.println("Vetor já está vazio");
+                }
+                break;
         }
 
         return op;

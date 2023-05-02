@@ -62,7 +62,7 @@ public class Vetor {
         int valorAtual = vetor[posicao];
 
         vetor[posicao] = valor;
-        System.out.println("A posição " + posicao + "foi alterada de " + valorAtual + " para " + valor);
+        System.out.println("A posição " + posicao + " foi alterada de " + valorAtual + " para " + valor);
 
         return true;
     }
@@ -78,6 +78,9 @@ public class Vetor {
 
     public int getTamanho() {
         return tamanho;
+    }
+    public boolean vazio(){
+        return tamanho == 0;
     }
 
     public int getTamanhoMaximo() {
@@ -192,8 +195,7 @@ public class Vetor {
 
     public int bubbleSort() {
         if (tamanho == 0) {
-            System.out.println("Vetor vazio");
-            return 0;
+            return -1;
         }
         int iteradorTrocas = 0;
         boolean aindaNaoOrdenado = true;
@@ -212,8 +214,7 @@ public class Vetor {
 
     public int insertionSort() {
         if (tamanho == 0) {
-            System.out.println("Vetor vazio");
-            return 0;
+            return -1;
         }
         int iteradorTrocas = 0;
         boolean aindaNaoOrdenado = true;
@@ -234,8 +235,7 @@ public class Vetor {
 
     public int selectionSort() {
         if (tamanho == 0) {
-            System.out.println("Vetor vazio");
-            return 0;
+            return -1;
         }
         int iteradorTrocas = 0;
         boolean aindaNaoOrdenado = true;
@@ -258,8 +258,7 @@ public class Vetor {
 
     public int quickSort(int menor, int maior) {
         if (tamanho == 0) {
-            System.out.println("Vetor vazio");
-            return 0;
+            return -1;
         }
         int iteradorTrocas = 0;
         if (menor < maior) {
@@ -282,6 +281,14 @@ public class Vetor {
             iteradorTrocas += quickSort(i + 2, maior);
         }
         return iteradorTrocas;
+    }
+    public boolean limparVetor(){
+        if (vazio()) return false;
+
+        tamanho = 0;
+        cheio = false;
+
+        return true;
     }
 
     @Override
