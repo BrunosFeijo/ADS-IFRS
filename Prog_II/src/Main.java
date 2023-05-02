@@ -1,12 +1,15 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Year;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        char letra = 65;
-        String nome = String.valueOf((letra + 1) );
-        Random numeroAleatorio = new Random();
+        LocalDate hoje = LocalDate.now();
+        LocalDate dataNascimento = LocalDate.of(1994,0,27);
+        
 
-        System.out.println(nome);
+        System.out.println();
     }
 }
