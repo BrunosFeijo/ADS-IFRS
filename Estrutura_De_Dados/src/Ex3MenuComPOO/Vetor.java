@@ -37,7 +37,7 @@ public class Vetor {
 
     public boolean preencherVetorOrdenado() {
         if (preencherVetor()) {
-            quickSort();
+            quickSort(0, tamanho - 1);
             return true;
         }
         return false;
@@ -250,16 +250,46 @@ public class Vetor {
         return iteradorTrocas;
     }
 
-    public void quickSort() {
+    public int quickSort(int menor, int maior) {
+        if (tamanho == 0) {
+            System.out.println("Vetor vazio");
+            return 0;
+        }
+        int iteradorTrocas = 0;
+        if (menor < maior) {
 
+            int pivo = vetor[maior];
+            int i = menor - 1;
+
+            for (int j = menor; j < maior; j++) {
+                if (vetor[j] <= pivo) {
+                    i++;
+                    iteradorTrocas += trocarElementos(i, j);
+                }
+            }
+
+            int aux = vetor[i + 1];
+            vetor[i + 1] = pivo;
+            vetor[maior] = aux;
+
+            iteradorTrocas += quickSort(menor, i);
+            iteradorTrocas += quickSort(i + 2, maior);
+        }
+        return iteradorTrocas;
     }
 
     @Override
     public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
 
+        if (tamanho != 0) {
+            for (int i = 0; i <= tamanho - 1; i++) {
+                stringBuilder.append("[").append(i).append("] = ").append(vetor[i]).append("\n");
+            }
+        } else {
+            stringBuilder.append("Vetor vazio");
+        }
 
-        return "Vetor{" +
-                "vetor=" + Arrays.toString(vetor) +
-                '}';
+        return stringBuilder.toString();
     }
 }
