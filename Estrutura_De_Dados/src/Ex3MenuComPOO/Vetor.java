@@ -28,6 +28,7 @@ public class Vetor {
                 vetor[i] = valores.nextInt(100000) + 1;
             }
             tamanho = vetor.length;
+            System.out.println("Vetor preenchido com sucesso!");
             return (cheio = true);
         } else {
             System.out.println("Vetor já está cheio");
@@ -46,6 +47,7 @@ public class Vetor {
     public boolean inserirValor(int valor) {
         if (!cheio && valor != 0) {
             vetor[tamanho++] = valor;
+            System.out.println("Valor inserido com sucesso");
             return true;
         }
         System.out.println("Vetor está cheio ou valor é igual a 0!");
@@ -70,6 +72,7 @@ public class Vetor {
             System.out.println("A posição é menor que 0 ou maior que o tamanho atual do vetor!");
             return -1;
         }
+        System.out.println("Valor encontrado na posição: " + vetor[posicao]);
         return vetor[posicao];
     }
 
@@ -93,6 +96,7 @@ public class Vetor {
             vetor[i] = vetor[i + 1];
         }
         tamanho--;
+        System.out.println("Valor removido com sucesso");
         return true;
     }
 
@@ -107,6 +111,7 @@ public class Vetor {
             vetor[i] = vetor[i + 1];
         }
         tamanho--;
+        System.out.println("Posição removido com sucesso");
         return true;
     }
 
@@ -144,6 +149,7 @@ public class Vetor {
                 return i;
             }
         }
+
         return (vetor[0] == valor ? 0 : -1);
     }
 
