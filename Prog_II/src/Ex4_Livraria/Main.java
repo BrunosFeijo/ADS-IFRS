@@ -10,7 +10,7 @@ public class Main {
 
     }
 
-    public static void menu(Livraria livros) {
+    public static int menu(Livraria livros) {
         Scanner entrada = new Scanner(System.in);
 
         System.out.println("-------------------Menu-------------------");
@@ -25,7 +25,9 @@ public class Main {
         System.out.println("------------------------------------------");
         System.out.print("Informe a opção desejada: ");
         int opcao = entrada.nextInt();
-
+        opcoes(opcao,livros);
+        
+        return opcao;
     }
 
     public static void opcoes(int op, Livraria livros) {
@@ -45,14 +47,17 @@ public class Main {
                 }
                 case 4 -> {
                     String listaLivros = livros.buscaPorCategoria();
-                    System.out.println( listaLivros != null ? listaLivros : "Nenhum livro encontrado nesta categoria");
+                    System.out.println( listaLivros.length() != 0  ? listaLivros : "Nenhum livro encontrado nesta categoria");
                 }
                 case 5 -> {
                     String listaLivros = livros.buscaPorValor();
-                    System.out.println(listaLivros != null ? listaLivros : "Nenhum livro encontrado com preço menor que o informado");
+                    System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com preço menor que o informado");
                 }
-                case 6 -> System.out.println();
-                case 7 -> System.out.println();
+                case 6 -> {
+                    String listaLivros = livros.buscaPorQuantidadeEmEstoque();
+                    System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com preço menor que o informado");
+                }
+                case 7 -> System.out.println(livros.valorTotalEmEstoque());
             }
         }
     }

@@ -85,7 +85,6 @@ public class Livraria {
     public String buscaPorCategoria() {
         StringBuilder stringBuilder = new StringBuilder();
         Categoria genero = informarCategoria();
-        if (Categoria.CANCELAR.equals(genero)) return null;
 
         for (Livro livro : livros) {
             if (genero.equals(livro.getCategoria())) stringBuilder.append(livro).append("\n");
@@ -105,7 +104,8 @@ public class Livraria {
         return Categoria.CANCELAR;
     }
 
-    public String buscaPorQuantidadeEmEstoque(int qtd) {
+    public String buscaPorQuantidadeEmEstoque() {
+        int qtd = informarQuantidadeEmEstoque();
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Livro livro : livros) {
@@ -113,6 +113,20 @@ public class Livraria {
         }
         return stringBuilder.toString();
     }
+    public int informarQuantidadeEmEstoque(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Informe a quantidade buscada: ");
+
+        return entrada.nextInt();
+    }
+    public double valorTotalEmEstoque(){
+        double valorTotal = 0;
+        for (Livro livro:livros){
+            valorTotal += livro.getValorTotal();
+        }
+        return valorTotal;
+    }
+
 
     @Override
     public String toString() {
