@@ -36,15 +36,21 @@ public class Main {
                 case 1 -> livros.cadastrarLivro();
                 case 2 -> System.out.println(livros);
                 case 3 -> {
-                    Livro livro = livros.buscaPorNome();
+                    Livro livro = livros.buscaPorTitulo();
                     if (livro != null){
                         System.out.println(livro);
                     }else{
                         System.out.println("Livro não encontrado");
                     }
                 }
-                case 4 -> System.out.println();
-                case 5 -> System.out.println();
+                case 4 -> {
+                    String listaLivros = livros.buscaPorCategoria();
+                    System.out.println( listaLivros != null ? listaLivros : "Nenhum livro encontrado nesta categoria");
+                }
+                case 5 -> {
+                    String listaLivros = livros.buscaPorValor();
+                    System.out.println(listaLivros != null ? listaLivros : "Nenhum livro encontrado com preço menor que o informado");
+                }
                 case 6 -> System.out.println();
                 case 7 -> System.out.println();
             }

@@ -42,7 +42,7 @@ public class Livraria {
 
         System.out.println("Livro cadastrado com sucesso!\n");
     }
-    public Livro buscaPorNome(){
+    public Livro buscaPorTitulo(){
         String nome = informarTitulo();
         for (Livro livro : livros) {
             if (livro.getTitulo().equals(nome)) return livro;
@@ -65,7 +65,8 @@ public class Livraria {
         return -1;
     }
 
-    public String buscaPorValor(double valor) {
+    public String buscaPorValor() {
+        double valor = informarValor();
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Livro livro : livros) {
@@ -74,12 +75,18 @@ public class Livraria {
 
         return stringBuilder.toString();
     }
+    public double informarValor(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Informe valor limite: $");
+
+        return entrada.nextDouble();
+    }
 
     public String buscaPorCategoria() {
         StringBuilder stringBuilder = new StringBuilder();
         Categoria genero = informarCategoria();
         if (Categoria.CANCELAR.equals(genero)) return null;
-        
+
         for (Livro livro : livros) {
             if (genero.equals(livro.getCategoria())) stringBuilder.append(livro).append("\n");
         }
