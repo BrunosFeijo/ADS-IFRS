@@ -42,6 +42,20 @@ public class Livraria {
 
         System.out.println("Livro cadastrado com sucesso!\n");
     }
+    public Livro buscaPorNome(){
+        String nome = informarTitulo();
+        for (Livro livro : livros) {
+            if (livro.getTitulo().equals(nome)) return livro;
+        }
+        return null;
+    }
+    private String informarTitulo(){
+        Scanner entrada = new Scanner(System.in);
+
+        System.out.print("Informe o nome do livro procurado: ");
+
+        return entrada.nextLine();
+    }
 
     public int buscaQuantidadeEmEstoque(String nome) {
         for (Livro livro : livros) {
@@ -61,13 +75,26 @@ public class Livraria {
         return stringBuilder.toString();
     }
 
-    public String buscaPorCategoria(Categoria genero) {
+    public String buscaPorCategoria() {
+        Categoria genero = informarCategoria();
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Livro livro : livros) {
             if (genero.equals(livro.getCategoria())) stringBuilder.append(livro).append("\n");
         }
         return stringBuilder.toString();
+    }
+    public Categoria informarCategoria(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Informe a categoria do livro procurado: ");
+        for (Categoria genero: Categoria.values()){
+            System.out.println(genero.ordinal() + " - " + genero.name());
+        }
+        int indice = entrada.nextInt();
+        if (indice >= 0 && indice < Categoria.values().length){
+
+        }
+        return null;
     }
 
     public String buscaPorQuantidadeEmEstoque(int qtd) {

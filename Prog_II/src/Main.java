@@ -6,8 +6,9 @@ public class Main {
         for (Categoria categoria: Categoria.values()){
             System.out.println(categoria.ordinal() + " - " + categoria);
         }
-        int indice = 34;
+        int indice = 32;
         Categoria categoria = Categoria.values()[indice];
         System.out.println(categoria);
+        System.out.println(Categoria.values().length);
     }
 }
