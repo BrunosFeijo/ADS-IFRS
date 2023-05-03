@@ -8,6 +8,7 @@ public class Livraria {
 
     public Livraria() {
         livros = new ArrayList<>();
+        bibliotecaPadrao();
     }
 
     public void cadastrarLivro() {
@@ -41,6 +42,26 @@ public class Livraria {
         livros.add(livro);
 
         System.out.println("Livro cadastrado com sucesso!\n");
+    }
+    public void bibliotecaPadrao(){
+        Livro livro1 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,7);
+        Livro livro2 = new Livro("Dom Quixote",002,"Penguin Classics",Categoria.CONTO,1605,45.00,12);
+        Livro livro3 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,7);
+        Livro livro4 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,9);
+        Livro livro5 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,2);
+        Livro livro6 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,21);
+        Livro livro7 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,30);
+        Livro livro8 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,4);
+        Livro livro9 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,9);
+        Livro livro10 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,13);
+        Livro livro11 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,14);
+        Livro livro12 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,15);
+        Livro livro13 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,18);
+        Livro livro14 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,9);
+        Livro livro15 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,7);
+        Livro livro16 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,5);
+        Livro livro17 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,1);
+
     }
     public Livro buscaPorTitulo(){
         String nome = informarTitulo();

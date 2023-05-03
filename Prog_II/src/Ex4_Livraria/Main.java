@@ -5,8 +5,15 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Livraria livros = new Livraria();
+        bibliotecaPadrao(livros);
 
-        menu(livros);
+        int op = menu(livros);
+        while(op != 0) {
+            op = menu(livros);
+        }
+
+    }
+    public static void bibliotecaPadrao(Livraria livros){
 
     }
 
@@ -26,7 +33,7 @@ public class Main {
         System.out.print("Informe a opção desejada: ");
         int opcao = entrada.nextInt();
         opcoes(opcao,livros);
-        
+
         return opcao;
     }
 
