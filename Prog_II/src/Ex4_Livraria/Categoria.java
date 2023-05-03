@@ -8,8 +8,12 @@ public enum Categoria {
     VIAGEM(24), CRIMES_REAIS(25), HUMOR(26), ENSAIOS(27), GUIAS(28), RELIGIÃO_E_ESPIRITUALIDADE(29),
     HUMANIDADES_E_CIÊNCIAS_SOCIAIS(30), PATERNIDADE_E_FAMÍLIA(31), TECNOLOGIA_E_CIÊNCIA(32);
 
-    private int valor;
-    Categoria(){
-        this.valor = valor;
+    private int id;
+    Categoria(int id){
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 }

@@ -1,15 +1,10 @@
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.Year;
-import java.util.Random;
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        LocalDate hoje = LocalDate.now();
-        LocalDate dataNascimento = LocalDate.of(1994,0,27);
-
-
         System.out.println();
+
+//        LocalDate hoje = LocalDate.now();
+//        LocalDate dataNasc = LocalDate.of(1994,1,27);
+//
+//        System.out.println(hoje.getDayOfYear() >= dataNasc.getDayOfYear() ? hoje.getYear() - dataNasc.getYear() : hoje.getYear() - dataNasc.getYear() -1);
     }
 }
