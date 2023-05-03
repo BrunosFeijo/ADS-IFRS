@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         LocalDate hoje = LocalDate.now();
         LocalDate dataNascimento = LocalDate.of(1994,0,27);
-        
+
 
         System.out.println();
     }
