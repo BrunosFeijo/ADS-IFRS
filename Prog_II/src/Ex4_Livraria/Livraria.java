@@ -76,9 +76,10 @@ public class Livraria {
     }
 
     public String buscaPorCategoria() {
-        Categoria genero = informarCategoria();
         StringBuilder stringBuilder = new StringBuilder();
-
+        Categoria genero = informarCategoria();
+        if (Categoria.CANCELAR.equals(genero)) return null;
+        
         for (Livro livro : livros) {
             if (genero.equals(livro.getCategoria())) stringBuilder.append(livro).append("\n");
         }
@@ -86,15 +87,15 @@ public class Livraria {
     }
     public Categoria informarCategoria(){
         Scanner entrada = new Scanner(System.in);
-        System.out.print("Informe a categoria do livro procurado: ");
         for (Categoria genero: Categoria.values()){
             System.out.println(genero.ordinal() + " - " + genero.name());
         }
+        System.out.print("Informe a categoria do livro procurado: ");
         int indice = entrada.nextInt();
         if (indice >= 0 && indice < Categoria.values().length){
-
+            return Categoria.values()[indice];
         }
-        return null;
+        return Categoria.CANCELAR;
     }
 
     public String buscaPorQuantidadeEmEstoque(int qtd) {
