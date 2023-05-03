@@ -1,5 +1,6 @@
 package Ex4_Livraria;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,22 +47,41 @@ public class Livraria {
     public void bibliotecaPadrao(){
         Livro livro1 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,7);
         Livro livro2 = new Livro("Dom Quixote",002,"Penguin Classics",Categoria.CONTO,1605,45.00,12);
-        Livro livro3 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,7);
-        Livro livro4 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,9);
-        Livro livro5 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,2);
-        Livro livro6 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,21);
-        Livro livro7 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,30);
-        Livro livro8 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,4);
-        Livro livro9 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,9);
-        Livro livro10 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,13);
-        Livro livro11 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,14);
-        Livro livro12 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,15);
-        Livro livro13 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,18);
-        Livro livro14 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,9);
-        Livro livro15 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,7);
-        Livro livro16 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,5);
-        Livro livro17 = new Livro("1984",001,"Companhia das Letras",Categoria.DISTOPIA,1949,39.90,1);
+        Livro livro3 = new Livro("Cem Anos de Solidão",003,"Record",Categoria.REALISMO_MÁGICO,1967,59.90,7);
+        Livro livro4 = new Livro("Orgulho e Preconceito",004,"Martin Claret",Categoria.ROMANCE,1813,29.90,9);
+        Livro livro5 = new Livro("O Senhor dos Anéis: A Sociedade do Anel",5,"Martins Fontes",Categoria.FANTASIA,1954,1954,2);
+        Livro livro6 = new Livro("Moby Dick",6,"Zahar",Categoria.CONTO,1851,49.90,21);
+        Livro livro7 = new Livro("Crime e Castigo",7,"L&PM Editores",Categoria.ROMANCE,1866,39.90,30);
+        Livro livro8 = new Livro("O Grande Gatsby",8,"Penguin Books",Categoria.FICÇÃO_CONTEMPORÂNEA,1925,42.00,4);
+        Livro livro9 = new Livro("O Morro dos Ventos Uivantes",9,"Nova Fronteira",Categoria.ROMANCE,1847,36.00,9);
+        Livro livro10 = new Livro("Ulisses",10,"Penguin Modern Classics",Categoria.ROMANCE,1922,58.00,13);
+        Livro livro11 = new Livro("O Apanhador no Campo de Centeio",11,"Editora do Autor",Categoria.ROMANCE,1951,32.90,14);
+        Livro livro12 = new Livro("O Processo",12,"Companhia das Letras",Categoria.ROMANCE,1925,43.00,15);
+        Livro livro13 = new Livro("A Metamorfose",13," L&PM Editores",Categoria.FICÇÃO,1915,26.90,18);
+        Livro livro14 = new Livro("A Revolução dos Bichos",14,"Companhia das Letras",Categoria.SÁTIRA,1945,35.90,9);
+        Livro livro15 = new Livro("O Retrato de Dorian Gray",15,"Penguin Classics",Categoria.ROMANCE,1890,38.90,7);
+        Livro livro16 = new Livro("A Menina que Roubava Livros",16,"Intrínseca",Categoria.FICÇÃO_HISTÓRICA,2005,49.90,5);
+        Livro livro17 = new Livro("O Hobbit",17,"WMF Martins Fontes",Categoria.FANTASIA,1937,44.00,16);
+        Livro livro18 = new Livro("O Pequeno Príncipe",17,"Agir",Categoria.CONTO,1943,19.90,11);
 
+        livros.add(livro1);
+        livros.add(livro2);
+        livros.add(livro3);
+        livros.add(livro4);
+        livros.add(livro5);
+        livros.add(livro6);
+        livros.add(livro7);
+        livros.add(livro8);
+        livros.add(livro9);
+        livros.add(livro10);
+        livros.add(livro11);
+        livros.add(livro12);
+        livros.add(livro13);
+        livros.add(livro14);
+        livros.add(livro15);
+        livros.add(livro16);
+        livros.add(livro17);
+        livros.add(livro18);
     }
     public Livro buscaPorTitulo(){
         String nome = informarTitulo();
@@ -140,12 +160,13 @@ public class Livraria {
 
         return entrada.nextInt();
     }
-    public double valorTotalEmEstoque(){
+    public String valorTotalEmEstoque(){
+        NumberFormat monetario = NumberFormat.getCurrencyInstance();
         double valorTotal = 0;
         for (Livro livro:livros){
             valorTotal += livro.getValorTotal();
         }
-        return valorTotal;
+        return monetario.format(valorTotal);
     }
 
 

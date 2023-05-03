@@ -1,5 +1,8 @@
 package Ex4_Livraria;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class Livro {
     private String titulo;
     private int codigo;
@@ -48,6 +51,7 @@ public class Livro {
         return qtd;
     }
     public double getValorTotal() {
+
         return valor * qtd;
     }
 
@@ -88,12 +92,13 @@ public class Livro {
 //        return null;
 //    }
 public String toString() {
+    NumberFormat dinheiro = NumberFormat.getCurrencyInstance();
     return "Cod#" + codigo + "\n" +
             "Titulo/Editora: " + titulo + "/" + editora + "\n" +
             "Categoria: " + categoria + "\n" +
             "Ano: " + ano + "\n" +
             "Valor: R$ " + valor + "\n" +
             "Estoque: " + qtd + " unidades\n" +
-            "Valor total em estoque: R$ " + getValorTotal() + "\n";
+            "Valor total em estoque: " + dinheiro.format(getValorTotal()) + "\n";
 }
 }

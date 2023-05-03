@@ -4,16 +4,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Livraria livros = new Livraria();
-        bibliotecaPadrao(livros);
+        Livraria livros = new Livraria(); //já incluída uma biblioteca padrão
 
         int op = menu(livros);
         while(op != 0) {
             op = menu(livros);
         }
-
-    }
-    public static void bibliotecaPadrao(Livraria livros){
 
     }
 
