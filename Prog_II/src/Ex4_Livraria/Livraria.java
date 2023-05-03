@@ -69,7 +69,16 @@ public class Livraria {
         }
         return stringBuilder.toString();
     }
-    
+
+    public String buscaPorQuantidadeEmEstoque(int qtd) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Livro livro : livros) {
+            if (qtd <= livro.getQtd()) stringBuilder.append(livro).append("\n");
+        }
+        return stringBuilder.toString();
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
