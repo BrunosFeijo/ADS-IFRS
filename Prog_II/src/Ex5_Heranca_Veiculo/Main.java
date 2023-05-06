@@ -24,6 +24,7 @@ public class Main {
         lista.add(new Submarino("Naval Group", "Scorpène", "França", 230.0,
                 150.0, 1000000000.0, 36, "SG1234", "Marinha do Brasil",
                 200.0, 300.0));
+        
         System.out.println(lista);
 
     }
