@@ -7,13 +7,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         try {
-            FileInputStream arquivo = new FileInputStream("src/teste.txt")
+            FileInputStream arquivo = new FileInputStream("src/teste.txt");
             Scanner entrada = new Scanner(arquivo);
-            char vetor[];
+            String vetor[];
             String linha;
             while (entrada.hasNextLine()) {
                 linha = entrada.nextLine();
                 System.out.println(linha);
+                vetor = linha.split(",");
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
