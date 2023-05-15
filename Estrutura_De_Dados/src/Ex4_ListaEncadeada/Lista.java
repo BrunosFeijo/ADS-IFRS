@@ -18,8 +18,37 @@ public class Lista {
             if (isVazio()){
                 inicio = fim = novoNo;
             }else{
+                novoNo.setValor(valor);
+                novoNo.setAnterior(null); // apenas para tornar explícito
+                novoNo.setProximo(inicio);
+                inicio.setAnterior(novoNo);
                 inicio = novoNo;
-                
             }
+            tamanho++;
         }
+        public int espiarTopo(){
+            if (isVazio())throws IllegalArgumentException("dfsf");
+            return fim.getValor();
+        }
+        public int espiarInicio(){
+            if (isVazio()) return -1;
+            return inicio.getValor();
+        }
+
+    @Override
+    public String toString() {
+            if (isVazio()) return "[]";
+
+            StringBuilder stringBuilder = new StringBuilder("[");
+            No no = inicio;
+
+            for (int i = 0; i < tamanho -1;i++){
+                stringBuilder.append(no.getValor()).append(",");
+                no = no.getProximo();
+            }
+
+            stringBuilder.append(no.getValor()).append("]");
+
+        return stringBuilder.toString();
+    }
 }
