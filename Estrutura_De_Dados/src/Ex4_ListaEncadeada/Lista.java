@@ -43,13 +43,12 @@ public class Lista {
 
     protected void adicionaNoMeio(No noAtual, No novoNo) {
         //apontar novo nó para o nó anterior e o nó posterior
-        novoNo.setAnterior(noAtual);
-        novoNo.setProximo(noAtual.getProximo());
-        //apontar o próximo nó para o novo nó
-        noAtual.getProximo().setAnterior(novoNo);
+        novoNo.setAnterior(noAtual.getAnterior());
+        novoNo.setProximo(noAtual);
         //apontar o nó anterior para o novo nó
-        noAtual.setProximo(novoNo);
-
+        noAtual.getAnterior().setProximo(novoNo);
+        //apontar o nó atual para o novo nó
+        noAtual.setAnterior(novoNo);
         tamanho++;
     }
 
@@ -64,9 +63,11 @@ public class Lista {
             adicionaNoFinal(valor);
         } else {
             No noAux = inicio;
+            while(noAux.getValor() <= novoNo.getValor()){
+                noAux = noAux.getProximo();
+            }
             adicionaNoMeio(noAux, novoNo);
         }
-
     }
 
     public int espiarTopo() throws Exception {
