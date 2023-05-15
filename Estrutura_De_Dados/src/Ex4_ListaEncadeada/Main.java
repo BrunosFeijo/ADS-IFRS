@@ -6,7 +6,9 @@ public class Main {
         lista.adicionarNoInicio(1);
         lista.adicionarNoInicio(2);
         lista.adicionarNoInicio(3);
+        lista.adicionaNoFinal(2);
+        lista.adicionaNoFinal(3);
         System.out.println(lista);
-        System.out.println(lista.);
+        System.out.println(lista.getTamanho());
     }
 }

@@ -5,49 +5,82 @@ public class Lista {
     protected No fim;
     protected int tamanho;
 
-        public Lista(){
-            inicio = null;
-            fim = null;
-            tamanho = 0;
+    public Lista() {
+        inicio = null;
+        fim = null;
+        tamanho = 0;
+    }
+
+    public boolean isVazio() {
+        return tamanho == 0;
+    }
+
+    protected void adicionarNoInicio(int valor) {
+        No novoNo = new No(valor);
+        if (isVazio()) {
+            inicio = fim = novoNo;
+        } else {
+            novoNo.setAnterior(null); // apenas para tornar explícito
+            novoNo.setProximo(inicio);
+            inicio.setAnterior(novoNo);
+            inicio = novoNo;
         }
-        public boolean isVazio(){
-            return tamanho == 0;
+        tamanho++;
+    }
+    protected void adicionaNoFinal(int valor){
+        No novoNo = new No(valor);
+        if (isVazio()) {
+            inicio = fim = novoNo;
+        } else {
+            novoNo.setAnterior(fim);
+            novoNo.setProximo(null); // apenas para tornar explícito
+            fim.setProximo(novoNo);
+            fim = novoNo;
         }
-        protected void adicionarNoInicio(int valor){
-            No novoNo = new No(valor);
-            if (isVazio()){
-                inicio = fim = novoNo;
-            }else{
-                novoNo.setValor(valor);
-                novoNo.setAnterior(null); // apenas para tornar explícito
-                novoNo.setProximo(inicio);
-                inicio.setAnterior(novoNo);
-                inicio = novoNo;
-            }
+        tamanho++;
+    }
+    protected void insereOrdemCrescente(int valor){
+        No novoNo = new No(valor);
+        if (isVazio()) {
+            inicio = fim = novoNo;
             tamanho++;
+        } else if(novoNo.getValor() <= inicio.getValor()){
+            adicionarNoInicio(valor);
+        }else if(novoNo.getValor() >= fim.getValor()){
+            adicionaNoFinal(valor);
+        }else {
+            
         }
-        public int espiarTopo(){
-            if (isVazio())throws IllegalArgumentException("dfsf");
-            return fim.getValor();
-        }
-        public int espiarInicio(){
-            if (isVazio()) return -1;
-            return inicio.getValor();
-        }
+
+    }
+
+    public int espiarTopo() throws Exception {
+        if (isVazio()) throw new Exception("Lista Vazia");
+        return fim.getValor();
+    }
+
+    public int espiarInicio() throws Exception {
+        if (isVazio()) throw new Exception("Lista Vazia");
+        return inicio.getValor();
+    }
+
+    public int getTamanho() {
+        return tamanho;
+    }
 
     @Override
     public String toString() {
-            if (isVazio()) return "[]";
+        if (isVazio()) return "[]";
 
-            StringBuilder stringBuilder = new StringBuilder("[");
-            No no = inicio;
+        StringBuilder stringBuilder = new StringBuilder("[");
+        No no = inicio;
 
-            for (int i = 0; i < tamanho -1;i++){
-                stringBuilder.append(no.getValor()).append(",");
-                no = no.getProximo();
-            }
+        for (int i = 0; i < tamanho - 1; i++) {
+            stringBuilder.append(no.getValor()).append(",");
+            no = no.getProximo();
+        }
 
-            stringBuilder.append(no.getValor()).append("]");
+        stringBuilder.append(no.getValor()).append("]");
 
         return stringBuilder.toString();
     }
