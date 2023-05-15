@@ -27,7 +27,8 @@ public class Lista {
         }
         tamanho++;
     }
-    protected void adicionaNoFinal(int valor){
+
+    protected void adicionaNoFinal(int valor) {
         No novoNo = new No(valor);
         if (isVazio()) {
             inicio = fim = novoNo;
@@ -39,17 +40,31 @@ public class Lista {
         }
         tamanho++;
     }
-    protected void insereOrdemCrescente(int valor){
+
+    protected void adicionaNoMeio(No noAtual, No novoNo) {
+        //apontar novo nó para o nó anterior e o nó posterior
+        novoNo.setAnterior(noAtual);
+        novoNo.setProximo(noAtual.getProximo());
+        //apontar o próximo nó para o novo nó
+        noAtual.getProximo().setAnterior(novoNo);
+        //apontar o nó anterior para o novo nó
+        noAtual.setProximo(novoNo);
+
+        tamanho++;
+    }
+
+    protected void adicionaEmOrdemCrescente(int valor) {
         No novoNo = new No(valor);
         if (isVazio()) {
             inicio = fim = novoNo;
             tamanho++;
-        } else if(novoNo.getValor() <= inicio.getValor()){
+        } else if (novoNo.getValor() <= inicio.getValor()) {
             adicionarNoInicio(valor);
-        }else if(novoNo.getValor() >= fim.getValor()){
+        } else if (novoNo.getValor() >= fim.getValor()) {
             adicionaNoFinal(valor);
-        }else {
-            
+        } else {
+            No noAux = inicio;
+            adicionaNoMeio(noAux, novoNo);
         }
 
     }
