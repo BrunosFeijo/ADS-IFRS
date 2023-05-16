@@ -11,7 +11,7 @@ public class Lista {
         tamanho = 0;
     }
 
-    public boolean isVazio() {
+    protected boolean isVazio() {
         return tamanho == 0;
     }
 
@@ -69,18 +69,45 @@ public class Lista {
             adicionaNoMeio(noAux, novoNo);
         }
     }
+    protected int removeDoInicio(){
+        int valorRemovido = inicio.getValor();
+        inicio.getProximo().setAnterior(null);
+        inicio = inicio.getProximo();
 
-    public int espiarTopo() throws Exception {
+        return valorRemovido;
+    }
+    protected int removeDoFim(){
+        int valorRemovido = fim.getValor();
+        fim.getAnterior().setProximo(null);
+        fim = fim.getAnterior();
+
+        return valorRemovido;
+    }
+    protected int removeDoMeio(No noAtual){
+        int valorRemovido = noAtual.getValor();
+        //apontar o nó anterior para o próximo
+        noAtual.getAnterior().setProximo(noAtual.getProximo());
+        //apontar o próximo nó para o anterior
+        noAtual.getProximo().setAnterior(noAtual.getAnterior());
+        //tornar nó null
+
+
+
+        return valorRemovido;
+    }
+
+
+    protected int espiarTopo() throws Exception {
         if (isVazio()) throw new Exception("Lista Vazia");
         return fim.getValor();
     }
 
-    public int espiarInicio() throws Exception {
+    protected int espiarInicio() throws Exception {
         if (isVazio()) throw new Exception("Lista Vazia");
         return inicio.getValor();
     }
 
-    public int getTamanho() {
+    protected int getTamanho() {
         return tamanho;
     }
 
