@@ -73,14 +73,14 @@ public class Lista {
         int valorRemovido = inicio.getValor();
         inicio.getProximo().setAnterior(null);
         inicio = inicio.getProximo();
-
+        tamanho--;
         return valorRemovido;
     }
     protected int removeDoFim(){
         int valorRemovido = fim.getValor();
         fim.getAnterior().setProximo(null);
         fim = fim.getAnterior();
-
+        tamanho--;
         return valorRemovido;
     }
     protected int removeDoMeio(No noAtual){
@@ -90,12 +90,25 @@ public class Lista {
         //apontar o próximo nó para o anterior
         noAtual.getProximo().setAnterior(noAtual.getAnterior());
         //tornar nó null
-
-
-
+        noAtual = null;
+        tamanho--;
         return valorRemovido;
     }
-
+    protected int removerPorValor(int valor) throws Exception{
+        if (isVazio()) throw new Exception("Lista Vazia");
+        if (valor == inicio.getValor()){
+            return removeDoInicio();
+        } else if (valor == fim.getValor()) {
+            return removeDoFim();
+        }
+        No noAux = inicio.getProximo();
+        for (int i = 1; i < tamanho;i++){
+            if (noAux.getValor() == valor) return removeDoMeio(noAux);
+            noAux = noAux.getProximo();
+        }
+        System.out.println("Valor não encontrado");
+        return -1;
+    }
 
     protected int espiarTopo() throws Exception {
         if (isVazio()) throw new Exception("Lista Vazia");
