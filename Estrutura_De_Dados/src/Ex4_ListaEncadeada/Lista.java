@@ -63,27 +63,38 @@ public class Lista {
             adicionaNoFinal(valor);
         } else {
             No noAux = inicio;
-            while(noAux.getValor() <= novoNo.getValor()){
+            while (noAux.getValor() <= novoNo.getValor()) {
                 noAux = noAux.getProximo();
             }
             adicionaNoMeio(noAux, novoNo);
         }
     }
-    protected int removeDoInicio(){
+
+    protected int removeDoInicio() {
         int valorRemovido = inicio.getValor();
-        inicio.getProximo().setAnterior(null);
-        inicio = inicio.getProximo();
+        if (tamanho != 1) {
+            inicio.getProximo().setAnterior(null);
+            inicio = inicio.getProximo();
+        } else {
+            inicio = fim = null;
+        }
         tamanho--;
         return valorRemovido;
     }
-    protected int removeDoFim(){
+
+    protected int removeDoFim() {
         int valorRemovido = fim.getValor();
-        fim.getAnterior().setProximo(null);
-        fim = fim.getAnterior();
+        if (tamanho != 1){
+            fim.getAnterior().setProximo(null);
+            fim = fim.getAnterior();
+        }else {
+            inicio = fim = null;
+        }
         tamanho--;
         return valorRemovido;
     }
-    protected int removeDoMeio(No noAtual){
+
+    protected int removeDoMeio(No noAtual) {
         int valorRemovido = noAtual.getValor();
         //apontar o nó anterior para o próximo
         noAtual.getAnterior().setProximo(noAtual.getProximo());
@@ -94,15 +105,16 @@ public class Lista {
         tamanho--;
         return valorRemovido;
     }
-    protected int removerPorValor(int valor) throws Exception{
+
+    protected int removerPorValor(int valor) throws Exception {
         if (isVazio()) throw new Exception("Lista Vazia");
-        if (valor == inicio.getValor()){
+        if (valor == inicio.getValor()) {
             return removeDoInicio();
         } else if (valor == fim.getValor()) {
             return removeDoFim();
         }
         No noAux = inicio.getProximo();
-        for (int i = 1; i < tamanho;i++){
+        for (int i = 1; i < tamanho; i++) {
             if (noAux.getValor() == valor) return removeDoMeio(noAux);
             noAux = noAux.getProximo();
         }
