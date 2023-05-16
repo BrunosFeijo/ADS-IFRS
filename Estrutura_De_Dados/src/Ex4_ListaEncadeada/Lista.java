@@ -1,9 +1,9 @@
 package Ex4_ListaEncadeada;
 
 public class Lista {
-    protected No inicio;
-    protected No fim;
-    protected int tamanho;
+    private No inicio;
+    private No fim;
+    private int tamanho;
 
     public Lista() {
         inicio = null;
@@ -11,11 +11,11 @@ public class Lista {
         tamanho = 0;
     }
 
-    protected boolean isVazio() {
+    public boolean isVazio() {
         return tamanho == 0;
     }
 
-    protected void adicionarNoInicio(int valor) {
+    private void adicionarNoInicio(int valor) {
         No novoNo = new No(valor);
         if (isVazio()) {
             inicio = fim = novoNo;
@@ -28,7 +28,7 @@ public class Lista {
         tamanho++;
     }
 
-    protected void adicionaNoFinal(int valor) {
+    private void adicionaNoFinal(int valor) {
         No novoNo = new No(valor);
         if (isVazio()) {
             inicio = fim = novoNo;
@@ -41,7 +41,7 @@ public class Lista {
         tamanho++;
     }
 
-    protected void adicionaNoMeio(No noAtual, No novoNo) {
+    private void adicionaNoMeio(No noAtual, No novoNo) {
         //apontar novo nó para o nó anterior e o nó posterior
         novoNo.setAnterior(noAtual.getAnterior());
         novoNo.setProximo(noAtual);
@@ -52,7 +52,7 @@ public class Lista {
         tamanho++;
     }
 
-    protected void adicionaEmOrdemCrescente(int valor) {
+    public void adicionaEmOrdemCrescente(int valor) {
         No novoNo = new No(valor);
         if (isVazio()) {
             inicio = fim = novoNo;
@@ -70,7 +70,7 @@ public class Lista {
         }
     }
 
-    protected int removeDoInicio() {
+    private int removeDoInicio() {
         int valorRemovido = inicio.getValor();
         if (tamanho != 1) {
             inicio.getProximo().setAnterior(null);
@@ -82,19 +82,19 @@ public class Lista {
         return valorRemovido;
     }
 
-    protected int removeDoFim() {
+    private int removeDoFim() {
         int valorRemovido = fim.getValor();
-        if (tamanho != 1){
+        if (tamanho != 1) {
             fim.getAnterior().setProximo(null);
             fim = fim.getAnterior();
-        }else {
+        } else {
             inicio = fim = null;
         }
         tamanho--;
         return valorRemovido;
     }
 
-    protected int removeDoMeio(No noAtual) {
+    private int removeDoMeio(No noAtual) {
         int valorRemovido = noAtual.getValor();
         //apontar o nó anterior para o próximo
         noAtual.getAnterior().setProximo(noAtual.getProximo());
@@ -106,8 +106,11 @@ public class Lista {
         return valorRemovido;
     }
 
-    protected int removerPorValor(int valor) throws Exception {
-        if (isVazio()) throw new Exception("Lista Vazia");
+    public int removerPorValor(int valor) {
+        if (isVazio()) {
+            System.out.println("Lista Vazia");
+            return -1;
+        }
         if (valor == inicio.getValor()) {
             return removeDoInicio();
         } else if (valor == fim.getValor()) {
@@ -118,21 +121,42 @@ public class Lista {
             if (noAux.getValor() == valor) return removeDoMeio(noAux);
             noAux = noAux.getProximo();
         }
-        System.out.println("Valor não encontrado");
+        System.out.println("Valor " + valor + " não encontrado");
         return -1;
     }
 
-    protected int espiarTopo() throws Exception {
+    public int removerPorIndice(int indice) {
+        if (isVazio()) {
+            System.out.println("Lista Vazia");
+            return -1;
+        }
+        if (indice < 0 || indice >= tamanho) {
+            System.out.println("Índice inválido");
+            return -1;
+        }
+        if (indice == 0) {
+            return removeDoInicio();
+        } else if (indice == tamanho - 1) {
+            return removeDoFim();
+        }
+        No noAux = inicio.getProximo();
+        for (int i = 1; i < indice; i++) {
+            noAux = noAux.getProximo();
+        }
+        return removeDoMeio(noAux);
+    }
+
+    public int espiarTopo() throws Exception {
         if (isVazio()) throw new Exception("Lista Vazia");
         return fim.getValor();
     }
 
-    protected int espiarInicio() throws Exception {
+    public int espiarInicio() throws Exception {
         if (isVazio()) throw new Exception("Lista Vazia");
         return inicio.getValor();
     }
 
-    protected int getTamanho() {
+    public int getTamanho() {
         return tamanho;
     }
 
