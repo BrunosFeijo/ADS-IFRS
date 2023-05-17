@@ -52,7 +52,7 @@ public class Lista {
         tamanho++;
     }
 
-    public void adicionaEmOrdemCrescente(int valor) {
+    public void adicionar(int valor) {
         No novoNo = new No(valor);
         if (isVazio()) {
             inicio = fim = novoNo;

@@ -38,7 +38,7 @@ public class Pilha {
     }
     public int espiarFim() {
         if (isVazio()) {
-            System.out.println("Fila Vazia");
+            System.out.println("Pilha Vazia");
             return -1;
         }
         return fim.getValor();
@@ -46,7 +46,7 @@ public class Pilha {
 
     public int espiarInicio() {
         if (isVazio()) {
-            System.out.println("Fila Vazia");
+            System.out.println("Pilha Vazia");
             return -1;
         }
         return inicio.getValor();

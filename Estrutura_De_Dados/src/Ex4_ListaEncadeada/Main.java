@@ -2,18 +2,24 @@ package Ex4_ListaEncadeada;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        
+    }
+    public static void testesManuais(){
         //Testes manuais
+        System.out.println("---------------Lista---------------");
         Lista lista = new Lista();
-        lista.adicionaEmOrdemCrescente(2);
-        lista.adicionaEmOrdemCrescente(5);
-        lista.adicionaEmOrdemCrescente(1);
-        lista.adicionaEmOrdemCrescente(3);
-        lista.adicionaEmOrdemCrescente(4);
-        lista.adicionaEmOrdemCrescente(-10);
-        lista.adicionaEmOrdemCrescente(100);
-        lista.adicionaEmOrdemCrescente(99);
+        lista.adicionar(2);
+        lista.adicionar(5);
+        lista.adicionar(1);
+        lista.adicionar(3);
+        lista.adicionar(4);
+        lista.adicionar(-10);
+        lista.adicionar(100);
+        lista.adicionar(99);
         System.out.println(lista); // ordenado
         System.out.println(lista.getTamanho()); // 8
+        System.out.println("Elemento do início da lista: " + lista.espiarInicio());
+        System.out.println("Elemento do fim da lista: " + lista.espiarFim());
 
         lista.removerPorValor(2);
         lista.removerPorValor(5);
@@ -29,6 +35,7 @@ public class Main {
         System.out.println(lista); // []
         System.out.println(lista.getTamanho()); // 0
 
+        System.out.println("---------------Fila---------------");
         Fila fila = new Fila();
 
         fila.adicionar(2);
@@ -38,6 +45,35 @@ public class Main {
         fila.adicionar(1);
         System.out.println(fila);
 
+        System.out.println("Valor " + fila.remover() + " removido");
+        System.out.println("Valor " + fila.remover() + " removido");
+        System.out.println("Valor " + fila.remover() + " removido");
+        System.out.println(fila);
+        System.out.println("Valor " + fila.remover() + " removido");
+        System.out.println("Valor " + fila.remover() + " removido");
+        fila.remover();//Fila Vazia
+        System.out.println(fila);
 
+
+
+        System.out.println("---------------Pilha---------------");
+
+        Pilha pilha = new Pilha();
+
+        pilha.adicionar(2);
+        pilha.adicionar(5);
+        pilha.adicionar(9);
+        pilha.adicionar(4);
+        pilha.adicionar(1);
+        System.out.println(pilha);
+
+        System.out.println("Valor " + pilha.remover() + " removido");
+        System.out.println("Valor " + pilha.remover() + " removido");
+        System.out.println("Valor " + pilha.remover() + " removido");
+        System.out.println(pilha);
+        System.out.println("Valor " + pilha.remover() + " removido");
+        System.out.println("Valor " + pilha.remover() + " removido");
+        pilha.remover();//Fila Vazia
+        System.out.println(pilha);
     }
 }
