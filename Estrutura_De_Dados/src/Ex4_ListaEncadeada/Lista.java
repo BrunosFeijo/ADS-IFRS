@@ -1,9 +1,9 @@
 package Ex4_ListaEncadeada;
 
 public class Lista {
-    private No inicio;
-    private No fim;
-    private int tamanho;
+    protected No inicio;
+    protected No fim;
+    protected int tamanho;
 
     public Lista() {
         inicio = null;

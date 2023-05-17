@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ADS-IFRS.iml" filepath="$PROJECT_DIR$/.idea/ADS-IFRS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Arquitetura_E_Organizacao_De_Sistemas/Arquitetura_E_Organizacao_De_Sistemas.iml" filepath="$PROJECT_DIR$/Arquitetura_E_Organizacao_De_Sistemas/Arquitetura_E_Organizacao_De_Sistemas.iml" />
       <module fileurl="file://$PROJECT_DIR$/Banco_De_Dados_I/Banco_De_Dados_I.iml" filepath="$PROJECT_DIR$/Banco_De_Dados_I/Banco_De_Dados_I.iml" />
       <module fileurl="file://$PROJECT_DIR$/Estrutura_De_Dados/Estrutura_De_Dados.iml" filepath="$PROJECT_DIR$/Estrutura_De_Dados/Estrutura_De_Dados.iml" />
       <module fileurl="file://$PROJECT_DIR$/Prog_I/Prog_I.iml" filepath="$PROJECT_DIR$/Prog_I/Prog_I.iml" />
