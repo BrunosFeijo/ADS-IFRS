@@ -4,12 +4,14 @@ public class Fila {
     private No inicio;
     private No fim;
     private int tamanho;
+
     public Fila() {
         inicio = null;
         fim = null;
         tamanho = 0;
     }
-    public void adicionar(int valor){
+
+    public void adicionar(int valor) {
         No novoNo = new No(valor);
         if (isVazio()) {
             inicio = fim = novoNo;
@@ -21,9 +23,10 @@ public class Fila {
         }
         tamanho++;
     }
+
     public int remover() {
-        if (isVazio()){
-            System.out.println("Lista Vazia");
+        if (isVazio()) {
+            System.out.println("Fila Vazia");
             return -1;
         }
         int valorRemovido = inicio.getValor();
@@ -36,19 +39,27 @@ public class Fila {
         tamanho--;
         return valorRemovido;
     }
-    public int espiarTopo() throws Exception {
-        if (isVazio()) throw new Exception("Lista Vazia");
+
+    public int espiarFim() {
+        if (isVazio()) {
+            System.out.println("Fila Vazia");
+            return -1;
+        }
         return fim.getValor();
     }
 
-    public int espiarInicio() throws Exception {
-        if (isVazio()) throw new Exception("Lista Vazia");
+    public int espiarInicio() {
+        if (isVazio()) {
+            System.out.println("Fila Vazia");
+            return -1;
+        }
         return inicio.getValor();
     }
 
     public int getTamanho() {
         return tamanho;
     }
+
     public boolean isVazio() {
         return tamanho == 0;
     }

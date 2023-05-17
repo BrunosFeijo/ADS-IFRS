@@ -146,13 +146,19 @@ public class Lista {
         return removeDoMeio(noAux);
     }
 
-    public int espiarTopo() throws Exception {
-        if (isVazio()) throw new Exception("Lista Vazia");
+    public int espiarFim() {
+        if (isVazio()) {
+            System.out.println("Fila Vazia");
+            return -1;
+        }
         return fim.getValor();
     }
 
-    public int espiarInicio() throws Exception {
-        if (isVazio()) throw new Exception("Lista Vazia");
+    public int espiarInicio() {
+        if (isVazio()) {
+            System.out.println("Fila Vazia");
+            return -1;
+        }
         return inicio.getValor();
     }
 
