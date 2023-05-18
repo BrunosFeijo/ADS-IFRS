@@ -8,22 +8,61 @@ public class Main {
         Lista lista = null;
         int opcao = menuDeCriacao();
         switch (opcao) {
-            case 1 -> {lista = new Lista();}
-            case 2 -> {lista = new Fila();}
-            case 3 -> {lista = new Pilha();}
-            case 0 -> {System.exit(0);}
+            case 1 -> {
+                lista = new Lista();
+            }
+            case 2 -> {
+                lista = new Fila();
+            }
+            case 3 -> {
+                lista = new Pilha();
+            }
+            case 0 -> {
+                System.exit(0);
+            }
         }
         do {
             opcao = menu();
 
             switch (opcao) {
                 case 1 -> {
-                    System.out.print("Digite um número inteiro");
+                    System.out.print("Digite um número inteiro: ");
                     opcao = entrada.nextInt();
                     lista.adicionar(opcao);
                     System.out.println("Valor " + opcao + " adicionado com sucesso!");
                 }
                 case 2 -> {
+                    if (lista.getClass().getSimpleName().equalsIgnoreCase("Lista")) {
+                        opcao = menuRemoverItemLista();
+                        switch (opcao) {
+                            case 1 -> {
+                                System.out.print("Digite o valor a ser procurado e removido: ");
+                                opcao = lista.removerPorValor(entrada.nextInt());
+                                if (opcao != -1) {
+                                    System.out.println("Valor " + opcao + " removido");
+                                }
+                            }
+                            case 2 -> {
+                                System.out.print("Digite o índice a ser procurado e removido: ");
+                                opcao = lista.removerPorIndice(entrada.nextInt());
+                                if (opcao != -1) {
+                                    System.out.println("Valor " + opcao + " removido");
+                                }
+                            }
+                        }
+                    } else {
+                        if (lista.getClass().getSimpleName().equalsIgnoreCase("Fila")) {
+                            Fila aux = (Fila) lista;
+                            opcao = aux.remover();
+                            if (opcao != -1) System.out.println("Valor " + opcao + " remover");
+                            lista = aux;
+                        } else {
+                            Pilha aux = (Pilha) lista;
+                            opcao = aux.remover();
+                            if (opcao != -1) System.out.println("Valor " + opcao + " remover");
+                            lista = aux;
+                        }
+                    }
                 }
                 case 3 -> {
                     System.out.println("Valor do inicio: " + lista.espiarInicio());
@@ -35,12 +74,14 @@ public class Main {
                     System.out.println("Tamanho: " + lista.getTamanho());
                 }
                 case 6 -> {
-                    
+                    System.out.println("Itens: ");
+                    System.out.println(lista);
                 }
                 case 0 -> {
+                    System.exit(0);
                 }
             }
-        }while(opcao != 0);
+        } while (opcao != 0);
         System.out.println("Programa encerrado");
     }
 
