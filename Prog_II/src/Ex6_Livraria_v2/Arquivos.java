@@ -1,25 +1,42 @@
 package Ex6_Livraria_v2;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.*;
 
 public class Arquivos {
-    Path caminho;
+    public static String leitor(String caminho){
+        String texto = "";
 
-    public Arquivos(String caminho) {
-        this.caminho = Path.of(caminho);
-    }
-
-    public void adicionarArquivo(String texto) {
         try {
-            if (Files.notExists(caminho)) {
-                Files.createFile(caminho);
+            FileReader arquivo = new FileReader(caminho);
+            BufferedReader lerArquivo = new BufferedReader(arquivo);
+            String linha;
+            try {
+                linha = lerArquivo.readLine();
+                while (linha != null) {
+                    texto += linha + "\n";
+                    linha = lerArquivo.readLine();
+                }
+                arquivo.close();
+                return texto;
+            } catch (IOException ex) {
+                System.out.println("Erro: não foi possível ler arquivo!");
+                return "";
             }
-            Files.writeString(caminho, texto);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        }catch (FileNotFoundException ex){
+            System.out.println("Erro: Arquivo não encontrado!");
+            return "";
         }
     }
-
+    public static boolean escritor(String caminho, String texto){
+        try{
+            FileWriter arquivo = new FileWriter(caminho);
+            PrintWriter alterarArquivo = new PrintWriter(arquivo);
+            alterarArquivo.println(texto);
+            alterarArquivo.close();
+            return true;
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
 }

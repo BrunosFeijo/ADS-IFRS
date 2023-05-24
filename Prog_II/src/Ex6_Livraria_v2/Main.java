@@ -1,16 +1,28 @@
 package Ex6_Livraria_v2;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Livraria livros = new Livraria(); //já incluída uma biblioteca padrão
+    public static void main(String[] args) throws FileNotFoundException {
+//        Livraria livros = new Livraria(); //já incluída uma biblioteca padrão
+//
+//        int op = menu(livros);
+//        while(op != 0) {
+//            op = menu(livros);
+//        }
+        String arquivo = "teste.txt";
+        String texto = "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,\r\n"
+                + "e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja\r\n"
+                + "de tipos e os embaralhou para fazer um livro de modelos de tipos. v2";
+        if (Arquivos.escritor(arquivo,texto)) System.out.println("Arquivo salvo com sucesso!");
 
-        int op = menu(livros);
-        while(op != 0) {
-            op = menu(livros);
+        texto = Arquivos.leitor(arquivo);
+        if (texto.isEmpty()){
+            System.out.println("Arquivo vazio");
+        }else{
+            System.out.println(texto);
         }
-
     }
 
     public static int menu(Livraria livros) {
@@ -28,7 +40,7 @@ public class Main {
         System.out.println("------------------------------------------");
         System.out.print("Informe a opção desejada: ");
         int opcao = entrada.nextInt();
-        opcoes(opcao,livros);
+        opcoes(opcao, livros);
 
         return opcao;
     }
@@ -42,15 +54,15 @@ public class Main {
                 case 2 -> System.out.println(livros);
                 case 3 -> {
                     Livro livro = livros.buscaPorTitulo();
-                    if (livro != null){
+                    if (livro != null) {
                         System.out.println(livro);
-                    }else{
+                    } else {
                         System.out.println("Livro não encontrado");
                     }
                 }
                 case 4 -> {
                     String listaLivros = livros.buscaPorCategoria();
-                    System.out.println( listaLivros.length() != 0  ? listaLivros : "Nenhum livro encontrado nesta categoria");
+                    System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado nesta categoria");
                 }
                 case 5 -> {
                     String listaLivros = livros.buscaPorValor();
