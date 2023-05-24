@@ -6,13 +6,13 @@ public class Livro {
     private String titulo;
     private int codigo;
     private String editora;
-    private Categoria categoria;
+    private String categoria;
     private int ano;
     private double valor;
     private int qtd;
 
     public Livro(String titulo, int codigo, String editora,
-                 Categoria categoria, int ano, double valor, int qtd) {
+                 String categoria, int ano, double valor, int qtd) {
         this.titulo = titulo;
         this.codigo = codigo;
         this.editora = editora;
@@ -34,7 +34,7 @@ public class Livro {
         return editora;
     }
 
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
@@ -66,7 +66,7 @@ public class Livro {
         this.editora = editora;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 

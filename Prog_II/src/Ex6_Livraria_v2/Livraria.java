@@ -24,11 +24,8 @@ public class Livraria {
         System.out.print("Informe a editora do livro: ");
         String editora = entrada.nextLine();
 
-        System.out.println("Informe o gênero literário do livro: ");
-        for (Categoria genero : Categoria.values()) {
-            System.out.println(genero.ordinal() + " - " + genero.name());
-        }
-        Categoria categoria = Categoria.values()[entrada.nextInt()];
+        System.out.print("Informe o gênero literário do livro: ");
+        String categoria = entrada.nextLine();
 
         System.out.print("Informe o ano do livro: ");
         int ano = entrada.nextInt();
@@ -44,25 +41,26 @@ public class Livraria {
 
         System.out.println("Livro cadastrado com sucesso!\n");
     }
-    public void bibliotecaPadrao(){
-        Livro livro1 = new Livro("1984",001,"Companhia das Letras", Categoria.DISTOPIA,1949,39.90,7);
-        Livro livro2 = new Livro("Dom Quixote",002,"Penguin Classics", Categoria.CONTO,1605,45.00,12);
-        Livro livro3 = new Livro("Cem Anos de Solidão",003,"Record", Categoria.REALISMO_MÁGICO,1967,59.90,7);
-        Livro livro4 = new Livro("Orgulho e Preconceito",004,"Martin Claret", Categoria.ROMANCE,1813,29.90,9);
-        Livro livro5 = new Livro("O Senhor dos Anéis: A Sociedade do Anel",5,"Martins Fontes", Categoria.FANTASIA,1954,1954,2);
-        Livro livro6 = new Livro("Moby Dick",6,"Zahar", Categoria.CONTO,1851,49.90,21);
-        Livro livro7 = new Livro("Crime e Castigo",7,"L&PM Editores", Categoria.ROMANCE,1866,39.90,30);
-        Livro livro8 = new Livro("O Grande Gatsby",8,"Penguin Books", Categoria.FICÇÃO_CONTEMPORÂNEA,1925,42.00,4);
-        Livro livro9 = new Livro("O Morro dos Ventos Uivantes",9,"Nova Fronteira", Categoria.ROMANCE,1847,36.00,9);
-        Livro livro10 = new Livro("Ulisses",10,"Penguin Modern Classics", Categoria.ROMANCE,1922,58.00,13);
-        Livro livro11 = new Livro("O Apanhador no Campo de Centeio",11,"Editora do Autor", Categoria.ROMANCE,1951,32.90,14);
-        Livro livro12 = new Livro("O Processo",12,"Companhia das Letras", Categoria.ROMANCE,1925,43.00,15);
-        Livro livro13 = new Livro("A Metamorfose",13," L&PM Editores", Categoria.FICÇÃO,1915,26.90,18);
-        Livro livro14 = new Livro("A Revolução dos Bichos",14,"Companhia das Letras", Categoria.SÁTIRA,1945,35.90,9);
-        Livro livro15 = new Livro("O Retrato de Dorian Gray",15,"Penguin Classics", Categoria.ROMANCE,1890,38.90,7);
-        Livro livro16 = new Livro("A Menina que Roubava Livros",16,"Intrínseca", Categoria.FICÇÃO_HISTÓRICA,2005,49.90,5);
-        Livro livro17 = new Livro("O Hobbit",17,"WMF Martins Fontes", Categoria.FANTASIA,1937,44.00,16);
-        Livro livro18 = new Livro("O Pequeno Príncipe",17,"Agir", Categoria.CONTO,1943,19.90,11);
+
+    public void bibliotecaPadrao() {
+        Livro livro1 = new Livro("1984", 001, "Companhia das Letras", "Distopia", 1949, 39.90, 7);
+        Livro livro2 = new Livro("Dom Quixote", 002, "Penguin Classics", "Conto", 1605, 45.00, 12);
+        Livro livro3 = new Livro("Cem Anos de Solidão", 003, "Record", "Realismo Mágico", 1967, 59.90, 7);
+        Livro livro4 = new Livro("Orgulho e Preconceito", 004, "Martin Claret", "Romance", 1813, 29.90, 9);
+        Livro livro5 = new Livro("O Senhor dos Anéis: A Sociedade do Anel", 5, "Martins Fontes", "Fantasia", 1954, 1954, 2);
+        Livro livro6 = new Livro("Moby Dick", 6, "Zahar", "Conto", 1851, 49.90, 21);
+        Livro livro7 = new Livro("Crime e Castigo", 7, "L&PM Editores", "Romance", 1866, 39.90, 30);
+        Livro livro8 = new Livro("O Grande Gatsby", 8, "Penguin Books", "Ficção Contemporânea", 1925, 42.00, 4);
+        Livro livro9 = new Livro("O Morro dos Ventos Uivantes", 9, "Nova Fronteira", "Romance", 1847, 36.00, 9);
+        Livro livro10 = new Livro("Ulisses", 10, "Penguin Modern Classics", "Romance", 1922, 58.00, 13);
+        Livro livro11 = new Livro("O Apanhador no Campo de Centeio", 11, "Editora do Autor", "Romance", 1951, 32.90, 14);
+        Livro livro12 = new Livro("O Processo", 12, "Companhia das Letras", "Romance", 1925, 43.00, 15);
+        Livro livro13 = new Livro("A Metamorfose", 13, " L&PM Editores", "Ficção", 1915, 26.90, 18);
+        Livro livro14 = new Livro("A Revolução dos Bichos", 14, "Companhia das Letras", "Sátira", 1945, 35.90, 9);
+        Livro livro15 = new Livro("O Retrato de Dorian Gray", 15, "Penguin Classics", "Romance", 1890, 38.90, 7);
+        Livro livro16 = new Livro("A Menina que Roubava Livros", 16, "Intrínseca", "Ficção Histórica", 2005, 49.90, 5);
+        Livro livro17 = new Livro("O Hobbit", 17, "WMF Martins Fontes", "Fantasia", 1937, 44.00, 16);
+        Livro livro18 = new Livro("O Pequeno Príncipe", 17, "Agir", "Conto", 1943, 19.90, 11);
 
         livros.add(livro1);
         livros.add(livro2);
@@ -83,14 +81,16 @@ public class Livraria {
         livros.add(livro17);
         livros.add(livro18);
     }
-    public Livro buscaPorTitulo(){
+
+    public Livro buscaPorTitulo() {
         String nome = informarTitulo();
         for (Livro livro : livros) {
             if (livro.getTitulo().equals(nome)) return livro;
         }
         return null;
     }
-    private String informarTitulo(){
+
+    private String informarTitulo() {
         Scanner entrada = new Scanner(System.in);
 
         System.out.print("Informe o nome do livro procurado: ");
@@ -116,7 +116,8 @@ public class Livraria {
 
         return stringBuilder.toString();
     }
-    public double informarValor(){
+
+    public double informarValor() {
         Scanner entrada = new Scanner(System.in);
         System.out.print("Informe valor limite: $");
 
@@ -132,14 +133,15 @@ public class Livraria {
         }
         return stringBuilder.toString();
     }
-    public Categoria informarCategoria(){
+
+    public Categoria informarCategoria() {
         Scanner entrada = new Scanner(System.in);
-        for (Categoria genero: Categoria.values()){
+        for (Categoria genero : Categoria.values()) {
             System.out.println(genero.ordinal() + " - " + genero.name());
         }
         System.out.print("Informe a categoria do livro procurado: ");
         int indice = entrada.nextInt();
-        if (indice >= 0 && indice < Categoria.values().length){
+        if (indice >= 0 && indice < Categoria.values().length) {
             return Categoria.values()[indice];
         }
         return Categoria.CANCELAR;
@@ -154,16 +156,18 @@ public class Livraria {
         }
         return stringBuilder.toString();
     }
-    public int informarQuantidadeEmEstoque(){
+
+    public int informarQuantidadeEmEstoque() {
         Scanner entrada = new Scanner(System.in);
         System.out.print("Informe a quantidade buscada: ");
 
         return entrada.nextInt();
     }
-    public String valorTotalEmEstoque(){
+
+    public String valorTotalEmEstoque() {
         NumberFormat monetario = NumberFormat.getCurrencyInstance();
         double valorTotal = 0;
-        for (Livro livro:livros){
+        for (Livro livro : livros) {
             valorTotal += livro.getValorTotal();
         }
         return monetario.format(valorTotal);
