@@ -134,16 +134,22 @@ public class Livraria {
         return stringBuilder.toString();
     }
 
-    public Categoria informarCategoria() {
+    public String informarCategoria() {
         Scanner entrada = new Scanner(System.in);
-        for (Categoria genero : Categoria.values()) {
-            System.out.println(genero.ordinal() + " - " + genero.name());
-        }
+        String categoria;
+        String []categorias = new String[livros.size()];
+
+        
+
+//        for (Categoria genero : Categoria.values()) {
+//            System.out.println(genero.ordinal() + " - " + genero.name());
+//        }
+
         System.out.print("Informe a categoria do livro procurado: ");
         int indice = entrada.nextInt();
-        if (indice >= 0 && indice < Categoria.values().length) {
-            return Categoria.values()[indice];
-        }
+//        if (indice >= 0 && indice < Categoria.values().length) {
+//            return Categoria.values()[indice];
+//        }
         return Categoria.CANCELAR;
     }
 
