@@ -191,7 +191,8 @@ public class Livraria {
         }
         return monetario.format(valorTotal);
     }
-    public String formatoEntreVirgulas(){
+
+    public String formatoEntreVirgulas() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Livro livro : livros) {
             stringBuilder.append(livro.getCodigo()).append(",")
@@ -199,11 +200,37 @@ public class Livraria {
                     .append(livro.getAno()).append(",")
                     .append(livro.getCategoria()).append(",")
                     .append(livro.getEditora()).append(",")
-                    .append("R$").append(String.format("%.2f",livro.getValor()).replace(",",".")).append(",")
+                    .append("R$").append(String.format("%.2f", livro.getValor()).replace(",", ".")).append(",")
                     .append(livro.getQtd()).append("\n");
         }
-
         return stringBuilder.toString();
+    }
+
+    public boolean adicionarLote(String texto) {
+        String[] linhas = texto.split("\n");
+        if (linhas.length != 0) {
+            for (String linha : linhas) {
+                String[] linhaAtual = linha.split(",");
+                boolean livroExiste = false;
+                //Verificar se o código do livro já existe. Neste caso somente atualizar dados (valor e qtd)
+                for (Livro livro : livros) {
+                    if (Integer.parseInt(linhaAtual[0]) == livro.getCodigo()) {
+                        livroExiste = true;
+                        livro.setValor(Double.parseDouble(linhaAtual[5].replace("R$", "")));
+                        livro.setQtd(Integer.parseInt(linhaAtual[6]));
+                        break;
+                    }
+                }
+                //Se não existir adicionar livro
+                if (!livroExiste) {
+                    livros.add(new Livro(linhaAtual[1], Integer.parseInt(linhaAtual[0]),
+                            linhaAtual[4], linhaAtual[3], Integer.parseInt(linhaAtual[2]),
+                            Double.parseDouble(linhaAtual[5].replace("R$", "")), Integer.parseInt(linhaAtual[6])));
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
 

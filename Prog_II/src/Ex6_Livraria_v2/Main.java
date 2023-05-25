@@ -6,27 +6,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         Livraria livros = new Livraria(); //já incluída uma biblioteca padrão
-        System.out.println(livros.formatoEntreVirgulas());
-//        int op = menu(livros);
-//        String finalizar;
-//        while(op != 0) {
-//            op = menu(livros);
-//            if (op == 0){
-//                encerrarPrograma();
-//            }
-//        }
-//        String arquivo = "teste.txt";
-//        String texto = "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,\r\n"
-//                + "e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja\r\n"
-//                + "de tipos e os embaralhou para fazer um livro de modelos de tipos. v2";
-//        if (Arquivos.escritor(arquivo,texto)) System.out.println("Arquivo salvo com sucesso!");
-//
-//        texto = Arquivos.leitor(arquivo);
-//        if (texto.isEmpty()){
-//            System.out.println("Arquivo vazio");
-//        }else{
-//            System.out.println(texto);
-//        }
+        int op = menu(livros);
+        String finalizar;
+        while (op != 0) {
+            op = menu(livros);
+            if (op == 0) {
+                encerrarPrograma(livros);
+            }
+        }
     }
 
     public static int menu(Livraria livros) {
@@ -79,20 +66,47 @@ public class Main {
                     System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com preço menor que o informado");
                 }
                 case 7 -> System.out.println(livros.valorTotalEmEstoque());
-                case 8 -> System.out.println("Teste");
-                case 9 -> System.out.println("Outro Teste");
+                case 8 -> {
+                    String arquivo = "teste.txt";
+                    String texto = Arquivos.leitor(arquivo);
+
+                    if (texto.isEmpty()) {
+                        System.out.println("Arquivo vazio");
+                    } else {
+                        boolean ok = livros.adicionarLote(texto);
+                        if (ok) {
+                            System.out.println("Livraria atualizada com sucesso");
+                        } else {
+                            System.out.println("Erro na atualização da Livraria");
+                        }
+                    }
+                }
+                case 9 -> {
+                    String caminho = "teste.txt";
+                    String texto = livros.formatoEntreVirgulas();
+                    boolean ok = Arquivos.escritor(caminho, texto);
+                    if (ok){
+                        System.out.println("Arquivo de Estoque atualizado com sucesso");
+                    }else{
+                        System.out.println("Erro ao atualizar arquivo");
+                    }
+                }
             }
         }
     }
-    public static void encerrarPrograma(String caminho, String texto){
+
+    public static void encerrarPrograma(Livraria livros) {
+        String caminho = "teste.txt";
+        String texto = livros.formatoEntreVirgulas();
         Scanner entrada = new Scanner(System.in);
+
         System.out.println("Deseja salvar alterações?");
         System.out.println("1- Sim");
         System.out.println("2- Não");
         int opcao = entrada.nextInt();
 
-        switch (opcao){
-            case 1 -> Arquivos.escritor(caminho,texto);
+        switch (opcao) {
+            case 1 -> Arquivos.escritor(caminho, texto);
             case 2 -> System.exit(0);
         }
     }

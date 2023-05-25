@@ -74,7 +74,7 @@ public class Livro {
         this.ano = ano;
     }
 
-    public void setValor(double valor) {
+    public void setValor(double v) {
         this.valor = valor;
     }
 
