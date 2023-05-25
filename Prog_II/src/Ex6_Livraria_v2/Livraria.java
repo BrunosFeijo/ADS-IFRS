@@ -143,8 +143,8 @@ public class Livraria {
         //guardar categorias não duplicadas
         for (Livro livro : livros) {
             boolean categoriaExiste = false;
-            for (int j = 0; j <= tamanho + 1; j++) {
-                if (livro.getCategoria().equals(categorias[tamanho])) {
+            for (int j = 0; j < tamanho; j++) {
+                if (livro.getCategoria().equals(categorias[j])) {
                     categoriaExiste = true;
                     j = tamanho;
                 }

@@ -5,24 +5,24 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-//        Livraria livros = new Livraria(); //já incluída uma biblioteca padrão
-//
-//        int op = menu(livros);
-//        while(op != 0) {
-//            op = menu(livros);
-//        }
-        String arquivo = "teste.txt";
-        String texto = "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,\r\n"
-                + "e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja\r\n"
-                + "de tipos e os embaralhou para fazer um livro de modelos de tipos. v2";
-        if (Arquivos.escritor(arquivo,texto)) System.out.println("Arquivo salvo com sucesso!");
+        Livraria livros = new Livraria(); //já incluída uma biblioteca padrão
 
-        texto = Arquivos.leitor(arquivo);
-        if (texto.isEmpty()){
-            System.out.println("Arquivo vazio");
-        }else{
-            System.out.println(texto);
+        int op = menu(livros);
+        while(op != 0) {
+            op = menu(livros);
         }
+//        String arquivo = "teste.txt";
+//        String texto = "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,\r\n"
+//                + "e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja\r\n"
+//                + "de tipos e os embaralhou para fazer um livro de modelos de tipos. v2";
+//        if (Arquivos.escritor(arquivo,texto)) System.out.println("Arquivo salvo com sucesso!");
+//
+//        texto = Arquivos.leitor(arquivo);
+//        if (texto.isEmpty()){
+//            System.out.println("Arquivo vazio");
+//        }else{
+//            System.out.println(texto);
+//        }
     }
 
     public static int menu(Livraria livros) {
