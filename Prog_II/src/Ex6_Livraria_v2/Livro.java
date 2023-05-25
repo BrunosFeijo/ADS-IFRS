@@ -49,6 +49,7 @@ public class Livro {
     public int getQtd() {
         return qtd;
     }
+
     public double getValorTotal() {
 
         return valor * qtd;
@@ -74,7 +75,7 @@ public class Livro {
         this.ano = ano;
     }
 
-    public void setValor(double v) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
@@ -90,14 +91,14 @@ public class Livro {
 //        }
 //        return null;
 //    }
-public String toString() {
-    NumberFormat dinheiro = NumberFormat.getCurrencyInstance();
-    return "Cod#" + codigo + "\n" +
-            "Titulo/Editora: " + titulo + "/" + editora + "\n" +
-            "Categoria: " + categoria + "\n" +
-            "Ano: " + ano + "\n" +
-            "Valor: R$ " + valor + "\n" +
-            "Estoque: " + qtd + " unidades\n" +
-            "Valor total em estoque: " + dinheiro.format(getValorTotal()) + "\n";
-}
+    public String toString() {
+        NumberFormat dinheiro = NumberFormat.getCurrencyInstance();
+        return "Cod#" + codigo + "\n" +
+                "Titulo/Editora: " + titulo + "/" + editora + "\n" +
+                "Categoria: " + categoria + "\n" +
+                "Ano: " + ano + "\n" +
+                "Valor: R$ " + valor + "\n" +
+                "Estoque: " + qtd + " unidades\n" +
+                "Valor total em estoque: " + dinheiro.format(getValorTotal()) + "\n";
+    }
 }

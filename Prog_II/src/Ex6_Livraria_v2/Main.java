@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         Livraria livros = new Livraria(); //já incluída uma biblioteca padrão
         int op = menu(livros);
-        String finalizar;
         while (op != 0) {
             op = menu(livros);
             if (op == 0) {
