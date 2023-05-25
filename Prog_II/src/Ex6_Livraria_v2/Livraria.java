@@ -43,10 +43,10 @@ public class Livraria {
     }
 
     public void bibliotecaPadrao() {
-        Livro livro1 = new Livro("1984", 001, "Companhia das Letras", "Distopia", 1949, 39.90, 7);
-        Livro livro2 = new Livro("Dom Quixote", 002, "Penguin Classics", "Conto", 1605, 45.00, 12);
-        Livro livro3 = new Livro("Cem Anos de Solidão", 003, "Record", "Realismo Mágico", 1967, 59.90, 7);
-        Livro livro4 = new Livro("Orgulho e Preconceito", 004, "Martin Claret", "Romance", 1813, 29.90, 9);
+        Livro livro1 = new Livro("1984", 1, "Companhia das Letras", "Distopia", 1949, 39.90, 7);
+        Livro livro2 = new Livro("Dom Quixote", 2, "Penguin Classics", "Conto", 1605, 45.00, 12);
+        Livro livro3 = new Livro("Cem Anos de Solidão", 3, "Record", "Realismo Mágico", 1967, 59.90, 7);
+        Livro livro4 = new Livro("Orgulho e Preconceito", 4, "Martin Claret", "Romance", 1813, 29.90, 9);
         Livro livro5 = new Livro("O Senhor dos Anéis: A Sociedade do Anel", 5, "Martins Fontes", "Fantasia", 1954, 1954, 2);
         Livro livro6 = new Livro("Moby Dick", 6, "Zahar", "Conto", 1851, 49.90, 21);
         Livro livro7 = new Livro("Crime e Castigo", 7, "L&PM Editores", "Romance", 1866, 39.90, 30);
@@ -60,7 +60,7 @@ public class Livraria {
         Livro livro15 = new Livro("O Retrato de Dorian Gray", 15, "Penguin Classics", "Romance", 1890, 38.90, 7);
         Livro livro16 = new Livro("A Menina que Roubava Livros", 16, "Intrínseca", "Ficção Histórica", 2005, 49.90, 5);
         Livro livro17 = new Livro("O Hobbit", 17, "WMF Martins Fontes", "Fantasia", 1937, 44.00, 16);
-        Livro livro18 = new Livro("O Pequeno Príncipe", 17, "Agir", "Conto", 1943, 19.90, 11);
+        Livro livro18 = new Livro("O Pequeno Príncipe", 18, "Agir", "Conto", 1943, 19.90, 11);
 
         livros.add(livro1);
         livros.add(livro2);
@@ -190,6 +190,20 @@ public class Livraria {
             valorTotal += livro.getValorTotal();
         }
         return monetario.format(valorTotal);
+    }
+    public String formatoEntreVirgulas(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Livro livro : livros) {
+            stringBuilder.append(livro.getCodigo()).append(",")
+                    .append(livro.getTitulo()).append(",")
+                    .append(livro.getAno()).append(",")
+                    .append(livro.getCategoria()).append(",")
+                    .append(livro.getEditora()).append(",")
+                    .append("R$").append(String.format("%.2f",livro.getValor()).replace(",",".")).append(",")
+                    .append(livro.getQtd()).append("\n");
+        }
+
+        return stringBuilder.toString();
     }
 
 

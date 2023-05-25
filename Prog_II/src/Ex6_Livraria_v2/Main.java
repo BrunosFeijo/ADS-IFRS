@@ -6,11 +6,15 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         Livraria livros = new Livraria(); //já incluída uma biblioteca padrão
-
-        int op = menu(livros);
-        while(op != 0) {
-            op = menu(livros);
-        }
+        System.out.println(livros.formatoEntreVirgulas());
+//        int op = menu(livros);
+//        String finalizar;
+//        while(op != 0) {
+//            op = menu(livros);
+//            if (op == 0){
+//                encerrarPrograma();
+//            }
+//        }
 //        String arquivo = "teste.txt";
 //        String texto = "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,\r\n"
 //                + "e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja\r\n"
@@ -36,6 +40,8 @@ public class Main {
         System.out.println("5- Buscar livro por valor");
         System.out.println("6- Buscar livro por quantidade em estoque");
         System.out.println("7- Valor total no estoque");
+        System.out.println("8- Carregar estoque (txt)");
+        System.out.println("9- Atualizar arquivo de estoque");
         System.out.println("0- Sair");
         System.out.println("------------------------------------------");
         System.out.print("Informe a opção desejada: ");
@@ -46,7 +52,7 @@ public class Main {
     }
 
     public static void opcoes(int op, Livraria livros) {
-        if (op < 0 || op > 7) {
+        if (op < 0 || op > 9) {
             System.out.println("Opção inválida!");
         } else {
             switch (op) {
@@ -73,7 +79,21 @@ public class Main {
                     System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com preço menor que o informado");
                 }
                 case 7 -> System.out.println(livros.valorTotalEmEstoque());
+                case 8 -> System.out.println("Teste");
+                case 9 -> System.out.println("Outro Teste");
             }
+        }
+    }
+    public static void encerrarPrograma(String caminho, String texto){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Deseja salvar alterações?");
+        System.out.println("1- Sim");
+        System.out.println("2- Não");
+        int opcao = entrada.nextInt();
+
+        switch (opcao){
+            case 1 -> Arquivos.escritor(caminho,texto);
+            case 2 -> System.exit(0);
         }
     }
 }

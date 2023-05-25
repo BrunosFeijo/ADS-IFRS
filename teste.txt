@@ -1,3 +1,4 @@
-Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,
-e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja
-de tipos e os embaralhou para fazer um livro de modelos de tipos. v2
+3426,compiladores,2012,computação,pearson,R$135.50,50
+2631,sistemas digitais,2017,computação,liber,R$99.90,30
+9680,senhor dos aneis: a sociedade do anel,2005,fantasia,harper,R$35.00,120
+
