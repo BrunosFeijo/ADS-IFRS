@@ -126,7 +126,8 @@ public class Livraria {
 
     public String buscaPorCategoria() {
         StringBuilder stringBuilder = new StringBuilder();
-        Categoria genero = informarCategoria();
+        String genero = informarCategoria();
+        if (genero.equals("Categoria não encontrada!")) return genero;
 
         for (Livro livro : livros) {
             if (genero.equals(livro.getCategoria())) stringBuilder.append(livro).append("\n");
@@ -136,21 +137,33 @@ public class Livraria {
 
     public String informarCategoria() {
         Scanner entrada = new Scanner(System.in);
-        String categoria;
-        String []categorias = new String[livros.size()];
+        String[] categorias = new String[livros.size()];
+        int tamanho = 0;
 
-        
-
-//        for (Categoria genero : Categoria.values()) {
-//            System.out.println(genero.ordinal() + " - " + genero.name());
-//        }
+        //guardar categorias não duplicadas
+        for (Livro livro : livros) {
+            boolean categoriaExiste = false;
+            for (int j = 0; j <= tamanho + 1; j++) {
+                if (livro.getCategoria().equals(categorias[tamanho])) {
+                    categoriaExiste = true;
+                    j = tamanho;
+                }
+            }
+            if (!categoriaExiste) {
+                categorias[tamanho++] = livro.getCategoria();
+            }
+        }
+        //listar categorias
+        for (int j = 0; j < tamanho; j++) {
+            System.out.println(j + " - " + categorias[j]);
+        }
 
         System.out.print("Informe a categoria do livro procurado: ");
         int indice = entrada.nextInt();
-//        if (indice >= 0 && indice < Categoria.values().length) {
-//            return Categoria.values()[indice];
-//        }
-        return Categoria.CANCELAR;
+        if (indice >= 0 && indice < tamanho) {
+            return categorias[indice];
+        }
+        return "Categoria não encontrada!";
     }
 
     public String buscaPorQuantidadeEmEstoque() {
