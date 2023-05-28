@@ -1,9 +1,9 @@
-import Ex4_ListaEncadeada.Lista;
+import java.util.*;
 
 public class Testes {
     public static void main(String[] args) {
-        Lista lista = new Lista();
-
-        System.out.println(lista.getClass());
+        int minFrequency = Integer.MAX_VALUE;
+        System.out.println(minFrequency);
     }
 }
+
