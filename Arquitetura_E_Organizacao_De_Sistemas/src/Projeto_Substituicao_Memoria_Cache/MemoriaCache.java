@@ -31,7 +31,11 @@ public class MemoriaCache {
         aux.clear();
     }
     private int getAuxTrocaFIFO(){
-        return 0;
+        if (auxTrocaFIFO == 3){
+            auxTrocaFIFO = 0;
+            return 3;
+        }
+        return auxTrocaFIFO++;
     }
     private boolean isCheio(){
         return tamanho == cache.length;
@@ -55,7 +59,8 @@ public class MemoriaCache {
     public void FIFO(char requisicao){
         if (!contem(requisicao)) {
             if (isCheio()){
-
+                //Simular requisicao para memória pricipal
+                cache[getAuxTrocaFIFO()] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
             }else{
                 cache[tamanho++]= requisicao;
             }

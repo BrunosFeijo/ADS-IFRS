@@ -4,7 +4,7 @@ import java.io.*;
 
 public class Arquivo {
     public static String leitor(String caminho) {
-        StringBuilder texto = null;
+        StringBuilder texto = new StringBuilder();
 
         try {
             FileReader arquivo = new FileReader(caminho);

@@ -8,20 +8,21 @@ import java.nio.file.Path;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            File arquivo = new File("src/Projeto_Substituicao_Memoria_Cache/teste.txt");
-            Path pasta = arquivo.toPath();
-            String[] vetor;
-            String linha = Files.readString(pasta);
-            while (linha != null) {
-                System.out.println(linha);
-                vetor = linha.split(",");
-                linha = Files.readString(pasta);
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        String arquivo = "teste.txt";
+        String texto = Arquivo.leitor(arquivo);
+        String[] linhas = texto.split("\n");
+
+        if (texto.isEmpty()) {
+            System.out.println("Arquivo vazio");
+            System.exit(0);
         }
+        char[] requisicao1 = linhas[0].toCharArray();
+        char[] requisicao2 = linhas[1].toCharArray();
+        char[] requisicao3 = linhas[2].toCharArray();
+
+
+        System.out.println(requisicao1);
+        System.out.println(requisicao2);
+        System.out.println(requisicao3);
     }
 }
