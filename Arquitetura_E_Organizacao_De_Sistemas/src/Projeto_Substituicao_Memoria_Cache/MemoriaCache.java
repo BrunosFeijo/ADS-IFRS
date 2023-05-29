@@ -56,19 +56,34 @@ public class MemoriaCache {
     public void LFU(){
 
     }
-    public void FIFO(char requisicao){
+    public String FIFO(char requisicao){
         if (!contem(requisicao)) {
             if (isCheio()){
                 //Simular requisicao para memória pricipal
                 cache[getAuxTrocaFIFO()] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
+                return resumo(requisicao);
             }else{
                 cache[tamanho++]= requisicao;
+                return resumo(requisicao);
             }
         }
+        return resumo(requisicao);
     }
     public void LRU(){
 
     }
+    public String resumo(char requisicao){
+        StringBuilder stringBuilder = new StringBuilder();
 
+        stringBuilder.append(Arrays.toString(cache)).append(" <- ").append(requisicao)
+                .append("Misses: ").append(misses)
+                .append("Hits: ").append(hits);
 
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(cache);
+    }
 }
