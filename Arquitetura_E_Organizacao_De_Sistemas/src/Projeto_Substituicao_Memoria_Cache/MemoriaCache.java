@@ -29,7 +29,7 @@ public class MemoriaCache {
         misses = 0;
         hits = 0;
 
-        if (!aux.isEmpty()) aux.clear();
+        if (aux.isEmpty()) aux.clear();
     }
     private int getAuxTrocaFIFO(){
         if (auxTrocaFIFO == 3){
