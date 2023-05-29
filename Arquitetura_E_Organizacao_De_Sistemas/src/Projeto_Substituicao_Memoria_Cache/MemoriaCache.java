@@ -28,7 +28,8 @@ public class MemoriaCache {
         tamanho = 0;
         misses = 0;
         hits = 0;
-        aux.clear();
+
+        if (!aux.isEmpty()) aux.clear();
     }
     private int getAuxTrocaFIFO(){
         if (auxTrocaFIFO == 3){
@@ -51,6 +52,7 @@ public class MemoriaCache {
                 return true;
             }
         }
+        misses++;
         return false;
     }
     public void LFU(){
@@ -76,8 +78,8 @@ public class MemoriaCache {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(Arrays.toString(cache)).append(" <- ").append(requisicao)
-                .append("Misses: ").append(misses)
-                .append("Hits: ").append(hits);
+                .append(" | Misses: ").append(misses)
+                .append(" | Hits: ").append(hits);
 
         return stringBuilder.toString();
     }

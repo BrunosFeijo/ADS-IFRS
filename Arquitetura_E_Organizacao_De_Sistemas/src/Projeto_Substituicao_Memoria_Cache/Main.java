@@ -9,41 +9,35 @@ import java.sql.SQLOutput;
 
 public class Main {
     public static void main(String[] args) {
-//        String arquivo = "teste.txt";
-//        String texto = Arquivo.leitor(arquivo);
-//        String[] linhas = texto.split("\n");
-//
-//        if (texto.isEmpty()) {
-//            System.out.println("Arquivo vazio");
-//            System.exit(0);
-//        }
-//        char[] requisicao1 = linhas[0].toCharArray();
-//        char[] requisicao2 = linhas[1].toCharArray();
-//        char[] requisicao3 = linhas[2].toCharArray();
-//
-//
-//        System.out.println(requisicao1);
-//        System.out.println(requisicao2);
-//        System.out.println(requisicao3);
-
         MemoriaCache cache = new MemoriaCache();
 
-        System.out.println(cache);
-        cache.FIFO('A');
-        System.out.println(cache);
-        cache.FIFO('B');
-        System.out.println(cache);
-        cache.FIFO('D');
-        System.out.println(cache);
-        cache.FIFO('C');
-        System.out.println(cache);
-        cache.FIFO('C');
-        System.out.println(cache);
-        cache.FIFO('F');
-        System.out.println(cache);
-        cache.FIFO('D');
-        System.out.println(cache);
-        cache.FIFO('E');
-        System.out.println(cache);
+        String arquivo = "teste.txt";
+        String texto = Arquivo.leitor(arquivo);
+        String[] linhas = texto.split("\n");
+
+        if (texto.isEmpty()) {
+            System.out.println("Arquivo vazio");
+            System.exit(0);
+        }
+        char[] requisicao1 = linhas[0].toCharArray();
+        char[] requisicao2 = linhas[1].toCharArray();
+        char[] requisicao3 = linhas[2].toCharArray();
+
+        System.out.println("============ 1° Lista de Requisições ============");
+        for(char requisicao: requisicao1){
+            System.out.println(cache.FIFO(requisicao));
+        }
+        cache.limpar();
+        System.out.println();
+        System.out.println("============ 2° Lista de Requisições ============");
+        for(char requisicao: requisicao2){
+            System.out.println(cache.FIFO(requisicao));
+        }
+        cache.limpar();
+        System.out.println();
+        System.out.println("============ 3° Lista de Requisições ============");
+        for(char requisicao: requisicao3){
+            System.out.println(cache.FIFO(requisicao));
+        }
     }
 }
