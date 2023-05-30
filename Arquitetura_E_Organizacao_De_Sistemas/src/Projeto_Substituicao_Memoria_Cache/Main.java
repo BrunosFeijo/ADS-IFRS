@@ -24,17 +24,17 @@ public class Main {
         char[] requisicao2 = linhas[1].toCharArray();
         char[] requisicao3 = linhas[2].toCharArray();
 
-        resultado.append("============ 1° Lista de Requisições ============").append("\n\n");
+        resultado.append("============ 1° Lista de Requisições ============").append("\n");
         resultado.append(juntarTextos(requisicao1));
 
         cache.limpar();
 
-        resultado.append("\n============ 2° Lista de Requisições ============").append("\n\n");
+        resultado.append("\n============ 2° Lista de Requisições ============").append("\n");
         resultado.append(juntarTextos(requisicao2));
 
         cache.limpar();
 
-        resultado.append("\n============ 3° Lista de Requisições ============").append("\n\n");
+        resultado.append("\n============ 3° Lista de Requisições ============").append("\n");
         resultado.append(juntarTextos(requisicao3));
 
         cache.limpar();

@@ -10,20 +10,21 @@ public class MemoriaCache {
     private int hits;
     private int tamanho;
     private char[] cache;
-    private List<Integer> aux ;
+    private List<Integer> aux;
     private int auxTrocaFIFO;
 
     public MemoriaCache() {
         this.misses = 0;
         this.hits = 0;
         this.tamanho = 0;
-        this.cache = new char[4];
-        this.aux = Arrays.asList(1,2,3,4);
+        this.cache = new char[]{' ', ' ', ' ', ' '};
+        this.aux = Arrays.asList(1, 2, 3, 4);
         this.auxTrocaFIFO = 0;
     }
-    public void limpar(){
-        for (char data:cache) {
-            data = '\0';
+
+    public void limpar() {
+        for (int i = 0; i < cache.length; i++) {
+            cache[i] = ' ';
         }
         tamanho = 0;
         misses = 0;
@@ -31,23 +32,26 @@ public class MemoriaCache {
 
         if (aux.isEmpty()) aux.clear();
     }
-    private int getAuxTrocaFIFO(){
-        if (auxTrocaFIFO == 3){
+
+    private int getAuxTrocaFIFO() {
+        if (auxTrocaFIFO == 3) {
             auxTrocaFIFO = 0;
             return 3;
         }
         return auxTrocaFIFO++;
     }
-    private boolean isCheio(){
+
+    private boolean isCheio() {
         return tamanho == cache.length;
     }
-    private boolean contem(char requisicao){
-        if (tamanho == 0){
+
+    private boolean contem(char requisicao) {
+        if (tamanho == 0) {
             misses++;
             return false;
         }
-        for (int i = 0; i < tamanho;i++){
-            if (requisicao == cache[i]){
+        for (int i = 0; i < tamanho; i++) {
+            if (requisicao == cache[i]) {
                 hits++;
                 return true;
             }
@@ -55,26 +59,30 @@ public class MemoriaCache {
         misses++;
         return false;
     }
-    public void LFU(){
+
+    public void LFU() {
 
     }
-    public String FIFO(char requisicao){
+
+    public String FIFO(char requisicao) {
         if (!contem(requisicao)) {
-            if (isCheio()){
+            if (isCheio()) {
                 //Simular requisicao para memória pricipal
                 cache[getAuxTrocaFIFO()] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
                 return resumo(requisicao);
-            }else{
-                cache[tamanho++]= requisicao;
+            } else {
+                cache[tamanho++] = requisicao;
                 return resumo(requisicao);
             }
         }
         return resumo(requisicao);
     }
-    public void LRU(){
+
+    public void LRU() {
 
     }
-    public String resumo(char requisicao){
+
+    public String resumo(char requisicao) {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(Arrays.toString(cache)).append(" <- ").append(requisicao)
