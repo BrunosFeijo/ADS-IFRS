@@ -14,7 +14,7 @@ public class Main {
         //Criar texto para gerar arquivo no final
         StringBuilder resultado = new StringBuilder();
         //Nome do arquivo com as requisições
-        String arquivo = "teste.txt";
+        String arquivo = "Requisições.txt";
         //Nome do arquivo de saída
         String arquivoSaida = "Resultados.txt";
         //Ler arquivo com as requisições

@@ -1,8 +1,6 @@
 package Projeto_Substituicao_Memoria_Cache;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class MemoriaCache {
     private int misses;
@@ -32,7 +30,7 @@ public class MemoriaCache {
         auxTroca = 0;
     }
 
-    private int getAuxTroca() {
+    private int contadorFIFO() {
         if (auxTroca == 3) {
             auxTroca = 0;
             return 3;
@@ -67,7 +65,7 @@ public class MemoriaCache {
         if (!contem(requisicao)) {
             if (isCheio()) {
                 //Simular requisicao para memória pricipal
-                cache[getAuxTroca()] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
+                cache[contadorFIFO()] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
                 return resumo(requisicao);
             } else {
                 cache[tamanho++] = requisicao;
@@ -81,7 +79,8 @@ public class MemoriaCache {
         if (!contem(requisicao)) {
             if (isCheio()) {
                 int indice = requisicaoMaisAntiga();
-                cache[indice] = requisicao;
+                //Simular requisicao para memória pricipal
+                cache[indice] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
                 aux[indice] = ++auxTroca;
             } else {
                 //inserir requisicao na memoria
@@ -90,17 +89,16 @@ public class MemoriaCache {
                 aux[auxTroca++] = auxTroca;
             }
         }
-
         return resumo(requisicao);
     }
-    public int requisicaoMaisAntiga(){
+
+    public int requisicaoMaisAntiga() {
         int menor = Integer.MAX_VALUE;
         for (int i : aux) {
             if (menor > i) menor = i;
         }
         return menor;
     }
-
 
     public String resumo(char requisicao) {
         StringBuilder stringBuilder = new StringBuilder();
