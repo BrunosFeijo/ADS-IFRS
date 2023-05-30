@@ -29,6 +29,7 @@ public class MemoriaCache {
         tamanho = 0;
         misses = 0;
         hits = 0;
+        auxTroca = 0;
     }
 
     private int getAuxTroca() {
@@ -79,16 +80,27 @@ public class MemoriaCache {
     public String LRU(char requisicao) {
         if (!contem(requisicao)) {
             if (isCheio()) {
-
+                int indice = requisicaoMaisAntiga();
+                cache[indice] = requisicao;
+                aux[indice] = ++auxTroca;
             } else {
                 //inserir requisicao na memoria
                 cache[tamanho++] = requisicao;
                 //inserir ordem de entrada na lista aux
+                aux[auxTroca++] = auxTroca;
             }
         }
 
         return resumo(requisicao);
     }
+    public int requisicaoMaisAntiga(){
+        int menor = Integer.MAX_VALUE;
+        for (int i : aux) {
+            if (menor > i) menor = i;
+        }
+        return menor;
+    }
+
 
     public String resumo(char requisicao) {
         StringBuilder stringBuilder = new StringBuilder();
