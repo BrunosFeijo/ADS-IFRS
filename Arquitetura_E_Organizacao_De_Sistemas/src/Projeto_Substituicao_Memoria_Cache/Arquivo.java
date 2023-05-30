@@ -29,11 +29,11 @@ public class Arquivo {
         }
     }
 
-    public static boolean escritor(String caminho, String texto) {
+    public static boolean escritor(String caminho, StringBuilder texto) {
         try {
             FileWriter arquivo = new FileWriter(caminho);
             PrintWriter escreverArquivo = new PrintWriter(arquivo);
-            escreverArquivo.println(texto);
+            escreverArquivo.println(texto.toString());
             escreverArquivo.close();
             return true;
         } catch (IOException e) {

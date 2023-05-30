@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         StringBuilder resultado = new StringBuilder();
         String arquivo = "teste.txt";
-        String arquivoSaida = "Resultado.txt";
+        String arquivoSaida = "Resultados.txt";
         String texto = Arquivo.leitor(arquivo);
         String[] linhas = texto.split("\n");
 
@@ -29,17 +29,18 @@ public class Main {
 
         cache.limpar();
 
-        resultado.append("============ 2° Lista de Requisições ============").append("\n\n");
+        resultado.append("\n============ 2° Lista de Requisições ============").append("\n\n");
         resultado.append(juntarTextos(requisicao2));
 
         cache.limpar();
 
-        resultado.append("============ 3° Lista de Requisições ============").append("\n\n");
+        resultado.append("\n============ 3° Lista de Requisições ============").append("\n\n");
         resultado.append(juntarTextos(requisicao3));
 
         cache.limpar();
 
-        Arquivo.escritor(arquivoSaida,resultado.toString());
+        System.out.println(resultado);
+        Arquivo.escritor(arquivoSaida, resultado);
     }
     public static String juntarTextos(char[] requisicoes){
         StringBuilder stringBuilder = new StringBuilder();
