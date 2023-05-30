@@ -2,7 +2,6 @@ package Projeto_Substituicao_Memoria_Cache;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 public class MemoriaCache {
@@ -10,35 +9,34 @@ public class MemoriaCache {
     private int hits;
     private int tamanho;
     private char[] cache;
-    private List<Integer> aux;
-    private int auxTrocaFIFO;
+    private int[] aux;
+    private int auxTroca;
 
     public MemoriaCache() {
         this.misses = 0;
         this.hits = 0;
         this.tamanho = 0;
         this.cache = new char[]{' ', ' ', ' ', ' '};
-        this.aux = Arrays.asList(1, 2, 3, 4);
-        this.auxTrocaFIFO = 0;
+        this.aux = new int[]{0, 0, 0, 0};
+        this.auxTroca = 0;
     }
 
     public void limpar() {
         for (int i = 0; i < cache.length; i++) {
             cache[i] = ' ';
+            aux[i] = 0;
         }
         tamanho = 0;
         misses = 0;
         hits = 0;
-
-        if (aux.isEmpty()) aux.clear();
     }
 
-    private int getAuxTrocaFIFO() {
-        if (auxTrocaFIFO == 3) {
-            auxTrocaFIFO = 0;
+    private int getAuxTroca() {
+        if (auxTroca == 3) {
+            auxTroca = 0;
             return 3;
         }
-        return auxTrocaFIFO++;
+        return auxTroca++;
     }
 
     private boolean isCheio() {
@@ -68,7 +66,7 @@ public class MemoriaCache {
         if (!contem(requisicao)) {
             if (isCheio()) {
                 //Simular requisicao para memória pricipal
-                cache[getAuxTrocaFIFO()] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
+                cache[getAuxTroca()] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
                 return resumo(requisicao);
             } else {
                 cache[tamanho++] = requisicao;
@@ -78,8 +76,18 @@ public class MemoriaCache {
         return resumo(requisicao);
     }
 
-    public void LRU() {
+    public String LRU(char requisicao) {
+        if (!contem(requisicao)) {
+            if (isCheio()) {
 
+            } else {
+                //inserir requisicao na memoria
+                cache[tamanho++] = requisicao;
+                //inserir ordem de entrada na lista aux
+            }
+        }
+
+        return resumo(requisicao);
     }
 
     public String resumo(char requisicao) {
@@ -99,8 +107,9 @@ public class MemoriaCache {
     public int getHits() {
         return hits;
     }
-    public String informarEficiencia(){
-        return String.format("%.2f",((double)getHits() / (getHits() + getMisses())) * 100) + "%";
+
+    public String informarEficiencia() {
+        return String.format("%.2f", ((double) getHits() / (getHits() + getMisses())) * 100) + "%";
     }
 
     @Override
