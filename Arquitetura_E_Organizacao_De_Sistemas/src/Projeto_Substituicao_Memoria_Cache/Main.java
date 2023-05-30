@@ -8,10 +8,11 @@ import java.nio.file.Path;
 import java.sql.SQLOutput;
 
 public class Main {
+    static MemoriaCache cache = new MemoriaCache();
     public static void main(String[] args) {
-        MemoriaCache cache = new MemoriaCache();
-
+        StringBuilder resultado = new StringBuilder();
         String arquivo = "teste.txt";
+        String arquivoSaida = "Resultado.txt";
         String texto = Arquivo.leitor(arquivo);
         String[] linhas = texto.split("\n");
 
@@ -23,21 +24,31 @@ public class Main {
         char[] requisicao2 = linhas[1].toCharArray();
         char[] requisicao3 = linhas[2].toCharArray();
 
-        System.out.println("============ 1° Lista de Requisições ============");
-        for(char requisicao: requisicao1){
-            System.out.println(cache.FIFO(requisicao));
-        }
+        resultado.append("============ 1° Lista de Requisições ============").append("\n\n");
+        resultado.append(juntarTextos(requisicao1));
+
         cache.limpar();
-        System.out.println();
-        System.out.println("============ 2° Lista de Requisições ============");
-        for(char requisicao: requisicao2){
-            System.out.println(cache.FIFO(requisicao));
-        }
+
+        resultado.append("============ 2° Lista de Requisições ============").append("\n\n");
+        resultado.append(juntarTextos(requisicao2));
+
         cache.limpar();
-        System.out.println();
-        System.out.println("============ 3° Lista de Requisições ============");
-        for(char requisicao: requisicao3){
-            System.out.println(cache.FIFO(requisicao));
+
+        resultado.append("============ 3° Lista de Requisições ============").append("\n\n");
+        resultado.append(juntarTextos(requisicao3));
+
+        cache.limpar();
+        
+        Arquivo.escritor(arquivoSaida,resultado.toString());
+    }
+    public static String juntarTextos(char[] requisicoes){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n");
+        for(char requisicao: requisicoes){
+            stringBuilder.append(cache.FIFO(requisicao)).append("\n");
         }
+
+        return stringBuilder.toString();
+
     }
 }
