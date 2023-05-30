@@ -1,6 +1,5 @@
 ============ 1° Lista de Requisições ============
 
-
 [A,  ,  ,  ] <- A | Misses: 1 | Hits: 0
 [A, B,  ,  ] <- B | Misses: 2 | Hits: 0
 [A, B, C,  ] <- C | Misses: 3 | Hits: 0
@@ -19,8 +18,9 @@
 [C, F, B, A] <- C | Misses: 9 | Hits: 7
 [C, D, B, A] <- D | Misses: 10 | Hits: 7
 
-============ 2° Lista de Requisições ============
+Eficiência: 41,18%%
 
+============ 2° Lista de Requisições ============
 
 [A,  ,  ,  ] <- A | Misses: 1 | Hits: 0
 [A, D,  ,  ] <- D | Misses: 2 | Hits: 0
@@ -40,8 +40,9 @@
 [B, A, C, F] <- C | Misses: 9 | Hits: 7
 [B, A, C, D] <- D | Misses: 10 | Hits: 7
 
-============ 3° Lista de Requisições ============
+Eficiência: 41,18%%
 
+============ 3° Lista de Requisições ============
 
 [A,  ,  ,  ] <- A | Misses: 1 | Hits: 0
 [A, D,  ,  ] <- D | Misses: 2 | Hits: 0
@@ -77,4 +78,6 @@
 [C, D, E, F] <- D | Misses: 14 | Hits: 18
 [C, D, E, F] <- C | Misses: 14 | Hits: 19
 [C, D, E, F] <- D | Misses: 14 | Hits: 20
+
+Eficiência: 58,82%%
 

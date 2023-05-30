@@ -92,6 +92,17 @@ public class MemoriaCache {
         return stringBuilder.toString();
     }
 
+    public int getMisses() {
+        return misses;
+    }
+
+    public int getHits() {
+        return hits;
+    }
+    public String informarEficiencia(){
+        return String.format("%.2f",((double)getHits() / (getHits() + getMisses())) * 100) + "%";
+    }
+
     @Override
     public String toString() {
         return Arrays.toString(cache);
