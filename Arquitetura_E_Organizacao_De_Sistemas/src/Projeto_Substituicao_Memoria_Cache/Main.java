@@ -38,7 +38,7 @@ public class Main {
         resultado.append(juntarTextos(requisicao3));
 
         cache.limpar();
-        
+
         Arquivo.escritor(arquivoSaida,resultado.toString());
     }
     public static String juntarTextos(char[] requisicoes){
