@@ -75,8 +75,9 @@ public class MemoriaCache {
 
     }
     public int indiceMenosFrequente(){
-        
 
+
+        return 0;
     }
 
     public String FIFO(char requisicao) {
