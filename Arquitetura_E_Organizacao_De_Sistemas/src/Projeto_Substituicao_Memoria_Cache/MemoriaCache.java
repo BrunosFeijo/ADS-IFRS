@@ -68,7 +68,8 @@ public class MemoriaCache {
                 cache[contadorFIFO()] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
                 return resumo(requisicao);
             } else {
-                cache[tamanho++] = requisicao;
+                //Simular requisicao para memória pricipal
+                cache[tamanho++] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
                 return resumo(requisicao);
             }
         }
@@ -76,28 +77,44 @@ public class MemoriaCache {
     }
 
     public String LRU(char requisicao) {
+        int indice = requisicaoMaisAntiga();
         if (!contem(requisicao)) {
             if (isCheio()) {
-                int indice = requisicaoMaisAntiga();
                 //Simular requisicao para memória pricipal
                 cache[indice] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
                 aux[indice] = ++auxTroca;
+                return resumo(requisicao);
             } else {
-                //inserir requisicao na memoria
-                cache[tamanho++] = requisicao;
+                //Simular requisicao para memória pricipal
+                cache[tamanho] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
                 //inserir ordem de entrada na lista aux
-                aux[auxTroca++] = auxTroca;
+                aux[tamanho++] = ++auxTroca;
+                return resumo(requisicao);
             }
         }
+        aux[indiceDaRequisicaoEncontrada(requisicao)] = ++auxTroca;
+
         return resumo(requisicao);
     }
 
     public int requisicaoMaisAntiga() {
         int menor = Integer.MAX_VALUE;
-        for (int i : aux) {
-            if (menor > i) menor = i;
+        int indice = 0;
+        for (int i = 0; i < aux.length; i++) {
+            if (menor > aux[i]) {
+                menor = aux[i];
+                indice = i;
+            }
         }
-        return menor;
+        return indice;
+    }
+    public int indiceDaRequisicaoEncontrada(char requisicao){
+        for (int i = 0; i < tamanho; i++) {
+            if (requisicao == cache[i]) {
+                return i;
+            }
+        }
+        return 0;
     }
 
     public String resumo(char requisicao) {
