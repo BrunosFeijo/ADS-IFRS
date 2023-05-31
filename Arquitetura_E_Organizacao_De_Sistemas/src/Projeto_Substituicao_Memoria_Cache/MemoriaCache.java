@@ -7,7 +7,8 @@ public class MemoriaCache {
     private int hits;
     private int tamanho;
     private char[] cache;
-    private int[] aux;
+    private int[] auxLRU;
+
     private int auxTroca;
 
     public MemoriaCache() {
@@ -15,14 +16,14 @@ public class MemoriaCache {
         this.hits = 0;
         this.tamanho = 0;
         this.cache = new char[]{' ', ' ', ' ', ' '};
-        this.aux = new int[]{0, 0, 0, 0};
+        this.auxLRU = new int[]{0, 0, 0, 0};
         this.auxTroca = 0;
     }
 
     public void limpar() {
         for (int i = 0; i < cache.length; i++) {
             cache[i] = ' ';
-            aux[i] = 0;
+            auxLRU[i] = 0;
         }
         tamanho = 0;
         misses = 0;
@@ -30,58 +31,59 @@ public class MemoriaCache {
         auxTroca = 0;
     }
 
-    private int contadorFIFO() {
-        if (auxTroca == 3) {
-            auxTroca = 0;
-            return 3;
-        }
-        return auxTroca++;
-    }
 
     private boolean isCheio() {
         return tamanho == cache.length;
     }
 
-    private boolean contem(char requisicao) {
+    private int procurar(char requisicao) {
         if (tamanho == 0) {
             misses++;
-            return false;
+            return -1;
         }
         for (int i = 0; i < tamanho; i++) {
             if (requisicao == cache[i]) {
                 hits++;
-                return true;
+                return i;
             }
         }
         misses++;
-        return false;
+        return -1;
     }
 
+
     public String LFU(char requisicao) {
-        if (!contem(requisicao)) {
+        int indice = procurar(requisicao);
+        boolean contem = indice != -1;
+        if (!contem) {
             if (isCheio()) {
                 //Simular requisicao para memória pricipal
-                cache[contadorFIFO()] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
+                cache[indice] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
+                auxLRU[indice] = 1;
+                //auxiliar para decidir troca após empate entre as frequências
                 return resumo(requisicao);
             } else {
                 //Simular requisicao para memória pricipal
                 cache[tamanho] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
-                aux[tamanho++]++;
+                auxLRU[tamanho++]++;
                 return resumo(requisicao);
             }
         }
-        aux[indiceDaRequisicaoEncontrada(requisicao)]++;
+        auxLRU[indice]++;
         return resumo(requisicao);
 
     }
-    public int indiceMenosFrequente(){
+
+    public int indiceMenosFrequente() {
 
 
         return 0;
     }
 
     public String FIFO(char requisicao) {
-        if (!contem(requisicao)) {
+        int indice = procurar(requisicao);
+        boolean contem = indice != -1;
+        if (!contem) {
             if (isCheio()) {
                 //Simular requisicao para memória pricipal
                 cache[contadorFIFO()] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
@@ -95,23 +97,34 @@ public class MemoriaCache {
         return resumo(requisicao);
     }
 
+    private int contadorFIFO() {
+        if (auxTroca == 3) {
+            auxTroca = 0;
+            return 3;
+        }
+        return auxTroca++;
+    }
+
     public String LRU(char requisicao) {
-        int indice = requisicaoMaisAntiga();
-        if (!contem(requisicao)) {
+        int indice = procurar(requisicao);
+        boolean contem = indice != -1;
+        if (!contem) {
             if (isCheio()) {
+                indice = requisicaoMaisAntiga();
                 //Simular requisicao para memória pricipal
                 cache[indice] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
-                aux[indice] = ++auxTroca;
+                auxLRU[indice] = ++auxTroca;
                 return resumo(requisicao);
             } else {
                 //Simular requisicao para memória pricipal
                 cache[tamanho] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
                 //inserir ordem de entrada na lista aux
-                aux[tamanho++] = ++auxTroca;
+                auxLRU[tamanho++] = ++auxTroca;
                 return resumo(requisicao);
             }
         }
-        aux[indiceDaRequisicaoEncontrada(requisicao)] = ++auxTroca;
+
+        auxLRU[indice] = ++auxTroca;
 
         return resumo(requisicao);
     }
@@ -119,22 +132,23 @@ public class MemoriaCache {
     public int requisicaoMaisAntiga() {
         int menor = Integer.MAX_VALUE;
         int indice = 0;
-        for (int i = 0; i < aux.length; i++) {
-            if (menor > aux[i]) {
-                menor = aux[i];
+        for (int i = 0; i < auxLRU.length; i++) {
+            if (menor > auxLRU[i]) {
+                menor = auxLRU[i];
                 indice = i;
             }
         }
         return indice;
     }
-    public int indiceDaRequisicaoEncontrada(char requisicao){
-        for (int i = 0; i < tamanho; i++) {
-            if (requisicao == cache[i]) {
-                return i;
-            }
-        }
-        return 0;
-    }
+
+//    public int indiceDaRequisicaoEncontrada(char requisicao) {
+//        for (int i = 0; i < tamanho; i++) {
+//            if (requisicao == cache[i]) {
+//                return i;
+//            }
+//        }
+//        return 0;
+//    }
 
     public String resumo(char requisicao) {
         StringBuilder stringBuilder = new StringBuilder();
