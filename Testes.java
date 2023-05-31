@@ -1,17 +1,17 @@
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.function.Consumer;
 
 public class Testes {
     public static void main(String[] args) {
-//        char[] chars = {'a','b','c','d'};
-//        for (char data:chars) {
-//            data = '\0';
-//        }
-//        chars = new char[4];
-//
-//        System.out.println(chars);
-        List<Integer> aux = Arrays.asList(1,2,3,4);
-        System.out.println(aux.indexOf(3));
+        ArrayList<Pessoa> nomes = new ArrayList<>();
+        Consumer<String> print = System.out::println;
+        nomes.add(new Pessoa("Bruno"));
+        nomes.add(new Pessoa("Victoria"));
+        nomes.add(new Pessoa("Gabriel"));
+        nomes.add(new Pessoa("Rafael"));
+
+        nomes.stream().map(Pessoa::getNome).forEach(print);
     }
 }
 

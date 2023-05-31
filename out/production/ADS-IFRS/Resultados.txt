@@ -1,0 +1,165 @@
+============ 1° Lista de Requisições - FIFO ============
+
+[A,  ,  ,  ] <- A | Misses: 1 | Hits: 0
+[A, B,  ,  ] <- B | Misses: 2 | Hits: 0
+[A, B, C,  ] <- C | Misses: 3 | Hits: 0
+[A, B, C,  ] <- A | Misses: 3 | Hits: 1
+[A, B, C,  ] <- A | Misses: 3 | Hits: 2
+[A, B, C,  ] <- B | Misses: 3 | Hits: 3
+[A, B, C,  ] <- B | Misses: 3 | Hits: 4
+[A, B, C,  ] <- C | Misses: 3 | Hits: 5
+[A, B, C,  ] <- A | Misses: 3 | Hits: 6
+[A, B, C, D] <- D | Misses: 4 | Hits: 6
+[E, B, C, D] <- E | Misses: 5 | Hits: 6
+[E, F, C, D] <- F | Misses: 6 | Hits: 6
+[E, F, B, D] <- B | Misses: 7 | Hits: 6
+[E, F, B, A] <- A | Misses: 8 | Hits: 6
+[E, F, B, A] <- B | Misses: 8 | Hits: 7
+[C, F, B, A] <- C | Misses: 9 | Hits: 7
+[C, D, B, A] <- D | Misses: 10 | Hits: 7
+
+Eficiência: 41,18%%
+
+============ 2° Lista de Requisições - FIFO ============
+
+[A,  ,  ,  ] <- A | Misses: 1 | Hits: 0
+[A, D,  ,  ] <- D | Misses: 2 | Hits: 0
+[A, D, C,  ] <- C | Misses: 3 | Hits: 0
+[A, D, C, B] <- B | Misses: 4 | Hits: 0
+[A, D, C, B] <- A | Misses: 4 | Hits: 1
+[A, D, C, B] <- B | Misses: 4 | Hits: 2
+[A, D, C, B] <- D | Misses: 4 | Hits: 3
+[A, D, C, B] <- C | Misses: 4 | Hits: 4
+[A, D, C, B] <- A | Misses: 4 | Hits: 5
+[A, D, C, B] <- D | Misses: 4 | Hits: 6
+[E, D, C, B] <- E | Misses: 5 | Hits: 6
+[E, F, C, B] <- F | Misses: 6 | Hits: 6
+[E, F, C, B] <- B | Misses: 6 | Hits: 7
+[E, F, A, B] <- A | Misses: 7 | Hits: 7
+[E, F, A, B] <- F | Misses: 7 | Hits: 8
+[E, F, A, C] <- C | Misses: 8 | Hits: 8
+[D, F, A, C] <- D | Misses: 9 | Hits: 8
+
+Eficiência: 47,06%%
+
+============ 3° Lista de Requisições - FIFO ============
+
+[A,  ,  ,  ] <- A | Misses: 1 | Hits: 0
+[A, D,  ,  ] <- D | Misses: 2 | Hits: 0
+[A, D, C,  ] <- C | Misses: 3 | Hits: 0
+[A, D, C, B] <- B | Misses: 4 | Hits: 0
+[A, D, C, B] <- A | Misses: 4 | Hits: 1
+[A, D, C, B] <- B | Misses: 4 | Hits: 2
+[A, D, C, B] <- D | Misses: 4 | Hits: 3
+[A, D, C, B] <- C | Misses: 4 | Hits: 4
+[A, D, C, B] <- A | Misses: 4 | Hits: 5
+[A, D, C, B] <- D | Misses: 4 | Hits: 6
+[E, D, C, B] <- E | Misses: 5 | Hits: 6
+[E, F, C, B] <- F | Misses: 6 | Hits: 6
+[E, F, C, B] <- B | Misses: 6 | Hits: 7
+[E, F, A, B] <- A | Misses: 7 | Hits: 7
+[E, F, A, B] <- F | Misses: 7 | Hits: 8
+[E, F, A, C] <- C | Misses: 8 | Hits: 8
+[D, F, A, C] <- D | Misses: 9 | Hits: 8
+[D, F, A, C] <- A | Misses: 9 | Hits: 9
+[D, B, A, C] <- B | Misses: 10 | Hits: 9
+[D, B, A, C] <- C | Misses: 10 | Hits: 10
+[D, B, A, C] <- A | Misses: 10 | Hits: 11
+[D, B, A, C] <- A | Misses: 10 | Hits: 12
+[D, B, A, C] <- B | Misses: 10 | Hits: 13
+[D, B, A, C] <- B | Misses: 10 | Hits: 14
+[D, B, A, C] <- C | Misses: 10 | Hits: 15
+[D, B, A, C] <- A | Misses: 10 | Hits: 16
+[D, B, A, C] <- D | Misses: 10 | Hits: 17
+[D, B, E, C] <- E | Misses: 11 | Hits: 17
+[D, B, E, F] <- F | Misses: 12 | Hits: 17
+[D, B, E, F] <- B | Misses: 12 | Hits: 18
+[C, B, E, F] <- C | Misses: 13 | Hits: 18
+[C, D, E, F] <- D | Misses: 14 | Hits: 18
+[C, D, E, F] <- C | Misses: 14 | Hits: 19
+[C, D, E, F] <- D | Misses: 14 | Hits: 20
+
+Eficiência: 58,82%%
+============ 1° Lista de Requisições - LRU ============
+
+[A,  ,  ,  ] <- A | Misses: 1 | Hits: 0
+[A, B,  ,  ] <- B | Misses: 2 | Hits: 0
+[A, B, C,  ] <- C | Misses: 3 | Hits: 0
+[A, B, C,  ] <- A | Misses: 3 | Hits: 1
+[A, B, C,  ] <- A | Misses: 3 | Hits: 2
+[A, B, C,  ] <- B | Misses: 3 | Hits: 3
+[A, B, C,  ] <- B | Misses: 3 | Hits: 4
+[A, B, C,  ] <- C | Misses: 3 | Hits: 5
+[A, B, C,  ] <- A | Misses: 3 | Hits: 6
+[A, B, C, D] <- D | Misses: 4 | Hits: 6
+[A, E, C, D] <- E | Misses: 5 | Hits: 6
+[A, E, F, D] <- F | Misses: 6 | Hits: 6
+[B, E, F, D] <- B | Misses: 7 | Hits: 6
+[B, E, F, A] <- A | Misses: 8 | Hits: 6
+[B, E, F, A] <- B | Misses: 8 | Hits: 7
+[B, C, F, A] <- C | Misses: 9 | Hits: 7
+[B, C, D, A] <- D | Misses: 10 | Hits: 7
+
+Eficiência: 41,18%%
+
+============ 2° Lista de Requisições - LRU ============
+
+[A,  ,  ,  ] <- A | Misses: 1 | Hits: 0
+[A, D,  ,  ] <- D | Misses: 2 | Hits: 0
+[A, D, C,  ] <- C | Misses: 3 | Hits: 0
+[A, D, C, B] <- B | Misses: 4 | Hits: 0
+[A, D, C, B] <- A | Misses: 4 | Hits: 1
+[A, D, C, B] <- B | Misses: 4 | Hits: 2
+[A, D, C, B] <- D | Misses: 4 | Hits: 3
+[A, D, C, B] <- C | Misses: 4 | Hits: 4
+[A, D, C, B] <- A | Misses: 4 | Hits: 5
+[A, D, C, B] <- D | Misses: 4 | Hits: 6
+[A, D, C, E] <- E | Misses: 5 | Hits: 6
+[A, D, F, E] <- F | Misses: 6 | Hits: 6
+[B, D, F, E] <- B | Misses: 7 | Hits: 6
+[B, A, F, E] <- A | Misses: 8 | Hits: 6
+[B, A, F, E] <- F | Misses: 8 | Hits: 7
+[B, A, F, C] <- C | Misses: 9 | Hits: 7
+[D, A, F, C] <- D | Misses: 10 | Hits: 7
+
+Eficiência: 41,18%%
+
+============ 3° Lista de Requisições - LRU ============
+
+[A,  ,  ,  ] <- A | Misses: 1 | Hits: 0
+[A, D,  ,  ] <- D | Misses: 2 | Hits: 0
+[A, D, C,  ] <- C | Misses: 3 | Hits: 0
+[A, D, C, B] <- B | Misses: 4 | Hits: 0
+[A, D, C, B] <- A | Misses: 4 | Hits: 1
+[A, D, C, B] <- B | Misses: 4 | Hits: 2
+[A, D, C, B] <- D | Misses: 4 | Hits: 3
+[A, D, C, B] <- C | Misses: 4 | Hits: 4
+[A, D, C, B] <- A | Misses: 4 | Hits: 5
+[A, D, C, B] <- D | Misses: 4 | Hits: 6
+[A, D, C, E] <- E | Misses: 5 | Hits: 6
+[A, D, F, E] <- F | Misses: 6 | Hits: 6
+[B, D, F, E] <- B | Misses: 7 | Hits: 6
+[B, A, F, E] <- A | Misses: 8 | Hits: 6
+[B, A, F, E] <- F | Misses: 8 | Hits: 7
+[B, A, F, C] <- C | Misses: 9 | Hits: 7
+[D, A, F, C] <- D | Misses: 10 | Hits: 7
+[D, A, F, C] <- A | Misses: 10 | Hits: 8
+[D, A, B, C] <- B | Misses: 11 | Hits: 8
+[D, A, B, C] <- C | Misses: 11 | Hits: 9
+[D, A, B, C] <- A | Misses: 11 | Hits: 10
+[D, A, B, C] <- A | Misses: 11 | Hits: 11
+[D, A, B, C] <- B | Misses: 11 | Hits: 12
+[D, A, B, C] <- B | Misses: 11 | Hits: 13
+[D, A, B, C] <- C | Misses: 11 | Hits: 14
+[D, A, B, C] <- A | Misses: 11 | Hits: 15
+[D, A, B, C] <- D | Misses: 11 | Hits: 16
+[D, A, E, C] <- E | Misses: 12 | Hits: 16
+[D, A, E, F] <- F | Misses: 13 | Hits: 16
+[D, B, E, F] <- B | Misses: 14 | Hits: 16
+[C, B, E, F] <- C | Misses: 15 | Hits: 16
+[C, B, D, F] <- D | Misses: 16 | Hits: 16
+[C, B, D, F] <- C | Misses: 16 | Hits: 17
+[C, B, D, F] <- D | Misses: 16 | Hits: 18
+
+Eficiência: 52,94%%
+
