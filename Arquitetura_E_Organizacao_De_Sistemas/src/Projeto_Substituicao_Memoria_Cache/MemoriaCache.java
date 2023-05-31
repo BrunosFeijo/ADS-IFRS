@@ -57,7 +57,25 @@ public class MemoriaCache {
         return false;
     }
 
-    public void LFU() {
+    public String LFU(char requisicao) {
+        if (!contem(requisicao)) {
+            if (isCheio()) {
+                //Simular requisicao para memória pricipal
+                cache[contadorFIFO()] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
+                return resumo(requisicao);
+            } else {
+                //Simular requisicao para memória pricipal
+                cache[tamanho] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
+                aux[tamanho++]++;
+                return resumo(requisicao);
+            }
+        }
+        aux[indiceDaRequisicaoEncontrada(requisicao)]++;
+        return resumo(requisicao);
+
+    }
+    public int indiceMenosFrequente(){
+        
 
     }
 
