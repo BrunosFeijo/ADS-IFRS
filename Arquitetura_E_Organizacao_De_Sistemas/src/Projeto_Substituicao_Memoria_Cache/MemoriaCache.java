@@ -139,11 +139,15 @@ public class MemoriaCache {
     }
 
     public int indiceMenosFrequente() {
+        int menor = Integer.MAX_VALUE;
+        int indice = 0;
         for (int i = 0; i < auxLFU.length; i++) {
-            
+            if (menor > auxLFU[i]){
+                menor = auxLFU[i];
+                indice = i;
+            }
         }
-
-        return 0;
+        return indice;
     }
 
 //    public int indiceDaRequisicaoEncontrada(char requisicao) {
