@@ -7,7 +7,8 @@ public class MemoriaCache {
     private int hits;
     private int tamanho;
     private char[] cache;
-    private int[] aux;
+    private int[] auxLRU;
+    private int[] auxLFU;
 
     private int auxTroca;
 
@@ -16,14 +17,16 @@ public class MemoriaCache {
         this.hits = 0;
         this.tamanho = 0;
         this.cache = new char[]{' ', ' ', ' ', ' '};
-        this.aux = new int[]{0, 0, 0, 0};
+        this.auxLRU = new int[]{0, 0, 0, 0};
+        this.auxLRU = new int[]{0, 0, 0, 0};
         this.auxTroca = 0;
     }
 
     public void limpar() {
         for (int i = 0; i < cache.length; i++) {
             cache[i] = ' ';
-            aux[i] = 0;
+            auxLRU[i] = 0;
+            auxLFU[i] = 0;
         }
         tamanho = 0;
         misses = 0;
@@ -49,35 +52,6 @@ public class MemoriaCache {
         }
         misses++;
         return -1;
-    }
-
-
-    public String LFU(char requisicao) {
-        int indice = procurar(requisicao);
-        boolean contem = indice != -1;
-        if (!contem) {
-            if (isCheio()) {
-                //Simular requisicao para memória pricipal
-                cache[indice] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
-                aux[indice] = 1;
-                //auxiliar para decidir troca após empate entre as frequências
-                return resumo(requisicao);
-            } else {
-                //Simular requisicao para memória pricipal
-                cache[tamanho] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
-                aux[tamanho++]++;
-                return resumo(requisicao);
-            }
-        }
-        aux[indice]++;
-        return resumo(requisicao);
-
-    }
-
-    public int indiceMenosFrequente() {
-
-
-        return 0;
     }
 
     public String FIFO(char requisicao) {
@@ -113,18 +87,17 @@ public class MemoriaCache {
                 indice = requisicaoMaisAntiga();
                 //Simular requisicao para memória pricipal
                 cache[indice] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
-                aux[indice] = ++auxTroca;
+                auxLRU[indice] = ++auxTroca;
                 return resumo(requisicao);
             } else {
                 //Simular requisicao para memória pricipal
                 cache[tamanho] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
                 //inserir ordem de entrada na lista aux
-                aux[tamanho++] = ++auxTroca;
+                auxLRU[tamanho++] = ++auxTroca;
                 return resumo(requisicao);
             }
         }
-
-        aux[indice] = ++auxTroca;
+        auxLRU[indice] = ++auxTroca;
 
         return resumo(requisicao);
     }
@@ -132,13 +105,45 @@ public class MemoriaCache {
     public int requisicaoMaisAntiga() {
         int menor = Integer.MAX_VALUE;
         int indice = 0;
-        for (int i = 0; i < aux.length; i++) {
-            if (menor > aux[i]) {
-                menor = aux[i];
+        for (int i = 0; i < auxLRU.length; i++) {
+            if (menor > auxLRU[i]) {
+                menor = auxLRU[i];
                 indice = i;
             }
         }
         return indice;
+    }
+
+    public String LFU(char requisicao) {
+        int indice = procurar(requisicao);
+        boolean contem = indice != -1;
+        if (!contem) {
+            if (isCheio()) {
+                indice = indiceMenosFrequente();
+                //Simular requisicao para memória pricipal
+                cache[indice] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
+                auxLFU[indice] = 1;
+                auxLRU[indice] = ++auxTroca; //auxiliar para decidir troca após empate entre as frequências
+                return resumo(requisicao);
+            } else {
+                //Simular requisicao para memória pricipal
+                cache[tamanho] = MemoriaPrincipal.getMemoriaPrincipal(requisicao);
+                auxLFU[tamanho]++;
+                auxLRU[tamanho++] = ++auxTroca; //auxiliar para decidir troca após empate entre as frequências
+                return resumo(requisicao);
+            }
+        }
+        auxLFU[indice]++;
+        auxLRU[indice] = ++auxTroca; //auxiliar para decidir troca após empate entre as frequências
+        return resumo(requisicao);
+    }
+
+    public int indiceMenosFrequente() {
+        for (int i = 0; i < auxLFU.length; i++) {
+            
+        }
+
+        return 0;
     }
 
 //    public int indiceDaRequisicaoEncontrada(char requisicao) {

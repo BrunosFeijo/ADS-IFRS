@@ -80,6 +80,7 @@ Eficiência: 47,06%%
 [C, D, E, F] <- D | Misses: 14 | Hits: 20
 
 Eficiência: 58,82%%
+
 ============ 1° Lista de Requisições - LRU ============
 
 [A,  ,  ,  ] <- A | Misses: 1 | Hits: 0
