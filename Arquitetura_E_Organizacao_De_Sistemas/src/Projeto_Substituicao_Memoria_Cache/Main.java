@@ -7,9 +7,9 @@ public class Main {
         //Criar texto para gerar arquivo no final
         StringBuilder resultado = new StringBuilder();
         //Nome do arquivo com as requisições
-        String arquivo = "Requisições.txt";
+        String arquivo = ".\\Arquitetura_E_Organizacao_De_Sistemas/Requisições.txt";
         //Nome do arquivo de saída
-        String arquivoSaida = "Resultados.txt";
+        String arquivoSaida = ".\\Arquitetura_E_Organizacao_De_Sistemas/Resultados.txt";
         //Ler arquivo com as requisições
         String texto = Registrador.requisitar(arquivo);
         //Separar grupo de requisições por linha

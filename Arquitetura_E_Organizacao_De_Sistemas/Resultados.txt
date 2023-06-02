@@ -246,3 +246,4 @@ Eficiência: 52,94%
 [A, D, C, B] <- D | Misses: 12 | Hits: 22
 
 Eficiência: 64,71%
+
