@@ -18,7 +18,7 @@
 [C, F, B, A] <- C | Misses: 9 | Hits: 7
 [C, D, B, A] <- D | Misses: 10 | Hits: 7
 
-Eficiência: 41,18%%
+Eficiência: 41,18%
 
 ============ 2° Lista de Requisições - FIFO ============
 
@@ -40,7 +40,7 @@ Eficiência: 41,18%%
 [E, F, A, C] <- C | Misses: 8 | Hits: 8
 [D, F, A, C] <- D | Misses: 9 | Hits: 8
 
-Eficiência: 47,06%%
+Eficiência: 47,06%
 
 ============ 3° Lista de Requisições - FIFO ============
 
@@ -79,7 +79,7 @@ Eficiência: 47,06%%
 [C, D, E, F] <- C | Misses: 14 | Hits: 19
 [C, D, E, F] <- D | Misses: 14 | Hits: 20
 
-Eficiência: 58,82%%
+Eficiência: 58,82%
 
 ============ 1° Lista de Requisições - LRU ============
 
@@ -101,7 +101,7 @@ Eficiência: 58,82%%
 [B, C, F, A] <- C | Misses: 9 | Hits: 7
 [B, C, D, A] <- D | Misses: 10 | Hits: 7
 
-Eficiência: 41,18%%
+Eficiência: 41,18%
 
 ============ 2° Lista de Requisições - LRU ============
 
@@ -123,7 +123,7 @@ Eficiência: 41,18%%
 [B, A, F, C] <- C | Misses: 9 | Hits: 7
 [D, A, F, C] <- D | Misses: 10 | Hits: 7
 
-Eficiência: 41,18%%
+Eficiência: 41,18%
 
 ============ 3° Lista de Requisições - LRU ============
 
@@ -162,7 +162,7 @@ Eficiência: 41,18%%
 [C, B, D, F] <- C | Misses: 16 | Hits: 17
 [C, B, D, F] <- D | Misses: 16 | Hits: 18
 
-Eficiência: 52,94%%
+Eficiência: 52,94%
 
 ============ 1° Lista de Requisições - LFU ============
 
@@ -184,7 +184,7 @@ Eficiência: 52,94%%
 [A, B, C, F] <- C | Misses: 6 | Hits: 10
 [A, B, C, D] <- D | Misses: 7 | Hits: 10
 
-Eficiência: 58,82%%
+Eficiência: 58,82%
 
 ============ 2° Lista de Requisições - LFU ============
 
@@ -206,7 +206,7 @@ Eficiência: 58,82%%
 [A, D, C, F] <- C | Misses: 8 | Hits: 8
 [A, D, C, F] <- D | Misses: 8 | Hits: 9
 
-Eficiência: 52,94%%
+Eficiência: 52,94%
 
 ============ 3° Lista de Requisições - LFU ============
 
@@ -245,5 +245,5 @@ Eficiência: 52,94%%
 [A, D, C, B] <- C | Misses: 12 | Hits: 21
 [A, D, C, B] <- D | Misses: 12 | Hits: 22
 
-Eficiência: 64,71%%
+Eficiência: 64,71%
 

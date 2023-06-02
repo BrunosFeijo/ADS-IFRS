@@ -27,18 +27,18 @@ public class Main {
         //FIFO
         resultado.append("============ 1° Lista de Requisições - FIFO ============").append("\n");
         resultado.append(juntarTextosFIFO(requisicao1)).append("\n");
-        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
+        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("\n");
         System.out.println();
         cache.limpar();
 
         resultado.append("\n============ 2° Lista de Requisições - FIFO ============").append("\n");
         resultado.append(juntarTextosFIFO(requisicao2)).append("\n");
-        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
+        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("\n");
         cache.limpar();
 
         resultado.append("\n============ 3° Lista de Requisições - FIFO ============").append("\n");
         resultado.append(juntarTextosFIFO(requisicao3)).append("\n");
-        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
+        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("\n");
         cache.limpar();
 
         System.out.println(resultado); //Acompanhar resultado no terminal
@@ -47,35 +47,35 @@ public class Main {
         //LRU
         resultado.append("\n============ 1° Lista de Requisições - LRU ============").append("\n");
         resultado.append(juntarTextosLRU(requisicao1)).append("\n");
-        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
+        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("\n");
         System.out.println();
         cache.limpar();
 
         resultado.append("\n============ 2° Lista de Requisições - LRU ============").append("\n");
         resultado.append(juntarTextosLRU(requisicao2)).append("\n");
-        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
+        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("\n");
         cache.limpar();
 
         resultado.append("\n============ 3° Lista de Requisições - LRU ============").append("\n");
         resultado.append(juntarTextosLRU(requisicao3)).append("\n");
-        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
+        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("\n");
         cache.limpar();
 
         //LFU
         resultado.append("\n============ 1° Lista de Requisições - LFU ============").append("\n");
         resultado.append(juntarTextosLFU(requisicao1)).append("\n");
-        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
+        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("\n");
         System.out.println();
         cache.limpar();
 
         resultado.append("\n============ 2° Lista de Requisições - LFU ============").append("\n");
         resultado.append(juntarTextosLFU(requisicao2)).append("\n");
-        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
+        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("\n");
         cache.limpar();
 
         resultado.append("\n============ 3° Lista de Requisições - LFU ============").append("\n");
         resultado.append(juntarTextosLFU(requisicao3)).append("\n");
-        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
+        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("\n");
         cache.limpar();
 
         System.out.println(resultado); //Acompanhar resultado no terminal
