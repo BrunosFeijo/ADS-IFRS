@@ -2,8 +2,8 @@ package Projeto_Substituicao_Memoria_Cache;
 
 import java.io.*;
 
-public class Arquivo {
-    public static String leitor(String caminho) {
+public class Registrador {
+    public static String requisitar(String caminho) {
         StringBuilder texto = new StringBuilder();
 
         try {
@@ -29,7 +29,7 @@ public class Arquivo {
         }
     }
 
-    public static boolean escritor(String caminho, StringBuilder texto) {
+    public static boolean registrar(String caminho, StringBuilder texto) {
         try {
             FileWriter arquivo = new FileWriter(caminho);
             PrintWriter escreverArquivo = new PrintWriter(arquivo);

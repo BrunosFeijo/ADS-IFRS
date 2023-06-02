@@ -98,7 +98,6 @@ public class MemoriaCache {
             }
         }
         auxLRU[indice] = ++auxTroca;
-
         return resumo(requisicao);
     }
 
@@ -140,15 +139,45 @@ public class MemoriaCache {
 
     private int indiceMenosFrequente() {
         int menor = auxLFU[0];
+        int menorLRU = auxLRU[0];
         int indice = 0;
-        for (int i = 0; i < auxLFU.length; i++) {
-								for (int j = 0; j < auxLRU.length; j++) {
-            		//Se for menor
-									//Se for igual
-								}
+        for (int i = 1; i < tamanho; i++) {
+            if (menor > auxLFU[i]) {//Se for menor
+                menor = auxLFU[i];
+                menorLRU = auxLRU[i];
+                indice = i;
+            } else if (menor == auxLFU[i]) {//Se houver empate de frequência
+                if (menorLRU > auxLRU[i]) {//Verifica LRU
+                    menor = auxLFU[i];
+                    menorLRU = auxLRU[i];
+                    indice = i;
+                }
+            }
         }
         return indice;
     }
+
+//    private int indiceMenosFrequente() {
+//        int menor = auxLFU[0];
+//        int indice = 0;
+//        for (int i = 0; i < auxLFU.length; i++) {
+//            for (int j = 0; j < auxLRU.length; j++) {
+//                if (i != j){
+//                    if (auxLFU[i] < auxLFU[j]){//Se for menor
+//                        menor = cache[i];
+//                        indice = i;
+//                    }else if(auxLFU[i] == auxLFU[j]){//Se houver empate de frequência
+//                        if (auxLRU[i] < auxLRU[j]){ //Verifica LRU
+//                            menor = cache[i];
+//                            indice = i;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return indice;
+
+//    }
 
 //    public int indiceDaRequisicaoEncontrada(char requisicao) {
 //        for (int i = 0; i < tamanho; i++) {

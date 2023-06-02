@@ -11,7 +11,7 @@ public class Main {
         //Nome do arquivo de saída
         String arquivoSaida = "Resultados.txt";
         //Ler arquivo com as requisições
-        String texto = Arquivo.leitor(arquivo);
+        String texto = Registrador.requisitar(arquivo);
         //Separar grupo de requisições por linha
         String[] linhas = texto.split("\n");
 
@@ -42,7 +42,7 @@ public class Main {
         cache.limpar();
 
         System.out.println(resultado); //Acompanhar resultado no terminal
-        Arquivo.escritor(arquivoSaida, resultado); // Gerar arquivo de texto com resultados
+        Registrador.registrar(arquivoSaida, resultado); // Gerar arquivo de texto com resultados
 
         //LRU
         resultado.append("\n============ 1° Lista de Requisições - LRU ============").append("\n");
@@ -61,8 +61,25 @@ public class Main {
         resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
         cache.limpar();
 
+        //LFU
+        resultado.append("\n============ 1° Lista de Requisições - LFU ============").append("\n");
+        resultado.append(juntarTextosLFU(requisicao1)).append("\n");
+        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
+        System.out.println();
+        cache.limpar();
+
+        resultado.append("\n============ 2° Lista de Requisições - LFU ============").append("\n");
+        resultado.append(juntarTextosLFU(requisicao2)).append("\n");
+        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
+        cache.limpar();
+
+        resultado.append("\n============ 3° Lista de Requisições - LFU ============").append("\n");
+        resultado.append(juntarTextosLFU(requisicao3)).append("\n");
+        resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("%").append("\n");
+        cache.limpar();
+
         System.out.println(resultado); //Acompanhar resultado no terminal
-        Arquivo.escritor(arquivoSaida, resultado); // Gerar arquivo de texto com resultados
+        Registrador.registrar(arquivoSaida, resultado); // Gerar arquivo de texto com resultados
     }
 
     public static String juntarTextosFIFO(char[] requisicoes) {
@@ -78,6 +95,14 @@ public class Main {
         stringBuilder.append("\n");
         for (char requisicao : requisicoes) {
             stringBuilder.append(cache.LRU(requisicao)).append("\n");
+        }
+        return stringBuilder.toString();
+    }
+    public static String juntarTextosLFU(char[] requisicoes) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n");
+        for (char requisicao : requisicoes) {
+            stringBuilder.append(cache.LFU(requisicao)).append("\n");
         }
         return stringBuilder.toString();
     }
