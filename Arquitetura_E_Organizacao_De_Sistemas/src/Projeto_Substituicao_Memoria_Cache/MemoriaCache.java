@@ -102,7 +102,7 @@ public class MemoriaCache {
         return resumo(requisicao);
     }
 
-    public int requisicaoMaisAntiga() {
+    private int requisicaoMaisAntiga() {
         int menor = Integer.MAX_VALUE;
         int indice = 0;
         for (int i = 0; i < auxLRU.length; i++) {
@@ -138,14 +138,14 @@ public class MemoriaCache {
         return resumo(requisicao);
     }
 
-    public int indiceMenosFrequente() {
-        int menor = Integer.MAX_VALUE;
+    private int indiceMenosFrequente() {
+        int menor = auxLFU[0];
         int indice = 0;
         for (int i = 0; i < auxLFU.length; i++) {
-            if (menor > auxLFU[i]){
-                menor = auxLFU[i];
-                indice = i;
-            }
+								for (int j = 0; j < auxLRU.length; j++) {
+            		//Se for menor
+									//Se for igual
+								}
         }
         return indice;
     }
@@ -159,7 +159,7 @@ public class MemoriaCache {
 //        return 0;
 //    }
 
-    public String resumo(char requisicao) {
+    private String resumo(char requisicao) {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(Arrays.toString(cache)).append(" <- ").append(requisicao)
