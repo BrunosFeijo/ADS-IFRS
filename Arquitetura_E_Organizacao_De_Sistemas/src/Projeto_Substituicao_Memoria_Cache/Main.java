@@ -41,9 +41,6 @@ public class Main {
         resultado.append("Eficiência: ").append(cache.informarEficiencia()).append("\n");
         cache.limpar();
 
-        System.out.println(resultado); //Acompanhar resultado no terminal
-        Registrador.registrar(arquivoSaida, resultado); // Gerar arquivo de texto com resultados
-
         //LRU
         resultado.append("\n============ 1° Lista de Requisições - LRU ============").append("\n");
         resultado.append(juntarTextosLRU(requisicao1)).append("\n");
