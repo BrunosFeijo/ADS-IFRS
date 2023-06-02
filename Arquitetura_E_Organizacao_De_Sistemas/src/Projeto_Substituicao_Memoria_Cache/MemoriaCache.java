@@ -18,7 +18,7 @@ public class MemoriaCache {
         this.tamanho = 0;
         this.cache = new char[]{' ', ' ', ' ', ' '};
         this.auxLRU = new int[]{0, 0, 0, 0};
-        this.auxLRU = new int[]{0, 0, 0, 0};
+        this.auxLFU = new int[]{0, 0, 0, 0};
         this.auxTroca = 0;
     }
 
