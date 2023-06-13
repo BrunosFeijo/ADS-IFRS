@@ -27,8 +27,15 @@ Tupla = Linha
 =>DML (Data Manipulation Language)
     -> Select
         - recupera (seleciona, lista, localiza...) os dados do banco
+        - SELECT <<CAMPO 1>>, <<CAMPO 2>>
+            FROM <<DATABASE>>.<<TABELA>>
+            WHERE <<CAMPO 1>> <<OPERADOR>> <<VALOR DO CAMPO 1>>
     -> Insert
         - insere dados numa tabela
+        - INSERT INTO <<DATABASE>>.<<TABELA>>
+                (<<CAMPO 1>>,<<CAMPO 2>>,...)
+            VALUES
+                (<<VALOR DO CAMPO 1>>, <<VALOR DO CAMPO 2>>,...)
     -> Update
         - atualiza um registro numa tabela
     -> Delete
