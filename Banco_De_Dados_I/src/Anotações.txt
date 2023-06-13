@@ -38,9 +38,14 @@ Tupla = Linha
                 (<<VALOR DO CAMPO 1>>, <<VALOR DO CAMPO 2>>,...)
     -> Update
         - atualiza um registro numa tabela
+        - UPDATE <<DATABASE>>.<<TABELA>>
+            SET <<CAMPO 1>> = <<VALOR 1>>, <<CAMPO 2>> = <<VALOR 2>>
+            WHERE <<CAMPO CHAVE>> = <<VALOR CHAVE>>
     -> Delete
         - pode remover todas as linhas de uma tabela(usando *)
           ou pode ser usado como parte de uma cláusula WHERE para excluir linhas que atendam a uma condição específica
+        - DELETE FROM <<DATABASE>>.<<TABELA>>
+            WHERE <<CAMPO CHAVE>> = <<VALOR CHAVE>>
 =>DDL (Data Definition Language)
     -> Create
         - cria banco de dados, tabelas, store procedures...
