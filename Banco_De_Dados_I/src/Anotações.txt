@@ -21,7 +21,7 @@ Chave estrangeira           >  Referencial -
                             >  Nulo
                             >  Domínio
 
-Tupla
+Tupla = Linha
 
 --> SQL (Struture Query Language)
 =>DML (Data Manipulation Language)
