@@ -1,0 +1,59 @@
+Entidade relacional: (Banco de Dados)
+ 1- Entidades: Objetos — Tudo o que for concreto, visível...
+    *Normalmente colocadas no plural
+ 2- Atributos: Características deste objeto
+ 3- Relações: Conexão entre os objetos
+
+Cardinalidades
+
+1-1
+1-N
+N-N
+
+Modelo Conceitual
+Modelo Lógico
+Modelo Físico
+
+Domínio
+                            Constraints
+Chave primária (not null)   >  Identidade  - Primary Key
+Chave estrangeira           >  Referencial -
+                            >  Nulo
+                            >  Domínio
+
+Tupla
+
+--> SQL (Struture Query Language)
+=>DML (Data Manipulation Language)
+    -> Select
+        - recupera (seleciona, lista, localiza...) os dados do banco
+    -> Insert
+        - insere dados numa tabela
+    -> Update
+        - atualiza um registro numa tabela
+    -> Delete
+        - pode remover todas as linhas de uma tabela(usando *)
+          ou pode ser usado como parte de uma cláusula WHERE para excluir linhas que atendam a uma condição específica
+=>DDL (Data Definition Language)
+    -> Create
+        - cria banco de dados, tabelas, store procedures...
+    -> Drop
+        - remove o que foi criado usando o Create
+    -> Alter
+        - faz modificações em objetos criados com o Create (como inserir ou remover uma coluna, alterar o tipo da coluna...)
+    -> Truncate
+        - excluir todas as linhas de uma relação
+=>DCL (Data Control Language)
+    -> Grant
+        - concede aos usuários privilégios de acesso ao banco de dados
+    -> Revoke
+        - retira os privilégios de acesso do usuário
+=>TCL (Transaction Control Language)
+    -> Commit
+        - confirma uma transação
+    -> Rollback
+        - reverte uma transação no caso de ocorrer algum erro
+    -> Save point
+        - define um ponto de salvamento dentro de uma transação
+
+**Select pode pertencer a =>DQL - Data Query Language
