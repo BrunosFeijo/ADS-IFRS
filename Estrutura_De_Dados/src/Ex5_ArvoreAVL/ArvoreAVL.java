@@ -40,7 +40,7 @@ public class ArvoreAVL {
             if (diminuiu) {
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
             }
-        } else if(noAtual.getValor() == valor){
+        } else if (noAtual.getValor() == valor) {
             removerNo(noAtual, diminuiu);
             return true;
         }
@@ -52,19 +52,26 @@ public class ArvoreAVL {
     }
 
     public void removerNo(No noAtual, boolean diminuiu) {
-        No noAux = noAtual;
-        if (noAtual.getEsquerda() == null){
+        if (noAtual.getEsquerda() == null) {
             noAtual = noAtual.getDireita();
             diminuiu = true;
-        }else if(noAtual.getDireita() == null){
+        } else if (noAtual.getDireita() == null) {
             noAtual = noAtual.getEsquerda();
             diminuiu = true;
-        }else {
-            
+        } else {
+            int valor = getFolha(noAtual);
+            noAtual.setValor(valor);
+            buscaRemover(valor, noAtual.getDireita(), diminuiu);
+            if (diminuiu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
         }
     }
 
-    public void getFilho(int valor, No aux) {
+    public int getFolha(No noAux) {
+        noAux = noAux.getDireita();
+        while (noAux.getEsquerda() != null) {
+            noAux = noAux.getEsquerda();
+        }
+        return noAux.getValor();
     }
 
     public boolean buscar(int valor) {
