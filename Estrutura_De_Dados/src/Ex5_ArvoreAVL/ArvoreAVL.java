@@ -23,12 +23,41 @@ public class ArvoreAVL {
     public void buscaRemover(int valor, No noAtual, boolean diminuiu){
 
     }
-    public void deletarNo(No noAtual, boolean diminuiu){
+    public void deletarNo(No noAtual, boolean isDiminuiu){
 
     }
     public void getFilho(int valor, No aux){
 
     }
-    
+    public boolean buscar(int valor){
+        return true;
+    }
+    public String imprimirPreOrdem(){
+        return null;
+    }
+    public String imprimirPosOrdem(){
+        return null;
+    }
+    public String imprimirEmOrdem(){
+        return null;
+    }
+    private void rotacaoDireita(No noAtual){
+
+    }
+    private void rotacaoEsquerda(No noAtual){
+
+    }
+    private void rotacaoDireitaEsquerda(No noAtual){
+
+    }
+    private void rotacaoEsquerdaDireita(No noAtual){
+
+    }
+    private void defineRotacao(No noAtual){
+
+    }
+    private void inserirVerificandoBalanceamento(int valor, No noAtual, boolean isCresceu){
+
+    }
 
 }
