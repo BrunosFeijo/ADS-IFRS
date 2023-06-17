@@ -24,13 +24,44 @@ public class ArvoreAVL {
         adicionarVerificandoBalanceamento(valor, raiz, cresceu);
     }
 
-    public void remover(int valor) {
+    public boolean remover(int valor) {
+        boolean diminuiu = false;
+        return buscaRemover(valor, raiz, diminuiu);
     }
 
-    public void buscaRemover(int valor, No noAtual, boolean diminuiu) {
+    public boolean buscaRemover(int valor, No noAtual, boolean diminuiu) {
+        if (noAtual.getValor() > valor) {
+            buscaRemover(valor, noAtual.getEsquerda(), diminuiu);
+            if (diminuiu) {
+                noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
+            }
+        } else if (noAtual.getValor() < valor) {
+            buscaRemover(valor, noAtual.getDireita(), diminuiu);
+            if (diminuiu) {
+                noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+            }
+        } else if(noAtual.getValor() == valor){
+            removerNo(noAtual, diminuiu);
+            return true;
+        }
+        if (noAtual != null) {
+            defineRotacao(noAtual);
+            if (diminuiu && noAtual.getFatorBalanceamento() != 0) diminuiu = false;
+        }
+        return false;
     }
 
-    public void deletarNo(No noAtual, boolean isDiminuiu) {
+    public void removerNo(No noAtual, boolean diminuiu) {
+        No noAux = noAtual;
+        if (noAtual.getEsquerda() == null){
+            noAtual = noAtual.getDireita();
+            diminuiu = true;
+        }else if(noAtual.getDireita() == null){
+            noAtual = noAtual.getEsquerda();
+            diminuiu = true;
+        }else {
+            
+        }
     }
 
     public void getFilho(int valor, No aux) {
