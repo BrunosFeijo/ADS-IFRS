@@ -51,7 +51,7 @@ public class ArvoreAVL {
         return false;
     }
 
-    public void removerNo(No noAtual, boolean diminuiu) {
+    private void removerNo(No noAtual, boolean diminuiu) {
         if (noAtual.getEsquerda() == null) {
             noAtual = noAtual.getDireita();
             diminuiu = true;
@@ -66,7 +66,7 @@ public class ArvoreAVL {
         }
     }
 
-    public int getFolha(No noAux) {
+    private int getFolha(No noAux) {
         noAux = noAux.getDireita();
         while (noAux.getEsquerda() != null) {
             noAux = noAux.getEsquerda();
@@ -134,15 +134,89 @@ public class ArvoreAVL {
     }
 
     private void rotacaoDireitaEsquerda(No noAtual) {
-
+        No noAux = noAtual.getDireita();
+        rotacaoDireita(noAux);
+        rotacaoEsquerda(noAtual);
     }
 
     private void rotacaoEsquerdaDireita(No noAtual) {
+        No noAux = noAtual.getEsquerda();
+        rotacaoEsquerda(noAux);
+        rotacaoDireita(noAtual);
     }
 
     private void defineRotacao(No noAtual) {
+        No noFilho;
+        No noAux; // em caso de rotação dupla
+
+        if (noAtual.getFatorBalanceamento() == -2) { // dois a mais na esquerda
+            noFilho = noAtual.getEsquerda();
+            if (noFilho.getFatorBalanceamento() == -1) { // filho com um a mais na esquerda
+                noAtual.setFatorBalanceamento(0);
+                noFilho.setFatorBalanceamento(0);
+                rotacaoDireita(noAtual);
+            } else if (noFilho.getFatorBalanceamento() == 0) { // filho com dois netos
+                noAtual.setFatorBalanceamento(-1);
+                noFilho.setFatorBalanceamento(1);
+                rotacaoDireita(noAtual);
+            } else if (noFilho.getFatorBalanceamento() == 1) {// filho com um a mais na direita // rotação dupla
+                noAux = noFilho.getDireita();
+                if (noAux.getFatorBalanceamento() == 0) { // neto sem filhos
+                    noAtual.setFatorBalanceamento(0);
+                    noFilho.setFatorBalanceamento(0);
+                } else if (noAux.getFatorBalanceamento() == 1) { // neto com um filho a direita
+                    noAtual.setFatorBalanceamento(0);
+                    noFilho.setFatorBalanceamento(-1);
+                } else if (noAux.getFatorBalanceamento() == -1) { // neto com um filho a esquerda
+                    noAtual.setFatorBalanceamento(1);
+                    noFilho.setFatorBalanceamento(0);
+                }
+                noAux.setFatorBalanceamento(0);
+                rotacaoEsquerdaDireita(noAtual);
+            }
+
+        } else if (noAtual.getFatorBalanceamento() == 2) {
+            noFilho = noAtual.getDireita();
+            if (noFilho.getFatorBalanceamento() == 1) { // filho com um a mais na direita
+                noAtual.setFatorBalanceamento(0);
+                noFilho.setFatorBalanceamento(0);
+                rotacaoDireita(noAtual);
+            } else if (noFilho.getFatorBalanceamento() == 0) { // filho com dois netos
+                noAtual.setFatorBalanceamento(1);
+                noFilho.setFatorBalanceamento(-1);
+                rotacaoDireita(noAtual);
+            } else if (noFilho.getFatorBalanceamento() == -1) {// filho com um a mais na esquerda // rotação dupla
+                noAux = noFilho.getEsquerda();
+                if (noAux.getFatorBalanceamento() == 0) { // neto sem filhos
+                    noAtual.setFatorBalanceamento(0);
+                    noFilho.setFatorBalanceamento(0);
+                } else if (noAux.getFatorBalanceamento() == 1) { // neto com um filho a direita
+                    noAtual.setFatorBalanceamento(-1);
+                    noFilho.setFatorBalanceamento(0);
+                } else if (noAux.getFatorBalanceamento() == -1) { // neto com um filho a esquerda
+                    noAtual.setFatorBalanceamento(0);
+                    noFilho.setFatorBalanceamento(1);
+                }
+                noAux.setFatorBalanceamento(0);
+                rotacaoDireitaEsquerda(noAtual);
+            }
+        }
+
     }
 
-    private void adicionarVerificandoBalanceamento(int valor, No noAtual, boolean isCresceu) {
+    private void adicionarVerificandoBalanceamento(int valor, No noAtual, boolean cresceu) {
+        if (noAtual == null) {
+            noAtual = new No(valor);
+            return;
+        }
+        if (valor < noAtual.getValor()) {
+            adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda(), cresceu);
+            if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+        } else {
+            adicionarVerificandoBalanceamento(valor, noAtual.getDireita(), cresceu);
+            if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
+        }
+        defineRotacao(noAtual);
+        if (cresceu && noAtual.getFatorBalanceamento() == 0) cresceu = false;
     }
 }
