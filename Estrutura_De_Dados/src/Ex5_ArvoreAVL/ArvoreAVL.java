@@ -76,12 +76,12 @@ public class ArvoreAVL {
 
     public boolean contem(int valor) {
         No noAtual = raiz;
-        while(noAtual != null){
-            if (valor < noAtual.getValor()){
+        while (noAtual != null) {
+            if (valor < noAtual.getValor()) {
                 noAtual = noAtual.getEsquerda();
-            }else if(valor > noAtual.getValor()){
+            } else if (valor > noAtual.getValor()) {
                 noAtual = noAtual.getDireita();
-            }else if(valor == noAtual.getValor()){
+            } else if (valor == noAtual.getValor()) {
                 return true;
             }
         }
@@ -91,7 +91,7 @@ public class ArvoreAVL {
 
     private String imprimirPreOrdem(No noAtual) {
         StringBuilder stringBuilder = new StringBuilder();
-        if (noAtual != null){
+        if (noAtual != null) {
             stringBuilder.append(noAtual.getValor()).append(" ");
             stringBuilder.append(imprimirPreOrdem(noAtual.getEsquerda()));
             stringBuilder.append(imprimirPreOrdem(noAtual.getDireita()));
@@ -101,7 +101,7 @@ public class ArvoreAVL {
 
     public String imprimirPosOrdem(No noAtual) {
         StringBuilder stringBuilder = new StringBuilder();
-        if (noAtual != null){
+        if (noAtual != null) {
             stringBuilder.append(imprimirPreOrdem(noAtual.getEsquerda()));
             stringBuilder.append(imprimirPreOrdem(noAtual.getDireita()));
             stringBuilder.append(noAtual.getValor()).append(" ");
@@ -111,7 +111,7 @@ public class ArvoreAVL {
 
     public String imprimirEmOrdem(No noAtual) {
         StringBuilder stringBuilder = new StringBuilder();
-        if (noAtual != null){
+        if (noAtual != null) {
             stringBuilder.append(imprimirPreOrdem(noAtual.getEsquerda()));
             stringBuilder.append(noAtual.getValor()).append(" ");
             stringBuilder.append(imprimirPreOrdem(noAtual.getDireita()));
@@ -120,12 +120,21 @@ public class ArvoreAVL {
     }
 
     private void rotacaoDireita(No noAtual) {
+        No noAux = noAtual.getEsquerda();
+        noAtual.setEsquerda(noAux.getDireita());
+        noAux.setDireita(noAtual);
+        noAtual = noAux;
     }
 
     private void rotacaoEsquerda(No noAtual) {
+        No noAux = noAtual.getDireita();
+        noAtual.setDireita(noAux.getEsquerda());
+        noAux.setEsquerda(noAtual);
+        noAtual = noAux;
     }
 
     private void rotacaoDireitaEsquerda(No noAtual) {
+        
     }
 
     private void rotacaoEsquerdaDireita(No noAtual) {
