@@ -134,7 +134,7 @@ public class ArvoreAVL {
     }
 
     private void rotacaoDireitaEsquerda(No noAtual) {
-        
+
     }
 
     private void rotacaoEsquerdaDireita(No noAtual) {
