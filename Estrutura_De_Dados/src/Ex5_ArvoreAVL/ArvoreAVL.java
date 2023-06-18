@@ -29,7 +29,7 @@ public class ArvoreAVL {
         return buscaRemover(valor, raiz, diminuiu);
     }
 
-    public boolean buscaRemover(int valor, No noAtual, boolean diminuiu) {
+    private boolean buscaRemover(int valor, No noAtual, boolean diminuiu) {
         if (noAtual.getValor() > valor) {
             buscaRemover(valor, noAtual.getEsquerda(), diminuiu);
             if (diminuiu) {
@@ -74,20 +74,49 @@ public class ArvoreAVL {
         return noAux.getValor();
     }
 
-    public boolean buscar(int valor) {
-        return true;
+    public boolean contem(int valor) {
+        No noAtual = raiz;
+        while(noAtual != null){
+            if (valor < noAtual.getValor()){
+                noAtual = noAtual.getEsquerda();
+            }else if(valor > noAtual.getValor()){
+                noAtual = noAtual.getDireita();
+            }else if(valor == noAtual.getValor()){
+                return true;
+            }
+        }
+        return false;
     }
 
-    public String imprimirPreOrdem() {
-        return null;
+
+    private String imprimirPreOrdem(No noAtual) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (noAtual != null){
+            stringBuilder.append(noAtual.getValor()).append(" ");
+            stringBuilder.append(imprimirPreOrdem(noAtual.getEsquerda()));
+            stringBuilder.append(imprimirPreOrdem(noAtual.getDireita()));
+        }
+        return stringBuilder.toString();
     }
 
-    public String imprimirPosOrdem() {
-        return null;
+    public String imprimirPosOrdem(No noAtual) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (noAtual != null){
+            stringBuilder.append(imprimirPreOrdem(noAtual.getEsquerda()));
+            stringBuilder.append(imprimirPreOrdem(noAtual.getDireita()));
+            stringBuilder.append(noAtual.getValor()).append(" ");
+        }
+        return stringBuilder.toString();
     }
 
-    public String imprimirEmOrdem() {
-        return null;
+    public String imprimirEmOrdem(No noAtual) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (noAtual != null){
+            stringBuilder.append(imprimirPreOrdem(noAtual.getEsquerda()));
+            stringBuilder.append(noAtual.getValor()).append(" ");
+            stringBuilder.append(imprimirPreOrdem(noAtual.getDireita()));
+        }
+        return stringBuilder.toString();
     }
 
     private void rotacaoDireita(No noAtual) {
