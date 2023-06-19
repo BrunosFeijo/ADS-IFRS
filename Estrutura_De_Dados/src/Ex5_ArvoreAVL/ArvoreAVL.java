@@ -1,7 +1,5 @@
 package Ex5_ArvoreAVL;
 
-import javax.swing.*;
-
 public class ArvoreAVL {
     private No raiz;
 
@@ -120,7 +118,7 @@ public class ArvoreAVL {
         }
         return stringBuilder.toString();
     }
-    public String imprimirComoArvore(No noAtual,String identacao,boolean ultimo){
+    private String imprimirArvoreDePastas(No noAtual, String identacao, boolean ultimo){
         StringBuilder stringBuilder = new StringBuilder();
         if (noAtual != null){
             stringBuilder.append(identacao);
@@ -132,8 +130,8 @@ public class ArvoreAVL {
                 identacao += "   ";
             }
             stringBuilder.append(noAtual.getValor()).append("\n");
-            stringBuilder.append(imprimirComoArvore(noAtual.getEsquerda(),identacao,false));
-            stringBuilder.append(imprimirComoArvore(noAtual.getDireita(),identacao,true));
+            stringBuilder.append(imprimirArvoreDePastas(noAtual.getEsquerda(),identacao,false));
+            stringBuilder.append(imprimirArvoreDePastas(noAtual.getDireita(),identacao,true));
         }
         return stringBuilder.toString();
     }
@@ -248,6 +246,6 @@ public class ArvoreAVL {
 
     @Override
     public String toString() {
-        return imprimirComoArvore(raiz, "",true);
+        return imprimirArvoreDePastas(raiz, "",true);
     }
 }
