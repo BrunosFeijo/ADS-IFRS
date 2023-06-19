@@ -9,7 +9,13 @@ public class Main {
         lista.adicionar(4);
         lista.adicionar(7);
         lista.adicionar(6);
+        lista.adicionar(2);
+        lista.adicionar(8);
+        lista.adicionar(1);
 
         System.out.println(lista.imprimirEmOrdem(lista.getRaiz()));
+        System.out.println(lista.imprimirPosOrdem(lista.getRaiz()));
+        System.out.println(lista.imprimirPreOrdem(lista.getRaiz()));
+        System.out.println(lista);
     }
 }

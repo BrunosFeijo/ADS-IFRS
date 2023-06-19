@@ -1,5 +1,7 @@
 package Ex5_ArvoreAVL;
 
+import javax.swing.*;
+
 public class ArvoreAVL {
     private No raiz;
 
@@ -89,7 +91,7 @@ public class ArvoreAVL {
     }
 
 
-    private String imprimirPreOrdem(No noAtual) {
+    public String imprimirPreOrdem(No noAtual) {
         StringBuilder stringBuilder = new StringBuilder();
         if (noAtual != null) {
             stringBuilder.append(noAtual.getValor()).append(" ");
@@ -102,8 +104,8 @@ public class ArvoreAVL {
     public String imprimirPosOrdem(No noAtual) {
         StringBuilder stringBuilder = new StringBuilder();
         if (noAtual != null) {
-            stringBuilder.append(imprimirPreOrdem(noAtual.getEsquerda()));
-            stringBuilder.append(imprimirPreOrdem(noAtual.getDireita()));
+            stringBuilder.append(imprimirPosOrdem(noAtual.getEsquerda()));
+            stringBuilder.append(imprimirPosOrdem(noAtual.getDireita()));
             stringBuilder.append(noAtual.getValor()).append(" ");
         }
         return stringBuilder.toString();
@@ -112,9 +114,26 @@ public class ArvoreAVL {
     public String imprimirEmOrdem(No noAtual) {
         StringBuilder stringBuilder = new StringBuilder();
         if (noAtual != null) {
-            stringBuilder.append(imprimirPreOrdem(noAtual.getEsquerda()));
+            stringBuilder.append(imprimirEmOrdem(noAtual.getEsquerda()));
             stringBuilder.append(noAtual.getValor()).append(" ");
-            stringBuilder.append(imprimirPreOrdem(noAtual.getDireita()));
+            stringBuilder.append(imprimirEmOrdem(noAtual.getDireita()));
+        }
+        return stringBuilder.toString();
+    }
+    public String imprimirComoArvore(No noAtual,String identacao,boolean ultimo){
+        StringBuilder stringBuilder = new StringBuilder();
+        if (noAtual != null){
+            stringBuilder.append(identacao);
+            if (!ultimo){
+                stringBuilder.append("|-");
+                identacao += "|   ";
+            }else{
+                stringBuilder.append("|_");
+                identacao += "   ";
+            }
+            stringBuilder.append(noAtual.getValor()).append("\n");
+            stringBuilder.append(imprimirComoArvore(noAtual.getEsquerda(),identacao,false));
+            stringBuilder.append(imprimirComoArvore(noAtual.getDireita(),identacao,true));
         }
         return stringBuilder.toString();
     }
@@ -225,5 +244,10 @@ public class ArvoreAVL {
             }
             defineRotacao(noAtual);
         }
+    }
+
+    @Override
+    public String toString() {
+        return imprimirComoArvore(raiz, "",true);
     }
 }
