@@ -19,9 +19,8 @@ public class ArvoreAVL {
         return raiz == null;
     }
 
-    public void adicionar(int valor) {
-        boolean cresceu = false;
-        adicionarVerificandoBalanceamento(valor, raiz, cresceu);
+    public boolean adicionar(int valor) {
+        return adicionarVerificandoBalanceamento(valor, raiz);
     }
 
     public boolean remover(int valor) {
@@ -222,16 +221,18 @@ public class ArvoreAVL {
 
     }
 
-    private void adicionarVerificandoBalanceamento(int valor, No noAtual, boolean cresceu) {
+    private boolean adicionarVerificandoBalanceamento(int valor, No noAtual) {
+        boolean cresceu = false;
         if (isVazio()) {
             raiz = new No(valor);
+            return true;
         } else {
             if (valor < noAtual.getValor()) {
                 if (noAtual.getEsquerda() == null) {
                     noAtual.setEsquerda(new No(valor));
                     cresceu = true;
                 } else {
-                    adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda(), cresceu);
+                    cresceu = adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda());
                 }
                 if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
             } else {
@@ -239,12 +240,13 @@ public class ArvoreAVL {
                     noAtual.setDireita(new No(valor));
                     cresceu = true;
                 } else {
-                    adicionarVerificandoBalanceamento(valor, noAtual.getDireita(), cresceu);
+                    cresceu = adicionarVerificandoBalanceamento(valor, noAtual.getDireita());
                 }
                 if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
             }
             defineRotacao(noAtual);
-            if (cresceu && noAtual.getFatorBalanceamento() == 0) cresceu = false;
+            if (cresceu && noAtual.getFatorBalanceamento() == 0) return false;
+            return true;
         }
     }
 
