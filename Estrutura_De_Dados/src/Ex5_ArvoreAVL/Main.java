@@ -12,6 +12,10 @@ public class Main {
         lista.adicionar(2);
         lista.adicionar(8);
         lista.adicionar(1);
+        lista.adicionar(9);
+        lista.adicionar(10);
+        lista.adicionar(11);
+        lista.adicionar(12);
 
         System.out.println(lista.imprimirEmOrdem(lista.getRaiz()));
         System.out.println(lista.imprimirPosOrdem(lista.getRaiz()));
