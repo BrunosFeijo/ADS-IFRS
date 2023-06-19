@@ -205,18 +205,28 @@ public class ArvoreAVL {
     }
 
     private void adicionarVerificandoBalanceamento(int valor, No noAtual, boolean cresceu) {
-        if (noAtual == null) {
-            noAtual = new No(valor);
-            return;
-        }
-        if (valor < noAtual.getValor()) {
-            adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda(), cresceu);
-            if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+        if (isVazio()) {
+            raiz = new No(valor);
         } else {
-            adicionarVerificandoBalanceamento(valor, noAtual.getDireita(), cresceu);
-            if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
+            if (valor < noAtual.getValor()) {
+                if (noAtual.getEsquerda() == null) {
+                    noAtual.setEsquerda(new No(valor));
+                    cresceu = true;
+                    noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+                } else {
+                    adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda(), cresceu);
+                }
+            } else {
+                if (noAtual.getDireita() == null) {
+                    noAtual.setDireita(new No(valor));
+                    cresceu = true;
+                    noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
+                } else {
+                    adicionarVerificandoBalanceamento(valor, noAtual.getDireita(), cresceu);
+                }
+            }
+            defineRotacao(noAtual);
+            if (cresceu && noAtual.getFatorBalanceamento() == 0) cresceu = false;
         }
-        defineRotacao(noAtual);
-        if (cresceu && noAtual.getFatorBalanceamento() == 0) cresceu = false;
     }
 }
