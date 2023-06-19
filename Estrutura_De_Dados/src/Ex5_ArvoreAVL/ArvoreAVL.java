@@ -21,7 +21,7 @@ public class ArvoreAVL {
 
     public void adicionar(int valor) {
         boolean cresceu = false;
-        adicionarVerificandoBalanceamento(valor, raiz);
+        adicionarVerificandoBalanceamento(valor, raiz, cresceu);
     }
 
     public boolean remover(int valor) {
@@ -118,20 +118,21 @@ public class ArvoreAVL {
         }
         return stringBuilder.toString();
     }
-    private String imprimirArvoreDePastas(No noAtual, String identacao, boolean ultimo){
+
+    private String imprimirArvoreDePastas(No noAtual, String identacao, boolean ultimo) {
         StringBuilder stringBuilder = new StringBuilder();
-        if (noAtual != null){
+        if (noAtual != null) {
             stringBuilder.append(identacao);
-            if (!ultimo){
+            if (!ultimo) {
                 stringBuilder.append("|-");
                 identacao += "|   ";
-            }else{
+            } else {
                 stringBuilder.append("|_");
                 identacao += "   ";
             }
             stringBuilder.append(noAtual.getValor()).append("\n");
-            stringBuilder.append(imprimirArvoreDePastas(noAtual.getEsquerda(),identacao,false));
-            stringBuilder.append(imprimirArvoreDePastas(noAtual.getDireita(),identacao,true));
+            stringBuilder.append(imprimirArvoreDePastas(noAtual.getEsquerda(), identacao, false));
+            stringBuilder.append(imprimirArvoreDePastas(noAtual.getDireita(), identacao, true));
         }
         return stringBuilder.toString();
     }
@@ -221,31 +222,34 @@ public class ArvoreAVL {
 
     }
 
-    private void adicionarVerificandoBalanceamento(int valor, No noAtual) {
+    private void adicionarVerificandoBalanceamento(int valor, No noAtual, boolean cresceu) {
         if (isVazio()) {
             raiz = new No(valor);
         } else {
             if (valor < noAtual.getValor()) {
                 if (noAtual.getEsquerda() == null) {
                     noAtual.setEsquerda(new No(valor));
-                    noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+                    cresceu = true;
                 } else {
-                    adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda());
+                    adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda(), cresceu);
                 }
+                if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
             } else {
                 if (noAtual.getDireita() == null) {
                     noAtual.setDireita(new No(valor));
-                    noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
+                    cresceu = true;
                 } else {
-                    adicionarVerificandoBalanceamento(valor, noAtual.getDireita());
+                    adicionarVerificandoBalanceamento(valor, noAtual.getDireita(), cresceu);
                 }
+                if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
             }
             defineRotacao(noAtual);
+            if (cresceu && noAtual.getFatorBalanceamento() == 0) cresceu = false;
         }
     }
 
     @Override
     public String toString() {
-        return imprimirArvoreDePastas(raiz, "",true);
+        return imprimirArvoreDePastas(raiz, "", true);
     }
 }
