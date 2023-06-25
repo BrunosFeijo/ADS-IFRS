@@ -19,8 +19,8 @@ public class ArvoreAVL {
         return raiz == null;
     }
 
-    public boolean adicionar(int valor) {
-        return adicionarVerificandoBalanceamento(valor, raiz);
+    public void adicionar(int valor) {
+        adicionarVerificandoBalanceamento(valor, raiz);
     }
 
     public boolean remover(int valor) {
@@ -237,18 +237,17 @@ public class ArvoreAVL {
         return null;
     }
 
-    private boolean adicionarVerificandoBalanceamento(int valor, No noAtual) {
+    private No adicionarVerificandoBalanceamento(int valor, No noAtual) {
         boolean cresceu = false;
         if (isVazio()) {
             raiz = new No(valor);
-            return true;
         } else {
             if (valor < noAtual.getValor()) {
                 if (noAtual.getEsquerda() == null) {
                     noAtual.setEsquerda(new No(valor));
                     cresceu = true;
                 } else {
-                    cresceu = adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda());
+                    noAtual.setEsquerda(adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda()));
                 }
                 if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
             } else {
@@ -256,16 +255,17 @@ public class ArvoreAVL {
                     noAtual.setDireita(new No(valor));
                     cresceu = true;
                 } else {
-                    cresceu = adicionarVerificandoBalanceamento(valor, noAtual.getDireita());
+                    noAtual.setDireita(adicionarVerificandoBalanceamento(valor, noAtual.getDireita()));
                 }
                 if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
             }
             if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2) {
                 noAtual = defineRotacao(noAtual);
             }
-            if (cresceu && noAtual.getFatorBalanceamento() == 0) return false;
-            return true;
+            //if (cresceu && noAtual.getFatorBalanceamento() == 0) return false;
+            return noAtual;
         }
+        return noAtual;
     }
 
     @Override
