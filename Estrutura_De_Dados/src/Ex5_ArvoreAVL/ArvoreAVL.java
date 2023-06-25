@@ -136,7 +136,7 @@ public class ArvoreAVL {
         return stringBuilder.toString();
     }
 
-    private void rotacaoDireita(No noAtual) {
+    private No rotacaoDireita(No noAtual) {
         No noAux = noAtual.getEsquerda();
         noAtual.setEsquerda(noAux.getDireita());
         noAux.setDireita(noAtual);
@@ -144,9 +144,10 @@ public class ArvoreAVL {
         if (raiz.getValor() == noAtual.getValor()){
             raiz = noAux;
         }
+        return noAux;
     }
 
-    private void rotacaoEsquerda(No noAtual) {
+    private No rotacaoEsquerda(No noAtual) {
         No noAux = noAtual.getDireita();
         noAtual.setDireita(noAux.getEsquerda());
         noAux.setEsquerda(noAtual);
@@ -154,23 +155,32 @@ public class ArvoreAVL {
         if (raiz.getValor() == noAtual.getValor()){
             raiz = noAux;
         }
+
+        return noAux;
     }
 
-    private void rotacaoDireitaEsquerda(No noAtual) {
-        No noAux = noAtual.getDireita();
-        noAtual.setDireita(noAux.getEsquerda());
-        rotacaoDireita(noAux);
+    private No rotacaoDireitaEsquerda(No noAtual) {
+        No noFilho = noAtual.getDireita();
+        No noNeto = noFilho.getEsquerda();
+        noAtual.setDireita(noFilho.getEsquerda());
+        rotacaoDireita(noFilho);
         rotacaoEsquerda(noAtual);
+
+        return noNeto;
     }
 
-    private void rotacaoEsquerdaDireita(No noAtual) {
-        No noAux = noAtual.getEsquerda();
-        noAtual.setEsquerda(noAux.getDireita());
-        rotacaoEsquerda(noAux);
+
+    private No rotacaoEsquerdaDireita(No noAtual) {
+        No noFilho = noAtual.getEsquerda();
+        No noNeto = noFilho.getDireita();
+        noAtual.setEsquerda(noFilho.getDireita());
+        rotacaoEsquerda(noFilho);
         rotacaoDireita(noAtual);
+
+        return noNeto;
     }
 
-    private void defineRotacao(No noAtual) {
+    private No defineRotacao(No noAtual) {
         No noFilho;
         No noAux; // em caso de rotação dupla
 
@@ -197,9 +207,9 @@ public class ArvoreAVL {
                     noFilho.setFatorBalanceamento(0);
                 }
                 noAux.setFatorBalanceamento(0);
-                rotacaoEsquerdaDireita(noAtual);
+                return rotacaoEsquerdaDireita(noAtual);
             }
-
+            return noFilho;
         } else if (noAtual.getFatorBalanceamento() == 2) {
             noFilho = noAtual.getDireita();
             if (noFilho.getFatorBalanceamento() == 1) { // filho com um a mais na direita
@@ -223,10 +233,11 @@ public class ArvoreAVL {
                     noFilho.setFatorBalanceamento(1);
                 }
                 noAux.setFatorBalanceamento(0);
-                rotacaoDireitaEsquerda(noAtual);
+                return rotacaoDireitaEsquerda(noAtual);
             }
+            return noFilho;
         }
-
+        return null;
     }
 
     private boolean adicionarVerificandoBalanceamento(int valor, No noAtual) {
@@ -243,6 +254,9 @@ public class ArvoreAVL {
                     cresceu = adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda());
                 }
                 if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+                if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2){
+                    noAtual.setEsquerda(defineRotacao(noAtual));
+                }
             } else {
                 if (noAtual.getDireita() == null) {
                     noAtual.setDireita(new No(valor));
@@ -251,13 +265,14 @@ public class ArvoreAVL {
                     cresceu = adicionarVerificandoBalanceamento(valor, noAtual.getDireita());
                 }
                 if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
+                if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2){
+                    noAtual.setDireita(defineRotacao(noAtual));
+                }
             }
-            defineRotacao(noAtual);
             if (cresceu && noAtual.getFatorBalanceamento() == 0) return false;
             return true;
         }
     }
-
     @Override
     public String toString() {
         return imprimirArvoreDePastas(raiz, "", true);
