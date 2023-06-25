@@ -249,7 +249,8 @@ public class ArvoreAVL {
                 } else {
                     noAtual.setEsquerda(adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda()));
                 }
-                if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+                if (cresceu || noAtual.getEsquerda().getFatorBalanceamento() != 0)
+                    noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
             } else {
                 if (noAtual.getDireita() == null) {
                     noAtual.setDireita(new No(valor));
@@ -257,7 +258,8 @@ public class ArvoreAVL {
                 } else {
                     noAtual.setDireita(adicionarVerificandoBalanceamento(valor, noAtual.getDireita()));
                 }
-                if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
+                if (cresceu || noAtual.getDireita().getFatorBalanceamento() != 0)
+                    noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
             }
             if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2) {
                 noAtual = defineRotacao(noAtual);
