@@ -140,24 +140,25 @@ public class ArvoreAVL {
         No noAux = noAtual.getEsquerda();
         noAtual.setEsquerda(noAux.getDireita());
         noAux.setDireita(noAtual);
-//        if (raiz.getValor() == noAtual.getValor()){
-//            raiz = noAux;
-//        }
-        noAtual = noAux;
+
+        if (raiz.getValor() == noAtual.getValor()){
+            raiz = noAux;
+        }
     }
 
     private void rotacaoEsquerda(No noAtual) {
         No noAux = noAtual.getDireita();
         noAtual.setDireita(noAux.getEsquerda());
         noAux.setEsquerda(noAtual);
-//        if (raiz.getValor() == noAtual.getValor()){
-//            raiz = noAux;
-//        }
-        noAtual = noAux;
+
+        if (raiz.getValor() == noAtual.getValor()){
+            raiz = noAux;
+        }
     }
 
     private void rotacaoDireitaEsquerda(No noAtual) {
         No noAux = noAtual.getDireita();
+        noAtual.setDireita(noAux.getEsquerda());
         rotacaoDireita(noAux);
         rotacaoEsquerda(noAtual);
     }
