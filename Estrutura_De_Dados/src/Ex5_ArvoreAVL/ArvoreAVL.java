@@ -136,27 +136,24 @@ public class ArvoreAVL {
         return stringBuilder.toString();
     }
 
-    private No rotacaoDireita(No noAtual) {
+    private void rotacaoDireita(No noAtual) {
         No noAux = noAtual.getEsquerda();
         noAtual.setEsquerda(noAux.getDireita());
         noAux.setDireita(noAtual);
 
-        if (raiz.getValor() == noAtual.getValor()){
+        if (raiz.getValor() == noAtual.getValor()) {
             raiz = noAux;
         }
-        return noAux;
     }
 
-    private No rotacaoEsquerda(No noAtual) {
+    private void rotacaoEsquerda(No noAtual) {
         No noAux = noAtual.getDireita();
         noAtual.setDireita(noAux.getEsquerda());
         noAux.setEsquerda(noAtual);
 
-        if (raiz.getValor() == noAtual.getValor()){
+        if (raiz.getValor() == noAtual.getValor()) {
             raiz = noAux;
         }
-
-        return noAux;
     }
 
     private No rotacaoDireitaEsquerda(No noAtual) {
@@ -254,9 +251,6 @@ public class ArvoreAVL {
                     cresceu = adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda());
                 }
                 if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
-                if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2){
-                    noAtual.setEsquerda(defineRotacao(noAtual));
-                }
             } else {
                 if (noAtual.getDireita() == null) {
                     noAtual.setDireita(new No(valor));
@@ -265,14 +259,15 @@ public class ArvoreAVL {
                     cresceu = adicionarVerificandoBalanceamento(valor, noAtual.getDireita());
                 }
                 if (cresceu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
-                if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2){
-                    noAtual.setDireita(defineRotacao(noAtual));
-                }
+            }
+            if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2) {
+                noAtual = defineRotacao(noAtual);
             }
             if (cresceu && noAtual.getFatorBalanceamento() == 0) return false;
             return true;
         }
     }
+
     @Override
     public String toString() {
         return imprimirArvoreDePastas(raiz, "", true);
