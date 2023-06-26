@@ -75,16 +75,18 @@ public class ArvoreAVL {
             if (noAtual.getEsquerda() == null) {
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
                 noAtual.setDiminuiu(true);
-            } else if (noAtual.getDireita() != null) {
+            }else if(noAtual.getEsquerda().isDiminuiu() && noAtual.getEsquerda().getFatorBalanceamento() != 1){
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
                 noAtual.setDiminuiu(true);
             }
         } else if (valor > noAtual.getValor()) {//maior
             noAtual.setDireita(buscaRemover(valor, noAtual.getDireita()));
-            if (noAtual.getDireita().isDiminuiu() || noAtual.getDireita() == null) {
+            if (noAtual.getDireita() == null) {
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
-                if (noAtual.getEsquerda() == null) noAtual.setDiminuiu(true);
-
+                noAtual.setDiminuiu(true);
+            }else if(noAtual.getDireita().isDiminuiu() && noAtual.getDireita().getFatorBalanceamento() != -1){
+                noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+                noAtual.setDiminuiu(true);
             }
         } else if (noAtual.getValor() == valor) {//explícito
             noAtual = removerNo(noAtual);
