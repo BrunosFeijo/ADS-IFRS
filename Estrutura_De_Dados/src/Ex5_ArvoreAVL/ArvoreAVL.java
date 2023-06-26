@@ -72,21 +72,25 @@ public class ArvoreAVL {
     private No buscaRemover(int valor, No noAtual) {
         if (valor < noAtual.getValor()) {//menor
             noAtual.setEsquerda(buscaRemover(valor, noAtual.getEsquerda()));
-            if (noAtual.getEsquerda() == null || noAtual.getEsquerda().isDiminuiu()) {
+            if (noAtual.getEsquerda() == null) {
+                noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
+                noAtual.setDiminuiu(true);
+            } else if (noAtual.getDireita() != null) {
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
                 noAtual.setDiminuiu(true);
             }
         } else if (valor > noAtual.getValor()) {//maior
             noAtual.setDireita(buscaRemover(valor, noAtual.getDireita()));
-            if (noAtual.getDireita() == null || noAtual.getDireita().isDiminuiu()) {
+            if (noAtual.getDireita().isDiminuiu() || noAtual.getDireita() == null) {
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
-                noAtual.setDiminuiu(true);
+                if (noAtual.getEsquerda() == null) noAtual.setDiminuiu(true);
+
             }
         } else if (noAtual.getValor() == valor) {//explícito
             noAtual = removerNo(noAtual);
             return noAtual;
         }
-        if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2){
+        if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2) {
             defineRotacao(noAtual);
             noAtual.setDiminuiu(true);
         }
