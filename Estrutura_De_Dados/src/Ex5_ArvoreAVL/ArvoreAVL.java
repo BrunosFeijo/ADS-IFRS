@@ -263,6 +263,7 @@ public class ArvoreAVL {
             }
             if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2) {
                 noAtual = defineRotacao(noAtual);
+                noAtual.setCresceu(false);
             }
             return noAtual;
         }
