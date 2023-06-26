@@ -238,10 +238,10 @@ public class ArvoreAVL {
     }
 
     private No adicionarVerificandoBalanceamento(int valor, No noAtual) {
-        noAtual.setCresceu(false);
         if (isVazio()) {
             raiz = new No(valor);
         } else {
+            noAtual.setCresceu(false);
             if (valor < noAtual.getValor()) {
                 if (noAtual.getEsquerda() == null) {
                     noAtual.setEsquerda(new No(valor));
