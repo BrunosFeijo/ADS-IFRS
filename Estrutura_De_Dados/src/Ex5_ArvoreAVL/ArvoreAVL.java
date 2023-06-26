@@ -70,6 +70,7 @@ public class ArvoreAVL {
     }
 
     private No buscaRemover(int valor, No noAtual) {
+        noAtual.setDiminuiu(false);
         if (valor < noAtual.getValor()) {//menor
             noAtual.setEsquerda(buscaRemover(valor, noAtual.getEsquerda()));
             if (noAtual.getEsquerda() == null) {
@@ -116,7 +117,7 @@ public class ArvoreAVL {
             noAtual.setDireita(buscaRemover(valor, noAtual.getDireita()));
             if (noAtual.isDiminuiu()) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
         }
-        return null;
+        return noAtual;
     }
 
     private int getFolha(No noAtual) {

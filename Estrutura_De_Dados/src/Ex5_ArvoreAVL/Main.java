@@ -20,6 +20,7 @@ public class Main {
 
         System.out.println(lista);
 
+        lista.remover(4);
         lista.remover(12);
         lista.remover(7);
         lista.remover(3);
