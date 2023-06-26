@@ -159,7 +159,7 @@ public class ArvoreAVL {
     private No rotacaoDireitaEsquerda(No noAtual) {
         No noFilho = noAtual.getDireita();
         No noNeto = noFilho.getEsquerda();
-        noAtual.setDireita(noFilho.getEsquerda());
+        noAtual.setDireita(noNeto);
         rotacaoDireita(noFilho);
         rotacaoEsquerda(noAtual);
 
@@ -170,7 +170,7 @@ public class ArvoreAVL {
     private No rotacaoEsquerdaDireita(No noAtual) {
         No noFilho = noAtual.getEsquerda();
         No noNeto = noFilho.getDireita();
-        noAtual.setEsquerda(noFilho.getDireita());
+        noAtual.setEsquerda(noNeto);
         rotacaoEsquerda(noFilho);
         rotacaoDireita(noAtual);
 
@@ -212,11 +212,11 @@ public class ArvoreAVL {
             if (noFilho.getFatorBalanceamento() == 1) { // filho com um a mais na direita
                 noAtual.setFatorBalanceamento(0);
                 noFilho.setFatorBalanceamento(0);
-                rotacaoDireita(noAtual);
+                rotacaoEsquerda(noAtual);
             } else if (noFilho.getFatorBalanceamento() == 0) { // filho com dois netos
                 noAtual.setFatorBalanceamento(1);
                 noFilho.setFatorBalanceamento(-1);
-                rotacaoDireita(noAtual);
+                rotacaoEsquerda(noAtual);
             } else if (noFilho.getFatorBalanceamento() == -1) {// filho com um a mais na esquerda // rotação dupla
                 noAux = noFilho.getEsquerda();
                 if (noAux.getFatorBalanceamento() == 0) { // neto sem filhos
@@ -264,7 +264,6 @@ public class ArvoreAVL {
             if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2) {
                 noAtual = defineRotacao(noAtual);
             }
-            //if (cresceu && noAtual.getFatorBalanceamento() == 0) return false;
             return noAtual;
         }
         return noAtual;
