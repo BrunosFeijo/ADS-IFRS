@@ -19,8 +19,12 @@ public class ArvoreAVL {
         return raiz == null;
     }
 
-    public void adicionar(int valor) {
-        adicionarVerificandoBalanceamento(valor, raiz);
+    public boolean adicionar(int valor) {
+        if (!contem(valor)){
+            adicionarVerificandoBalanceamento(valor, raiz);
+            return true;
+        }
+        return false;
     }
 
     private No adicionarVerificandoBalanceamento(int valor, No noAtual) {
