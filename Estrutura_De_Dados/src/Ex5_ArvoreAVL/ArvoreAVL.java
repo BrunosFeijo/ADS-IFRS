@@ -115,7 +115,10 @@ public class ArvoreAVL {
             int valor = getFolha(noAtual);
             noAtual.setValor(valor);
             noAtual.setDireita(buscaRemover(valor, noAtual.getDireita()));
-            if (noAtual.isDiminuiu()) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+            if (noAtual.getDireita().getFatorBalanceamento() == 0){
+                noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+                noAtual.setDiminuiu(true);
+            }
         }
         return noAtual;
     }
