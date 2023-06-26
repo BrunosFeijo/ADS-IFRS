@@ -26,5 +26,7 @@ public class Main {
         lista.remover(5);
         lista.remover(6);
         lista.remover(10);
+
+        System.out.println(lista);
     }
 }

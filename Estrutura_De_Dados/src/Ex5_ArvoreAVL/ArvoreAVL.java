@@ -74,17 +74,23 @@ public class ArvoreAVL {
             noAtual.setEsquerda(buscaRemover(valor, noAtual.getEsquerda()));
             if (noAtual.getEsquerda() == null || noAtual.getEsquerda().isDiminuiu()) {
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
+                noAtual.setDiminuiu(true);
             }
         } else if (valor > noAtual.getValor()) {//maior
             noAtual.setDireita(buscaRemover(valor, noAtual.getDireita()));
             if (noAtual.getDireita() == null || noAtual.getDireita().isDiminuiu()) {
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+                noAtual.setDiminuiu(true);
             }
         } else if (noAtual.getValor() == valor) {//explícito
             noAtual = removerNo(noAtual);
             return noAtual;
         }
-        return null;
+        if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2){
+            defineRotacao(noAtual);
+            noAtual.setDiminuiu(true);
+        }
+        return noAtual;
     }
 
     private No removerNo(No noAtual) {
@@ -101,18 +107,18 @@ public class ArvoreAVL {
         } else { // sem filhos nulos
             int valor = getFolha(noAtual);
             noAtual.setValor(valor);
-            buscaRemover(valor, noAtual.getDireita());
+            noAtual.setDireita(buscaRemover(valor, noAtual.getDireita()));
             if (noAtual.isDiminuiu()) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
         }
         return null;
     }
 
-    private int getFolha(No noAux) {
-        noAux = noAux.getDireita();
-        while (noAux.getEsquerda() != null) {
-            noAux = noAux.getEsquerda();
+    private int getFolha(No noAtual) {
+        noAtual = noAtual.getDireita();
+        while (noAtual.getEsquerda() != null) {
+            noAtual = noAtual.getEsquerda();
         }
-        return noAux.getValor();
+        return noAtual.getValor();
     }
 
     public boolean contem(int valor) {
