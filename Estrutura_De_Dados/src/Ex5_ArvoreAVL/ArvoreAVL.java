@@ -23,6 +23,44 @@ public class ArvoreAVL {
         adicionarVerificandoBalanceamento(valor, raiz);
     }
 
+    private No adicionarVerificandoBalanceamento(int valor, No noAtual) {
+        if (isVazio()) {
+            raiz = new No(valor);
+        } else {
+            noAtual.setCresceu(false);
+            if (valor < noAtual.getValor()) {
+                if (noAtual.getEsquerda() == null) {
+                    noAtual.setEsquerda(new No(valor));
+                    noAtual.setCresceu(true);
+                } else {
+                    noAtual.setEsquerda(adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda()));
+                }
+                if (noAtual.isCresceu() || noAtual.getEsquerda().isCresceu()) {
+                    noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+                    noAtual.setCresceu(true);
+                }
+            } else if (valor > noAtual.getValor()) {
+                if (noAtual.getDireita() == null) {
+                    noAtual.setDireita(new No(valor));
+                    noAtual.setCresceu(true);
+                    ;
+                } else {
+                    noAtual.setDireita(adicionarVerificandoBalanceamento(valor, noAtual.getDireita()));
+                }
+                if (noAtual.isCresceu() || noAtual.getDireita().isCresceu()) {
+                    noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
+                    noAtual.setCresceu(true);
+                }
+            }
+            if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2) {
+                noAtual = defineRotacao(noAtual);
+                noAtual.setCresceu(false);
+            }
+            return noAtual;
+        }
+        return noAtual;
+    }
+
     public boolean remover(int valor) {
         boolean diminuiu = false;
         return buscaRemover(valor, raiz, diminuiu);
@@ -235,43 +273,6 @@ public class ArvoreAVL {
             return noFilho;
         }
         return null;
-    }
-
-    private No adicionarVerificandoBalanceamento(int valor, No noAtual) {
-        if (isVazio()) {
-            raiz = new No(valor);
-        } else {
-            noAtual.setCresceu(false);
-            if (valor < noAtual.getValor()) {
-                if (noAtual.getEsquerda() == null) {
-                    noAtual.setEsquerda(new No(valor));
-                    noAtual.setCresceu(true);
-                } else {
-                    noAtual.setEsquerda(adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda()));
-                }
-                if (noAtual.isCresceu() || noAtual.getEsquerda().isCresceu()){
-                    noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
-                    noAtual.setCresceu(true);
-                }
-            } else if (valor > noAtual.getValor()){
-                if (noAtual.getDireita() == null) {
-                    noAtual.setDireita(new No(valor));
-                    noAtual.setCresceu(true);;
-                } else {
-                    noAtual.setDireita(adicionarVerificandoBalanceamento(valor, noAtual.getDireita()));
-                }
-                if (noAtual.isCresceu() || noAtual.getDireita().isCresceu()){
-                    noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
-                    noAtual.setCresceu(true);
-                }
-            }
-            if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2) {
-                noAtual = defineRotacao(noAtual);
-                noAtual.setCresceu(false);
-            }
-            return noAtual;
-        }
-        return noAtual;
     }
 
     @Override
