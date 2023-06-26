@@ -8,7 +8,7 @@ public class ArvoreAVL {
     }
 
     public void limparArvore() {
-
+        raiz = null;
     }
 
     public No getRaiz() {
@@ -102,6 +102,9 @@ public class ArvoreAVL {
 
     private No removerNo(No noAtual) {
         if (noAtual.getEsquerda() == null && noAtual.getDireita() == null) { // ambos filhos nulos
+            if (noAtual.equals(raiz)){
+                raiz = null;
+            }
             return null;
         } else if (noAtual.getEsquerda() == null) { // filho da esquerda nulo
             No noFilho = noAtual.getDireita();
@@ -115,7 +118,10 @@ public class ArvoreAVL {
             int valor = getFolha(noAtual);
             noAtual.setValor(valor);
             noAtual.setDireita(buscaRemover(valor, noAtual.getDireita()));
-            if (noAtual.getDireita() == null || noAtual.getDireita().getFatorBalanceamento() == 0){
+            if (noAtual.getDireita() == null){
+                noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+                noAtual.setDiminuiu(true);
+            }else if(noAtual.getDireita().isDiminuiu() && noAtual.getDireita().getFatorBalanceamento() == 0){
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
                 noAtual.setDiminuiu(true);
             }
