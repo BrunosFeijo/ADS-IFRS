@@ -75,7 +75,7 @@ public class ArvoreAVL {
             if (noAtual.getEsquerda() == null) {
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
                 noAtual.setDiminuiu(true);
-            }else if(noAtual.getEsquerda().isDiminuiu() && noAtual.getEsquerda().getFatorBalanceamento() != 1){
+            }else if(noAtual.getEsquerda().isDiminuiu() && noAtual.getEsquerda().getFatorBalanceamento() == 0){
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
                 noAtual.setDiminuiu(true);
             }
@@ -84,7 +84,7 @@ public class ArvoreAVL {
             if (noAtual.getDireita() == null) {
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
                 noAtual.setDiminuiu(true);
-            }else if(noAtual.getDireita().isDiminuiu() && noAtual.getDireita().getFatorBalanceamento() != -1){
+            }else if(noAtual.getDireita().isDiminuiu() && noAtual.getDireita().getFatorBalanceamento() == 0){
                 noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
                 noAtual.setDiminuiu(true);
             }
