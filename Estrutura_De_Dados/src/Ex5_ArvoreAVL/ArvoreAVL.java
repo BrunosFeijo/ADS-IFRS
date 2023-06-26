@@ -238,27 +238,27 @@ public class ArvoreAVL {
     }
 
     private No adicionarVerificandoBalanceamento(int valor, No noAtual) {
-        boolean cresceu = false;
+        noAtual.setCresceu(false);
         if (isVazio()) {
             raiz = new No(valor);
         } else {
             if (valor < noAtual.getValor()) {
                 if (noAtual.getEsquerda() == null) {
                     noAtual.setEsquerda(new No(valor));
-                    cresceu = true;
+                    noAtual.setCresceu(true);
                 } else {
                     noAtual.setEsquerda(adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda()));
                 }
-                if (cresceu || noAtual.getEsquerda().getFatorBalanceamento() != 0)
+                if (noAtual.isCresceu() || noAtual.getEsquerda().isCresceu())
                     noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
             } else {
                 if (noAtual.getDireita() == null) {
                     noAtual.setDireita(new No(valor));
-                    cresceu = true;
+                    noAtual.setCresceu(true);;
                 } else {
                     noAtual.setDireita(adicionarVerificandoBalanceamento(valor, noAtual.getDireita()));
                 }
-                if (cresceu || noAtual.getDireita().getFatorBalanceamento() != 0)
+                if (noAtual.isCresceu() || noAtual.getDireita().isCresceu())
                     noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
             }
             if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2) {
