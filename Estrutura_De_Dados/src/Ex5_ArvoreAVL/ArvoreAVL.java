@@ -249,17 +249,21 @@ public class ArvoreAVL {
                 } else {
                     noAtual.setEsquerda(adicionarVerificandoBalanceamento(valor, noAtual.getEsquerda()));
                 }
-                if (noAtual.isCresceu() || noAtual.getEsquerda().isCresceu())
+                if (noAtual.isCresceu() || noAtual.getEsquerda().isCresceu()){
                     noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
-            } else {
+                    noAtual.setCresceu(true);
+                }
+            } else if (valor > noAtual.getValor()){
                 if (noAtual.getDireita() == null) {
                     noAtual.setDireita(new No(valor));
                     noAtual.setCresceu(true);;
                 } else {
                     noAtual.setDireita(adicionarVerificandoBalanceamento(valor, noAtual.getDireita()));
                 }
-                if (noAtual.isCresceu() || noAtual.getDireita().isCresceu())
+                if (noAtual.isCresceu() || noAtual.getDireita().isCresceu()){
                     noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
+                    noAtual.setCresceu(true);
+                }
             }
             if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2) {
                 noAtual = defineRotacao(noAtual);
