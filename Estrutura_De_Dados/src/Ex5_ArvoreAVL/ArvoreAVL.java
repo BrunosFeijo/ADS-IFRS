@@ -62,45 +62,49 @@ public class ArvoreAVL {
     }
 
     public boolean remover(int valor) {
-        boolean diminuiu = false;
-        return buscaRemover(valor, raiz, diminuiu);
-    }
-
-    private boolean buscaRemover(int valor, No noAtual, boolean diminuiu) {
-        if (noAtual.getValor() > valor) {
-            buscaRemover(valor, noAtual.getEsquerda(), diminuiu);
-            if (diminuiu) {
-                noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
-            }
-        } else if (noAtual.getValor() < valor) {
-            buscaRemover(valor, noAtual.getDireita(), diminuiu);
-            if (diminuiu) {
-                noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
-            }
-        } else if (noAtual.getValor() == valor) {
-            removerNo(noAtual, diminuiu);
+        if (contem(valor)) {
+            buscaRemover(valor, raiz);
             return true;
-        }
-        if (noAtual != null) {
-            defineRotacao(noAtual);
-            if (diminuiu && noAtual.getFatorBalanceamento() != 0) diminuiu = false;
         }
         return false;
     }
 
-    private void removerNo(No noAtual, boolean diminuiu) {
-        if (noAtual.getEsquerda() == null) {
-            noAtual = noAtual.getDireita();
-            diminuiu = true;
-        } else if (noAtual.getDireita() == null) {
-            noAtual = noAtual.getEsquerda();
-            diminuiu = true;
-        } else {
+    private No buscaRemover(int valor, No noAtual) {
+        if (valor < noAtual.getValor()) {//menor
+            noAtual.setEsquerda(buscaRemover(valor, noAtual.getEsquerda()));
+            if (noAtual.getEsquerda() == null || noAtual.getEsquerda().isDiminuiu()) {
+                noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() + 1);
+            }
+        } else if (valor > noAtual.getValor()) {//maior
+            noAtual.setDireita(buscaRemover(valor, noAtual.getDireita()));
+            if (noAtual.getDireita() == null || noAtual.getDireita().isDiminuiu()) {
+                noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+            }
+        } else if (noAtual.getValor() == valor) {//explícito
+            noAtual = removerNo(noAtual);
+            return noAtual;
+        }
+        return null;
+    }
+
+    private No removerNo(No noAtual) {
+        if (noAtual.getEsquerda() == null && noAtual.getDireita() == null) { // ambos filhos nulos
+            return null;
+        } else if (noAtual.getEsquerda() == null) { // filho da esquerda nulo
+            No noFilho = noAtual.getDireita();
+            noFilho.setDiminuiu(true);
+            return noFilho;
+        } else if ((noAtual.getDireita() == null)) { // filho da direita nulo
+            No noFilho = noAtual.getEsquerda();
+            noFilho.setDiminuiu(true);
+            return noFilho;
+        } else { // sem filhos nulos
             int valor = getFolha(noAtual);
             noAtual.setValor(valor);
-            buscaRemover(valor, noAtual.getDireita(), diminuiu);
-            if (diminuiu) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
+            buscaRemover(valor, noAtual.getDireita());
+            if (noAtual.isDiminuiu()) noAtual.setFatorBalanceamento(noAtual.getFatorBalanceamento() - 1);
         }
+        return null;
     }
 
     private int getFolha(No noAux) {

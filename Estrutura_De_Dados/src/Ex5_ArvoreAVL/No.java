@@ -6,6 +6,7 @@ public class No {
     private No esquerda;
     private int fatorBalanceamento;
     private boolean cresceu;
+    private boolean diminuiu;
 
     public No(){
 
@@ -16,6 +17,7 @@ public class No {
         esquerda = null;
         fatorBalanceamento = 0;
         cresceu = false;
+        diminuiu = false;
     }
 
     public int getValor() {
@@ -56,5 +58,13 @@ public class No {
 
     public void setCresceu(boolean cresceu) {
         this.cresceu = cresceu;
+    }
+
+    public boolean isDiminuiu() {
+        return diminuiu;
+    }
+
+    public void setDiminuiu(boolean diminuiu) {
+        this.diminuiu = diminuiu;
     }
 }

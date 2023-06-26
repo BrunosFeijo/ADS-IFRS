@@ -18,9 +18,13 @@ public class Main {
         lista.adicionar(12);
         lista.adicionar(12);
 
-        System.out.println(lista.imprimirEmOrdem(lista.getRaiz()));
-        System.out.println(lista.imprimirPosOrdem(lista.getRaiz()));
-        System.out.println(lista.imprimirPreOrdem(lista.getRaiz()));
         System.out.println(lista);
+
+        lista.remover(12);
+        lista.remover(7);
+        lista.remover(3);
+        lista.remover(5);
+        lista.remover(6);
+        lista.remover(10);
     }
 }
