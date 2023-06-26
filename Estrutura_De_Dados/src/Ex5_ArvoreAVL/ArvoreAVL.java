@@ -93,7 +93,7 @@ public class ArvoreAVL {
             return noAtual;
         }
         if (noAtual.getFatorBalanceamento() == 2 || noAtual.getFatorBalanceamento() == -2) {
-            defineRotacao(noAtual);
+            noAtual = defineRotacao(noAtual);
             noAtual.setDiminuiu(true);
         }
         return noAtual;
