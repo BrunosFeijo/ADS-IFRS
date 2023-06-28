@@ -32,9 +32,9 @@ public class Clubes {
         this.nome = nome;
     }
     public void inserir(){
-        Connection conexao = DriverManager.getConnection();
+        //Connection conexao = DriverManager.getConnection();
 
-        insert into clubes (sigla, nome) values ('GRE','Grêmio');
+        //insert into clubes (sigla, nome) values ('GRE','Grêmio');
     }
 }
 
