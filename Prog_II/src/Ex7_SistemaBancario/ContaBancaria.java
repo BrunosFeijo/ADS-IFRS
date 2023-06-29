@@ -5,9 +5,17 @@ import java.util.Scanner;
 abstract class ContaBancaria {
     protected Pessoa titular;
     protected Banco banco;
-    protected int NroConta;
+    protected int nroConta;
     protected double saldo;
     protected String senha;
+
+    public ContaBancaria(Pessoa titular, Banco banco, int nroConta, double saldo, String senha) {
+        this.titular = titular;
+        this.banco = banco;
+        this.nroConta = nroConta;
+        this.saldo = saldo;
+        this.senha = senha;
+    }
 
     public boolean VerificaSenha(int senha) {
         return senha == Integer.parseInt(this.senha);
@@ -48,6 +56,6 @@ abstract class ContaBancaria {
         this.saldo += valor;
         System.out.println("Deposito realizado");
     }
-    
+
 
 }
