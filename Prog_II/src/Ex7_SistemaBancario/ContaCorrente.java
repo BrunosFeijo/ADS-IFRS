@@ -17,11 +17,13 @@ public class ContaCorrente extends ContaBancaria {
         System.out.println("Novo Saldo: R$" + saldo);
     }
 
-    public void info() {
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
         //System.out.println("Banco: " + Banco.nome);
         //System.out.println("Número da conta: " + NroConta);
         //System.out.println("Titular: " + titular.nome + " " + titular.sobrenome);
-        System.out.println("Saldo: R$" + saldo);
-        System.out.println("Taxas mensais: " + taxasMensais);
+        stringBuilder.append("Saldo: R$").append(saldo).append("\n");
+        stringBuilder.append("Taxas mensais: ").append(taxasMensais).append("\n");
+        return stringBuilder.toString();
     }
 }
