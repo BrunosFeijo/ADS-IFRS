@@ -1,13 +1,17 @@
 package Ex7_SistemaBancario;
 
 public class ContaPoupanca extends ContaBancaria {
-    private final double rendimento = 0.02;
+    private double rendimento = 0.02;
     private int saquesMensais;
 
-    public ContaPoupanca(Pessoa titular, Banco banco, int nroConta, double saldo,
-                         String senha, double rendimento, int saquesMensais) {
-        super(titular, banco, nroConta, saldo, senha);
+    public ContaPoupanca(Pessoa titular, Banco banco,
+                         String senha) {
+        super(titular, banco,senha);
         this.saquesMensais = 3;
+    }
+
+    public void setRendimento(double rendimento) {
+        this.rendimento = rendimento;
     }
 
     public void novoMes(){
