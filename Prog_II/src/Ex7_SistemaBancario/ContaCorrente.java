@@ -3,8 +3,8 @@ package Ex7_SistemaBancario;
 public class ContaCorrente extends ContaBancaria {
     private double taxasMensais = 0.52;
 
-    public ContaCorrente(Pessoa titular, Banco banco, double saldo, String senha, double taxasMensais) {
-        super(titular, banco, saldo, senha);
+    public ContaCorrente(Pessoa titular, Banco banco, String senha) {
+        super(titular, banco, senha);
     }
 
     public void novoMes() {
