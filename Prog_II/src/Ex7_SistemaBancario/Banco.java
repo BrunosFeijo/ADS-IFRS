@@ -39,6 +39,7 @@ public class Banco {
 
     public int criarConta(ContaBancaria contaBancaria) {
         contasBancarias.add(contaBancaria);
+        contaBancaria.titular.adicionarContaBancaria(contaBancaria);
 
         return ++numeroDeContas;
     }
@@ -46,6 +47,7 @@ public class Banco {
     public void fecharConta(ContaBancaria contaBancaria) {
         if (contemConta(contaBancaria)) {
             contasBancarias.remove(contaBancaria);
+            contaBancaria.titular.removerContaBancaria(contaBancaria);
             System.out.println("Conta fechada!");
         } else {
             System.out.println("Conta Bancária não encontrada!");

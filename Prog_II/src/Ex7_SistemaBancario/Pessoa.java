@@ -33,9 +33,12 @@ public class Pessoa {
         this.contasBancarias.add(contaBancaria);
     }
 
+    public void removerContaBancaria(ContaBancaria contaBancaria) {this.contasBancarias.remove(contaBancaria);}
+
     public void infoContas() {
         System.out.println(this.contasBancarias);
     }
+
 
     @Override
     public String toString() {
