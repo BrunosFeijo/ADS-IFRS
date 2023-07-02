@@ -16,6 +16,7 @@ public class Pessoa {
         this.idade = idade;
         this.cpf = cpf;
         this.contasBancarias = contasBancarias;
+        
     }
 
     public String getCpf() {

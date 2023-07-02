@@ -9,11 +9,11 @@ abstract class ContaBancaria {
     protected double saldo;
     protected String senha;
 
-    public ContaBancaria(Pessoa titular, Banco banco, int nroConta, double saldo, String senha) {
+    public ContaBancaria(Pessoa titular, Banco banco, String senha) {
         this.titular = titular;
         this.banco = banco;
-        this.nroConta = nroConta;
-        this.saldo = saldo;
+        this.nroConta = banco.criarConta(this);
+        this.saldo = 0;
         this.senha = senha;
     }
 

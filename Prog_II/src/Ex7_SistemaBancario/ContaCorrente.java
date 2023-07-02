@@ -1,10 +1,10 @@
 package Ex7_SistemaBancario;
 
 public class ContaCorrente extends ContaBancaria {
-    private final double taxasMensais = 5.25;
+    private double taxasMensais = 0.52;
 
-    public ContaCorrente(Pessoa titular, Banco banco, int nroConta, double saldo, String senha, double taxasMensais) {
-        super(titular, banco, nroConta, saldo, senha);
+    public ContaCorrente(Pessoa titular, Banco banco, double saldo, String senha, double taxasMensais) {
+        super(titular, banco, saldo, senha);
     }
 
     public void novoMes() {
@@ -15,6 +15,10 @@ public class ContaCorrente extends ContaBancaria {
         }
         System.out.println("Cobrada a taxa mensal da conta: R$" + taxasMensais);
         System.out.println("Novo Saldo: R$" + saldo);
+    }
+
+    public void setTaxasMensais(double taxasMensais) {
+        this.taxasMensais = taxasMensais;
     }
 
     public String toString() {

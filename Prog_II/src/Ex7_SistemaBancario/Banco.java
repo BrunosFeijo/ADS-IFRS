@@ -7,29 +7,62 @@ public class Banco {
     private String cnpj;
     private int nroBanco;
     private ArrayList<ContaBancaria> contasBancarias;
+    private int numeroDeContas;
 
-    public Banco(String nome, String cnpj, int nroBanco,
-                 ArrayList<ContaBancaria> contasBancarias) {
+    public Banco(String nome, String cnpj, int nroBanco) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.nroBanco = nroBanco;
-        this.contasBancarias = contasBancarias;
+        this.contasBancarias = new ArrayList<>();
+        this.numeroDeContas = 0;
     }
-    public void infoContas(){
 
+    public String getNome() {
+        return nome;
     }
-    public void criarConta(ContaBancaria contaBancaria){
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public int getNroBanco() {
+        return nroBanco;
+    }
+
+    public ArrayList<ContaBancaria> getContasBancarias() {
+        return contasBancarias;
+    }
+
+    public void infoContas() {
+        System.out.println(contasBancarias);
+    }
+
+    public int criarConta(ContaBancaria contaBancaria) {
         contasBancarias.add(contaBancaria);
+
+        return ++numeroDeContas;
     }
-    public void fecharConta(ContaBancaria contaBancaria){
-        if (contemConta(contaBancaria)){
+
+    public void fecharConta(ContaBancaria contaBancaria) {
+        if (contemConta(contaBancaria)) {
             contasBancarias.remove(contaBancaria);
             System.out.println("Conta fechada!");
-        }else {
+        } else {
             System.out.println("Conta Bancária não encontrada!");
         }
     }
-    private boolean contemConta(ContaBancaria contaBancaria){
+
+    private boolean contemConta(ContaBancaria contaBancaria) {
         return contasBancarias.contains(contaBancaria);
+    }
+
+    @Override
+    public String toString() {
+        return "Banco{" +
+                "nome='" + nome + '\'' +
+                ", cnpj='" + cnpj + '\'' +
+                ", nroBanco=" + nroBanco +
+                ", contasBancarias=" + contasBancarias +
+                '}';
     }
 }
