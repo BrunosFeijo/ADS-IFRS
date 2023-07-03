@@ -42,10 +42,10 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("------Cliente------");
+        StringBuilder stringBuilder = new StringBuilder("------Cliente------\n");
         stringBuilder.append("Nome: ").append(nome).append(" ").append(sobrenome).append("\n");
         stringBuilder.append("Idade: ").append(idade).append("\n");
-        stringBuilder.append("CPF: ").append(cpf);
+        stringBuilder.append("CPF: ").append(cpf).append("\n");
         stringBuilder.append(contasBancarias);
         return stringBuilder.toString();
     }

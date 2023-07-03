@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BancosDisponiveis {
-    private static ArrayList<Banco> listaBancos = new ArrayList<>();
+    static ArrayList<Banco> listaBancos = new ArrayList<>();
 
     public static void adicionaBanco(Banco banco){
         listaBancos.add(banco);

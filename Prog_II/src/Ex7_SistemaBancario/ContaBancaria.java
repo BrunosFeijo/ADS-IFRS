@@ -60,7 +60,6 @@ abstract class ContaBancaria {
 
     public void deposito(double valor) {
         this.saldo += valor;
-        System.out.println("Deposito realizado");
     }
 
     public void transferir() {
