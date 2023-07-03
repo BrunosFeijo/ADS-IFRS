@@ -1,6 +1,5 @@
 package Ex7_SistemaBancario;
 
-import java.awt.image.BandedSampleModel;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,55 +17,18 @@ public class Main {
                 case 2 -> criarConta();
                 case 3 -> pessoasSemConta.add(criarPessoa());
                 case 4 -> BancosDisponiveis.novoMes();
-                case 5 -> {
-                    Banco banco = BancosDisponiveis.procuraBanco();
-                    System.out.println("Digite o número da Conta: ");
-                    int nroConta = entrada.nextInt();
-                    ContaBancaria conta = banco.contemNroConta(nroConta);
-                    if (conta != null){
-                        conta.saque();
-                    }else{
-                        System.out.println("Número de conta inválido");
-                    }
-                }
-                case 6 -> {
-                    Banco banco = BancosDisponiveis.procuraBanco();
-                    System.out.println("Digite o número da Conta: ");
-                    int nroConta = entrada.nextInt();
-                    ContaBancaria conta = banco.contemNroConta(nroConta);
-                    if (conta != null){
-                        conta.deposito();
-                    }else{
-                        System.out.println("Número de conta inválido");
-                    }
-                }
-                case 7 ->{
-                    Banco banco = BancosDisponiveis.procuraBanco();
-                    System.out.println("Digite o número da Conta: ");
-                    int nroConta = entrada.nextInt();
-                    ContaBancaria conta = banco.contemNroConta(nroConta);
-                    if (conta != null){
-                        conta.transferir();
-                    }else{
-                        System.out.println("Número de conta inválido");
-                    }
-                }
-                case 8 ->{
-                    Banco banco = BancosDisponiveis.procuraBanco();
-                    System.out.println("Digite o número da Conta: ");
-                    int nroConta = entrada.nextInt();
-                    ContaBancaria conta = banco.contemNroConta(nroConta);
-                    if (conta != null){
-                        banco.fecharConta(conta);
-                        if (conta.titular.getContasBancarias().size() == 0) pessoasSemConta.add(conta.titular);
-                    }else{
-                        System.out.println("Número de conta inválido");
-                    }
-                }
+                case 5 -> realizarSaque();
+                case 6 -> realizarDeposito();
+                case 7 -> realizarTransferencia();
+                case 8 -> fecharConta();
                 case 9 -> {
                     exemplosBancos();
                     exemplosContas();
                 }
+                case 10 -> System.out.println(BancosDisponiveis.listarContas());
+                case 11 -> System.out.println(BancosDisponiveis.procuraBanco());
+                case 12 -> System.out.println(BancosDisponiveis.procuraBanco().procuraConta());
+                case 13 -> System.out.println(BancosDisponiveis.procuraPessoa());
             }
         } while (opcao != 0);
         System.out.println("Fim do programa");
@@ -85,12 +47,16 @@ public class Main {
         System.out.println("7 - Realizar transferência");
         System.out.println("8 - Fechar Conta");
         System.out.println("9 - Gerar exemplos prontos");
+        System.out.println("10 - Listar todas as contas");
+        System.out.println("11 - Buscar um Banco");
+        System.out.println("12 - Buscar uma Conta");
+        System.out.println("13 - Buscar uma Pessoa");
         System.out.println("0 - Sair");
         System.out.println("--------------------------------------");
         System.out.print("Digite uma opção: ");
-        while (opcao < 0 || opcao > 8) {
+        while (opcao < 0 || opcao > 13) {
             opcao = entrada.nextInt();
-            if (opcao < 0 || opcao > 8) System.out.println("Opção inválida!");
+            if (opcao < 0 || opcao > 13) System.out.println("Opção inválida!");
         }
         return opcao;
     }
@@ -132,7 +98,7 @@ public class Main {
                     if (opcao == 1) {
                         System.out.println("Digite o CPF: ");
                         int cpf = entrada.nextInt();
-                        titular = BancosDisponiveis.getPessoa(cpf);
+                        titular = BancosDisponiveis.procuraPessoa(cpf);
                         if (titular == null) {
                             System.out.println("CPF inválido");
                             opcao = 0;
@@ -198,6 +164,55 @@ public class Main {
         System.out.println("------------------------------------");
         return new Pessoa(nome, sobrenome, idade, String.valueOf(cpf));
     }
+    public static void realizarSaque(){
+        Scanner entrada = new Scanner(System.in);
+        Banco banco = BancosDisponiveis.procuraBanco();
+        System.out.println("Digite o número da Conta: ");
+        int nroConta = entrada.nextInt();
+        ContaBancaria conta = banco.procuraConta(nroConta);
+        if (conta != null){
+            conta.saque();
+        }else{
+            System.out.println("Número de conta inválido");
+        }
+    }
+    public static void realizarDeposito(){
+        Scanner entrada = new Scanner(System.in);
+        Banco banco = BancosDisponiveis.procuraBanco();
+        System.out.println("Digite o número da Conta: ");
+        int nroConta = entrada.nextInt();
+        ContaBancaria conta = banco.procuraConta(nroConta);
+        if (conta != null){
+            conta.deposito();
+        }else{
+            System.out.println("Número de conta inválido");
+        }
+    }
+    public static void realizarTransferencia(){
+        Scanner entrada = new Scanner(System.in);
+        Banco banco = BancosDisponiveis.procuraBanco();
+        System.out.println("Digite o número da Conta: ");
+        int nroConta = entrada.nextInt();
+        ContaBancaria conta = banco.procuraConta(nroConta);
+        if (conta != null){
+            conta.transferir();
+        }else{
+            System.out.println("Número de conta inválido");
+        }
+    }
+    public static void fecharConta(){
+        Scanner entrada = new Scanner(System.in);
+        Banco banco = BancosDisponiveis.procuraBanco();
+        System.out.println("Digite o número da Conta: ");
+        int nroConta = entrada.nextInt();
+        ContaBancaria conta = banco.procuraConta(nroConta);
+        if (conta != null){
+            banco.fecharConta(conta);
+            if (conta.titular.getContasBancarias().size() == 0) pessoasSemConta.add(conta.titular);
+        }else{
+            System.out.println("Número de conta inválido");
+        }
+    }
 
 
     public static void exemplosBancos() {
@@ -259,9 +274,5 @@ public class Main {
         contaBancaria.deposito(200);
         contaBancaria = new ContaPoupanca(thais, BancosDisponiveis.getBanco(4), "123456");
         contaBancaria.deposito(200);
-
-
-        System.out.println(bruno);
-        System.out.println(thais);
     }
 }

@@ -76,7 +76,7 @@ abstract class ContaBancaria {
             System.out.print("Para qual conta deseja tranferir? ");
             nroConta = entrada.nextInt();
 
-            contaBancaria = banco.contemNroConta(nroConta);
+            contaBancaria = banco.procuraConta(nroConta);
             if (contaBancaria != null){
                 for (int i = 0; i < 3; i++) {
                     if (VerificaSenha()) {

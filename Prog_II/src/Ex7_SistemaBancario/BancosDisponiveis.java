@@ -34,7 +34,14 @@ public class BancosDisponiveis {
     public static Banco getBanco(int indice){
         return listaBancos.get(indice);
     }
-    public static Pessoa getPessoa(int cpf){
+    public static Pessoa procuraPessoa(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Digite o CPF da pessoa procurada: ");
+        int cpf = entrada.nextInt();
+
+        return procuraPessoa(cpf);
+    }
+    public static Pessoa procuraPessoa(int cpf){
         for(Banco banco: listaBancos){
             for(ContaBancaria contaBancaria: banco.getContasBancarias()){
                 if (contaBancaria.titular.getCpf().equals(String.valueOf(cpf))){
@@ -56,6 +63,16 @@ public class BancosDisponiveis {
                 }
             }
         }
+    }
+    public static String listarContas(){
+        StringBuilder stringBuilder = new StringBuilder("\n--------------Todas as Contas--------------\n");
+        for (Banco banco: listaBancos){
+            for (ContaBancaria contaBancaria:banco.getContasBancarias()){
+                stringBuilder.append(contaBancaria).append("\n");
+            }
+        }
+
+        return stringBuilder.toString();
     }
 
 }

@@ -1,6 +1,7 @@
 package Ex7_SistemaBancario;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Banco {
     private String nome;
@@ -55,7 +56,14 @@ public class Banco {
         return contasBancarias.contains(contaBancaria);
     }
 
-    public ContaBancaria contemNroConta(int nroConta) {
+    public ContaBancaria procuraConta(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Digite o número da conta procurada: ");
+        int nroConta = entrada.nextInt();
+
+        return procuraConta(nroConta);
+    }
+    public ContaBancaria procuraConta(int nroConta) {
         for (ContaBancaria conta : contasBancarias) {
             if (conta.nroConta == nroConta) {
                 return conta;
