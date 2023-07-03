@@ -22,7 +22,7 @@ public class ContaCorrente extends ContaBancaria {
     }
 
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("-------------------Conta Corrente------------------\n");
+        StringBuilder stringBuilder = new StringBuilder("\n-------------------Conta Corrente------------------\n");
         stringBuilder.append("Banco: ").append(banco.getNome()).append("\n");
         stringBuilder.append(String.format("Número da conta: %010d", nroConta)).append("\n");
         stringBuilder.append("Titular: ").append(titular.nome).append(" ").append(titular.sobrenome).append("\n");
