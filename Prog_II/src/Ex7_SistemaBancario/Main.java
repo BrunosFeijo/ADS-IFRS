@@ -96,9 +96,7 @@ public class Main {
                     System.out.println("2 - Não");
                     opcao = entrada.nextInt();
                     if (opcao == 1) {
-                        System.out.println("Digite o CPF: ");
-                        int cpf = entrada.nextInt();
-                        titular = BancosDisponiveis.procuraPessoa(cpf);
+                        titular = BancosDisponiveis.procuraPessoa();
                         if (titular == null) {
                             System.out.println("CPF inválido");
                             opcao = 0;

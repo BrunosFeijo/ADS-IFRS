@@ -37,14 +37,14 @@ public class BancosDisponiveis {
     public static Pessoa procuraPessoa(){
         Scanner entrada = new Scanner(System.in);
         System.out.print("Digite o CPF da pessoa procurada: ");
-        int cpf = entrada.nextInt();
+        String cpf = entrada.nextLine();
 
         return procuraPessoa(cpf);
     }
-    public static Pessoa procuraPessoa(int cpf){
+    public static Pessoa procuraPessoa(String cpf){
         for(Banco banco: listaBancos){
             for(ContaBancaria contaBancaria: banco.getContasBancarias()){
-                if (contaBancaria.titular.getCpf().equals(String.valueOf(cpf))){
+                if (contaBancaria.titular.getCpf().equals(cpf)){
                     return contaBancaria.titular;
                 }
             }

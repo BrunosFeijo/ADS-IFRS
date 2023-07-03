@@ -75,7 +75,7 @@ public class Banco {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("-----Banco-----");
+        StringBuilder stringBuilder = new StringBuilder("-----Banco-----\n");
         stringBuilder.append("Nome: ").append(nome).append("\n");
         stringBuilder.append("CNPJ: ").append(cnpj).append("\n");
         stringBuilder.append("N°: ").append(nroBanco).append("\n");
