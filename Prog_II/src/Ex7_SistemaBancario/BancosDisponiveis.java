@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BancosDisponiveis {
-    private static ArrayList<Banco> listaBancos;
+    private static ArrayList<Banco> listaBancos = new ArrayList<>();
 
-    public BancosDisponiveis() {
-        listaBancos = new ArrayList<>();
-    }
     public static void adicionaBanco(Banco banco){
         listaBancos.add(banco);
     }
@@ -31,6 +28,9 @@ public class BancosDisponiveis {
             }
         }
         return null;
+    }
+    public static Banco getBanco(int indice){
+        return listaBancos.get(indice);
     }
 
 }
