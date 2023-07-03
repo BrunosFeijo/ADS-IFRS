@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BancosDisponiveis {
-    private ArrayList<Banco> listaBancos;
+    private static ArrayList<Banco> listaBancos;
 
     public BancosDisponiveis() {
-        this.listaBancos = new ArrayList<>();
+        listaBancos = new ArrayList<>();
     }
-    public void adicionaBanco(Banco banco){
+    public static void adicionaBanco(Banco banco){
         listaBancos.add(banco);
     }
-    public Banco procuraBanco(){
+
+    public static Banco procuraBanco(){
         Scanner entrada = new Scanner(System.in);
         for(Banco banco: listaBancos){
             System.out.println(banco.getNroBanco() + " - " + banco.getNome());
@@ -23,8 +24,7 @@ public class BancosDisponiveis {
         return procuraBanco(entrada.nextInt());
 
     }
-    public Banco procuraBanco(int nroBanco){
-
+    public static Banco procuraBanco(int nroBanco){
         for(Banco banco: listaBancos){
             if (banco.getNroBanco() == nroBanco){
                 return banco;
