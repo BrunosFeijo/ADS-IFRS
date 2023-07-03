@@ -33,14 +33,14 @@ public class ContaPoupanca extends ContaBancaria {
 
     @Override
     public String toString() {
-        return "ContaPoupanca{" +
-                "rendimento=" + rendimento +
-                ", saquesMensais=" + saquesMensais +
-                ", titular=" + titular +
-                ", banco=" + banco +
-                ", nroConta=" + nroConta +
-                ", saldo=" + saldo +
-                ", senha='" + senha + '\'' +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder("-------------------Conta Poupança------------------\n");
+        stringBuilder.append("Banco: ").append(banco.getNome()).append("\n");
+        stringBuilder.append("N° da Conta: ").append(nroConta).append("\n");
+        stringBuilder.append("Titular: ").append(titular.nome).append(" ").append(titular.sobrenome).append("\n");
+        stringBuilder.append("Saldo: ").append(saldo).append("\n");
+        stringBuilder.append("Taxa de Rendimento: ").append(rendimento).append("\n");
+        stringBuilder.append("Saques disponíveis: ").append(saquesMensais).append("\n");
+
+        return stringBuilder.toString();
     }
 }

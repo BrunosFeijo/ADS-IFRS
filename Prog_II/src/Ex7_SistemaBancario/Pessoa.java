@@ -42,13 +42,12 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa{" +
-                "nome='" + nome + '\'' +
-                ", sobrenome='" + sobrenome + '\'' +
-                ", idade=" + idade +
-                ", cpf='" + cpf + '\'' +
-                ", contasBancarias=" + contasBancarias +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder("------Cliente------");
+        stringBuilder.append("Nome: ").append(nome).append(" ").append(sobrenome).append("\n");
+        stringBuilder.append("Idade: ").append(idade).append("\n");
+        stringBuilder.append("CPF: ").append(cpf);
+        stringBuilder.append(contasBancarias);
+        return stringBuilder.toString();
     }
 
 }

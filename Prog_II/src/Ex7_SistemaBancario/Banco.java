@@ -60,11 +60,11 @@ public class Banco {
 
     @Override
     public String toString() {
-        return "Banco{" +
-                "nome='" + nome + '\'' +
-                ", cnpj='" + cnpj + '\'' +
-                ", nroBanco=" + nroBanco +
-                ", contasBancarias=" + contasBancarias +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder("-----Banco-----");
+        stringBuilder.append("Nome: ").append(nome).append("\n");
+        stringBuilder.append("CNPJ: ").append(cnpj).append("\n");
+        stringBuilder.append("N°: ").append(nroBanco).append("\n");
+        stringBuilder.append(contasBancarias);
+        return stringBuilder.toString();
     }
 }
