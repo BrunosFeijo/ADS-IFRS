@@ -58,7 +58,7 @@ public class Main {
                     ContaBancaria conta = banco.contemNroConta(nroConta);
                     if (conta != null){
                         banco.fecharConta(conta);
-
+                        if (conta.titular.getContasBancarias().size() == 0) pessoasSemConta.add(conta.titular);
                     }else{
                         System.out.println("Número de conta inválido");
                     }
@@ -68,10 +68,8 @@ public class Main {
                     exemplosContas();
                 }
             }
-
         } while (opcao != 0);
-
-
+        System.out.println("Fim do programa");
     }
 
     public static int menu() {
