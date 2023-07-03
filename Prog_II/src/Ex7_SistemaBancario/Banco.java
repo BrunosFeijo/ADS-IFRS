@@ -46,22 +46,19 @@ public class Banco {
     }
 
     public void fecharConta(ContaBancaria contaBancaria) {
-        if (contemConta(contaBancaria)) {
-            contasBancarias.remove(contaBancaria);
-            contaBancaria.titular.removerContaBancaria(contaBancaria);
-            System.out.println("Conta fechada!");
-        } else {
-            System.out.println("Conta Bancária não encontrada!");
-        }
+        contasBancarias.remove(contaBancaria);
+        contaBancaria.titular.removerContaBancaria(contaBancaria);
+        System.out.println("Conta fechada!");
     }
 
     private boolean contemConta(ContaBancaria contaBancaria) {
         return contasBancarias.contains(contaBancaria);
     }
-    public ContaBancaria contemNroConta(int nroConta){
-        for (ContaBancaria conta: contasBancarias){
-            if (conta.nroConta == nroConta){
-               return conta;
+
+    public ContaBancaria contemNroConta(int nroConta) {
+        for (ContaBancaria conta : contasBancarias) {
+            if (conta.nroConta == nroConta) {
+                return conta;
             }
         }
 
