@@ -34,7 +34,7 @@ public class ContaPoupanca extends ContaBancaria {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("-------------------Conta Poupança------------------\n");
         stringBuilder.append("Banco: ").append(banco.getNome()).append("\n");
-        stringBuilder.append("N° da Conta: ").append(nroConta).append("\n");
+        stringBuilder.append("N° da Conta: ").append(String.format("%010d",nroConta)).append("\n");
         stringBuilder.append("Titular: ").append(titular.nome).append(" ").append(titular.sobrenome).append("\n");
         stringBuilder.append("Saldo: ").append(saldo).append("\n");
         stringBuilder.append("Taxa de Rendimento: ").append(rendimento).append("\n");

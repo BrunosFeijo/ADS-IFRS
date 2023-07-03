@@ -90,6 +90,28 @@ public class Main {
         contaBancaria.deposito(200);
 
         //Conta Poupança
+        contaBancaria = new ContaPoupanca(bruno,BancosDisponiveis.getBanco(0),"123456");
+        contaBancaria.deposito(200);
+        contaBancaria = new ContaPoupanca(bruno,BancosDisponiveis.getBanco(1),"123456");
+        contaBancaria.deposito(200);
+        contaBancaria = new ContaPoupanca(bruno,BancosDisponiveis.getBanco(2),"123456");
+        contaBancaria.deposito(200);
+        contaBancaria = new ContaPoupanca(bruno,BancosDisponiveis.getBanco(3),"123456");
+        contaBancaria.deposito(200);
+        contaBancaria = new ContaPoupanca(bruno,BancosDisponiveis.getBanco(4),"123456");
+        contaBancaria.deposito(200);
+
+        contaBancaria = new ContaPoupanca(thais,BancosDisponiveis.getBanco(0),"123456");
+        contaBancaria.deposito(200);
+        contaBancaria = new ContaPoupanca(thais,BancosDisponiveis.getBanco(1),"123456");
+        contaBancaria.deposito(200);
+        contaBancaria = new ContaPoupanca(thais,BancosDisponiveis.getBanco(2),"123456");
+        contaBancaria.deposito(200);
+        contaBancaria = new ContaPoupanca(thais,BancosDisponiveis.getBanco(3),"123456");
+        contaBancaria.deposito(200);
+        contaBancaria = new ContaPoupanca(thais,BancosDisponiveis.getBanco(4),"123456");
+        contaBancaria.deposito(200);
+
 
 
         System.out.println(bruno);
