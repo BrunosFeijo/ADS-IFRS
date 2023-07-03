@@ -56,6 +56,13 @@ abstract class ContaBancaria {
         this.saldo += valor;
         System.out.println("Deposito realizado");
     }
+    public void transferir(){
+        Scanner entrada = new Scanner(System.in);
+
+    }
+    public void transferir(Banco banco){
+
+    }
 
 
 }

@@ -15,6 +15,7 @@ public class Banco {
         this.nroBanco = nroBanco;
         this.contasBancarias = new ArrayList<>();
         this.numeroDeContas = 0;
+
     }
 
     public String getNome() {
