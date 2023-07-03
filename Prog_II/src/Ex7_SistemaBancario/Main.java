@@ -102,7 +102,7 @@ public class Main {
                             opcao = 0;
                         }
                     } else if (opcao == 2) {
-                        System.out.println("Digite o CPF: ");
+                        System.out.print("Digite o CPF: ");
                         String cpf = entrada.nextLine();
                         entrada.nextLine(); //eliminar linha do buffer
                         boolean encontrado = false;
@@ -124,17 +124,17 @@ public class Main {
         Banco banco = BancosDisponiveis.procuraBanco();
 
         System.out.print("Digite uma senha para a conta: ");
-        int senha = entrada.nextInt();
-
+        String senha = entrada.nextLine();
+        entrada.nextLine(); //eliminar linha do buffer
         do {
             System.out.println("Qual tipo de conta: ");
             System.out.println("1 - Conta Corrente");
             System.out.println("2 - Conta Poupança");
             opcao = entrada.nextInt();
             if (opcao == 1) {
-                ContaBancaria contaBancaria = new ContaCorrente(titular, banco, String.valueOf(senha));
+                ContaBancaria contaBancaria = new ContaCorrente(titular, banco, senha);
             } else if (opcao == 2) {
-                ContaBancaria contaBancaria = new ContaPoupanca(titular, banco, String.valueOf(senha));
+                ContaBancaria contaBancaria = new ContaPoupanca(titular, banco, senha);
             }
         } while (opcao < 1 || opcao > 2);
 
@@ -165,7 +165,7 @@ public class Main {
     public static void realizarSaque(){
         Scanner entrada = new Scanner(System.in);
         Banco banco = BancosDisponiveis.procuraBanco();
-        System.out.println("Digite o número da Conta: ");
+        System.out.print("Digite o número da Conta: ");
         int nroConta = entrada.nextInt();
         ContaBancaria conta = banco.procuraConta(nroConta);
         if (conta != null){
@@ -177,7 +177,7 @@ public class Main {
     public static void realizarDeposito(){
         Scanner entrada = new Scanner(System.in);
         Banco banco = BancosDisponiveis.procuraBanco();
-        System.out.println("Digite o número da Conta: ");
+        System.out.print("Digite o número da Conta: ");
         int nroConta = entrada.nextInt();
         ContaBancaria conta = banco.procuraConta(nroConta);
         if (conta != null){
@@ -189,7 +189,7 @@ public class Main {
     public static void realizarTransferencia(){
         Scanner entrada = new Scanner(System.in);
         Banco banco = BancosDisponiveis.procuraBanco();
-        System.out.println("Digite o número da Conta: ");
+        System.out.print("Digite o número da sua Conta: ");
         int nroConta = entrada.nextInt();
         ContaBancaria conta = banco.procuraConta(nroConta);
         if (conta != null){
@@ -201,7 +201,7 @@ public class Main {
     public static void fecharConta(){
         Scanner entrada = new Scanner(System.in);
         Banco banco = BancosDisponiveis.procuraBanco();
-        System.out.println("Digite o número da Conta: ");
+        System.out.print("Digite o número da Conta: ");
         int nroConta = entrada.nextInt();
         ContaBancaria conta = banco.procuraConta(nroConta);
         if (conta != null){

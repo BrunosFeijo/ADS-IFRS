@@ -84,6 +84,7 @@ abstract class ContaBancaria {
                         valor = entrada.nextInt();
                         if (saque(valor)){
                             contaBancaria.deposito(valor);
+                            i = 3;
                             //banco.getContasBancarias().set(banco.getContasBancarias().indexOf(contaBancaria),contaBancaria);
                         }
                     } else {
