@@ -24,7 +24,7 @@ public class ContaCorrente extends ContaBancaria {
         stringBuilder.append("Banco: ").append(banco.getNome()).append("\n");
         stringBuilder.append(String.format("Número da conta: %010d", nroConta)).append("\n");
         stringBuilder.append("Titular: ").append(titular.nome).append(" ").append(titular.sobrenome).append("\n");
-        stringBuilder.append("Saldo: R$").append(String.format("%2f",saldo)).append("\n");
+        stringBuilder.append("Saldo: R$").append(String.format("%.2f",saldo)).append("\n");
         stringBuilder.append("Taxas mensais: ").append(taxasMensais).append("\n");
         return stringBuilder.toString();
     }
