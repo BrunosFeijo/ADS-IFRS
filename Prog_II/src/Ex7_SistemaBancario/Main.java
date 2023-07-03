@@ -103,11 +103,12 @@ public class Main {
                         }
                     } else if (opcao == 2) {
                         System.out.println("Digite o CPF: ");
-                        int cpf = entrada.nextInt();
+                        String cpf = entrada.nextLine();
+                        entrada.nextLine(); //eliminar linha do buffer
                         boolean encontrado = false;
 
                         for (Pessoa pessoa : pessoasSemConta) {
-                            if (pessoa.getCpf().equals(String.valueOf(cpf))) {
+                            if (pessoa.getCpf().equals(cpf)) {
                                 titular = pessoa;
                                 encontrado = true;
                             }
@@ -120,7 +121,6 @@ public class Main {
                 } while (opcao < 1 || opcao > 2);
             }
         } while (opcao < 1 || opcao > 2);
-        System.out.print("Digite o N° do Banco: ");
         Banco banco = BancosDisponiveis.procuraBanco();
 
         System.out.print("Digite uma senha para a conta: ");
@@ -149,7 +149,6 @@ public class Main {
 
         System.out.print("Digite o nome do Cliente: ");
         String nome = entrada.nextLine();
-
         System.out.print("Digite o sobrenome do Cliente: ");
         String sobrenome = entrada.nextLine();
 
@@ -157,10 +156,11 @@ public class Main {
         int idade = entrada.nextInt();
 
         System.out.print("Digite o CPF do Cliente: ");
-        int cpf = entrada.nextInt();
+        String cpf = entrada.nextLine();
+        entrada.nextLine();//eliminar linha do buffer
 
         System.out.println("------------------------------------");
-        return new Pessoa(nome, sobrenome, idade, String.valueOf(cpf));
+        return new Pessoa(nome, sobrenome, idade, cpf);
     }
     public static void realizarSaque(){
         Scanner entrada = new Scanner(System.in);

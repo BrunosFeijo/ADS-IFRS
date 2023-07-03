@@ -14,9 +14,7 @@ public class ContaPoupanca extends ContaBancaria {
     }
 
     public void novoMes() {
-        System.out.println("Informe de rendimentos: +" + (saldo * rendimento));
         saldo += (saldo * rendimento);
-        System.out.println("Novo Saldo: " + saldo);
         saquesMensais = 3;
     }
 

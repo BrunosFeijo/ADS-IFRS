@@ -13,8 +13,6 @@ public class ContaCorrente extends ContaBancaria {
         }else{
             saldo = 0;
         }
-        System.out.println("Cobrada a taxa mensal da conta: R$" + taxasMensais);
-        System.out.println("Novo Saldo: R$" + saldo);
     }
 
     public void setTaxasMensais(double taxasMensais) {
