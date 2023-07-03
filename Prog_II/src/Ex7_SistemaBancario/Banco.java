@@ -29,12 +29,8 @@ public class Banco {
         return nroBanco;
     }
 
-    private ArrayList<ContaBancaria> getContasBancarias() {
-        return contasBancarias;
-    }
-
     public void infoContas() {
-        System.out.println(getContasBancarias());
+        System.out.println(contasBancarias);
     }
 
     public int criarConta(ContaBancaria contaBancaria) {
