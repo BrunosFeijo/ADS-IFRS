@@ -15,7 +15,7 @@ public class Banco {
         this.nroBanco = nroBanco;
         this.contasBancarias = new ArrayList<>();
         this.numeroDeContas = 0;
-
+        BancosDisponiveis.adicionaBanco(this);
     }
 
     public String getNome() {
@@ -53,6 +53,15 @@ public class Banco {
 
     private boolean contemConta(ContaBancaria contaBancaria) {
         return contasBancarias.contains(contaBancaria);
+    }
+    public ContaBancaria contemNroConta(int nroConta){
+        for (ContaBancaria conta: contasBancarias){
+            if (conta.nroConta == nroConta){
+               return conta;
+            }
+        }
+
+        return null;
     }
 
     @Override

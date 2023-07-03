@@ -20,12 +20,14 @@ abstract class ContaBancaria {
     public boolean VerificaSenha(int senha) {
         return senha == Integer.parseInt(this.senha);
     }
+
     public boolean VerificaSenha() {
         Scanner entrada = new Scanner(System.in);
         System.out.print("Digite a senha da conta: ");
         int senha = entrada.nextInt();
         return VerificaSenha(senha);
     }
+
     public void saque() {
         for (int i = 0; i < 3; i++) {
             if (VerificaSenha()) {
@@ -39,29 +41,62 @@ abstract class ContaBancaria {
             }
         }
     }
-    public void saque(double valor) {
+
+    public boolean saque(double valor) {
         if (valor <= this.saldo) {
             this.saldo -= valor;
-            System.out.println("Saque realizado");
+            return true;
         } else {
             System.out.println("Saldo insuficiente");
+            return false;
         }
     }
-    public void deposito(){
+
+    public void deposito() {
         Scanner entrada = new Scanner(System.in);
         System.out.println("Informe o valor a ser depositado: R$");
         deposito(entrada.nextDouble());
     }
-    public void deposito(double valor){
+
+    public void deposito(double valor) {
         this.saldo += valor;
         System.out.println("Deposito realizado");
     }
-    public void transferir(){
-        Scanner entrada = new Scanner(System.in);
-        
-    }
-    public void transferir(Banco banco){
 
+    public void transferir() {
+        transferir(BancosDisponiveis.procuraBanco());
+    }
+
+    public void transferir(Banco banco) {
+        if (banco != null) {
+            Scanner entrada = new Scanner(System.in);
+            ContaBancaria contaBancaria;
+            int nroConta;
+            int valor;
+
+            System.out.print("Para qual conta deseja tranferir? ");
+            nroConta = entrada.nextInt();
+
+            contaBancaria = banco.contemNroConta(nroConta);
+            if (contaBancaria != null){
+                for (int i = 0; i < 3; i++) {
+                    if (VerificaSenha()) {
+                        System.out.print("Digite o valor que deseja transferir: R$");
+                        valor = entrada.nextInt();
+                        if (saque(valor)){
+                            contaBancaria.deposito(valor);
+                        }
+                    } else {
+                        System.out.println("Senha incorreta");
+                        if (i == 2) System.out.println("Operação Cancelada!");
+                    }
+                }
+            }else {
+                System.out.println("Conta inválida!");
+            }
+        } else {
+            System.out.println("Banco inválido");
+        }
     }
 
 
