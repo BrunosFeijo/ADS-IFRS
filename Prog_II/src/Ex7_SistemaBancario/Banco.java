@@ -30,6 +30,10 @@ public class Banco {
         return nroBanco;
     }
 
+    public ArrayList<ContaBancaria> getContasBancarias() {
+        return contasBancarias;
+    }
+
     public void infoContas() {
         System.out.println(contasBancarias);
     }

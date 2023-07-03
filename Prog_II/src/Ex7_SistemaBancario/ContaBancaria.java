@@ -85,6 +85,7 @@ abstract class ContaBancaria {
                         valor = entrada.nextInt();
                         if (saque(valor)){
                             contaBancaria.deposito(valor);
+                            //banco.getContasBancarias().set(banco.getContasBancarias().indexOf(contaBancaria),contaBancaria);
                         }
                     } else {
                         System.out.println("Senha incorreta");
@@ -98,6 +99,4 @@ abstract class ContaBancaria {
             System.out.println("Banco inválido");
         }
     }
-
-
 }
