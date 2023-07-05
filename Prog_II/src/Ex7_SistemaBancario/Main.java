@@ -188,11 +188,14 @@ public class Main {
     }
     public static void realizarTransferencia(){
         Scanner entrada = new Scanner(System.in);
+        System.out.println("\nConta de origem: ");
+        
         Banco banco = BancosDisponiveis.procuraBanco();
         System.out.print("Digite o número da sua Conta: ");
         int nroConta = entrada.nextInt();
         ContaBancaria conta = banco.procuraConta(nroConta);
         if (conta != null){
+            System.out.println("\nConta de destino: ");
             conta.transferir();
         }else{
             System.out.println("Número de conta inválido");
