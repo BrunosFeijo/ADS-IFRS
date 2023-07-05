@@ -13,10 +13,6 @@ public class Aresta {
 
     @Override
     public String toString() {
-        return "Aresta{" +
-                "cidade1=" + cidade1 +
-                ", cidade2=" + cidade2 +
-                ", distancia=" + distancia +
-                '}';
+        return String.format("|%-25s |%-5d |%-25s", cidade1.nomeCidade, distancia, cidade2.nomeCidade);
     }
 }
