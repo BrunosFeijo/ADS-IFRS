@@ -11,15 +11,28 @@ public class Grafo {
         this.cidades = new ArrayList<>();
         this.conexoes = new ArrayList<>();
     }
-    public void infoCidades(){
+
+    public void infoCidades() {
 
     }
-    public void infoConexoes(){}
-    public void cadastraCidade(){
 
+    public void infoConexoes() {
     }
-    public void cadastraConexao(){
 
+    public void cadastraCidade(String nomeCidade) {
+        cidades.add(new Vertice(nomeCidade));
+        System.out.println("Cidade cadastrada!");
     }
+
+    public void cadastraConexao(Vertice cidade1,Vertice cidade2) {
+        if (procuraCidade(cidade1) && procuraCidade(cidade2)){
+
+        }
+    }
+
+    private boolean procuraCidade(Vertice cidade) {
+        return cidades.contains(cidade);
+    }
+
 
 }
