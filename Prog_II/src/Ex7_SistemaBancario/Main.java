@@ -189,7 +189,7 @@ public class Main {
     public static void realizarTransferencia(){
         Scanner entrada = new Scanner(System.in);
         System.out.println("\nConta de origem: ");
-        
+
         Banco banco = BancosDisponiveis.procuraBanco();
         System.out.print("Digite o número da sua Conta: ");
         int nroConta = entrada.nextInt();
