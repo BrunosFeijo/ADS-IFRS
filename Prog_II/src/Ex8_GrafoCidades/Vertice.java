@@ -26,8 +26,9 @@ public class Vertice {
         System.out.println("|----------------------------------------------------------------------|");
     }
     public void infoVertice(){
-        System.out.println("------------Info Vértice------------");
-        System.out.println(nomeCidade);
-        
+        System.out.println("\n------------Info Vértice------------");
+        System.out.println("Cidade: "+ nomeCidade);
+        System.out.println("------Vizinhos------");
+        System.out.println(vizinhanca);
     }
 }
