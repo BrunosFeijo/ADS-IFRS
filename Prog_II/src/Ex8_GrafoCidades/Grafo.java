@@ -108,8 +108,7 @@ public class Grafo {
         }
         return null;
     }
-
-    private void ordenarPorDistancia(List<Aresta> conexoes, int menor, int maior) {
+    private void ordenarPorDistancia(List<Aresta> conexoes, int menor, int maior) { // quicksort
         if (conexoes.isEmpty()) {
             return;
         }
