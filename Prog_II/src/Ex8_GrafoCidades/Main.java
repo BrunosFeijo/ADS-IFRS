@@ -11,7 +11,6 @@ public class Main {
         do {
             opcao = menu();
             switch (opcao) {
-
                 case 1 -> cadastrarCidade();
                 case 2 -> cadastrarConexao();
                 case 3 -> listarCidades();
