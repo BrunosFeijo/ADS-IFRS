@@ -31,4 +31,7 @@ public class Vertice {
         System.out.println("------Vizinhos------");
         System.out.println(vizinhanca);
     }
+    public String getNomeCidade(){
+        return nomeCidade;
+    }
 }

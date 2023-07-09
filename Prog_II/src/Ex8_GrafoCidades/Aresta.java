@@ -15,4 +15,7 @@ public class Aresta {
     public String toString() {
         return String.format("|%-25s |%-5d |%-25s", cidade1.nomeCidade, distancia, cidade2.nomeCidade);
     }
+    public int getDistancia(){
+        return distancia;
+    }
 }
