@@ -6,8 +6,12 @@ public class Main {
         grafo.cadastraConexao("Porto Alegre", "Canoas", 20);
         grafo.cadastraConexao("Porto Alegre", "Gravatai", 15);
         grafo.cadastraConexao("Porto Alegre", "Cachoeirinha", 10);
+        grafo.cadastraConexao("Canoas", "Cachoeirinha", 25);
 
         grafo.infoConexoes();
-        
+        grafo.infoCidades();
+        grafo.infoCidades("Porto Alegre");
+        grafo.infoCidades("Canoas");
+
     }
 }

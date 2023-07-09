@@ -19,19 +19,17 @@ public class Vertice {
     }
     public void infoConexoes(){
         System.out.println("\nConexões: ");
-        System.out.println("|Cidade1------------------Distância (km)---Cidade2---------------------|");
+        System.out.println("|---------Cidade1---------|-Distância (km)-|---------Cidade2---------|");
         for(Aresta aresta: conexoes){
             System.out.println(aresta);
         }
-        System.out.println("|----------------------------------------------------------------------|");
+        System.out.println("|-------------------------|----------------|-------------------------|");
     }
     public void infoVertice(){
-        System.out.println("\n------------Info Vértice------------");
         System.out.println("Cidade: "+ nomeCidade);
-        System.out.println("------Vizinhos------");
-        System.out.println(vizinhanca);
     }
-    public String getNomeCidade(){
+    @Override
+    public String toString() {
         return nomeCidade;
     }
 }

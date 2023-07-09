@@ -14,9 +14,21 @@ public class Grafo {
     }
 
     public void infoCidades() {
-        cidades.sort(Comparator.comparing(Vertice::getNomeCidade));
+        cidades.sort(Comparator.comparing(Vertice::toString));
+        System.out.println("\n------------Info Vértices------------");
         for(Vertice vertice:cidades){
             vertice.infoVertice();
+        }
+    }
+    public void infoCidades(String cidade) {
+        for(Vertice vertice:cidades){
+            if (vertice.nomeCidade.equalsIgnoreCase(cidade)){
+                System.out.println("\n------------Vizinhos de " + cidade + " ------------");
+                vertice.conexoes.sort(Comparator.comparing(Aresta::getDistancia));
+                for (Aresta aresta: vertice.conexoes){
+                    System.out.println();
+                }
+            }
         }
     }
 
