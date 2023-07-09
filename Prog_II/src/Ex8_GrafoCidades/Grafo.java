@@ -13,7 +13,7 @@ public class Grafo {
     }
 
     public void infoCidades() {
-
+        
     }
 
     public void infoConexoes() {
@@ -37,7 +37,7 @@ public class Grafo {
 
 
         this.conexoes.add(aresta);
-        
+
         vertice1.vizinhanca.add(vertice2);
         vertice1.conexoes.add(aresta);
 
