@@ -13,7 +13,7 @@ public class Aresta {
 
     @Override
     public String toString() {
-        return String.format("|%-25s |%-5d |%-25s", cidade1.nomeCidade, distancia, cidade2.nomeCidade);
+        return String.format("|%-24s |%-15d |%-25s|", cidade1.nomeCidade, distancia, cidade2.nomeCidade);
     }
     public int getDistancia(){
         return distancia;

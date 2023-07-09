@@ -1,7 +1,6 @@
 package Ex8_GrafoCidades;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -23,10 +22,11 @@ public class Grafo {
 
     public void infoConexoes() {
         conexoes.sort(Comparator.comparing(Aresta::getDistancia));
-        System.out.println("|Cidade1------------------Distância (km)---Cidade2---------------------|");
+        System.out.println("|---------Cidade1---------|-Distância (km)-|---------Cidade2---------|");
         for(Aresta aresta:conexoes){
             System.out.println(aresta);
         }
+        System.out.println("|-------------------------|----------------|-------------------------|");
     }
 
     public void cadastraCidade(String nomeCidade) {
@@ -41,8 +41,8 @@ public class Grafo {
         if (!contemCidade(cidade2)) {
             cadastraCidade(cidade2);
         }
-        Vertice vertice1 = retornaVertice(cidade1);
-        Vertice vertice2 = retornaVertice(cidade2);
+        Vertice vertice1 = procuraCidade(cidade1);
+        Vertice vertice2 = procuraCidade(cidade2);
         Aresta aresta = new Aresta(vertice1,vertice2,distancia);
 
 
@@ -63,7 +63,7 @@ public class Grafo {
         }
         return false;
     }
-    private Vertice retornaVertice(String cidade){
+    private Vertice procuraCidade(String cidade){
         for (Vertice vertice: cidades){
             if (vertice.nomeCidade.equalsIgnoreCase(cidade)) {
                 return vertice;
