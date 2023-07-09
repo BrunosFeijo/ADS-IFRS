@@ -16,17 +16,22 @@ public class Grafo {
     public void infoCidades() {
         cidades.sort(Comparator.comparing(Vertice::toString));
         System.out.println("\n------------Info Vértices------------");
-        for(Vertice vertice:cidades){
+        for (Vertice vertice : cidades) {
             vertice.infoVertice();
         }
     }
+
     public void infoCidades(String cidade) {
-        for(Vertice vertice:cidades){
-            if (vertice.nomeCidade.equalsIgnoreCase(cidade)){
+        for (Vertice vertice : cidades) {
+            if (vertice.nomeCidade.equalsIgnoreCase(cidade)) {
                 System.out.println("\n------------Vizinhos de " + cidade + " ------------");
                 vertice.conexoes.sort(Comparator.comparing(Aresta::getDistancia));
-                for (Aresta aresta: vertice.conexoes){
-                    System.out.println();
+                for (Aresta aresta : vertice.conexoes) {
+                    if (vertice.equals(aresta.cidade1)) {
+                        System.out.println(aresta.cidade2.nomeCidade + " - " + aresta.distancia + "km");
+                    } else {
+                        System.out.println(aresta.cidade1.nomeCidade + " - " + aresta.distancia + "km");
+                    }
                 }
             }
         }
@@ -35,18 +40,21 @@ public class Grafo {
     public void infoConexoes() {
         conexoes.sort(Comparator.comparing(Aresta::getDistancia));
         System.out.println("|---------Cidade1---------|-Distância (km)-|---------Cidade2---------|");
-        for(Aresta aresta:conexoes){
+        for (Aresta aresta : conexoes) {
             System.out.println(aresta);
         }
         System.out.println("|-------------------------|----------------|-------------------------|");
     }
 
-    public void cadastraCidade(String nomeCidade) {
-        cidades.add(new Vertice(nomeCidade));
-        System.out.println("Cidade cadastrada!");
+    public boolean cadastraCidade(String nomeCidade) {
+        if (!contemCidade(nomeCidade)) {
+            cidades.add(new Vertice(nomeCidade));
+            return true;
+        }
+        return false;
     }
 
-    public void cadastraConexao(String cidade1, String cidade2,int distancia) {
+    public void cadastraConexao(String cidade1, String cidade2, int distancia) {
         if (!contemCidade(cidade1)) {
             cadastraCidade(cidade1);
         }
@@ -55,7 +63,7 @@ public class Grafo {
         }
         Vertice vertice1 = procuraCidade(cidade1);
         Vertice vertice2 = procuraCidade(cidade2);
-        Aresta aresta = new Aresta(vertice1,vertice2,distancia);
+        Aresta aresta = new Aresta(vertice1, vertice2, distancia);
 
 
         this.conexoes.add(aresta);
@@ -75,16 +83,15 @@ public class Grafo {
         }
         return false;
     }
-    private Vertice procuraCidade(String cidade){
-        for (Vertice vertice: cidades){
+
+    private Vertice procuraCidade(String cidade) {
+        for (Vertice vertice : cidades) {
             if (vertice.nomeCidade.equalsIgnoreCase(cidade)) {
                 return vertice;
             }
         }
         return null;
     }
-
-
 
 
 }
