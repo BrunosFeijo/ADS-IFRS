@@ -2,10 +2,11 @@ package Ex9_Livraria_v3;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Livraria {
-    private ArrayList<Livro> livros;
+    protected List<Livro> livros;
 
     public Livraria() {
         livros = new ArrayList<>();
