@@ -14,31 +14,40 @@ public class Grafo {
     }
 
     public void infoCidades() {
-        cidades.sort(Comparator.comparing(Vertice::toString));
-        System.out.println("\n------------Info Vértices------------");
+        if(cidades.isEmpty()){
+            System.out.println("Nenhuma cidade cadastrada!");
+            return;
+        }
+        System.out.println("\n------------Cidades Cadastradas------------");
         for (Vertice vertice : cidades) {
             vertice.infoVertice();
         }
     }
 
     public void infoCidades(String cidade) {
-        for (Vertice vertice : cidades) {
-            if (vertice.nomeCidade.equalsIgnoreCase(cidade)) {
-                System.out.println("\n------------Vizinhos de " + cidade + " ------------");
-                vertice.conexoes.sort(Comparator.comparing(Aresta::getDistancia));
-                for (Aresta aresta : vertice.conexoes) {
-                    if (vertice.equals(aresta.cidade1)) {
-                        System.out.println(aresta.cidade2.nomeCidade + " - " + aresta.distancia + "km");
-                    } else {
-                        System.out.println(aresta.cidade1.nomeCidade + " - " + aresta.distancia + "km");
+        if (contemCidade(cidade)) {
+            for (Vertice vertice : cidades) {
+                if (vertice.nomeCidade.equalsIgnoreCase(cidade)) {
+                    System.out.println("\n------------Vizinhos de " + cidade + " ------------");
+                    for (Aresta aresta : vertice.conexoes) {
+                        if (vertice.equals(aresta.cidade1)) {
+                            System.out.println(aresta.cidade2.nomeCidade + " - " + aresta.distancia + "km");
+                        } else {
+                            System.out.println(aresta.cidade1.nomeCidade + " - " + aresta.distancia + "km");
+                        }
                     }
                 }
             }
+        }else {
+            System.out.println("Cidade não encontrada!");
         }
     }
 
     public void infoConexoes() {
-        conexoes.sort(Comparator.comparing(Aresta::getDistancia));
+        if(conexoes.isEmpty()){
+            System.out.println("Nenhuma conexão cadastrada!");
+            return;
+        }
         System.out.println("|---------Cidade1---------|-Distância (km)-|---------Cidade2---------|");
         for (Aresta aresta : conexoes) {
             System.out.println(aresta);
@@ -49,6 +58,7 @@ public class Grafo {
     public boolean cadastraCidade(String nomeCidade) {
         if (!contemCidade(nomeCidade)) {
             cidades.add(new Vertice(nomeCidade));
+            cidades.sort(Comparator.comparing(Vertice::toString));
             return true;
         }
         return false;
@@ -67,12 +77,15 @@ public class Grafo {
 
 
         this.conexoes.add(aresta);
+        conexoes.sort(Comparator.comparing(Aresta::getDistancia));
 
         vertice1.vizinhanca.add(vertice2);
         vertice1.conexoes.add(aresta);
+        vertice1.conexoes.sort(Comparator.comparing(Aresta::getDistancia));
 
         vertice2.vizinhanca.add(vertice1);
         vertice2.conexoes.add(aresta);
+        vertice2.conexoes.sort(Comparator.comparing(Aresta::getDistancia));
     }
 
     private boolean contemCidade(String cidade) {

@@ -7,7 +7,6 @@ public class Main {
     static ArrayList<Pessoa> pessoasSemConta = new ArrayList<>();
 
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
         int opcao;
         do {
             opcao = menu();

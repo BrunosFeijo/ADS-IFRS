@@ -26,7 +26,7 @@ public class Vertice {
         System.out.println("|-------------------------|----------------|-------------------------|");
     }
     public void infoVertice(){
-        System.out.println("Cidade: "+ nomeCidade);
+        System.out.println(nomeCidade);
     }
     @Override
     public String toString() {

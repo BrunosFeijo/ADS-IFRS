@@ -1,19 +1,82 @@
 package Ex8_GrafoCidades;
 
-public class Main {
-    public static void main(String[] args) {
-        Grafo grafo = new Grafo();
-        exemplos(grafo);
+import Ex7_SistemaBancario.BancosDisponiveis;
 
-        grafo.infoConexoes();
-        grafo.infoCidades();
-        grafo.infoCidades("Porto Alegre");
-        grafo.infoCidades("Canoas");
-        grafo.infoCidades("Rio Grande");
-        grafo.infoCidades("Esteio");
+import java.util.Scanner;
+
+public class Main {
+    static Grafo grafo = new Grafo();
+    public static void main(String[] args) {
+        int opcao;
+        do {
+            opcao = menu();
+            switch (opcao) {
+
+                case 1 -> cadastrarCidade();
+                case 2 -> cadastrarConexao();
+                case 3 -> listarCidades();
+                case 4 -> listarConexoes();
+                case 5 -> listarVizinhanca();
+                case 6 -> exemplos();
+            }
+        } while (opcao != 0);
+        System.out.println("Fim do programa");
 
     }
-    public static void exemplos(Grafo grafo){
+    public static int menu() {
+        Scanner entrada = new Scanner(System.in);
+        int opcao = -1;
+        System.out.println("-----------------Menu-----------------");
+        System.out.println("1 - Cadastrar Cidade");
+        System.out.println("2 - Cadastrar Conexão");
+        System.out.println("3 - Listar todas as cidades cadastratadas");
+        System.out.println("4 - Listar todas as conexões");
+        System.out.println("5 - Listar as conexões de uma cidade específica");
+        System.out.println("6 - Instanciar exemplos prontos");
+        System.out.println("0 - Sair");
+        System.out.println("--------------------------------------");
+        System.out.print("Digite uma opção: ");
+        while (opcao < 0 || opcao > 6) {
+            opcao = entrada.nextInt();
+            if (opcao < 0 || opcao > 6) System.out.println("Opção inválida!");
+        }
+        return opcao;
+    }
+    public static void cadastrarCidade(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Digite o nome da cidade: ");
+        boolean cadastrada = grafo.cadastraCidade(entrada.nextLine());
+        if (cadastrada){
+            System.out.println("Cidade cadastrada");
+        }else{
+            System.out.println("Registro duplicado! Cidade já cadastrada!");
+        }
+    }
+    public static void cadastrarConexao(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Digite o nome da primeira cidade: ");
+        String cidade1 = entrada.nextLine();
+        System.out.print("Digite o nome da segunda cidade: ");
+        String cidade2 = entrada.nextLine();
+        System.out.print("Digite a distância entre elas: ");
+        int distancia = entrada.nextInt();
+
+        grafo.cadastraConexao(cidade1,cidade2,distancia);
+        System.out.println("Conexão cadastrada!");
+    }
+    public static void listarCidades(){
+        grafo.infoCidades();
+    }
+    public static void listarConexoes(){
+        grafo.infoConexoes();
+    }
+    public static void listarVizinhanca(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Digite o nome da cidade para ver suas conexões: ");
+        grafo.infoCidades(entrada.nextLine());
+    }
+
+    public static void exemplos(){
         grafo.cadastraConexao("Porto Alegre", "Canoas", 20);
         grafo.cadastraConexao("Porto Alegre", "Gramado", 117);
         grafo.cadastraConexao("Porto Alegre", "Pelotas", 262);
