@@ -117,7 +117,7 @@ public class Livraria {
         return stringBuilder.toString();
     }
 
-    public double informarValor() {
+    private double informarValor() {
         Scanner entrada = new Scanner(System.in);
         System.out.print("Informe valor limite: $");
 
@@ -135,7 +135,7 @@ public class Livraria {
         return stringBuilder.toString();
     }
 
-    public String informarCategoria() {
+    private String informarCategoria() {
         Scanner entrada = new Scanner(System.in);
         String[] categorias = new String[livros.size()];
         int tamanho = 0;
@@ -176,7 +176,7 @@ public class Livraria {
         return stringBuilder.toString();
     }
 
-    public int informarQuantidadeEmEstoque() {
+    private int informarQuantidadeEmEstoque() {
         Scanner entrada = new Scanner(System.in);
         System.out.print("Informe a quantidade buscada: ");
 
