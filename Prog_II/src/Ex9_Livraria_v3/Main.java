@@ -66,7 +66,7 @@ public class Main {
                 }
                 case 7 -> System.out.println(livros.valorTotalEmEstoque());
                 case 8 -> {
-                    String arquivo = "teste.txt";
+                    String arquivo = "Livros Prog II.txt";
                     String texto = Arquivos.leitor(arquivo);
 
                     if (texto.isEmpty()) {
@@ -81,7 +81,7 @@ public class Main {
                     }
                 }
                 case 9 -> {
-                    String caminho = "teste.txt";
+                    String caminho = "Livros Prog II.txt";
                     String texto = livros.formatoEntreVirgulas();
                     boolean ok = Arquivos.escritor(caminho, texto);
                     if (ok){
@@ -95,7 +95,7 @@ public class Main {
     }
 
     public static void encerrarPrograma(Livraria livros) {
-        String caminho = "teste.txt";
+        String caminho = "Livros Prog II.txt";
         String texto = livros.formatoEntreVirgulas();
         Scanner entrada = new Scanner(System.in);
 
