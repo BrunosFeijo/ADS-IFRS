@@ -115,14 +115,13 @@ public class Grafo {
             int i = menor - 1;
 
             for (int j = menor; j < maior; j++) {
-                if (conexoes.get(j).distancia <= pivo.distancia) {
+                if (conexoes.get(j).distancia < pivo.distancia) {
                     i++;
                     Aresta aux = conexoes.get(i);
                     conexoes.set(i, conexoes.get(j));
                     conexoes.set(j, aux);
                 }
             }
-
             Aresta aux = conexoes.get(i + 1);
             conexoes.set(i + 1, pivo);
             conexoes.set(maior, aux);

@@ -79,7 +79,8 @@ public class Vetor {
     public int getTamanho() {
         return tamanho;
     }
-    public boolean vazio(){
+
+    public boolean vazio() {
         return tamanho == 0;
     }
 
@@ -282,7 +283,8 @@ public class Vetor {
         }
         return iteradorTrocas;
     }
-    public boolean limparVetor(){
+
+    public boolean limparVetor() {
         if (vazio()) return false;
 
         tamanho = 0;
