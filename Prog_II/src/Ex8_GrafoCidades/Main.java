@@ -75,7 +75,6 @@ public class Main {
         System.out.print("Digite o nome da cidade para ver suas conexões: ");
         grafo.infoCidades(entrada.nextLine());
     }
-
     public static void exemplos(){
         grafo.cadastraConexao("Porto Alegre", "Canoas", 20);
         grafo.cadastraConexao("Porto Alegre", "Gramado", 117);
