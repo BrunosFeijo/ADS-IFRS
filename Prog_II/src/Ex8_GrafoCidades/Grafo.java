@@ -14,7 +14,7 @@ public class Grafo {
     }
 
     public void infoCidades() {
-        if(cidades.isEmpty()){
+        if (cidades.isEmpty()) {
             System.out.println("Nenhuma cidade cadastrada!");
             return;
         }
@@ -38,13 +38,13 @@ public class Grafo {
                     }
                 }
             }
-        }else {
+        } else {
             System.out.println("Cidade não encontrada!");
         }
     }
 
     public void infoConexoes() {
-        if(conexoes.isEmpty()){
+        if (conexoes.isEmpty()) {
             System.out.println("Nenhuma conexão cadastrada!");
             return;
         }
@@ -104,6 +104,32 @@ public class Grafo {
             }
         }
         return null;
+    }
+
+    private void ordenarPorDistancia(List<Aresta> conexoes, int menor, int maior) {
+        if (conexoes.isEmpty()) {
+            return;
+        }
+        if (menor < maior) {
+            Aresta pivo = conexoes.get(maior);
+            int i = menor - 1;
+
+            for (int j = menor; j < maior; j++) {
+                if (conexoes.get(j).distancia <= pivo.distancia) {
+                    i++;
+                    Aresta aux = conexoes.get(i);
+                    conexoes.set(i, conexoes.get(j));
+                    conexoes.set(j, aux);
+                }
+            }
+
+            Aresta aux = conexoes.get(i + 1);
+            conexoes.set(i + 1, pivo);
+            conexoes.set(maior, aux);
+
+            ordenarPorDistancia(conexoes, menor, i);
+            ordenarPorDistancia(conexoes, i + 2, maior);
+        }
     }
 
 
