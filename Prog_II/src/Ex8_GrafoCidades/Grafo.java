@@ -26,7 +26,7 @@ public class Grafo {
 
     public void cadastraConexao(Vertice cidade1,Vertice cidade2) {
         if (procuraCidade(cidade1) && procuraCidade(cidade2)){
-
+            
         }
     }
 
