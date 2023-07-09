@@ -13,7 +13,7 @@ public class Grafo {
     }
 
     public void infoCidades() {
-        
+
     }
 
     public void infoConexoes() {
@@ -25,10 +25,10 @@ public class Grafo {
     }
 
     public void cadastraConexao(String cidade1, String cidade2,int distancia) {
-        if (!procuraCidade(cidade1)) {
+        if (!contemCidade(cidade1)) {
             cadastraCidade(cidade1);
         }
-        if (!procuraCidade(cidade2)) {
+        if (!contemCidade(cidade2)) {
             cadastraCidade(cidade2);
         }
         Vertice vertice1 = retornaVertice(cidade1);
@@ -45,7 +45,7 @@ public class Grafo {
         vertice2.conexoes.add(aresta);
     }
 
-    private boolean procuraCidade(String cidade) {
+    private boolean contemCidade(String cidade) {
         for (Vertice vertice : cidades) {
             if (vertice.nomeCidade.equalsIgnoreCase(cidade)) {
                 return true;
