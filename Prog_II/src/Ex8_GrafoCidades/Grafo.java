@@ -77,15 +77,18 @@ public class Grafo {
 
 
         this.conexoes.add(aresta);
-        conexoes.sort(Comparator.comparing(Aresta::getDistancia));
+        //conexoes.sort(Comparator.comparing(Aresta::getDistancia));
+        ordenarPorDistancia(conexoes, 0, conexoes.size() - 1);
 
         vertice1.vizinhanca.add(vertice2);
         vertice1.conexoes.add(aresta);
-        vertice1.conexoes.sort(Comparator.comparing(Aresta::getDistancia));
+        //vertice1.conexoes.sort(Comparator.comparing(Aresta::getDistancia));
+        ordenarPorDistancia(vertice1.conexoes, 0, vertice1.conexoes.size() - 1);
 
         vertice2.vizinhanca.add(vertice1);
         vertice2.conexoes.add(aresta);
-        vertice2.conexoes.sort(Comparator.comparing(Aresta::getDistancia));
+        //vertice2.conexoes.sort(Comparator.comparing(Aresta::getDistancia));
+        ordenarPorDistancia(vertice2.conexoes, 0, vertice2.conexoes.size() - 1);
     }
 
     private boolean contemCidade(String cidade) {
@@ -126,8 +129,8 @@ public class Grafo {
             conexoes.set(i + 1, pivo);
             conexoes.set(maior, aux);
 
-            ordenarPorDistancia(conexoes, menor, i);
-            ordenarPorDistancia(conexoes, i + 2, maior);
+            ordenarPorDistancia(conexoes, menor, i - 1);
+            ordenarPorDistancia(conexoes, i + 1, maior);
         }
     }
 
