@@ -6,16 +6,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    static List<Livraria> listaDeFiliais = new ArrayList<>();
     public static void main(String[] args) throws FileNotFoundException {
-        Livraria livros = new Livraria(); //já incluída uma biblioteca padrão
-        Filial filial = new Filial("01","Teste","rua Teste","5133876733");
+        ListaDeFiliais.cadastrarFilial(new Filial("01","Teste","rua Teste","5133876733"));
 
-        int op = menu(livros);
+        int op = menu();
         while (op != 0) {
-            op = menu(livros);
+            op = menu();
             if (op == 0) {
-                encerrarPrograma(livros);
+                encerrarPrograma();
             }
         }
     }
@@ -37,20 +35,21 @@ public class Main {
         System.out.println("------------------------------------------");
         System.out.print("Informe a opção desejada: ");
         int opcao = entrada.nextInt();
-        opcoes(opcao, livros);
+        opcoes(opcao);
 
         return opcao;
     }
 
-    public static void opcoes(int op, Livraria livros) {
+    public static void opcoes(int op) {
         if (op < 0 || op > 9) {
             System.out.println("Opção inválida!");
         } else {
+            Filial filial = escolherFilial();
             switch (op) {
-                case 1 -> livros.cadastrarLivro();
-                case 2 -> System.out.println(livros);
+                case 1 -> filial.cadastrarLivro();
+                case 2 -> System.out.println(filial);
                 case 3 -> {
-                    Livro livro = livros.buscaPorTitulo();
+                    Livro livro = filial.buscaPorTitulo();
                     if (livro != null) {
                         System.out.println(livro);
                     } else {
@@ -58,18 +57,18 @@ public class Main {
                     }
                 }
                 case 4 -> {
-                    String listaLivros = livros.buscaPorCategoria();
+                    String listaLivros = filial.buscaPorCategoria();
                     System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado nesta categoria");
                 }
                 case 5 -> {
-                    String listaLivros = livros.buscaPorValor();
+                    String listaLivros = filial.buscaPorValor();
                     System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com preço menor que o informado");
                 }
                 case 6 -> {
-                    String listaLivros = livros.buscaPorQuantidadeEmEstoque();
+                    String listaLivros = filial.buscaPorQuantidadeEmEstoque();
                     System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com preço menor que o informado");
                 }
-                case 7 -> System.out.println(livros.valorTotalEmEstoque());
+                case 7 -> System.out.println(filial.valorTotalEmEstoque());
                 case 8 -> {
                     String arquivo = "Livros Prog II.txt";
                     String texto = Arquivos.leitor(arquivo);
@@ -77,7 +76,7 @@ public class Main {
                     if (texto.isEmpty()) {
                         System.out.println("Arquivo vazio");
                     } else {
-                        boolean ok = livros.adicionarLote(texto);
+                        boolean ok = filial.adicionarLote(texto);
                         if (ok) {
                             System.out.println("Livraria atualizada com sucesso");
                         } else {
@@ -87,7 +86,7 @@ public class Main {
                 }
                 case 9 -> {
                     String caminho = "Livros Prog II.txt";
-                    String texto = livros.formatoEntreVirgulas();
+                    String texto = filial.formatoEntreVirgulas();
                     boolean ok = Arquivos.escritor(caminho, texto);
                     if (ok){
                         System.out.println("Arquivo de Estoque atualizado com sucesso");
