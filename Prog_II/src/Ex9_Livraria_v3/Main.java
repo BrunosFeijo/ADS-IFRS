@@ -18,12 +18,12 @@ public class Main {
         }
     }
 
-    public static int menu(Livraria livros) {
+    public static int menu() {
         Scanner entrada = new Scanner(System.in);
 
         System.out.println("-------------------Menu-------------------");
         System.out.println("1- Cadastrar novo livro");
-        System.out.println("2- Listar livros");
+        System.out.println("2- Listagem de Estoque");
         System.out.println("3- Buscar livro por nome");
         System.out.println("4- Buscar livro por categoria");
         System.out.println("5- Buscar livro por valor");
@@ -44,7 +44,7 @@ public class Main {
         if (op < 0 || op > 9) {
             System.out.println("Opção inválida!");
         } else {
-            Filial filial = escolherFilial();
+            Filial filial = ListaDeFiliais.escolherFilial();
             switch (op) {
                 case 1 -> filial.cadastrarLivro();
                 case 2 -> System.out.println(filial);
@@ -113,4 +113,5 @@ public class Main {
             case 2 -> System.exit(0);
         }
     }
+
 }

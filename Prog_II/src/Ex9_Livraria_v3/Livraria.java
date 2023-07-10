@@ -100,9 +100,6 @@ public class Livraria {
         }
         return null;
     }
-
-
-
     public int buscaQuantidadeEmEstoque(String nome) {
         for (Livro livro : livros) {
             if (nome.equalsIgnoreCase(livro.getTitulo())) return livro.getQtd();
@@ -110,7 +107,6 @@ public class Livraria {
 
         return -1;
     }
-
     public String buscaPorValor() {
         double valor = informarValor();
         StringBuilder stringBuilder = new StringBuilder();
