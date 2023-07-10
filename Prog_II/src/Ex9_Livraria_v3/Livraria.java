@@ -38,12 +38,13 @@ public class Livraria {
         int qtd = entrada.nextInt();
 
         Livro livro = new Livro(titulo, codigo, editora, categoria, ano, valor, qtd);
-        livros.add(livro);
+        cadastrarLivro(livro);
 
         System.out.println("Livro cadastrado com sucesso!\n");
     }
     public void cadastrarLivro(Livro livro){
         livros.add(livro);
+        ListaDeFiliais.cadastrarLivro(livro);
     }
 
     public void bibliotecaPadrao() {
@@ -227,7 +228,7 @@ public class Livraria {
                 }
                 //Se não existir adicionar livro
                 if (!livroExiste) {
-                    livros.add(new Livro(linhaAtual[1], Integer.parseInt(linhaAtual[0]),
+                    cadastrarLivro(new Livro(linhaAtual[1], Integer.parseInt(linhaAtual[0]),
                             linhaAtual[4], linhaAtual[3], Integer.parseInt(linhaAtual[2]),
                             Double.parseDouble(linhaAtual[5].replace("R$", "")), Integer.parseInt(linhaAtual[6])));
                 }

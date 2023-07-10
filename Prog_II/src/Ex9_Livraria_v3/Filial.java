@@ -10,7 +10,7 @@ public class Filial extends Livraria{
 
     public Filial(String codigo, String nome, String endereco, String contato) {
         super();
-        this.codigo = "#FL0" + codigo;
+        this.codigo = "#FL" + codigo;
         this.nome = nome;
         this.endereco = endereco;
         this.contato = contato;
@@ -47,6 +47,8 @@ public class Filial extends Livraria{
     public void setContato(String contato) {
         this.contato = contato;
     }
+
+
 
 
 }

@@ -1,9 +1,12 @@
 package Ex9_Livraria_v3;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    static List<Livraria> listaDeFiliais = new ArrayList<>();
     public static void main(String[] args) throws FileNotFoundException {
         Livraria livros = new Livraria(); //já incluída uma biblioteca padrão
         Filial filial = new Filial("01","Teste","rua Teste","5133876733");
