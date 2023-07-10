@@ -8,7 +8,7 @@ public class Filial extends Livraria{
     private String endereco;
     private String contato;
 
-    public Filial(String codigo, String nome, String endereco, String contato, List<Livro> livros) {
+    public Filial(String codigo, String nome, String endereco, String contato) {
         super();
         this.codigo = "#FL0" + codigo;
         this.nome = nome;

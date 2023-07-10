@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         Livraria livros = new Livraria(); //já incluída uma biblioteca padrão
+        Filial filial = new Filial("01","Teste","rua Teste","5133876733");
+
         int op = menu(livros);
         while (op != 0) {
             op = menu(livros);

@@ -42,6 +42,9 @@ public class Livraria {
 
         System.out.println("Livro cadastrado com sucesso!\n");
     }
+    public void cadastrarLivro(Livro livro){
+        livros.add(livro);
+    }
 
     public void bibliotecaPadrao() {
         Livro livro1 = new Livro("1984", 1, "Companhia das Letras", "Distopia", 1949, 39.90, 7);
