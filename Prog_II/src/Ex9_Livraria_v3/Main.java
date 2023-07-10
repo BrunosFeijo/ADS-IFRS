@@ -98,7 +98,7 @@ public class Main {
         }
     }
 
-    public static void encerrarPrograma(Livraria livros) {
+    public static void encerrarPrograma() {
         String caminho = "Livros Prog II.txt";
         String texto = livros.formatoEntreVirgulas();
         Scanner entrada = new Scanner(System.in);
