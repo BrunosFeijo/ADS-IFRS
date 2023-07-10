@@ -87,22 +87,21 @@ public class Livraria {
         livros.add(livro17);
         livros.add(livro18);
     }
-
     public Livro buscaPorTitulo() {
-        String nome = informarTitulo();
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Informe o nome do livro procurado: ");
+
+        return buscaPorTitulo(entrada.nextLine());
+    }
+
+    public Livro buscaPorTitulo(String nome) {
         for (Livro livro : livros) {
             if (livro.getTitulo().equals(nome)) return livro;
         }
         return null;
     }
 
-    private String informarTitulo() {
-        Scanner entrada = new Scanner(System.in);
 
-        System.out.print("Informe o nome do livro procurado: ");
-
-        return entrada.nextLine();
-    }
 
     public int buscaQuantidadeEmEstoque(String nome) {
         for (Livro livro : livros) {
