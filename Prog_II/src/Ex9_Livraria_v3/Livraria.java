@@ -42,7 +42,8 @@ public class Livraria {
 
         System.out.println("Livro cadastrado com sucesso!\n");
     }
-    public void cadastrarLivro(Livro livro){
+
+    public void cadastrarLivro(Livro livro) {
         livros.add(livro);
         ListaDeFiliais.cadastrarLivro(livro);
     }

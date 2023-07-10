@@ -1,6 +1,7 @@
 package Ex9_Livraria_v3;
 
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class Livro {
     private String titulo;
@@ -83,14 +84,18 @@ public class Livro {
         this.qtd = qtd;
     }
 
-    //    public Categoria retornarCategoria(int valor){
-//        for(Categoria genero:Categoria.values()){
-//            if (valor == genero.getId()){
-//                return genero;
-//            }
-//        }
-//        return null;
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Livro livro)) return false;
+        return getCodigo() == livro.getCodigo();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCodigo());
+    }
+
     public String toString() {
         NumberFormat dinheiro = NumberFormat.getCurrencyInstance();
         return "Cod#" + codigo + "\n" +
