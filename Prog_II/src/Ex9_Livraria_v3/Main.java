@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         ListaDeFiliais.cadastrarFilial(new Filial("01","Teste","rua Teste","5133876733"));
+        ListaDeFiliais.cadastrarFilial(new Filial("02","Teste2","rua Teste","5133876733"));
 
         int op = menu();
         while (op != 0) {
@@ -42,7 +43,7 @@ public class Main {
     }
 
     public static void opcoes(int op) {
-        if (op < 0 || op > 9) {
+        if (op < 0 || op > 10) {
             System.out.println("Opção inválida!");
         } else {
             Filial filial = ListaDeFiliais.escolherFilial();
@@ -67,9 +68,9 @@ public class Main {
                 }
                 case 6 -> {
                     String listaLivros = filial.buscaPorQuantidadeEmEstoque();
-                    System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com quantidade menor que o informado");
+                    System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com quantidade maior que a informada");
                 }
-                case 7 -> System.out.println(filial.valorTotalEmEstoque());
+                case 7 -> System.out.println("Valor total em estoque: " + filial.valorTotalEmEstoque());
                 case 8 -> {
                     String arquivo = "Livros Prog II.txt";
                     String texto = Arquivos.leitor(arquivo);

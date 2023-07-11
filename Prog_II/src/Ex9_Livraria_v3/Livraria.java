@@ -68,24 +68,24 @@ public class Livraria {
         Livro livro17 = new Livro("O Hobbit", 17, "WMF Martins Fontes", "Fantasia", 1937, 44.00, 16);
         Livro livro18 = new Livro("O Pequeno Príncipe", 18, "Agir", "Conto", 1943, 19.90, 11);
 
-        livros.add(livro1);
-        livros.add(livro2);
-        livros.add(livro3);
-        livros.add(livro4);
-        livros.add(livro5);
-        livros.add(livro6);
-        livros.add(livro7);
-        livros.add(livro8);
-        livros.add(livro9);
-        livros.add(livro10);
-        livros.add(livro11);
-        livros.add(livro12);
-        livros.add(livro13);
-        livros.add(livro14);
-        livros.add(livro15);
-        livros.add(livro16);
-        livros.add(livro17);
-        livros.add(livro18);
+        cadastrarLivro(livro1);
+        cadastrarLivro(livro2);
+        cadastrarLivro(livro3);
+        cadastrarLivro(livro4);
+        cadastrarLivro(livro5);
+        cadastrarLivro(livro6);
+        cadastrarLivro(livro7);
+        cadastrarLivro(livro8);
+        cadastrarLivro(livro9);
+        cadastrarLivro(livro10);
+        cadastrarLivro(livro11);
+        cadastrarLivro(livro12);
+        cadastrarLivro(livro13);
+        cadastrarLivro(livro14);
+        cadastrarLivro(livro15);
+        cadastrarLivro(livro16);
+        cadastrarLivro(livro17);
+        cadastrarLivro(livro18);
     }
     public Livro buscaPorTitulo() {
         Scanner entrada = new Scanner(System.in);
@@ -179,7 +179,7 @@ public class Livraria {
 
     private int informarQuantidadeEmEstoque() {
         Scanner entrada = new Scanner(System.in);
-        System.out.print("Informe a quantidade buscada: ");
+        System.out.print("Informe a quantidade mínima buscada: ");
 
         return entrada.nextInt();
     }

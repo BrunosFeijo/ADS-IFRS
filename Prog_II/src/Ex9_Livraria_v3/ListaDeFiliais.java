@@ -46,7 +46,7 @@ public class ListaDeFiliais {
             for (Filial filial : listaDeFiliais) {
                 Livro livro = filial.buscaPorTitulo(titulo);
                 if (livro != null) {
-                    stringBuilder.append("Valor: R$").append(String.format("%.2f", livro.getValor())).append(" >>> ")
+                    stringBuilder.append("Valor: R$").append(String.format("%3.2f", livro.getValor())).append(" >>> ")
                             .append("Filial: ").append(filial.getNome()).append(", estoque: ").append(livro.getQtd()).append(" unidades")
                             .append("\n");
                     ;
