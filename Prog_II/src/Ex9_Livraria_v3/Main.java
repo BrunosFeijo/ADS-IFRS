@@ -22,15 +22,16 @@ public class Main {
         Scanner entrada = new Scanner(System.in);
 
         System.out.println("-------------------Menu-------------------");
-        System.out.println("1- Cadastrar novo livro");
-        System.out.println("2- Listagem de Estoque");
-        System.out.println("3- Buscar livro por nome");
-        System.out.println("4- Buscar livro por categoria");
-        System.out.println("5- Buscar livro por valor");
-        System.out.println("6- Buscar livro por quantidade em estoque");
-        System.out.println("7- Valor total no estoque");
+        System.out.println("1- Cadastrar novo livro (Filial) ");
+        System.out.println("2- Listagem de Estoque (Filial) ");
+        System.out.println("3- Buscar livro por nome (Filial)");
+        System.out.println("4- Buscar livro por categoria (Filial)");
+        System.out.println("5- Buscar livro por valor (Filial)");
+        System.out.println("6- Buscar livro por quantidade em estoque (Filial)");
+        System.out.println("7- Valor total no estoque (Filial)");
         System.out.println("8- Carregar estoque (txt)");
         System.out.println("9- Atualizar arquivo de estoque");
+        System.out.println("10- Buscar livro por código (Geral)");
         System.out.println("0- Sair");
         System.out.println("------------------------------------------");
         System.out.print("Informe a opção desejada: ");
@@ -66,7 +67,7 @@ public class Main {
                 }
                 case 6 -> {
                     String listaLivros = filial.buscaPorQuantidadeEmEstoque();
-                    System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com preço menor que o informado");
+                    System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com quantidade menor que o informado");
                 }
                 case 7 -> System.out.println(filial.valorTotalEmEstoque());
                 case 8 -> {
@@ -94,24 +95,25 @@ public class Main {
                         System.out.println("Erro ao atualizar arquivo");
                     }
                 }
+                case 10 -> System.out.println(ListaDeFiliais.procuraCodLivro());
             }
         }
     }
 
     public static void encerrarPrograma() {
-        String caminho = "Livros Prog II.txt";
-        String texto = livros.formatoEntreVirgulas();
-        Scanner entrada = new Scanner(System.in);
-
-        System.out.println("Deseja salvar alterações?");
-        System.out.println("1- Sim");
-        System.out.println("2- Não");
-        int opcao = entrada.nextInt();
-
-        switch (opcao) {
-            case 1 -> Arquivos.escritor(caminho, texto);
-            case 2 -> System.exit(0);
-        }
+//        String caminho = "Livros Prog II.txt";
+//        String texto = livros.formatoEntreVirgulas();
+//        Scanner entrada = new Scanner(System.in);
+//
+//        System.out.println("Deseja salvar alterações?");
+//        System.out.println("1- Sim");
+//        System.out.println("2- Não");
+//        int opcao = entrada.nextInt();
+//
+//        switch (opcao) {
+//            case 1 -> Arquivos.escritor(caminho, texto);
+//            case 2 -> System.exit(0);
+//        }
     }
 
 }

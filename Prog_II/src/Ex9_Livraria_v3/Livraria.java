@@ -96,7 +96,7 @@ public class Livraria {
 
     public Livro buscaPorTitulo(String nome) {
         for (Livro livro : livros) {
-            if (livro.getTitulo().equals(nome)) return livro;
+            if (livro.getTitulo().contains(nome)) return livro;
         }
         return null;
     }
