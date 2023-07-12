@@ -7,9 +7,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        ListaDeFiliais.cadastrarFilial(new Filial("00", "Teste", "rua Teste", "5133876733"));
-        ListaDeFiliais.cadastrarFilial(new Filial("02", "Teste2", "rua Teste", "5133876733"));
-
         int op = menu();
         while (op != 0) {
             op = menu();
@@ -35,6 +32,7 @@ public class Main {
         System.out.println(" 9- Atualizar arquivo de estoque");
         System.out.println("10- Buscar livro por código (Geral)");
         System.out.println("11- Cadastrar Filial");
+        System.out.println("12- Exemplos Prontos");
         System.out.println(" 0- Sair");
         System.out.println("------------------------------------------");
         System.out.print("Informe a opção desejada: ");
@@ -45,7 +43,7 @@ public class Main {
     }
 
     public static void opcoes(int op) {
-        if (op < 0 || op > 11) {
+        if (op < 0 || op > 12) {
             System.out.println("Opção inválida!");
         } else {
 
@@ -56,16 +54,12 @@ public class Main {
                 }
                 case 2 -> {
                     Filial filial = ListaDeFiliais.escolherFilial();
-                    System.out.println(filial);
+                    System.out.println(filial != null ? filial : "Filial não encontrada");
                 }
                 case 3 -> {
                     Filial filial = ListaDeFiliais.escolherFilial();
                     Livro livro = filial.buscaPorTitulo();
-                    if (livro != null) {
-                        System.out.println(livro);
-                    } else {
-                        System.out.println("Livro não encontrado");
-                    }
+                    System.out.println(livro != null ? livro : "Livro não encontrado");
                 }
                 case 4 -> {
                     Filial filial = ListaDeFiliais.escolherFilial();
@@ -118,6 +112,13 @@ public class Main {
                 }
                 case 10 -> System.out.println(ListaDeFiliais.procuraCodLivro());
                 case 11 -> ListaDeFiliais.cadastrarFilial();
+                case 12 -> {
+                    ListaDeFiliais.cadastrarFilial(new Filial("00", "Teste", "rua Teste", "5133876733"));
+                    ListaDeFiliais.getListaDeFiliais().get(0).bibliotecaPadrao();
+                    ListaDeFiliais.cadastrarFilial(new Filial("02", "Teste2", "rua Teste", "5133876733"));
+                    ListaDeFiliais.getListaDeFiliais().get(1).bibliotecaPadrao();
+
+                }
             }
         }
     }
@@ -131,7 +132,7 @@ public class Main {
 
         switch (opcao) {
             case 1 -> {
-                for(Filial filial:ListaDeFiliais.getListaDeFiliais()) {
+                for (Filial filial : ListaDeFiliais.getListaDeFiliais()) {
                     String caminho = ".\\Prog_II/src/" + filial.getCodigo() + ".txt";
                     String texto = filial.formatoEntreVirgulas();
                     Arquivos.escritor(caminho, texto);

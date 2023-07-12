@@ -11,7 +11,7 @@ public class ListaDeFiliais {
     public static void cadastrarFilial() {
         Scanner entrada = new Scanner(System.in);
         System.out.print("Digite o código da Filial: ");
-        String codigo = entrada.next();
+        String codigo = entrada.nextLine();
         if ((codigo.length() == 1)) codigo = "0" + codigo;
         System.out.print("Digite o nome da Filial: ");
         String nome = entrada.nextLine();

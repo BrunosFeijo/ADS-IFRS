@@ -10,7 +10,6 @@ public class Livraria {
 
     public Livraria() {
         livros = new ArrayList<>();
-        bibliotecaPadrao();
     }
 
     public void cadastrarLivro() {
@@ -21,6 +20,7 @@ public class Livraria {
 
         System.out.print("Informe o código do livro: ");
         int codigo = entrada.nextInt();
+        entrada.nextLine();
 
         System.out.print("Informe a editora do livro: ");
         String editora = entrada.nextLine();

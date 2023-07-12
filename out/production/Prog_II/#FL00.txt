@@ -17,4 +17,5 @@
 16,A Menina que Roubava Livros,2005,Ficção Histórica,Intrínseca,R$49.90,5
 17,O Hobbit,1937,Fantasia,WMF Martins Fontes,R$44.00,16
 18,O Pequeno Príncipe,1943,Conto,Agir,R$19.90,11
+552,Livro dos Testes,2023,Testes,Editora Test,R$19.90,10
 
