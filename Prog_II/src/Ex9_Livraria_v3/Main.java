@@ -23,18 +23,18 @@ public class Main {
         Scanner entrada = new Scanner(System.in);
 
         System.out.println("-------------------Menu-------------------");
-        System.out.println("1- Cadastrar novo livro (Filial) ");
-        System.out.println("2- Listagem de Estoque (Filial) ");
-        System.out.println("3- Buscar livro por nome (Filial)");
-        System.out.println("4- Buscar livro por categoria (Filial)");
-        System.out.println("5- Buscar livro por valor (Filial)");
-        System.out.println("6- Buscar livro por quantidade em estoque (Filial)");
-        System.out.println("7- Valor total no estoque (Filial)");
-        System.out.println("8- Carregar estoque (txt)");
-        System.out.println("9- Atualizar arquivo de estoque");
+        System.out.println(" 1- Cadastrar novo livro (Filial) ");
+        System.out.println(" 2- Listagem de Estoque (Filial) ");
+        System.out.println(" 3- Buscar livro por nome (Filial)");
+        System.out.println(" 4- Buscar livro por categoria (Filial)");
+        System.out.println(" 5- Buscar livro por valor (Filial)");
+        System.out.println(" 6- Buscar livro por quantidade em estoque (Filial)");
+        System.out.println(" 7- Valor total no estoque (Filial)");
+        System.out.println(" 8- Carregar estoque (txt)");
+        System.out.println(" 9- Atualizar arquivo de estoque");
         System.out.println("10- Buscar livro por código (Geral)");
         System.out.println("11- Cadastrar Filial");
-        System.out.println("0- Sair");
+        System.out.println(" 0- Sair");
         System.out.println("------------------------------------------");
         System.out.print("Informe a opção desejada: ");
         int opcao = entrada.nextInt();
