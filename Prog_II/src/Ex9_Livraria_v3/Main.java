@@ -15,6 +15,7 @@ public class Main {
             op = menu();
             if (op == 0) {
                 encerrarPrograma();
+                System.out.println("Programa encerrado");
             }
         }
     }
@@ -136,7 +137,10 @@ public class Main {
                     Arquivos.escritor(caminho, texto);
                 }
             }
-            case 2 -> System.exit(0);
+            case 2 -> {
+                System.out.println("Programa encerrado");
+                System.exit(0);
+            }
         }
     }
 

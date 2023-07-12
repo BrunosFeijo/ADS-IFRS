@@ -1,5 +1,6 @@
-1,1984,1949,Distopia,Companhia das Letras,R$59.90,10
-2,Dom Quixote,1605,Conto,Penguin Classics,R$50.00,15
+#FL02,Teste2,rua Teste,5133876733
+1,1984,1949,Distopia,Companhia das Letras,R$39.90,7
+2,Dom Quixote,1605,Conto,Penguin Classics,R$45.00,12
 3,Cem Anos de Solidão,1967,Realismo Mágico,Record,R$59.90,7
 4,Orgulho e Preconceito,1813,Romance,Martin Claret,R$29.90,9
 5,O Senhor dos Anéis: A Sociedade do Anel,1954,Fantasia,Martins Fontes,R$1954.00,2
@@ -16,8 +17,4 @@
 16,A Menina que Roubava Livros,2005,Ficção Histórica,Intrínseca,R$49.90,5
 17,O Hobbit,1937,Fantasia,WMF Martins Fontes,R$44.00,16
 18,O Pequeno Príncipe,1943,Conto,Agir,R$19.90,11
-3426,compiladores,2012,computação,pearson,R$135.50,50
-2631,sistemas digitais,2017,computação,liber,R$99.90,30
-9681,senhor dos aneis: as duas torres,2005,fantasia,harper,R$35.00,20
-3426,compiladores,2012,computação,pearson,R$135.50,50
-2631,sistemas digitais,2017,computação,liber,R$99.90,30
+
