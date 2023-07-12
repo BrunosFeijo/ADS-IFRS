@@ -11,7 +11,7 @@ public class Filial extends Livraria{
 
     public Filial(String codigo, String nome, String endereco, String contato) {
         super();
-        this.codigo = "#FL" + codigo;
+        this.codigo = codigo.contains("#FL") ? codigo : "#FL" + codigo;
         this.nome = nome;
         this.endereco = endereco;
         this.contato = contato;

@@ -86,8 +86,8 @@ public class Main {
                     System.out.println("Valor total em estoque: " + filial.valorTotalEmEstoque());
                 }
                 case 8 -> {
-                    String arquivo = Arquivos.nomeArquivo();
-                    String texto = Arquivos.leitor("./Prog_II/src/" + arquivo);
+                    String nomeArquivo = Arquivos.nomeArquivo();
+                    String texto = Arquivos.leitor(".\\Prog_II/src/" + nomeArquivo + ".txt");
                     String[] aux = texto.split("\n", 2);//separa apenas a primeira linha do resto
                     Filial filial = verificarPrimeiraLinha(aux[0]);
                     if (filial != null) { // se a primeira linha foi utilizada para criar a filial, então resto vira o texto para criar a lista de livros
