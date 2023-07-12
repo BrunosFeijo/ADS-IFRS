@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        ListaDeFiliais.cadastrarFilial(new Filial("01","Teste","rua Teste","5133876733"));
-        ListaDeFiliais.cadastrarFilial(new Filial("02","Teste2","rua Teste","5133876733"));
+        ListaDeFiliais.cadastrarFilial(new Filial("01", "Teste", "rua Teste", "5133876733"));
+        ListaDeFiliais.cadastrarFilial(new Filial("02", "Teste2", "rua Teste", "5133876733"));
 
         int op = menu();
         while (op != 0) {
@@ -33,6 +33,7 @@ public class Main {
         System.out.println("8- Carregar estoque (txt)");
         System.out.println("9- Atualizar arquivo de estoque");
         System.out.println("10- Buscar livro por código (Geral)");
+        System.out.println("11- Cadastrar Filial");
         System.out.println("0- Sair");
         System.out.println("------------------------------------------");
         System.out.print("Informe a opção desejada: ");
@@ -43,14 +44,21 @@ public class Main {
     }
 
     public static void opcoes(int op) {
-        if (op < 0 || op > 10) {
+        if (op < 0 || op > 11) {
             System.out.println("Opção inválida!");
         } else {
-            Filial filial = ListaDeFiliais.escolherFilial();
+
             switch (op) {
-                case 1 -> filial.cadastrarLivro();
-                case 2 -> System.out.println(filial);
+                case 1 -> {
+                    Filial filial = ListaDeFiliais.escolherFilial();
+                    filial.cadastrarLivro();
+                }
+                case 2 -> {
+                    Filial filial = ListaDeFiliais.escolherFilial();
+                    System.out.println(filial);
+                }
                 case 3 -> {
+                    Filial filial = ListaDeFiliais.escolherFilial();
                     Livro livro = filial.buscaPorTitulo();
                     if (livro != null) {
                         System.out.println(livro);
@@ -59,44 +67,54 @@ public class Main {
                     }
                 }
                 case 4 -> {
+                    Filial filial = ListaDeFiliais.escolherFilial();
                     String listaLivros = filial.buscaPorCategoria();
                     System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado nesta categoria");
                 }
                 case 5 -> {
+                    Filial filial = ListaDeFiliais.escolherFilial();
                     String listaLivros = filial.buscaPorValor();
                     System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com preço menor que o informado");
                 }
                 case 6 -> {
+                    Filial filial = ListaDeFiliais.escolherFilial();
                     String listaLivros = filial.buscaPorQuantidadeEmEstoque();
                     System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com quantidade maior que a informada");
                 }
-                case 7 -> System.out.println("Valor total em estoque: " + filial.valorTotalEmEstoque());
+                case 7 -> {
+                    Filial filial = ListaDeFiliais.escolherFilial();
+                    System.out.println("Valor total em estoque: " + filial.valorTotalEmEstoque());
+                }
                 case 8 -> {
                     String arquivo = "Livros Prog II.txt";
                     String texto = Arquivos.leitor(arquivo);
+//                    String[] linhas = texto.split("\n");
+                    Filial filial = verificarPrimeiraLinha(texto);
 
                     if (texto.isEmpty()) {
                         System.out.println("Arquivo vazio");
                     } else {
-                        boolean ok = filial.adicionarLote(texto);
-                        if (ok) {
-                            System.out.println("Livraria atualizada com sucesso");
-                        } else {
-                            System.out.println("Erro na atualização da Livraria");
-                        }
+//                        boolean ok = filial.adicionarLote(texto);
+//                        if (ok) {
+//                            System.out.println("Livraria atualizada com sucesso");
+//                        } else {
+//                            System.out.println("Erro na atualização da Livraria");
+//                        }
                     }
                 }
                 case 9 -> {
+                    Filial filial = ListaDeFiliais.escolherFilial();
                     String caminho = "Livros Prog II.txt";
                     String texto = filial.formatoEntreVirgulas();
                     boolean ok = Arquivos.escritor(caminho, texto);
-                    if (ok){
+                    if (ok) {
                         System.out.println("Arquivo de Estoque atualizado com sucesso");
-                    }else{
+                    } else {
                         System.out.println("Erro ao atualizar arquivo");
                     }
                 }
                 case 10 -> System.out.println(ListaDeFiliais.procuraCodLivro());
+                case 11 -> ListaDeFiliais.cadastrarFilial();
             }
         }
     }
@@ -115,6 +133,15 @@ public class Main {
 //            case 1 -> Arquivos.escritor(caminho, texto);
 //            case 2 -> System.exit(0);
 //        }
+    }
+    public static Filial verificarPrimeiraLinha(String linha) {
+        if (linha.contains("#FL")) {
+            String[] texto = linha.split(",");
+            Filial filial = new Filial(texto[0], texto[1], texto[2], texto[3]);
+            ListaDeFiliais.cadastrarFilial(filial);
+            return filial;
+        }
+        return null;
     }
 
 }

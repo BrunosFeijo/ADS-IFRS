@@ -3,7 +3,8 @@ package Ex9_Livraria_v3;
 import java.io.*;
 
 public class Arquivos {
-    public static String leitor(String caminho){
+
+    public static String leitor(String caminho) {
         String texto = "";
 
         try {
@@ -22,13 +23,13 @@ public class Arquivos {
                 System.out.println("Erro: não foi possível ler arquivo!");
                 return "";
             }
-        }catch (FileNotFoundException ex){
+        } catch (FileNotFoundException ex) {
             System.out.println("Erro: Arquivo não encontrado!");
             return "";
         }
     }
-    public static boolean escritor(String caminho, String texto){
-        try{
+    public static boolean escritor(String caminho, String texto) {
+        try {
             FileWriter arquivo = new FileWriter(caminho);
             PrintWriter alterarArquivo = new PrintWriter(arquivo);
             alterarArquivo.println(texto);
