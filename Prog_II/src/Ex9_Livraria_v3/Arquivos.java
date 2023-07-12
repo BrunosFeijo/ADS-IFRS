@@ -1,9 +1,14 @@
 package Ex9_Livraria_v3;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class Arquivos {
-
+    public static String nomeArquivo(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Digite o nome do arquivo: ");
+        return entrada.nextLine();
+    }
     public static String leitor(String caminho) {
         String texto = "";
 

@@ -86,20 +86,22 @@ public class Main {
                     System.out.println("Valor total em estoque: " + filial.valorTotalEmEstoque());
                 }
                 case 8 -> {
-                    String arquivo = "Livros Prog II.txt";
-                    String texto = Arquivos.leitor(arquivo);
-//                    String[] linhas = texto.split("\n");
-                    Filial filial = verificarPrimeiraLinha(texto);
-
+                    String arquivo = Arquivos.nomeArquivo();
+                    String texto = Arquivos.leitor("./Prog_II/src/" + arquivo);
+                    String[] aux = texto.split("\n", 2);//separa apenas a primeira linha do resto
+                    Filial filial = verificarPrimeiraLinha(aux[0]);
+                    if (filial != null) { // se a primeira linha foi utilizada para criar a filial, então resto vira o texto para criar a lista de livros
+                        texto = aux[1];
+                    }
                     if (texto.isEmpty()) {
                         System.out.println("Arquivo vazio");
                     } else {
-//                        boolean ok = filial.adicionarLote(texto);
-//                        if (ok) {
-//                            System.out.println("Livraria atualizada com sucesso");
-//                        } else {
-//                            System.out.println("Erro na atualização da Livraria");
-//                        }
+                        boolean ok = filial.adicionarLote(texto);
+                        if (ok) {
+                            System.out.println("Livraria atualizada com sucesso");
+                        } else {
+                            System.out.println("Erro na atualização da Livraria");
+                        }
                     }
                 }
                 case 9 -> {
@@ -134,6 +136,7 @@ public class Main {
 //            case 2 -> System.exit(0);
 //        }
     }
+
     public static Filial verificarPrimeiraLinha(String linha) {
         if (linha.contains("#FL")) {
             String[] texto = linha.split(",");

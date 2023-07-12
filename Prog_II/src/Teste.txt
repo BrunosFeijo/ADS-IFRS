@@ -1,0 +1,23 @@
+1,1984,1949,Distopia,Companhia das Letras,R$59.90,10
+2,Dom Quixote,1605,Conto,Penguin Classics,R$50.00,15
+3,Cem Anos de Solidão,1967,Realismo Mágico,Record,R$59.90,7
+4,Orgulho e Preconceito,1813,Romance,Martin Claret,R$29.90,9
+5,O Senhor dos Anéis: A Sociedade do Anel,1954,Fantasia,Martins Fontes,R$1954.00,2
+6,Moby Dick,1851,Conto,Zahar,R$49.90,21
+7,Crime e Castigo,1866,Romance,L&PM Editores,R$39.90,30
+8,O Grande Gatsby,1925,Ficção Contemporânea,Penguin Books,R$42.00,4
+9,O Morro dos Ventos Uivantes,1847,Romance,Nova Fronteira,R$36.00,9
+10,Ulisses,1922,Romance,Penguin Modern Classics,R$58.00,13
+11,O Apanhador no Campo de Centeio,1951,Romance,Editora do Autor,R$32.90,14
+12,O Processo,1925,Romance,Companhia das Letras,R$43.00,15
+13,A Metamorfose,1915,Ficção, L&PM Editores,R$26.90,18
+14,A Revolução dos Bichos,1945,Sátira,Companhia das Letras,R$35.90,9
+15,O Retrato de Dorian Gray,1890,Romance,Penguin Classics,R$38.90,7
+16,A Menina que Roubava Livros,2005,Ficção Histórica,Intrínseca,R$49.90,5
+17,O Hobbit,1937,Fantasia,WMF Martins Fontes,R$44.00,16
+18,O Pequeno Príncipe,1943,Conto,Agir,R$19.90,11
+3426,compiladores,2012,computação,pearson,R$135.50,50
+2631,sistemas digitais,2017,computação,liber,R$99.90,30
+9681,senhor dos aneis: as duas torres,2005,fantasia,harper,R$35.00,20
+3426,compiladores,2012,computação,pearson,R$135.50,50
+2631,sistemas digitais,2017,computação,liber,R$99.90,30

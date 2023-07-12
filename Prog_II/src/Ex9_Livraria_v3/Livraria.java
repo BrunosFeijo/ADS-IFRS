@@ -207,7 +207,8 @@ public class Livraria {
         return stringBuilder.toString();
     }
 
-    public boolean adicionarLote(String[] linhas) {
+    public boolean adicionarLote(String texto) {
+        String[] linhas = texto.split("\n");
         if (linhas.length != 0) {
             for (String linha : linhas) {
                 String[] linhaAtual = linha.split(",");
