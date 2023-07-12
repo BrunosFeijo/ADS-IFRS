@@ -52,7 +52,7 @@ public class Main {
                     Filial filial = ListaDeFiliais.escolherFilial();
                     if (filial != null) {
                         filial.cadastrarLivro();
-                    }else {
+                    } else {
                         System.out.println("Filial não localizada");
                     }
                 }
@@ -62,27 +62,48 @@ public class Main {
                 }
                 case 3 -> {
                     Filial filial = ListaDeFiliais.escolherFilial();
-                    Livro livro = filial.buscaPorTitulo();
-                    System.out.println(livro != null ? livro : "Livro não encontrado");
+                    if (filial != null) {
+                        Livro livro = filial.buscaPorTitulo();
+                        System.out.println(livro != null ? livro : "Livro não encontrado");
+                    } else {
+                        System.out.println("Filial não localizada");
+                    }
+
                 }
                 case 4 -> {
                     Filial filial = ListaDeFiliais.escolherFilial();
-                    String listaLivros = filial.buscaPorCategoria();
-                    System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado nesta categoria");
+                    if (filial != null) {
+                        String listaLivros = filial.buscaPorCategoria();
+                        System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado nesta categoria");
+                    } else {
+                        System.out.println("Filial não localizada");
+                    }
                 }
                 case 5 -> {
                     Filial filial = ListaDeFiliais.escolherFilial();
-                    String listaLivros = filial.buscaPorValor();
-                    System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com preço menor que o informado");
+                    if (filial != null) {
+                        String listaLivros = filial.buscaPorValor();
+                        System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com preço menor que o informado");
+                    } else {
+                        System.out.println("Filial não localizada");
+                    }
                 }
                 case 6 -> {
                     Filial filial = ListaDeFiliais.escolherFilial();
-                    String listaLivros = filial.buscaPorQuantidadeEmEstoque();
-                    System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com quantidade maior que a informada");
+                    if (filial != null){
+                        String listaLivros = filial.buscaPorQuantidadeEmEstoque();
+                        System.out.println(listaLivros.length() != 0 ? listaLivros : "Nenhum livro encontrado com quantidade maior que a informada");
+                    } else {
+                        System.out.println("Filial não localizada");
+                    }
                 }
                 case 7 -> {
                     Filial filial = ListaDeFiliais.escolherFilial();
-                    System.out.println("Valor total em estoque: " + filial.valorTotalEmEstoque());
+                    if (filial != null){
+                        System.out.println("Valor total em estoque: " + filial.valorTotalEmEstoque());
+                    } else {
+                        System.out.println("Filial não localizada");
+                    }
                 }
                 case 8 -> {
                     String nomeArquivo = Arquivos.nomeArquivo();
@@ -121,7 +142,6 @@ public class Main {
                     ListaDeFiliais.getListaDeFiliais().get(0).bibliotecaPadrao();
                     ListaDeFiliais.cadastrarFilial(new Filial("02", "Teste2", "rua Teste", "5133876733"));
                     ListaDeFiliais.getListaDeFiliais().get(1).bibliotecaPadrao();
-
                 }
             }
         }
