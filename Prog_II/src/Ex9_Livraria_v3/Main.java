@@ -50,7 +50,11 @@ public class Main {
             switch (op) {
                 case 1 -> {
                     Filial filial = ListaDeFiliais.escolherFilial();
-                    filial.cadastrarLivro();
+                    if (filial != null) {
+                        filial.cadastrarLivro();
+                    }else {
+                        System.out.println("Filial não localizada");
+                    }
                 }
                 case 2 -> {
                     Filial filial = ListaDeFiliais.escolherFilial();
