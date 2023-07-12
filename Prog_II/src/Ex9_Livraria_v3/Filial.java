@@ -1,6 +1,7 @@
 package Ex9_Livraria_v3;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Filial extends Livraria{
     private String codigo;
@@ -48,4 +49,15 @@ public class Filial extends Livraria{
         this.contato = contato;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Filial filial)) return false;
+        return getCodigo().equals(filial.getCodigo());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCodigo());
+    }
 }

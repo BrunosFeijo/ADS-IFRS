@@ -8,9 +8,23 @@ public class ListaDeFiliais {
     private static List<Filial> listaDeFiliais = new ArrayList<>();
     private static List<Livro> livrosCadastrados = new ArrayList<>();
 
+    public static void cadastrarFilial() {
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("Digite o código da Filial: ");
+        String codigo = entrada.next();
+        if ((codigo.length() == 1)) codigo = "0" + codigo;
+        System.out.print("Digite o nome da Filial: ");
+        String nome = entrada.nextLine();
+        System.out.print("Digite o endereço da Filial: ");
+        String endereco = entrada.nextLine();
+        System.out.print("Digite o telefone de contato da Filial: ");
+        String telefone = entrada.nextLine();
+
+        cadastrarFilial(new Filial(codigo, nome, endereco, telefone));
+    }
 
     public static void cadastrarFilial(Filial filial) {
-        listaDeFiliais.add(filial);
+        if (!listaDeFiliais.contains(filial)) listaDeFiliais.add(filial);
     }
 
     public static void cadastrarLivro(Livro livro) {
@@ -78,7 +92,7 @@ public class ListaDeFiliais {
     }
 
     public static Filial escolherFilial(String codigo) {
-        for (Filial filial: listaDeFiliais){
+        for (Filial filial : listaDeFiliais) {
             if (filial.getCodigo().equals(codigo)) return filial;
         }
 
