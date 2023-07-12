@@ -98,5 +98,8 @@ public class ListaDeFiliais {
 
         return null;
     }
+    public static List<Filial> getListaDeFiliais(){
+        return listaDeFiliais;
+    }
 
 }

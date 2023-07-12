@@ -60,4 +60,22 @@ public class Filial extends Livraria{
     public int hashCode() {
         return Objects.hash(getCodigo());
     }
+    public String formatoEntreVirgulas() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(codigo).append(",")
+                    .append(nome).append(",")
+                    .append(endereco).append(",")
+                    .append(contato).append("\n");
+
+        for (Livro livro : livros) {
+            stringBuilder.append(livro.getCodigo()).append(",")
+                    .append(livro.getTitulo()).append(",")
+                    .append(livro.getAno()).append(",")
+                    .append(livro.getCategoria()).append(",")
+                    .append(livro.getEditora()).append(",")
+                    .append("R$").append(String.format("%.2f", livro.getValor()).replace(",", ".")).append(",")
+                    .append(livro.getQtd()).append("\n");
+        }
+        return stringBuilder.toString();
+    }
 }

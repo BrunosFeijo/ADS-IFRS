@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        ListaDeFiliais.cadastrarFilial(new Filial("01", "Teste", "rua Teste", "5133876733"));
+        ListaDeFiliais.cadastrarFilial(new Filial("00", "Teste", "rua Teste", "5133876733"));
         ListaDeFiliais.cadastrarFilial(new Filial("02", "Teste2", "rua Teste", "5133876733"));
 
         int op = menu();
@@ -106,7 +106,7 @@ public class Main {
                 }
                 case 9 -> {
                     Filial filial = ListaDeFiliais.escolherFilial();
-                    String caminho = "Livros Prog II.txt";
+                    String caminho = ".\\Prog_II/src/" + filial.getCodigo() + ".txt";
                     String texto = filial.formatoEntreVirgulas();
                     boolean ok = Arquivos.escritor(caminho, texto);
                     if (ok) {
@@ -122,19 +122,22 @@ public class Main {
     }
 
     public static void encerrarPrograma() {
-//        String caminho = "Livros Prog II.txt";
-//        String texto = livros.formatoEntreVirgulas();
-//        Scanner entrada = new Scanner(System.in);
-//
-//        System.out.println("Deseja salvar alterações?");
-//        System.out.println("1- Sim");
-//        System.out.println("2- Não");
-//        int opcao = entrada.nextInt();
-//
-//        switch (opcao) {
-//            case 1 -> Arquivos.escritor(caminho, texto);
-//            case 2 -> System.exit(0);
-//        }
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Deseja salvar alterações?");
+        System.out.println("1- Sim");
+        System.out.println("2- Não");
+        int opcao = entrada.nextInt();
+
+        switch (opcao) {
+            case 1 -> {
+                for(Filial filial:ListaDeFiliais.getListaDeFiliais()) {
+                    String caminho = ".\\Prog_II/src/" + filial.getCodigo() + ".txt";
+                    String texto = filial.formatoEntreVirgulas();
+                    Arquivos.escritor(caminho, texto);
+                }
+            }
+            case 2 -> System.exit(0);
+        }
     }
 
     public static Filial verificarPrimeiraLinha(String linha) {

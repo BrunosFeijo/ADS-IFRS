@@ -193,19 +193,7 @@ public class Livraria {
         return monetario.format(valorTotal);
     }
 
-    public String formatoEntreVirgulas() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Livro livro : livros) {
-            stringBuilder.append(livro.getCodigo()).append(",")
-                    .append(livro.getTitulo()).append(",")
-                    .append(livro.getAno()).append(",")
-                    .append(livro.getCategoria()).append(",")
-                    .append(livro.getEditora()).append(",")
-                    .append("R$").append(String.format("%.2f", livro.getValor()).replace(",", ".")).append(",")
-                    .append(livro.getQtd()).append("\n");
-        }
-        return stringBuilder.toString();
-    }
+
 
     public boolean adicionarLote(String texto) {
         String[] linhas = texto.split("\n");
