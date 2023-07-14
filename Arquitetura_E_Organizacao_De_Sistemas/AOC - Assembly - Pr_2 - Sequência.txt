@@ -1,7 +1,7 @@
 section .text
 
 section .data
-    contador db 1
+    contador db 2
     max db 3
     
     msg db  "+"
@@ -13,13 +13,18 @@ global _start
 
 _start:
     ; inicializa o valor das variáveis contador e max
-    mov ah, [contador]
-    mov al, [contador]
-    mov bh, [max]
+    mov     ah, [contador]
+    mov     al, '0'
+    mov     bh, [max]
     
     ; escreve os números que estão sendo somados (contador)
-    add ah, '0'
-    mov [valor], ah
+    add     ah, '0'
+    mov     [valor], ah
+    sub     ah, '0'
+    sub     al, '0'
+    add     al, ah
+    add     [sum], al
+    add     al, '0'
     
     mov     ecx, valor
     mov     edx, 1
@@ -49,6 +54,11 @@ escreve:
     ; escreve os números que estão sendo somados (contador)
     add     ah, '0'
     mov     [valor], ah
+    sub     ah, '0'
+    sub     al, '0'
+    add     al, ah
+    add     [sum], al
+    add     al, '0'
     
     mov     ecx, valor
     mov     edx, 1
@@ -66,28 +76,27 @@ escreve:
     cmp     ah, bh
     jle     escreve
     
-    ; Inicializa o registrador de soma com 0
-    mov     [contador],al
-    mov     al, '0'
-    mov     [sum], al
+    ; ; Inicializa o registrador de soma com 0 e retorna o contador para 
+    ; add     al, '0'
+    ; mov     [contador],al
+    ; mov     [sum], al
     
-    ;restaura o valor das variáveis contador e max
-    mov     eax, [contador]
-    mov     ebx, [max]
-    sub     ebx, '0'
+    ; ;restaura o valor das variáveis contador e max
+    ; mov     eax, [contador]
+    ; mov     ebx, [max]
 
-somar:
-    ;restaura o valor das variáveis contador e max
-    mov     eax, [contador]
-    mov     ebx, [max]
+; somar:
+;     ;restaura o valor das variáveis contador e max
+;     mov     eax, [contador]
+;     mov     ebx, [max]
     
-    sub	    eax, '0' 
-    add 	[sum], eax ; move o resultado da soma para o endereco identificado por sum
+;     sub	    eax, '0' 
+;     add 	[sum], eax ; move o resultado da soma para o endereco identificado por sum
     
-    inc     eax
-    mov     [contador], eax
-    cmp     eax, ebx
-    jle     somar
+;     inc     eax
+;     mov     [contador], eax
+;     cmp     eax, ebx
+;     jle     somar
     
 encerra:
     ; escreve a palavra '='
@@ -98,8 +107,8 @@ encerra:
     int     0x80
     
     ;escreve a soma
-    add     eax, '0'
-    add     [sum], eax
+    ;add     eax, '0'
+    ;add     [sum], eax
     mov     ecx, sum
     mov     edx, 1
     mov     ebx, 1
