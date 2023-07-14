@@ -1,0 +1,117 @@
+section .text
+
+section .data
+    contador db 1
+    max db 3
+    
+    msg db  "+"
+    len equ $ - msg
+    msg2 db  "="
+    len2 equ $ - msg2
+
+global _start
+
+_start:
+    ; inicializa o valor das variáveis contador e max
+    mov ah, [contador]
+    mov al, [contador]
+    mov bh, [max]
+    
+    ; escreve os números que estão sendo somados (contador)
+    add ah, '0'
+    mov [valor], ah
+    
+    mov     ecx, valor
+    mov     edx, 1
+    mov     ebx, 1
+    mov     eax, 4
+    int     0x80
+    
+    ; restaura o valor das variáveis contador e max
+    mov ah, [contador]
+    mov bh, [max]
+    inc ah 		;incremento
+    mov [contador], ah
+
+escreve:
+    ; escreve a palavra '+'
+    mov     ecx, msg
+    mov     edx, len
+    mov     ebx, 1
+    mov     eax, 4
+    int     0x80
+    
+    ; restaura o valor das variáveis contador e max
+    mov     ah, [contador]
+    mov     bh, [max]
+    
+    
+    ; escreve os números que estão sendo somados (contador)
+    add     ah, '0'
+    mov     [valor], ah
+    
+    mov     ecx, valor
+    mov     edx, 1
+    mov     ebx, 1
+    mov     eax, 4
+    int     0x80
+    
+    ; restaura o valor das variáveis contador e max
+    mov     ah, [contador]
+    mov     bh, [max]
+    
+    inc     ah
+    mov     [contador], ah
+    
+    cmp     ah, bh
+    jle     escreve
+    
+    ; Inicializa o registrador de soma com 0
+    mov     [contador],al
+    mov     al, '0'
+    mov     [sum], al
+    
+    ;restaura o valor das variáveis contador e max
+    mov     eax, [contador]
+    mov     ebx, [max]
+    sub     ebx, '0'
+
+somar:
+    ;restaura o valor das variáveis contador e max
+    mov     eax, [contador]
+    mov     ebx, [max]
+    
+    sub	    eax, '0' 
+    add 	[sum], eax ; move o resultado da soma para o endereco identificado por sum
+    
+    inc     eax
+    mov     [contador], eax
+    cmp     eax, ebx
+    jle     somar
+    
+encerra:
+    ; escreve a palavra '='
+    mov     ecx, msg2
+    mov     edx, len2
+    mov     ebx, 1
+    mov     eax, 4
+    int     0x80
+    
+    ;escreve a soma
+    add     eax, '0'
+    add     [sum], eax
+    mov     ecx, sum
+    mov     edx, 1
+    mov     ebx, 1
+    mov     eax, 4
+    int     0x80
+
+    
+    ; encerra o programa
+    mov     eax, 1
+    int     0x80
+
+section .bss
+    valor resb 1
+    sum resb 2
+
