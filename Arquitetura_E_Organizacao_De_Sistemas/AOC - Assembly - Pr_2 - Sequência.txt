@@ -1,126 +1,52 @@
 section .text
 
-section .data
-    contador db 2
-    max db 3
-    
-    msg db  "+"
-    len equ $ - msg
-    msg2 db  "="
-    len2 equ $ - msg2
-
 global _start
 
 _start:
-    ; inicializa o valor das variáveis contador e max
-    mov     ah, [contador]
-    mov     al, '0'
-    mov     bh, [max]
-    
-    ; escreve os números que estão sendo somados (contador)
-    add     ah, '0'
-    mov     [valor], ah
-    sub     ah, '0'
-    sub     al, '0'
-    add     al, ah
-    add     [sum], al
-    add     al, '0'
-    
-    mov     ecx, valor
-    mov     edx, 1
-    mov     ebx, 1
-    mov     eax, 4
-    int     0x80
-    
-    ; restaura o valor das variáveis contador e max
+
     mov ah, [contador]
     mov bh, [max]
-    inc ah 		;incremento
-    mov [contador], ah
+    mov eax, [sum]
+    
+    cmp ah, bh
+    jg encerra
+    
+    
+    ;restaura o valor das variáveis contador e max
+    mov ah, [contador]
+    mov bh, [max]
 
-escreve:
-    ; escreve a palavra '+'
-    mov     ecx, msg
-    mov     edx, len
-    mov     ebx, 1
-    mov     eax, 4
-    int     0x80
+soma:
+    add [valor], ah
+    mov eax,[valor]
     
-    ; restaura o valor das variáveis contador e max
-    mov     ah, [contador]
-    mov     bh, [max]
+    ;restaura o valor das variáveis contador e max
+    mov ah, [contador]
+    mov bh, [max]
+    
+    inc ah
+    mov [contador], ah
+    cmp ah, bh
+    jle soma
     
     
-    ; escreve os números que estão sendo somados (contador)
-    add     ah, '0'
-    mov     [valor], ah
-    sub     ah, '0'
-    sub     al, '0'
-    add     al, ah
-    add     [sum], al
-    add     al, '0'
+encerra:
+    add eax,'0'
+    mov [valor],eax
     
     mov     ecx, valor
     mov     edx, 1
     mov     ebx, 1
     mov     eax, 4
     int     0x80
-    
-    ; restaura o valor das variáveis contador e max
-    mov     ah, [contador]
-    mov     bh, [max]
-    
-    inc     ah
-    mov     [contador], ah
-    
-    cmp     ah, bh
-    jle     escreve
-    
-    ; ; Inicializa o registrador de soma com 0 e retorna o contador para 
-    ; add     al, '0'
-    ; mov     [contador],al
-    ; mov     [sum], al
-    
-    ; ;restaura o valor das variáveis contador e max
-    ; mov     eax, [contador]
-    ; mov     ebx, [max]
-
-; somar:
-;     ;restaura o valor das variáveis contador e max
-;     mov     eax, [contador]
-;     mov     ebx, [max]
-    
-;     sub	    eax, '0' 
-;     add 	[sum], eax ; move o resultado da soma para o endereco identificado por sum
-    
-;     inc     eax
-;     mov     [contador], eax
-;     cmp     eax, ebx
-;     jle     somar
-    
-encerra:
-    ; escreve a palavra '='
-    mov     ecx, msg2
-    mov     edx, len2
-    mov     ebx, 1
-    mov     eax, 4
-    int     0x80
-    
-    ;escreve a soma
-    ;add     eax, '0'
-    ;add     [sum], eax
-    mov     ecx, sum
-    mov     edx, 1
-    mov     ebx, 1
-    mov     eax, 4
-    int     0x80
-
-    
-    ; encerra o programa
+    ;encerra o programa
     mov     eax, 1
     int     0x80
 
-section .bss
+section .data
+    contador db 1
+    max db 3
+    sum db 0
+    
+segment .bss
     valor resb 1
-    sum resb 2
-

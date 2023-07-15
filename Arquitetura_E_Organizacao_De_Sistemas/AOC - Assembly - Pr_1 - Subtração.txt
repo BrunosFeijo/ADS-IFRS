@@ -4,30 +4,30 @@ section	.text
 _start:	                 
     mov   al, '1'
     sub   al, '0'
-    mov   bl, '0'
+    mov   bl, '9'
     sub   bl, '0'
     cmp   al, bl ;compara os dois valores
     je    iguais 
     jg    a_maior 
    
 b_maior:
-    sub bl, al
-    add bl, '0'
-    mov [result],bl
+    sub     bl, al
+    add     bl, '0'
+    mov     [result],bl
     
-    mov   ecx,result
+    mov   ecx, result
     mov   edx, 1
     mov   ebx, 1	
     mov   eax,4	;chamada de sistema (sys_write)
     int   0x80	;chamada ao kernel
-    jmp saida
+    jmp   saida
 
 a_maior:
-    sub al,bl
-    add al,'0'
-    mov [result],al
+    sub     al,bl
+    add     al,'0'
+    mov     [result],al
     
-    mov   ecx,result
+    mov   ecx, result
     mov   edx, 1
     mov   ebx, 1	
     mov   eax,4	;chamada de sistema (sys_write)
