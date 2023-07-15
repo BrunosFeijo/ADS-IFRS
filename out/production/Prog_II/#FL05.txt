@@ -1,9 +1,7 @@
-#FL02,Barra Sul,Diário de Noticias 80,3221-6369
+#FL05,Barra Sul,Diário de Noticias 80,3221-6369
 1,1984,1949,Distopia,Companhia das Letras,R$59.90,101
 2,Dom Quixote,1605,Conto,Penguin Classics,R$50.00,15
 3,Cem Anos de Solidão,1967,Realismo Mágico,Record,R$59.90,7
 4,Orgulho e Preconceito,1813,Romance,Martin Claret,R$29.90,9
 5,O Senhor dos Anéis: A Sociedade do Anel,1954,Fantasia,Martins Fontes,R$1954.00,2
-123,Dom Quixote,2000,c1,e,R$100.00,20
-20,t1,2000,c1,e,R$250.00,200
 
