@@ -9,22 +9,23 @@ public class Main {
 
         int opcao = 0;
         do {
+            menu();
             System.out.print("Digite um opção: ");
             opcao = entrada.nextInt();
             switch (opcao) {
                 case 0 -> System.out.println("Programa finalizado!!");
                 case 1 -> {
-                    System.out.println("Digite um valor para adicionar");
+                    System.out.print("Digite um valor para adicionar: ");
                     int valor = entrada.nextInt();
                     arvoreB.inserir(valor);
                 }
                 case 2 -> {
-                    System.out.println("Digite um valor para excluir");
+                    System.out.print("Digite um valor para excluir: ");
                     int valor = entrada.nextInt();
                     arvoreB.remove(valor);
                 }
                 case 3 -> {
-                    System.out.println("Digite um valor para consultar");
+                    System.out.println("Digite um valor para consultar: ");
                     int valor = entrada.nextInt();
                     if (arvoreB.contem(valor)){
                         System.out.println("Valor encontrado");
@@ -45,7 +46,7 @@ public class Main {
     }
 
     public static void menu() {
-        System.out.println("|-------------Menu-------------|");
+        System.out.println("\n|-------------Menu-------------|");
         System.out.println("1- Inserir valor");
         System.out.println("2- Excluir valor");
         System.out.println("3- Verificar se contém valor");

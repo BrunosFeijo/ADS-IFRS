@@ -1,94 +1,96 @@
 package Ex6_ArvoreB;
 
 public class ArvoreB {
-        private Pagina root;
+    private Pagina root;
 
-        public ArvoreB() {
-            root = new Pagina(true); // A raiz é inicialmente uma folha
+    public ArvoreB() {
+        root = new Pagina(true); // A raiz é inicialmente uma folha
+    }
+
+    // Função para inserir uma chave na árvore B
+    public void inserir(int chave) {
+        Pagina raiz = root;
+        if (raiz.tamanho == 4) {
+            Pagina pagina = new Pagina(false);
+            root = pagina;
+            pagina.filhos[0] = raiz;
+            dividirFilhos(pagina, 0);
+            inserirEmPaginaComEspaco(pagina, chave);
+        } else {
+            inserirEmPaginaComEspaco(raiz, chave);
         }
+    }
 
-        // Função para inserir uma chave na árvore B
-        public void inserir(int chave) {
-            Pagina raiz = root;
-            if (raiz.tamanho == 4) {
-                Pagina pagina = new Pagina(false);
-                root = pagina;
-                pagina.filhos[0] = raiz;
-                dividirFilhos(pagina, 0);
-                inserirEmPaginaComEspaco(pagina, chave);
-            } else {
-                inserirEmPaginaComEspaco(raiz, chave);
+    // Função para inserir em um nó que não está cheio
+    private void inserirEmPaginaComEspaco(Pagina pagina, int chave) {
+        int i = pagina.tamanho - 1;
+        if (pagina.isFolha) {
+            while (i >= 0 && chave < pagina.chaves[i]) {
+                pagina.chaves[i + 1] = pagina.chaves[i];
+                i--;
             }
-        }
-
-        // Função para inserir em um nó que não está cheio
-        private void inserirEmPaginaComEspaco(Pagina pagina, int chave) {
-            int i = pagina.tamanho - 1;
-            if (pagina.isFolha) {
-                while (i >= 0 && chave < pagina.chaves[i]) {
-                    pagina.chaves[i + 1] = pagina.chaves[i];
-                    i--;
-                }
-                pagina.chaves[i + 1] = chave;
-                pagina.tamanho++;
-            } else {
-                while (i >= 0 && chave < pagina.chaves[i]) {
-                    i--;
-                }
-                i++;
-                if (pagina.filhos[i].tamanho == 3) {
-                    dividirFilhos(pagina, i);
-                    if (chave > pagina.chaves[i]) {
-                        i++;
-                    }
-                }
-                inserirEmPaginaComEspaco(pagina.filhos[i], chave);
+            pagina.chaves[i + 1] = chave;
+            pagina.tamanho++;
+        } else {
+            while (i >= 0 && chave < pagina.chaves[i]) {
+                i--;
             }
-        }
-
-        // Função para dividir um nó filho quando está cheio
-        private void dividirFilhos(Pagina paginaX, int i) {
-            Pagina paginaZ = new Pagina(paginaX.filhos[i].isFolha);
-            Pagina paginaY = paginaX.filhos[i];
-            paginaX.filhos[i] = paginaZ;
-
-            for (int j = 2; j > i; j--) {
-                paginaX.filhos[j] = paginaX.filhos[j - 1];
-                paginaX.chaves[j] = paginaX.chaves[j - 1];
-            }
-            paginaX.chaves[i] = paginaY.chaves[2];
-            paginaX.tamanho++;
-
-            paginaZ.tamanho = 1;
-            paginaZ.chaves[0] = paginaY.chaves[3];
-
-            if (!paginaY.isFolha) {
-                paginaZ.filhos[1] = paginaY.filhos[4];
-                paginaZ.filhos[0] = paginaY.filhos[3];
-            }
-
-            paginaY.tamanho = 2;
-        }
-
-        // Função para imprimir a árvore B em ordem
-        public void imprimirNaOrdem() {
-            imprimirNaOrdem(root);
-        }
-
-        private void imprimirNaOrdem(Pagina pagina) {
-            if (pagina != null) {
-                int i;
-                for (i = 0; i < pagina.tamanho; i++) {
-                    if (!pagina.isFolha) {
-                        imprimirNaOrdem(pagina.filhos[i]);
-                    }
-                    System.out.print(pagina.chaves[i] + " ");
+            i++;
+            if (pagina.filhos[i].tamanho == 3) {
+                dividirFilhos(pagina, i);
+                if (chave > pagina.chaves[i]) {
+                    i++;
                 }
+            }
+            inserirEmPaginaComEspaco(pagina.filhos[i], chave);
+        }
+    }
+
+    // Função para dividir um nó filho quando está cheio
+    private void dividirFilhos(Pagina pai, int i) {
+        Pagina filhoDireita = new Pagina(pai.filhos[i].isFolha);
+        Pagina filhoEsquerda = pai.filhos[i];
+        pai.filhos[i] = filhoEsquerda;
+        pai.filhos[i + 1] = filhoDireita;
+
+        for (int j = 3; j > i; j--) {
+            pai.filhos[j] = pai.filhos[j - 1];
+            pai.chaves[j] = pai.chaves[j - 1];
+        }
+        pai.chaves[i] = filhoEsquerda.chaves[2];
+        pai.tamanho++;
+
+        filhoDireita.tamanho = 1;
+        filhoDireita.chaves[0] = filhoEsquerda.chaves[3];
+
+        if (!filhoEsquerda.isFolha) {
+            filhoDireita.filhos[1] = filhoEsquerda.filhos[4];
+            filhoDireita.filhos[0] = filhoEsquerda.filhos[3];
+        }
+        filhoEsquerda.chaves[3] = 0;
+        filhoEsquerda.chaves[2] = 0;
+        filhoEsquerda.tamanho = 2;
+    }
+
+    // Função para imprimir a árvore B em ordem
+    public void imprimirNaOrdem() {
+        imprimirNaOrdem(root);
+    }
+
+    private void imprimirNaOrdem(Pagina pagina) {
+        if (pagina != null) {
+            int i;
+            for (i = 0; i < pagina.tamanho; i++) {
                 if (!pagina.isFolha) {
                     imprimirNaOrdem(pagina.filhos[i]);
                 }
+                System.out.print(pagina.chaves[i] + " ");
             }
+//                if (!pagina.isFolha) {
+//                    imprimirNaOrdem(pagina.filhos[i]);
+//                }
         }
+    }
 
     // Função para remover uma chave da árvore B
     public void remove(int chave) {
@@ -266,6 +268,7 @@ public class ArvoreB {
         filhoX.tamanho += filhoY.tamanho + 1;
         pagina.tamanho--;
     }
+
     public void limpar() {
         limpar(root);
         root = new Pagina(true);
@@ -281,6 +284,7 @@ public class ArvoreB {
             pagina = null;
         }
     }
+
     public boolean contem(int chave) {
         return contem(root, chave);
     }
