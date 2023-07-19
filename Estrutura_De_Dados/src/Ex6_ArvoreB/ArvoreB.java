@@ -99,13 +99,13 @@ public class ArvoreB {
         if (pagina == null)
             return;
 
-        int indice = findKeyindice(pagina, chave);
+        int indice = encontrarIndiceChave(pagina, chave);
 
         if (indice < pagina.tamanho && pagina.chaves[indice] == chave) {
             if (pagina.isFolha) {
-                removeKeyFromLeaf(pagina, indice);
+                removeChaveFolha(pagina, indice);
             } else {
-                removeKeyFromNonLeaf(pagina, indice);
+                removeChaveNaoFolha(pagina, indice);
             }
         } else {
             if (pagina.isFolha) {
@@ -116,7 +116,7 @@ public class ArvoreB {
             boolean isLastChild = (indice == pagina.tamanho);
 
             if (pagina.filhos[indice].tamanho < 2) {
-                fill(pagina, indice);
+                balancear(pagina, indice);
             }
 
             if (isLastChild && indice > pagina.tamanho) {
@@ -127,7 +127,7 @@ public class ArvoreB {
         }
     }
 
-    private int findKeyindice(Pagina pagina, int chave) {
+    private int encontrarIndiceChave(Pagina pagina, int chave) {
         int indice = 0;
         while (indice < pagina.tamanho && chave > pagina.chaves[indice]) {
             indice++;
@@ -135,14 +135,14 @@ public class ArvoreB {
         return indice;
     }
 
-    private void removeKeyFromLeaf(Pagina pagina, int indice) {
+    private void removeChaveFolha(Pagina pagina, int indice) {
         for (int i = indice + 1; i < pagina.tamanho; i++) {
             pagina.chaves[i - 1] = pagina.chaves[i];
         }
         pagina.tamanho--;
     }
 
-    private void removeKeyFromNonLeaf(Pagina pagina, int indice) {
+    private void removeChaveNaoFolha(Pagina pagina, int indice) {
         int key = pagina.chaves[indice];
 
         if (pagina.filhos[indice].tamanho >= 2) {
@@ -154,7 +154,7 @@ public class ArvoreB {
             pagina.chaves[indice] = successor;
             remove(pagina.filhos[indice + 1], successor);
         } else {
-            merge(pagina, indice);
+            juntar(pagina, indice);
             remove(pagina.filhos[indice], key);
         }
     }
@@ -173,85 +173,85 @@ public class ArvoreB {
         return pagina.chaves[0];
     }
 
-    private void fill(Pagina pagina, int indice) {
+    private void balancear(Pagina pagina, int indice) {
         if (indice != 0 && pagina.filhos[indice - 1].tamanho >= 2) {
-            borrowFromPrevious(pagina, indice);
+            preencherAnterior(pagina, indice);
         } else if (indice != pagina.tamanho && pagina.filhos[indice + 1].tamanho >= 2) {
-            borrowFromNext(pagina, indice);
+            preencherProximo(pagina, indice);
         } else {
             if (indice != pagina.tamanho) {
-                merge(pagina, indice);
+                juntar(pagina, indice);
             } else {
-                merge(pagina, indice - 1);
+                juntar(pagina, indice - 1);
             }
         }
     }
 
-    private void borrowFromPrevious(Pagina pagina, int indice) {
-        Pagina child = pagina.filhos[indice];
-        Pagina sibling = pagina.filhos[indice - 1];
+    private void preencherAnterior(Pagina pagina, int indice) {
+        Pagina filhoX = pagina.filhos[indice];
+        Pagina filhoY = pagina.filhos[indice - 1];
 
-        for (int i = child.tamanho - 1; i >= 0; i--) {
-            child.chaves[i + 1] = child.chaves[i];
+        for (int i = filhoX.tamanho - 1; i >= 0; i--) {
+            filhoX.chaves[i + 1] = filhoX.chaves[i];
         }
 
-        if (!child.isFolha) {
-            for (int i = child.tamanho; i >= 0; i--) {
-                child.filhos[i + 1] = child.filhos[i];
+        if (!filhoX.isFolha) {
+            for (int i = filhoX.tamanho; i >= 0; i--) {
+                filhoX.filhos[i + 1] = filhoX.filhos[i];
             }
         }
 
-        child.chaves[0] = pagina.chaves[indice - 1];
+        filhoX.chaves[0] = pagina.chaves[indice - 1];
 
-        if (!child.isFolha) {
-            child.filhos[0] = sibling.filhos[sibling.tamanho];
+        if (!filhoX.isFolha) {
+            filhoX.filhos[0] = filhoY.filhos[filhoY.tamanho];
         }
 
-        pagina.chaves[indice - 1] = sibling.chaves[sibling.tamanho - 1];
+        pagina.chaves[indice - 1] = filhoY.chaves[filhoY.tamanho - 1];
 
-        child.tamanho++;
-        sibling.tamanho--;
+        filhoX.tamanho++;
+        filhoY.tamanho--;
     }
 
-    private void borrowFromNext(Pagina pagina, int indice) {
-        Pagina child = pagina.filhos[indice];
-        Pagina sibling = pagina.filhos[indice + 1];
+    private void preencherProximo(Pagina pagina, int indice) {
+        Pagina filhoX = pagina.filhos[indice];
+        Pagina filhoY = pagina.filhos[indice + 1];
 
-        child.chaves[child.tamanho] = pagina.chaves[indice];
+        filhoX.chaves[filhoX.tamanho] = pagina.chaves[indice];
 
-        if (!child.isFolha) {
-            child.filhos[child.tamanho + 1] = sibling.filhos[0];
+        if (!filhoX.isFolha) {
+            filhoX.filhos[filhoX.tamanho + 1] = filhoY.filhos[0];
         }
 
-        pagina.chaves[indice] = sibling.chaves[0];
+        pagina.chaves[indice] = filhoY.chaves[0];
 
-        for (int i = 1; i < sibling.tamanho; i++) {
-            sibling.chaves[i - 1] = sibling.chaves[i];
+        for (int i = 1; i < filhoY.tamanho; i++) {
+            filhoY.chaves[i - 1] = filhoY.chaves[i];
         }
 
-        if (!sibling.isFolha) {
-            for (int i = 1; i <= sibling.tamanho; i++) {
-                sibling.filhos[i - 1] = sibling.filhos[i];
+        if (!filhoY.isFolha) {
+            for (int i = 1; i <= filhoY.tamanho; i++) {
+                filhoY.filhos[i - 1] = filhoY.filhos[i];
             }
         }
 
-        child.tamanho++;
-        sibling.tamanho--;
+        filhoX.tamanho++;
+        filhoY.tamanho--;
     }
 
-    private void merge(Pagina pagina, int indice) {
-        Pagina child = pagina.filhos[indice];
-        Pagina sibling = pagina.filhos[indice + 1];
+    private void juntar(Pagina pagina, int indice) {
+        Pagina filhoX = pagina.filhos[indice];
+        Pagina filhoY = pagina.filhos[indice + 1];
 
-        child.chaves[2] = pagina.chaves[indice];
+        filhoX.chaves[2] = pagina.chaves[indice];
 
-        for (int i = 0; i < sibling.tamanho; i++) {
-            child.chaves[i + 3] = sibling.chaves[i];
+        for (int i = 0; i < filhoY.tamanho; i++) {
+            filhoX.chaves[i + 3] = filhoY.chaves[i];
         }
 
-        if (!child.isFolha) {
-            for (int i = 0; i <= sibling.tamanho; i++) {
-                child.filhos[i + 3] = sibling.filhos[i];
+        if (!filhoX.isFolha) {
+            for (int i = 0; i <= filhoY.tamanho; i++) {
+                filhoX.filhos[i + 3] = filhoY.filhos[i];
             }
         }
 
@@ -263,7 +263,7 @@ public class ArvoreB {
             pagina.filhos[i - 1] = pagina.filhos[i];
         }
 
-        child.tamanho += sibling.tamanho + 1;
+        filhoX.tamanho += filhoY.tamanho + 1;
         pagina.tamanho--;
     }
 
