@@ -91,8 +91,8 @@ public class ArvoreB {
         }
 
     // Função para remover uma chave da árvore B
-    public void remove(int key) {
-        remove(root, key);
+    public void remove(int chave) {
+        remove(root, chave);
     }
 
     private void remove(Pagina pagina, int chave) {
@@ -143,7 +143,7 @@ public class ArvoreB {
     }
 
     private void removeChaveNaoFolha(Pagina pagina, int indice) {
-        int key = pagina.chaves[indice];
+        int chave = pagina.chaves[indice];
 
         if (pagina.filhos[indice].tamanho >= 2) {
             int predecessor = getPredecessor(pagina.filhos[indice]);
@@ -155,7 +155,7 @@ public class ArvoreB {
             remove(pagina.filhos[indice + 1], successor);
         } else {
             juntar(pagina, indice);
-            remove(pagina.filhos[indice], key);
+            remove(pagina.filhos[indice], chave);
         }
     }
 
@@ -265,6 +265,21 @@ public class ArvoreB {
 
         filhoX.tamanho += filhoY.tamanho + 1;
         pagina.tamanho--;
+    }
+    public void limpar() {
+        limpar(root);
+        root = new Pagina(true);
+    }
+
+    private void limpar(Pagina pagina) {
+        if (pagina != null) {
+            if (!pagina.isFolha) {
+                for (int i = 0; i <= pagina.tamanho; i++) {
+                    limpar(pagina.filhos[i]);
+                }
+            }
+            pagina = null;
+        }
     }
 
 }
