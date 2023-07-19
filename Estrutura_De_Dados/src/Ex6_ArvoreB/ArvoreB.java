@@ -36,7 +36,7 @@ public class ArvoreB {
                 i--;
             }
             i++;
-            if (pagina.filhos[i].tamanho == 3) {
+            if (pagina.filhos[i].tamanho == 4) {
                 dividirFilhos(pagina, i);
                 if (chave > pagina.chaves[i]) {
                     i++;
@@ -51,12 +51,13 @@ public class ArvoreB {
         Pagina filhoDireita = new Pagina(pai.filhos[i].isFolha);
         Pagina filhoEsquerda = pai.filhos[i];
         pai.filhos[i] = filhoEsquerda;
-        pai.filhos[i + 1] = filhoDireita;
 
-        for (int j = 3; j > i; j--) {
+        for (int j = 3; j > i + 1; j--) {
             pai.filhos[j] = pai.filhos[j - 1];
             pai.chaves[j] = pai.chaves[j - 1];
         }
+
+        pai.filhos[i + 1] = filhoDireita;
         pai.chaves[i] = filhoEsquerda.chaves[2];
         pai.tamanho++;
 
@@ -80,11 +81,11 @@ public class ArvoreB {
     private void imprimirNaOrdem(Pagina pagina) {
         if (pagina != null) {
             int i;
-            for (i = 0; i < pagina.tamanho; i++) {
+            for (i = 0; i < pagina.filhos.length - 1; i++) {
                 if (!pagina.isFolha) {
                     imprimirNaOrdem(pagina.filhos[i]);
                 }
-                System.out.print(pagina.chaves[i] + " ");
+                if (i < pagina.tamanho) System.out.print(pagina.chaves[i] + " ");
             }
 //                if (!pagina.isFolha) {
 //                    imprimirNaOrdem(pagina.filhos[i]);
