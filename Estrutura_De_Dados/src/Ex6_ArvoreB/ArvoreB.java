@@ -281,5 +281,29 @@ public class ArvoreB {
             pagina = null;
         }
     }
+    public boolean contem(int chave) {
+        return contem(root, chave);
+    }
+
+    private boolean contem(Pagina pagina, int chave) {
+        if (pagina == null) {
+            return false;
+        }
+
+        int i = 0;
+        while (i < pagina.tamanho && chave > pagina.chaves[i]) {
+            i++;
+        }
+
+        if (i < pagina.tamanho && chave == pagina.chaves[i]) {
+            return true;
+        }
+
+        if (pagina.isFolha) {
+            return false;
+        }
+
+        return contem(pagina.filhos[i], chave);
+    }
 
 }

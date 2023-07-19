@@ -25,7 +25,12 @@ public class Main {
                 }
                 case 3 -> {
                     System.out.println("Digite um valor para consultar");
-
+                    int valor = entrada.nextInt();
+                    if (arvoreB.contem(valor)){
+                        System.out.println("Valor encontrado");
+                    }else {
+                        System.out.println("Valor não encontrado");
+                    }
                 }
                 case 4 -> {
                     arvoreB.limpar();
