@@ -52,15 +52,16 @@ where album.gravadora_id = gravadora.gravadora_id
 and album.estilo 
 like '%Rock%'
 order by banda;
---9
-select album.banda as 'conjunto', album.nome as 'Nome Do Album', album.estilo as 'Estilo', gravadora.nome as 'Gravadora', data_producao
-from album join gravadora join disco
-where album.gravadora_id = gravadora.gravadora_id 
-and disco.album_id = album.album_id
-and disco.gravadora_id = gravadora.gravadora_id
-and album.estilo 
-like '%Rock%'
-order by banda;]]></console>
+--9 (Estava retornando o album Led Zeppelin I duas vezes...usei distinct)
+select distinct album.banda as 'Conjunto', album.nome as 'NomeDoAlbum', gravadora.nome as 'Gravadora', disco.data_producao 
+from album left join gravadora using (gravadora_id) left join disco using (album_id) 
+where album.estilo like '%Rock%'
+order by album.banda;
+--10
+select estilo, count(banda) 
+from album left join gravadora using (gravadora_id) 
+where gravadora.nome like '%Atlantic%' 
+group by estilo;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
