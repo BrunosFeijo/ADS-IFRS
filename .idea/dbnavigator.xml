@@ -13,7 +13,54 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="c6c43de5-31c9-4e78-98d5-0add997d2576">
-      <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
+      <console name="Connection" type="STANDARD" schema="discos" session="Main"><![CDATA[use discos;
+--1
+select * from album;
+--2
+select banda,nome from album;
+--3
+select banda as 'conjunto', nome as 'Nome Do Album' from album;
+--4
+select banda as 'conjunto', nome as 'Nome Do Album', estilo as 'Estilo' 
+from album 
+where estilo 
+like '%Rock%';
+--5
+select banda as 'conjunto', nome as 'Nome Do Album', estilo as 'Estilo'
+from album 
+where estilo 
+like '%Rock%'
+order by nome;
+--6
+select banda as 'conjunto', nome as 'Nome Do Album', estilo as 'Estilo'
+from album 
+where estilo 
+like '%Rock%'
+order by nome
+limit 2;
+--7
+select banda as 'conjunto', nome as 'Nome Do Album', estilo as 'Estilo'
+from album 
+where estilo 
+like '%Rock%'
+order by nome
+limit 2,2;
+--8
+select album.banda as 'conjunto', album.nome as 'Nome Do Album', album.estilo as 'Estilo', gravadora.nome as 'Gravadora'
+from album join gravadora
+where album.gravadora_id = gravadora.gravadora_id 
+and album.estilo 
+like '%Rock%'
+order by banda;
+--9
+select album.banda as 'conjunto', album.nome as 'Nome Do Album', album.estilo as 'Estilo', gravadora.nome as 'Gravadora', data_producao
+from album join gravadora join disco
+where album.gravadora_id = gravadora.gravadora_id 
+and disco.album_id = album.album_id
+and disco.gravadora_id = gravadora.gravadora_id
+and album.estilo 
+like '%Rock%'
+order by banda;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -532,5 +579,8 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
   </component>
 </project>
