@@ -58,9 +58,9 @@ from album left join gravadora using (gravadora_id) left join disco using (album
 where album.estilo like '%Rock%'
 order by album.banda;
 --10
-select estilo, count(banda) 
+select estilo, count(banda) as 'Contagem'
 from album left join gravadora using (gravadora_id) 
-where gravadora.nome like '%Atlantic%' 
+where gravadora.nome like '%Atlantic%'
 group by estilo;]]></console>
     </connection>
   </component>
