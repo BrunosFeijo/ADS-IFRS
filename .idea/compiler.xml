@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Banco_De_Dados_II" />
+        <module name="Prog_Java_Web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="18">
       <module name="ADS-IFRS" target="18" />
+      <module name="untitled" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
