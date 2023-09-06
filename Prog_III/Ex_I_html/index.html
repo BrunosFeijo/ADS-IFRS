@@ -7,10 +7,18 @@
 <body>
 <h1>Um comparativo entre PHP e JSP: definindo a melhor
   aplicação para o desenvolvimento de projetos web.</h1>
-<h3>Jonathan Hackenhaar, Renata Zanella e Tatiana Cardoso</h3>
-<h5>Faculdade Cenecista de Osório (FACOS) Osório, RS – Brasil</h5>
-<!-- incluir link-->
-<p>jonathanhackenhaar@yahoo.com.br, {rezanella, tati.info@gmail.com}</p>
+<ul>
+    <li>Jonathan Hackenhaar</li>
+    <li>Renata Zanella</li>
+    <li>Tatiana Cardoso</li>
+</ul>
+<p>Faculdade Cenecista de Osório (FACOS) Osório, RS – Brasil</p>
+<ul>
+    <li>jonathanhackenhaar@yahoo.com.br</li>
+    <li>rezanella@gmail.com</li>
+    <li>tati.info@gmail.com</li>
+</ul>
+
 <p><strong>Resumo. </strong> O presente artigo aborda as tecnologias de desenvolvimento web
   PHP e JSP. Analisando as suas vantagens a partir das características de
   cada tecnologia, exemplos de aplicações, fazendo uma comparação entre elas,
@@ -25,7 +33,7 @@
 </p>
 
 <!-- Verificar a possibilidade de fazer como lista-->
-  <p><strong>1.Introdução</strong>  </p>
+  <h2><strong>1.Introdução</strong>  </h2>
   <p>Com o uso cada vez mais frequente da internet como fonte de informação e
     comunicação, tornou-se necessária a criação de páginas com conteúdos mais dinâmicos.
     As linguagens de script PHP (Personal Home Pages) e JSP (Java Server Pages) são
@@ -57,7 +65,7 @@
     compiladas em servlets. Diferente do PHP, no JSP o HTML é embutido na sua
     aplicação sendo o resultado gerado o HTML “de fundo”.
   </p>
-  <p><strong>2.O que é o PHP?</strong>  </p>
+  <h2><strong>2.O que é o PHP?</strong>  </h2>
     <p>O PHP surgiu em 1994, como um projeto de Rasmus Lerdorf, com a intenção de
       monitorar os acessos à sua página web. Essa linguagem de programação é baseada em
       C, Java e Perl, permite a criação de sites web dinâmicos, com acesso a banco de dados.</p>
@@ -70,7 +78,8 @@
       uma página HTML que será interpretada por um servidor com a vantagem de não
       expor o código para o cliente.</p>
     <p>Exemplo de código PHP:
-         <?php
+        <pre> <!--literal-->
+         &lt;?php
 include('code.php'); include 'code.php';
 require('code.php');
 require_once('code.php'); echo 'abc'; print 'abc';
@@ -81,12 +90,13 @@ if ($x >= 1 && $x < 3) { echo 'Olá mundo!';
       print('Adeus mundo!');
       }
         ?>
+    </pre>
     </p>
     <p>No exemplo de código PHP na tabela acima onde vários elementos
 essenciais dessa linguagem estão presentes o <?php que indica o inicio do código, os 
 includes onde são referenciados as bibliotecas, a echo que é usada para imprimir algo
 na tela do usuário e ?> para finalizar o código.</p>
-  <p><strong>2.1.Vantagens do PHP</strong>  </p>
+  <h3><strong>2.1.Vantagens do PHP</strong>  </h3>
 	<p>A linguagem PHP pode ser usada na maioria dos sistemas operacionais, incluindo o
 Linux, variantes Unix, Microsoft Windows, entre outros. O PHP é suportado pelo
 servidores web: Apache, Microsoft Internet Information Server, Personal Web Server e 
@@ -117,7 +127,7 @@ visualizar página PHP através do servidor web. E o script de linha de comando:
 script funciona sem um servidor web e um browser, somente é necessário o
 interpretador e escrevendo aplicações desktop: PHPGTK escreve aplicações desktop
 do lado do cliente. É uma extensão do PHP não disponível na distribuição oficial.</p>
-  <p><strong>3.O que é o JSP?</strong>  </p>
+  <h2><strong>3.O que é o JSP?</strong>  </h2>
 	<p>O JSP foi desenvolvido pela Sun Microsystems e consiste em uma tecnologia
 baseada em Java que simplifica o processo de desenvolvimento de aplicações para a 
 WEB. A tecnologia interage fortemente com Java, HTML, banco de dados e HTTP.</p>
@@ -134,19 +144,19 @@ apresentação e da lógica de negócio do site.</p>
 	<p>Sendo uma tecnologia baseada em Java, ela se aproveita de todas as vantagens
 que a linguagem Java fornece em relação a desenvolvimento e acionamento.</p>
 	<p>Exemplo de código JSP:</p>
-	<p><?xml version="1.0" encoding="ISO-8859-1" ?> <%@ page language="java"
+	<pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?> <%@ page language="java"
 contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO￾8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <htmlxmlns="http://www.w3.org/1999/xhtml"> <head> <meta httpequiv="
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> &lt;htmlxmlns="http://www.w3.org/1999/xhtml"> &lt;head> &lt;meta httpequiv="
 Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Trabalhando com JavaServer Pages</title> </head> <body> <%
-%> </body> </html>
-String s = "<h2>Esse é um código JSP embebido no HTML</h2>";
-out.write(s);</p>
+&lt;title>Trabalhando com JavaServer Pages&lt;/title> &lt;/head> &lt;body> <%
+%> &lt;/body> &lt;/html>
+String s = "&lt;h2>Esse é um código JSP embebido no HTML&lt;/h2>";
+out.write(s);</pre>
 	<p>No exemplo de código JSP acima, temos toda a parte inicial de codificação
 semelhante ao Java, quando compilado no NetBeans, seguido do titulo dado à aplicação,
 formando o cabeçalho do código, seguido após pela inserção do html na aplicação JSP.</p>
-  <p><strong>3.1 Vantagens do JSP</strong>  </p>
+  <h3><strong>3.1 Vantagens do JSP</strong>  </h3>
 	<p>Com o JSP é possível criar dinâmicas, páginas interativas com servlets, tornando o
 processo ainda mais fácil. Nas páginas JSP, é fácil de combinar modelos estáticos,
 incluindo fragmentos de HTML ou XML, com o código para gerar conteúdo dinâmico,
@@ -165,7 +175,7 @@ tornando mais e mais disponíveis.</p>
 de distribuir a funcionalidade do aplicativo para uma ampla gama de autores da página.
 Estes autores não têm de conhecer a linguagem Java ou até mesmo ser capaz de escrever
 servlets.</p>
-  <p><strong>4.Comparação PHP x JSP</strong>  </p>
+  <h2><strong>4.Comparação PHP x JSP</strong>  </h2>
 	<p>As linguagens PHP e JSP funcionam de formas semelhantes, o usuário requisita 
 através do navegador um serviço e é solicitado ao servidor. O servidor processa os
 scripts executando-os e gerando a resposta em formato HTML padrão ao navegador.</p>
@@ -176,39 +186,39 @@ resposta também em formato HTML padrão.</p>
 	<p>A tabela abaixo expõe a comparação entre o PHP e o JSP. Dessa maneira fica mais
 fácil expor as suas vantagens e desvantagens e as suas características.</p>
 <p><strong>Tabela 1: Uma comparação entre o PHP e o JSP</strong></p>
-<table border="10"> 
-     <tr> <!-- linhas (table row)--> 
-         <th> Vantagens/Desvantagens </th><!-- cabeçalho (table head)--> 
-         <th> PHP </th><!-- cabeçalho (table head)--> 
-         <th> JSP </th><!-- cabeçalho (table head)--> 
+<table border="3">
+     <tr>
+         <th> Vantagens/Desvantagens </th>
+         <th> PHP </th>
+         <th> JSP </th>
      </tr> 
      <tr> 
-         <td><strong> Aquitetura </strong></td> <!-- célula (table data)--> 
-         <td> Aberta </td> <!-- célula (table data)--> 
-         <td> Aberta </td> <!-- célula (table data)--> 
+         <th>Aquitetura</th>
+         <td> Aberta </td>
+         <td> Aberta </td>
      </tr> 
      <tr> 
-         <td><strong> Uso de scripts </strong> </td> <!-- célula (table data)--> 
-         <td> JavaScript </td> <!-- célula (table data)--> 
-         <td> JavaScript </td> <!-- célula (table data)--> 
+         <td><strong> Uso de scripts </strong> </td>
+         <td> JavaScript </td>
+         <td> JavaScript </td>
      </tr> 
      <tr> 
-         <td><strong> Seguranca </strong></td> <!-- célula (table data)--> 
-         <td> Versatilidade de configuração de acesso. </td> <!-- célula (table data)--> 
-         <td> Seguranca do Java </td> <!-- célula (table data)--> 
+         <td><strong> Seguranca </strong></td>
+         <td> Versatilidade de configuração de acesso. </td>
+         <td> Seguranca do Java </td>
      </tr>
 			<tr> 
-         <td><strong> Acesso a Banco de Dados </strong></td> <!-- célula (table data)--> 
-         <td> DBASE, INTERBASE, mSQL mySQL, ORACLE,POSTGRESQL </td> <!-- célula (table data)--> 
-         <td> JDBC </td> <!-- célula (table data)--> 
+         <td><strong> Acesso a Banco de Dados </strong></td>
+         <td> DBASE, INTERBASE, mSQL mySQL, ORACLE,POSTGRESQL </td>
+         <td> JDBC </td>
      </tr> 
 			<tr> 
-         <td><strong> Personalizacao de TAGS </strong></td> <!-- célula (table data)--> 
-         <td> Nao pode ser ampliado </td> <!-- célula (table data)--> 
-         <td> Ampliado através do uso de bibliotecas. </td> <!-- célula (table data)--> 
+         <td><strong> Personalizacao de TAGS </strong></td>
+         <td> Nao pode ser ampliado </td>
+         <td> Ampliado através do uso de bibliotecas. </td>
      </tr>
  </table>
-  <p><strong>5.Considerações Finais</strong>  </p>
+  <h2><strong>5.Considerações Finais</strong>  </h2>
 	<p>As tecnologias para desenvolvimento web estão cada vez mais dinâmicas e trabalham 
 de forma semelhante. O PHP é uma linguagem de fácil aprendizagem, suporta um
 grande número de banco de dados, é seguro, compacto, possui licença gratuita, é
@@ -217,7 +227,7 @@ ideal para implementação de pequenos e médios projetos.</p>
 flexível. Esta tecnologia permite ao desenvolvedor produzir aplicações que acessem o
 banco de dados, manipulem arquivos no formato texto, capturem informações a partir de
 formulários e captem informações sobre o visitante e sobre o servidor.</p>
-  <p><strong>Referências</strong>  </p>
+  <h2><strong>Referências</strong>  </h2>
 	<p>http://www.php.net, acessado em novembro.</p>
 	<p>Apostila Servelt/JSP. Capturado em 30 Dez de 2.001. On line - Disponível na
 Internet. http://www.dpi.ufv.br/~alcione/proginter2001/ApostilaServletJSP.pdf</p>
