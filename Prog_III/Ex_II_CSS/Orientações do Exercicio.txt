@@ -1,0 +1,31 @@
+Crie um projeto web e faça a marcação dos textos em anexo com HTML e CSS.
+
+São quatro arquivos para marcação: primeira.txt; segunda.txt; terceira.txt; e quarta.txt (copie os textos e cole nas páginas html criadas na ferramenta de sua preferência).
+
+As marcações e configurações de estilos estão informadas entre { } (chaves) ao longo dos textos. Por exemplo, no arquivo primeira.txt existe a linha:
+
+{Título Principal, fonte verdana, verde e tamanho 20pt} CSS
+
+O arquivo deve ser convertido em HTML (primeira.html) e a linha acima deve ser marcada com <h1>:
+
+<h1>CSS</h1>
+
+A configuração de estilos deve ser executada no arquivo CSS do projeto, da seguinte forma:
+
+h1 {
+
+   font-family: verdana;
+
+   color: green;
+
+   font-size: 20pt;
+
+}
+
+Existem também cinco imagens no projeto, que devem ser inseridas no HTML ao encontrar uma linha com essa:
+
+{Imagem Exemplo1.jpg}
+
+Após a conclusão do projeto, compacte sua pasta e envie no moodle como resposta a tarefa.
+
+Bom trabalho!!!
