@@ -1,0 +1,20 @@
+.tituloPrincipal{
+    font-family: Verdana;
+    color: green;
+    font-size: 20pt;
+}
+.subtitulo{
+    font-family: Verdana;
+    color: blue;
+    font-size: 14pt
+}
+.paragrafo{
+    font-family: Arial;
+    color: red;
+    font-size: 12pt;
+}
+.links{
+    font-family: Arial;
+    color: green;
+    font-size: 14pt;
+}
