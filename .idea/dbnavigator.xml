@@ -95,13 +95,13 @@ order by funcionario.nome;
 --3) Liste todos os setores, exibindo o nome do chefe, caso o tenha
 select setor.nome, funcionario.nome
 from setor left join funcionario on setor.chefe = funcionario.funcionario_id;
---4) Liste todas as empresas, seus setores e funcionários, incluindo as empresas que não têm setor e setores
---que não tenham funcionários
+--4) Liste todas as empresas, seus setores e funcionários,
+--incluindo as empresas que não têm setor e setores que não tenham funcionários
 select empresa.nome, setor.nome, funcionario.nome
 from empresa left join setor using (empresa_id) left join funcionario using (setor_id);
 --5) Liste todos os setores que não tenham funcionários
-select setor.nome from setor left join funcionario on funcionario.setor_id = setor.setor_id
-where funcionario.setor_id = null;
+select setor.nome from setor left join funcionario using (setor_id)
+where funcionario.setor_id is null;
 --6) Liste todos os chefes e seus salários
 select funcionario.nome, funcionario.salario, funcionario.funcionario_id
 from setor inner join funcionario on funcionario.funcionario_id = setor.chefe;
@@ -125,6 +125,7 @@ select f.nome, f.salario from funcionario as f where f.sexo ='Feminino' order by
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="58c65cee-bee3-4d4e-9db6-7512b8ae035d" dataset="bd2.empresa" active-filter-id="" />
     <filter-actions connection-id="c6c43de5-31c9-4e78-98d5-0add997d2576" dataset="sakila.actor" active-filter-id="0cac1f60-c01a-4434-9682-b91caa446e54">
       <filter id="0cac1f60-c01a-4434-9682-b91caa446e54" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="actor_id" operator="=" value="" active="true" />
