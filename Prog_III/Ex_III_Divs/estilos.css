@@ -1,0 +1,9 @@
+#principal{
+    position: absolute;
+    top: 0px;
+    left: 15%;
+    width: 70%;
+    background-color: #d2e793;
+    height: 100vh;
+    padding-bottom: 10%;
+}
