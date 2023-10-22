@@ -1,4 +1,11 @@
+body{
+    background-color: #99ff99;
+    margin: 0px;
+    padding: 0px
+}
+
 #principal{
+    /*margin: auto;*/
     position: absolute;
     top: 0px;
     left: 15%;
@@ -7,3 +14,91 @@
     height: 100vh;
     padding-bottom: 10%;
 }
+#banner{
+    margin:auto;
+    /*position: absolute; /*relative*/
+    width: 100%;
+    /*top: 0px;
+    left: 0px*/
+    background-image: url('/Ex_III_Divs/Imagens/fundo_topo_1.jpg');
+    background-size: cover;
+    height: 165px;
+
+}
+#corpo{
+    position: absolute;
+    top: 165px;
+    left: 0px;
+    width: 100%;
+    /*margin: auto;*/
+}
+#menu{
+    width: 20%;
+    /*margin: auto;*/
+    top: 0px;
+    left: 0px;
+    position: absolute;
+
+}
+#conteudo{
+    width: 80%;
+    /*margin: auto;*/
+    position: absolute; /* relative */
+    top: 0px;
+    left: 20%;
+
+}
+#conteudo, p, hr, h1,h2,h3{
+    margin: 10px;
+}
+#menu ul li{
+    border:  1px solid #000;
+    padding: 5px;
+    margin: 5px;
+    list-style-image: url('/Ex_III_Divs/Imagens/flecha.png');
+}
+#bloco01 {
+    position: relative;
+    left: 0px;
+    top: 10px;
+    width: 98%;
+    border-bottom: 2px solid #000;
+    height: 20vh;
+}
+
+#bl01 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 50%;
+    border-right: 2px solid #000;
+    color: #FF0000;
+}
+
+#bl02 {
+    position: absolute;
+    left: 50%;
+    top: 0px;
+    color: #0000FF;
+}
+
+#bloco01 p {
+    margin-right: 10px;
+}
+#bloco02{
+     position: relative;
+     left: 0px;
+     top: 10px;
+     width: 98%;
+     height: 18vh;
+     border-bottom: 2px solid #000000;
+ }
+ #bloco03{
+     position: relative;
+     left: 0px;
+     top: 10px;
+     width: 98%;
+     height: 18vh;
+     border-bottom: 2px solid #000000;
+ }
+
