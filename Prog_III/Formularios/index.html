@@ -9,10 +9,43 @@
     <form action="teste.php" method="post">
         <h1>Formulários</h1>
         <label for="clube">Nome do clube: </label>
-        <input type="text" name="clube" id="clube"><br>
+        <input type="text" name="clube" id="clube"><br><br>
         <label for="senha">Senha:  </label>
-        <input type="password" name="senha" id="senha"><br>
-        <input type="submit" name="Enviar" value="Enviar">
+        <input type="password" name="senha" id="senha"><br><br>
+        <label for="Sigla">Sigla: </label>
+        <input type="text" name="Sigla" id="Sigla" size="10" maxlength="3"><br><br>
+        <label for="data">Data de Fundação: </label>
+        <input type="date" name="data" id="data" size="5"><br><br>
+        <label for="email">E-mail: </label>
+        <input type="email" name="email" id="email" size="30"><br><br>
+        <label for="site">Site do Clube: </label>
+        <input type="url" name="site" id="site" size="30"><br><br>
+        <label for="estado">Estado: </label>
+        <select name="estado" id="estado">
+            <option value="">Selecione um estado</option>
+            <option value="PR">Paraná</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="SC">Santa Catarina</option>
+        </select><br><br>
+        <fieldset>
+            <legend>Categoria: </legend><br>
+            <input type="radio" name="categoria" id="categoria1" value="1"><label for="categoria1">Futebol de Campo</label> &nbsp;
+            <input type="radio" name="categoria" id="categoria2" value="2"><label for="categoria1">Futebol de Salão</label> &nbsp;
+            <input type="radio" name="categoria" id="categoria3" value="3"><label for="categoria1"> Futebol Sete</label> &nbsp;
+        </fieldset> <br> <br>
+        <fieldset>
+            <legend>Titulos: </legend>
+            <input type="checkbox" name="titulo" id="titulo1" value="1"><label for="titulo1">Municipal</label> &nbsp;
+            <input type="checkbox" name="titulo" id="titulo2" value="2"><label for="titulo2">Regional</label> &nbsp;
+            <input type="checkbox" name="titulo" id="titulo3" value="3"><label for="titulo3">Estadual</label> &nbsp;
+            <input type="checkbox" name="titulo" id="titulo4" value="4"><label for="titulo4">Nacional</label> &nbsp;
+            <input type="checkbox" name="titulo" id="titulo5" value="5"><label for="titulo5">Internacional</label> &nbsp;
+        </fieldset> <br> <br>
+        <label for="observacao">Observações: </label><br>
+        <textarea name="observacao" id="observacao" cols="100" rows="10"></textarea><br><br>
+        <br><input type="submit" name="Enviar" value="Enviar">
+        <input type="reset" value="Limpar" name="limpar">
+        <input type="button" value="Validar" name="validar">
 
     </form>
 </body>
