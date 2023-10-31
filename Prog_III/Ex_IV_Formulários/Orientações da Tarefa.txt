@@ -1,0 +1,43 @@
+Faça um projeto web contendo uma página com formulário para cadastro de microempresas, com os seguintes campos:
+
+* CNPJ - caixa de texto;
+
+* Nome Fantasia - caixa de texto;
+
+* Razão Social - caixa de texto;
+
+* Telefone de Contato - caixa de texto;
+
+* E-mail: caixa de texto especial para digitação de endereços válidos de e-mail;
+
+* Endereço: área de texto de até três linhas para digitação do endereço completo;
+
+* Data de Fundação: calendário de data;
+
+* Ramo de atuação: botão de seleção, do tipo radiobutton, com as opções Comércio, Serviços e Indústria;
+
+* Número de funcionários: caixa numérica para digitar um número inteiro;
+
+* Faturamento anual: caixa numérica ou de texto para digitar um número com ponto flutuante (vírgula).
+
+Requisitos de formatação e validação:
+
+1 - O formulário deve estar em um quadro no centro da tela, com borda laranja e fundo azul claro. Também deve possuir um título em itálico e com fonte 16pt.
+
+2 - Todos os campos são de digitação obrigatória.
+
+3 - O campo CNPJ deve aceitar 14 caracteres. O padrão de digitação é XX.XXX.XXX/XXXX-XX, onde X representa um número de 0 à 9. Somente valores com 14 caracteres e no formato desejado devem ser aceitos pelo navegador.
+
+4 - Nome fantasia deve aceitar até 100 caracteres.
+
+5 - Razão social deve aceitar até 150 caracteres.
+
+6- E-mail deve acetar até 100 caracteres e apenas um endereços de e-mail válidos.
+
+7 - Telefone de contato deve ter 14 caracteres no formato (XX)XXXXX-XXXX. X representa um número de 0 à 9. Somente valores com 14 caracteres e no formato desejado devem ser aceitos pelo navegador.
+
+8 - O formulário deve conter ainda dois botões: o botão Salvar para submissão dos dados ao servidor; e um botão de limpar os dados digitados.
+
+9 - Todas as validações devem ser implementadas com HTML.
+
+10 - Todas as formatações devem ser implementadas com CSS.

@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercícios de Formulário</title>
 </head>
 <body>
+    <h1>Formulário de Cadastro</h1>
+    <form action="#" method="post">
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" name="cnpj" id="cnpj" required>
+        <label for="nome">Nome Fantasia:</label>
+        <input type="text" name="nome" id="nome" required>
+        <label for="razaoSocial">Razão Social: </label>
+        <input type="text" name="razaoSocial" id="razaoSocial" required>
+        <label for="telefone">Telefone: </label>
+        <input type="tel" name="telefone" id="telefone" required>
+        <label for="email">E-mail: </label>
+        <input type="email" name="email" id="email" required>
+        <label for="endereco">Endereço: </label>
+        <input type="text" name="endereco" id="endereco" required>
+        <label for="data">Data: </label>
+        <input type="date" name="data" id="data" required>
+        <fieldset>
+            <legend>Ramo de Atuação: </legend>
+            <input type="radio" name="categoria" id="categoria1" value="1" required><label for="categoria1">Comércio</label>
+            <input type="radio" name="categoria" id="categoria2" value="2" required><label for="categoria2">Serviço</label>
+            <input type="radio" name="categoria" id="categoria3" value="3" required><label for="categoria3">Industria</label>
+        </fieldset>
+        <label for="funcionarios">Número de Funcionários: </label>
+        <input type="number" name="funcionarios" id="funcionarios" required>
+        <label for="faturamento">Faturamento:</label>
+        <input type="number" name="faturamento" id="faturamento" required>
 
+        <input type="submit" value="Enviar">
+        <input type="reset" value="Limpar">
+    </form>
 </body>
 </html>
