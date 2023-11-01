@@ -9,7 +9,7 @@ function validarFormulario(){
         return false;
     }
     // Verificação do telefone de contato
-    let telefoneRegex = /^\(\d{2}\)\d{5}-\d{4}$/;
+    let telefoneRegex = /^\(\d{2}\)\d{4,5}-\d{4}$/;
     if (!telefoneRegex.test(telefone.value)) {
         alert('O telefone de contato deve estar no formato (XX)XXXXX-XXXX');
         return false;
