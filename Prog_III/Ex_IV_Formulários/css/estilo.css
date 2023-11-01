@@ -4,13 +4,18 @@
 }
 body{
     padding: 10px;
+    border: 1px solid orange;
+    background-color: aqua;
 }
 h1{
+    font-style: italic;
     text-align: center;
+    font-size: 16px;
 }
 form{
     width: 500px;
     margin: 0 auto;
+
 }
 label, legend{
     font-weight: bold;
