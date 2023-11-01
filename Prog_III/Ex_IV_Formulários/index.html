@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Formulário de Cadastro</h1>
-    <form action="#" method="post">
+    <form action="#" method="post" autocomplete="on">
         <label for="cnpj">CNPJ:</label>
         <input type="text" name="cnpj" id="cnpj" required>
 
@@ -19,10 +19,10 @@
         <input type="text" name="razaoSocial" id="razaoSocial" required>
 
         <label for="telefone">Telefone: </label>
-        <input type="tel" name="telefone" id="telefone" required>
+        <input type="tel" name="telefone" id="telefone" placeholder="(xx)xxxx-xxxx" required>
 
         <label for="email">E-mail: </label>
-        <input type="email" name="email" id="email" required>
+        <input type="email" name="email" id="email" autocomplete="email" required>
 
         <label for="endereco">Endereço: </label>
         <textarea name="endereco" id="endereco" required></textarea>
@@ -32,19 +32,19 @@
 
         <fieldset>
             <legend>Ramo de Atuação: </legend>
-            <input type="radio" name="categoria" id="comercio" value="1" required><label for="comercio">Comércio</label>
-            <input type="radio" name="categoria" id="servico" value="2" required><label for="servico">Serviço</label>
-            <input type="radio" name="categoria" id="industria" value="3" required><label for="industria">Industria</label>
+            <input type="radio" name="categoria" id="comercio" value="1" class="radio" required><label for="comercio" class="radio">Comércio</label>
+            <input type="radio" name="categoria" id="servico" value="2" class="radio" required><label for="servico" class="radio">Serviço</label>
+            <input type="radio" name="categoria" id="industria" value="3" class="radio" required><label for="industria" class="radio">Industria</label>
         </fieldset>
 
         <label for="funcionarios">Número de Funcionários: </label>
         <input type="number" name="funcionarios" id="funcionarios" required>
 
         <label for="faturamento">Faturamento:</label>
-        <input type="number" name="faturamento" id="faturamento" step="0,00" required>
+        <input type="number" name="faturamento" id="faturamento" step="0,01" required>
 
-        <input type="submit" value="Enviar">
-        <input type="reset" value="Limpar">
+        <button type="submit">Enviar</button>
+        <button type="reset">Limpar</button>
     </form>
 </body>
 </html>
