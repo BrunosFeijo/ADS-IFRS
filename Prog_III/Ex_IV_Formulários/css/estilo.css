@@ -13,5 +13,5 @@ label{
     margin-bottom: 5px;
 }
 input, select, textarea{
-    
+    width: 100%;
 }
