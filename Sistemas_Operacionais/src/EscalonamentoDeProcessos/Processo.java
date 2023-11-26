@@ -8,10 +8,10 @@ public class Processo implements Comparable<Processo> {
     private int tempoEspera;
     private boolean preemptivo;
 
-    public Processo(int tempoExecucao, int prioridade) {
+    public Processo(int tempoExecucao,int tempoChegada, int prioridade) {
         this.tempoExecucao = tempoExecucao;
         this.tempoRestante = tempoExecucao;
-        this.tempoChegada = 0;
+        this.tempoChegada = tempoChegada;
         this.prioridade = prioridade;
         this.tempoEspera = 0;
     }
