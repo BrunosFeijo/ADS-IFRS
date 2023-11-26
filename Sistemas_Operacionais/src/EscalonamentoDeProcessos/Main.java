@@ -5,10 +5,11 @@ public class Main {
         Escalonador escalonador = new Escalonador();
 
         escalonador.processosAleatorios();
-
         escalonador.processosAleatorios();
         escalonador.processosAleatorios();
 
         System.out.println(escalonador);
+
+        escalonador.FCFS();
     }
 }

@@ -41,8 +41,8 @@ public class Processo implements Comparable<Processo> {
         this.tempoEspera = tempoEspera;
     }
 
-    public void DecrementarTempoRestante() {
-        this.tempoRestante--;
+    public int DecrementarTempoRestante() {
+        return --this.tempoRestante;
     }
 
     @Override

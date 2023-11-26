@@ -40,10 +40,11 @@ public class Escalonador {
     private void adicionarProcesso(int tempoExecucao, int tempoChegada, int prioridade) {
         this.processos.add(new Processo(tempoExecucao, tempoChegada, prioridade));
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder("{\n");
-        for (int i = 0; i < processos.size();i++ ){
+        for (int i = 0; i < processos.size(); i++) {
             stringBuilder.append("Processos[").append(i).append("]:")
                     .append(" tempo_execução= ").append(processos.get(i).getTempoExecucao())
                     .append(" tempo_restante= ").append(processos.get(i).getTempoRestante())
@@ -52,19 +53,22 @@ public class Escalonador {
                     .append("\n");
 
         }
-        stringBuilder.append("}");
+        stringBuilder.append("}\n");
 
         return stringBuilder.toString();
     }
 
-    public void FCFS(){
+    public void FCFS() {
         List<Processo> listaProcessos = processos;
         int tempoExecucaoTotal = processos.stream().mapToInt(Processo::getTempoExecucao).sum();
+        int indexProcesso = 0;
 
-        for (int i = 1; i <= tempoExecucaoTotal;i++){
-            for (int j = 0; j < listaProcessos.size();j++){
-                System.out.println("tempo[" + i + "]: processo[" + j + "] restante");
-            }
+        for (int i = 1; i <= tempoExecucaoTotal; i++) {
+            if (listaProcessos.get(indexProcesso).getTempoRestante() == 0) indexProcesso++;
+            System.out.println("tempo[" + i + "]:" +
+                    " processo[" + indexProcesso + "]" +
+                    " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+
         }
     }
 }
