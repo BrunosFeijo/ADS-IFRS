@@ -57,5 +57,14 @@ public class Escalonador {
         return stringBuilder.toString();
     }
 
+    public void FCFS(){
+        List<Processo> listaProcessos = processos;
+        int tempoExecucaoTotal = processos.stream().mapToInt(Processo::getTempoExecucao).sum();
 
+        for (int i = 1; i <= tempoExecucaoTotal;i++){
+            for (int j = 0; j < listaProcessos.size();j++){
+                System.out.println("tempo[" + i + "]: processo[" + j + "] restante");
+            }
+        }
+    }
 }
