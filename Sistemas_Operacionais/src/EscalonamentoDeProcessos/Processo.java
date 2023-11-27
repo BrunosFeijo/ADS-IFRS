@@ -1,6 +1,6 @@
 package EscalonamentoDeProcessos;
 
-public class Processo implements Comparable<Processo> {
+public class Processo implements Comparable<Processo>, Cloneable {
 
     private int tempoExecucao;
     private int tempoRestante;
@@ -15,6 +15,9 @@ public class Processo implements Comparable<Processo> {
         this.tempoChegada = tempoChegada;
         this.prioridade = prioridade;
         this.tempoEspera = 0;
+    }
+
+    public Processo(Processo processo) {
     }
 
     public int getTempoExecucao() {
@@ -49,5 +52,9 @@ public class Processo implements Comparable<Processo> {
     @Override
     public int compareTo(Processo o) {
         return Integer.compare(this.prioridade, o.getPrioridade());
+    }
+    @Override
+    protected Processo clone() throws CloneNotSupportedException {
+        return new Processo(this);
     }
 }

@@ -12,6 +12,14 @@ public class Escalonador {
         this.processos = new ArrayList<>();
     }
 
+    public List<Processo> copiaProcessos() throws CloneNotSupportedException {
+        List<Processo> listaProcessos = new ArrayList<>();
+        for (Processo processo : processos) {
+            listaProcessos.add(processo.clone());
+        }
+        return listaProcessos;
+    }
+
     public void processosAleatorios() {
         Random random = new Random();
 
@@ -58,9 +66,9 @@ public class Escalonador {
         return stringBuilder.toString();
     }
 
-    public void FCFS() {
-        List<Processo> listaProcessos = processos;
-        int tempoExecucaoTotal = processos.stream().mapToInt(Processo::getTempoExecucao).sum();
+    public void FCFS() throws CloneNotSupportedException {
+        List<Processo> listaProcessos = copiaProcessos();
+        int tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoExecucao).sum();
         int indexProcesso = 0;
 
         for (int i = 1; i <= tempoExecucaoTotal; i++) {
@@ -73,8 +81,8 @@ public class Escalonador {
     }
 
 
-    public void SJFPreemptivo() {
-        List<Processo> listaProcessos = processos;
+    public void SJFPreemptivo() throws CloneNotSupportedException {
+        List<Processo> listaProcessos = copiaProcessos();
         boolean tudoPronto = false;
         int tempoExecucaoTotal = 0;
         int i = 1;
@@ -82,29 +90,28 @@ public class Escalonador {
         int indexProcesso = -1;
 
         while (!tudoPronto) {
-            for (int j = 0; j < listaProcessos.size();j++){
+            for (int j = 0; j < listaProcessos.size(); j++) {
                 //TODO Verificar chegada
-                if (i >= listaProcessos.get(j).getTempoChegada()){
+                if (i >= listaProcessos.get(j).getTempoChegada()) {
                     //TODO Verificar tempo de execucao
                     if (listaProcessos.get(j).getTempoRestante() < menor
-                            && listaProcessos.get(j).getTempoRestante() != 0){
+                            && listaProcessos.get(j).getTempoRestante() != 0) {
                         menor = listaProcessos.get(j).getTempoRestante();
                         indexProcesso = j;
-                     }
+                    }
                 }
             }
             //TODO decrementar tempo restante
-            if (indexProcesso == -1){
+            if (indexProcesso == -1) {
                 System.out.println("Nenhum processo na fila");
-            }else{
+            } else {
                 System.out.println("tempo[" + i + "]:" +
                         " processo[" + indexProcesso + "]" +
                         " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
             }
 
             //TODO Verificar se todos os processos ja finalizarar
-
-            tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoExecucao).sum();
+            tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
             if (tempoExecucaoTotal == 0) tudoPronto = true;
 
 
@@ -113,5 +120,6 @@ public class Escalonador {
             indexProcesso = -1;
         }
     }
+
 
 }
