@@ -71,4 +71,10 @@ public class Escalonador {
 
         }
     }
+			
+		public void SJFPreemptivo(){
+			List<Processo> listaProcesso = processos;
+
+
+		}
 }
