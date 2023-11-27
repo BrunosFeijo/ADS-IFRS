@@ -1,6 +1,7 @@
 package EscalonamentoDeProcessos;
 
 public class Processo implements Comparable<Processo> {
+
     private int tempoExecucao;
     private int tempoRestante;
     private int tempoChegada;

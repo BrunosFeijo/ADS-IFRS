@@ -71,24 +71,46 @@ public class Escalonador {
 
         }
     }
-			
 
-	public void SJFPreemptivo(){
-		List<Processo> listaProcessos = processos;
-		boolean tudoPronto = false;
-		int tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoExecucao).sum();
-		int i = 1;		
-	
-		while(!tudoPronto){
-			//TODO Verificar chegada
-			
-			//TODO Verificar tempo de execucao
-			//TODO Verificar se todos os processos ja finalizaram
-			
 
-			tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoExecucao).sum();
-			if(tempoExecucaoTotal == 0) tudoPronto = true;
-		
-		}
-	}
+    public void SJFPreemptivo() {
+        List<Processo> listaProcessos = processos;
+        boolean tudoPronto = false;
+        int tempoExecucaoTotal = 0;
+        int i = 1;
+        int menor = Integer.MAX_VALUE;
+        int indexProcesso = -1;
+        while (!tudoPronto) {
+            for (int j = 0; j < listaProcessos.size();j++){
+                //TODO Verificar chegada
+                if (i >= listaProcessos.get(j).getTempoChegada()){
+                    //TODO Verificar tempo de execucao
+                    if (listaProcessos.get(j).getTempoExecucao() < menor
+                            && listaProcessos.get(j).getTempoExecucao() != 0){
+                        menor = listaProcessos.get(j).getTempoExecucao();
+                        indexProcesso = j;
+                     }
+                }
+            }
+            //TODO decrementar execucao
+            if (indexProcesso == -1){
+                System.out.println("Nenhum processo na fila");
+            }else{
+                System.out.println("tempo[" + i + "]:" +
+                        " processo[" + indexProcesso + "]" +
+                        " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+                indexProcesso = -1;
+            }
+
+            //TODO Verificar se todos os processos ja finalizaram
+
+
+            tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoExecucao).sum();
+            if (tempoExecucaoTotal == 0) tudoPronto = true;
+
+            i++;
+            menor = Integer.MAX_VALUE;
+        }
+    }
+
 }
