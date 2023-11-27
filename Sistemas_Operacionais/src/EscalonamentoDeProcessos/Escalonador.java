@@ -72,9 +72,23 @@ public class Escalonador {
         }
     }
 			
-		public void SJFPreemptivo(){
-			List<Processo> listaProcesso = processos;
 
+	public void SJFPreemptivo(){
+		List<Processo> listaProcessos = processos;
+		boolean tudoPronto = false;
+		int tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoExecucao).sum();
+		int i = 1;		
+	
+		while(!tudoPronto){
+			//TODO Verificar chegada
+			
+			//TODO Verificar tempo de execucao
+			//TODO Verificar se todos os processos ja finalizaram
+			
 
+			tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoExecucao).sum();
+			if(tempoExecucaoTotal == 0) tudoPronto = true;
+		
 		}
+	}
 }
