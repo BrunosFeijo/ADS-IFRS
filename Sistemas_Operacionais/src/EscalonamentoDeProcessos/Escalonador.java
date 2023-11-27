@@ -80,36 +80,37 @@ public class Escalonador {
         int i = 1;
         int menor = Integer.MAX_VALUE;
         int indexProcesso = -1;
+
         while (!tudoPronto) {
             for (int j = 0; j < listaProcessos.size();j++){
                 //TODO Verificar chegada
                 if (i >= listaProcessos.get(j).getTempoChegada()){
                     //TODO Verificar tempo de execucao
-                    if (listaProcessos.get(j).getTempoExecucao() < menor
-                            && listaProcessos.get(j).getTempoExecucao() != 0){
-                        menor = listaProcessos.get(j).getTempoExecucao();
+                    if (listaProcessos.get(j).getTempoRestante() < menor
+                            && listaProcessos.get(j).getTempoRestante() != 0){
+                        menor = listaProcessos.get(j).getTempoRestante();
                         indexProcesso = j;
                      }
                 }
             }
-            //TODO decrementar execucao
+            //TODO decrementar tempo restante
             if (indexProcesso == -1){
                 System.out.println("Nenhum processo na fila");
             }else{
                 System.out.println("tempo[" + i + "]:" +
                         " processo[" + indexProcesso + "]" +
                         " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
-                indexProcesso = -1;
             }
 
-            //TODO Verificar se todos os processos ja finalizaram
-
+            //TODO Verificar se todos os processos ja finalizarar
 
             tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoExecucao).sum();
             if (tempoExecucaoTotal == 0) tudoPronto = true;
 
+
             i++;
             menor = Integer.MAX_VALUE;
+            indexProcesso = -1;
         }
     }
 
