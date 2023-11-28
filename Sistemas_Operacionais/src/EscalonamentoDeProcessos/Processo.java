@@ -17,9 +17,6 @@ public class Processo implements Comparable<Processo>, Cloneable {
         this.tempoEspera = 0;
     }
 
-    public Processo(Processo processo) {
-    }
-
     public int getTempoExecucao() {
         return tempoExecucao;
     }
@@ -55,6 +52,6 @@ public class Processo implements Comparable<Processo>, Cloneable {
     }
     @Override
     protected Processo clone() throws CloneNotSupportedException {
-        return new Processo(this);
+        return new Processo(this.tempoExecucao, this.tempoChegada,this.prioridade);
     }
 }

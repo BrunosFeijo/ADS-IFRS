@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Escalonador {
-    private List<Processo> processos;
+    private final List<Processo> processos;
 
     public Escalonador() {
         this.processos = new ArrayList<>();
@@ -14,9 +15,10 @@ public class Escalonador {
 
     public List<Processo> copiaProcessos() throws CloneNotSupportedException {
         List<Processo> listaProcessos = new ArrayList<>();
-        for (Processo processo : processos) {
+        for (Processo processo: processos             ) {
             listaProcessos.add(processo.clone());
         }
+
         return listaProcessos;
     }
 
@@ -103,7 +105,7 @@ public class Escalonador {
             }
             //TODO decrementar tempo restante
             if (indexProcesso == -1) {
-                System.out.println("Nenhum processo na fila");
+                System.out.println("tempo[" + i + "]: " + "Nenhum processo na fila");
             } else {
                 System.out.println("tempo[" + i + "]:" +
                         " processo[" + indexProcesso + "]" +
