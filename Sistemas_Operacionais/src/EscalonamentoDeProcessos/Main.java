@@ -10,11 +10,15 @@ public class Main {
 
         System.out.println(escalonador);
 
-        escalonador.FCFS();
+//        escalonador.FCFS();
+//
+//        escalonador.SJFPreemptivo();
+//
+//        escalonador.SJFNaoPreemptivo();
 
-        escalonador.SJFPreemptivo();
+//        escalonador.PrioridadePreemptivo();
 
-        escalonador.SJFNaoPreemptivo();
+//        escalonador.PrioridadeNaoPreemptivo();
 
 
     }

@@ -140,8 +140,7 @@ public class Escalonador {
                 }
             }
             if (indexProcesso == -1) {
-                System.out.println("tempo[" + i + "]: " + "Nenhum processo está pronto");
-                i++;
+                System.out.println("tempo[" + i++ + "]: " + "Nenhum processo está pronto");
             } else {
                 while(listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
                     System.out.println("tempo[" + i++ + "]:" +
@@ -158,6 +157,94 @@ public class Escalonador {
         }
         System.out.println(); //pular linha
     }
+    public void PrioridadePreemptivo() throws CloneNotSupportedException {
+        List<Processo> listaProcessos = copiaProcessos();
+        boolean tudoPronto = false;
+        int tempoExecucaoTotal = 0;
+        int i = 1;
+        int maior = Integer.MIN_VALUE;
+        int indexProcesso = -1;
 
+        while (!tudoPronto) {
+            for (int j = 0; j < listaProcessos.size(); j++) {
+                if (i >= listaProcessos.get(j).getTempoChegada()) {
+                    if (listaProcessos.get(j).getPrioridade() > maior
+                            && listaProcessos.get(j).getTempoRestante() != 0) {
+                        maior = listaProcessos.get(j).getPrioridade();
+                        indexProcesso = j;
+                    }
+                }
+            }
+            if (indexProcesso == -1) {
+                System.out.println("tempo[" + i + "]: " + "Nenhum processo está pronto");
+            } else {
+                System.out.println("tempo[" + i + "]:" +
+                        " processo[" + indexProcesso + "]" +
+                        " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+            }
+
+            tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
+            if (tempoExecucaoTotal == 0) tudoPronto = true;
+
+            i++;
+            maior = Integer.MIN_VALUE;
+            indexProcesso = -1;
+        }
+        System.out.println(); //pular linha
+    }
+    public void PrioridadeNaoPreemptivo() throws CloneNotSupportedException {
+        List<Processo> listaProcessos = copiaProcessos();
+        boolean tudoPronto = false;
+        int tempoExecucaoTotal = 0;
+        int i = 1;
+        int maior = Integer.MIN_VALUE;
+        int indexProcesso = -1;
+
+        while (!tudoPronto) {
+            for (int j = 0; j < listaProcessos.size(); j++) {
+                if (i >= listaProcessos.get(j).getTempoChegada()) {
+                    if (listaProcessos.get(j).getPrioridade() > maior
+                            && listaProcessos.get(j).getTempoRestante() != 0) {
+                        maior = listaProcessos.get(j).getPrioridade();
+                        indexProcesso = j;
+                    }
+                }
+            }
+            if (indexProcesso == -1) {
+                System.out.println("tempo[" + i++ + "]: " + "Nenhum processo está pronto");
+            } else {
+                while(listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
+                    System.out.println("tempo[" + i++ + "]:" +
+                            " processo[" + indexProcesso + "]" +
+                            " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+                }
+            }
+
+            tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
+            if (tempoExecucaoTotal == 0) tudoPronto = true;
+
+            maior = Integer.MIN_VALUE;
+            indexProcesso = -1;
+        }
+        System.out.println(); //pular linha
+    }
+    public void RoundRobin() throws CloneNotSupportedException {
+        List<Processo> listaProcessos = copiaProcessos();
+        int tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoExecucao).sum();
+        int indexProcesso = 0;
+        //TODO Definir time slice
+        //TODO criar regra para troca de processo
+        //TODO Criar regra para retornar ao primeiro indice
+
+        
+        for (int i = 1; i <= tempoExecucaoTotal; i++) {
+            if (listaProcessos.get(indexProcesso).getTempoRestante() == 0) indexProcesso++;
+            System.out.println("tempo[" + i + "]:" +
+                    " processo[" + indexProcesso + "]" +
+                    " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+
+        }
+        System.out.println(); //pular linha
+    }
 
 }
