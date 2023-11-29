@@ -15,7 +15,7 @@ public class Escalonador {
 
     public List<Processo> copiaProcessos() throws CloneNotSupportedException {
         List<Processo> listaProcessos = new ArrayList<>();
-        for (Processo processo: processos             ) {
+        for (Processo processo : processos) {
             listaProcessos.add(processo.clone());
         }
 
@@ -80,6 +80,7 @@ public class Escalonador {
                     " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
 
         }
+        System.out.println(); //pular linha
     }
 
 
@@ -93,9 +94,7 @@ public class Escalonador {
 
         while (!tudoPronto) {
             for (int j = 0; j < listaProcessos.size(); j++) {
-                //TODO Verificar chegada
                 if (i >= listaProcessos.get(j).getTempoChegada()) {
-                    //TODO Verificar tempo de execucao
                     if (listaProcessos.get(j).getTempoRestante() < menor
                             && listaProcessos.get(j).getTempoRestante() != 0) {
                         menor = listaProcessos.get(j).getTempoRestante();
@@ -103,16 +102,14 @@ public class Escalonador {
                     }
                 }
             }
-            //TODO decrementar tempo restante
             if (indexProcesso == -1) {
-                System.out.println("tempo[" + i + "]: " + "Nenhum processo na fila");
+                System.out.println("tempo[" + i + "]: " + "Nenhum processo está pronto");
             } else {
                 System.out.println("tempo[" + i + "]:" +
                         " processo[" + indexProcesso + "]" +
                         " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
             }
 
-            //TODO Verificar se todos os processos ja finalizarar
             tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
             if (tempoExecucaoTotal == 0) tudoPronto = true;
 
@@ -121,6 +118,45 @@ public class Escalonador {
             menor = Integer.MAX_VALUE;
             indexProcesso = -1;
         }
+        System.out.println(); //pular linha
+    }
+
+    public void SJFNaoPreemptivo() throws CloneNotSupportedException {
+        List<Processo> listaProcessos = copiaProcessos();
+        boolean tudoPronto = false;
+        int tempoExecucaoTotal = 0;
+        int i = 1;
+        int menor = Integer.MAX_VALUE;
+        int indexProcesso = -1;
+
+        while (!tudoPronto) {
+            for (int j = 0; j < listaProcessos.size(); j++) {
+                if (i >= listaProcessos.get(j).getTempoChegada()) {
+                    if (listaProcessos.get(j).getTempoRestante() < menor
+                            && listaProcessos.get(j).getTempoRestante() != 0) {
+                        menor = listaProcessos.get(j).getTempoRestante();
+                        indexProcesso = j;
+                    }
+                }
+            }
+            if (indexProcesso == -1) {
+                System.out.println("tempo[" + i + "]: " + "Nenhum processo está pronto");
+                i++;
+            } else {
+                while(listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
+                    System.out.println("tempo[" + i++ + "]:" +
+                            " processo[" + indexProcesso + "]" +
+                            " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+                }
+            }
+
+            tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
+            if (tempoExecucaoTotal == 0) tudoPronto = true;
+
+            menor = Integer.MAX_VALUE;
+            indexProcesso = -1;
+        }
+        System.out.println(); //pular linha
     }
 
 

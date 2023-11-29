@@ -11,8 +11,11 @@ public class Main {
         System.out.println(escalonador);
 
         escalonador.FCFS();
-        System.out.println();
 
         escalonador.SJFPreemptivo();
+
+        escalonador.SJFNaoPreemptivo();
+
+
     }
 }
