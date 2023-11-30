@@ -242,18 +242,18 @@ public class Escalonador {
         while (tempoRestanteTotal != 0) {
             if (listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
                 for (int j = 0; j < timeSlice; j++) {
-                    if (listaProcessos.get(indexProcesso).getTempoRestante() == 0 ) break;
+                    if (listaProcessos.get(indexProcesso).getTempoRestante() == 0) break;
 
                     System.out.println("tempo[" + i++ + "]:" +
                             " processo[" + indexProcesso + "]" +
                             " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
                 }
+            }
 
-                if (indexProcesso == listaProcessos.size()) {
-                    indexProcesso = 0;
-                }else{
-                    indexProcesso++;
-                }
+            if (indexProcesso == (listaProcessos.size() - 1)) {
+                indexProcesso = 0;
+            } else {
+                indexProcesso++;
             }
             tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
         }

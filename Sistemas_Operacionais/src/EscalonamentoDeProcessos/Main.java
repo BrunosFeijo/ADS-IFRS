@@ -20,6 +20,6 @@ public class Main {
 
 //        escalonador.PrioridadeNaoPreemptivo();
 
-
+        escalonador.RoundRobin();
     }
 }
