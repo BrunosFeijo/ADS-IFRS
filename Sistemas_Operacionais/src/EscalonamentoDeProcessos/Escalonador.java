@@ -1,9 +1,6 @@
 package EscalonamentoDeProcessos;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Escalonador {
@@ -87,7 +84,7 @@ public class Escalonador {
     public void SJFPreemptivo() throws CloneNotSupportedException {
         List<Processo> listaProcessos = copiaProcessos();
         boolean tudoPronto = false;
-        int tempoExecucaoTotal = 0;
+        int tempoRestanteTotal = 0;
         int i = 1;
         int menor = Integer.MAX_VALUE;
         int indexProcesso = -1;
@@ -110,8 +107,8 @@ public class Escalonador {
                         " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
             }
 
-            tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
-            if (tempoExecucaoTotal == 0) tudoPronto = true;
+            tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
+            if (tempoRestanteTotal == 0) tudoPronto = true;
 
 
             i++;
@@ -124,7 +121,7 @@ public class Escalonador {
     public void SJFNaoPreemptivo() throws CloneNotSupportedException {
         List<Processo> listaProcessos = copiaProcessos();
         boolean tudoPronto = false;
-        int tempoExecucaoTotal = 0;
+        int tempoRestanteTotal = 0;
         int i = 1;
         int menor = Integer.MAX_VALUE;
         int indexProcesso = -1;
@@ -142,25 +139,26 @@ public class Escalonador {
             if (indexProcesso == -1) {
                 System.out.println("tempo[" + i++ + "]: " + "Nenhum processo está pronto");
             } else {
-                while(listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
+                while (listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
                     System.out.println("tempo[" + i++ + "]:" +
                             " processo[" + indexProcesso + "]" +
                             " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
                 }
             }
 
-            tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
-            if (tempoExecucaoTotal == 0) tudoPronto = true;
+            tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
+            if (tempoRestanteTotal == 0) tudoPronto = true;
 
             menor = Integer.MAX_VALUE;
             indexProcesso = -1;
         }
         System.out.println(); //pular linha
     }
+
     public void PrioridadePreemptivo() throws CloneNotSupportedException {
         List<Processo> listaProcessos = copiaProcessos();
         boolean tudoPronto = false;
-        int tempoExecucaoTotal = 0;
+        int tempoRestanteTotal = 0;
         int i = 1;
         int maior = Integer.MIN_VALUE;
         int indexProcesso = -1;
@@ -183,8 +181,8 @@ public class Escalonador {
                         " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
             }
 
-            tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
-            if (tempoExecucaoTotal == 0) tudoPronto = true;
+            tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
+            if (tempoRestanteTotal == 0) tudoPronto = true;
 
             i++;
             maior = Integer.MIN_VALUE;
@@ -192,10 +190,11 @@ public class Escalonador {
         }
         System.out.println(); //pular linha
     }
+
     public void PrioridadeNaoPreemptivo() throws CloneNotSupportedException {
         List<Processo> listaProcessos = copiaProcessos();
         boolean tudoPronto = false;
-        int tempoExecucaoTotal = 0;
+        int tempoRestanteTotal = 0;
         int i = 1;
         int maior = Integer.MIN_VALUE;
         int indexProcesso = -1;
@@ -213,38 +212,51 @@ public class Escalonador {
             if (indexProcesso == -1) {
                 System.out.println("tempo[" + i++ + "]: " + "Nenhum processo está pronto");
             } else {
-                while(listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
+                while (listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
                     System.out.println("tempo[" + i++ + "]:" +
                             " processo[" + indexProcesso + "]" +
                             " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
                 }
             }
 
-            tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
-            if (tempoExecucaoTotal == 0) tudoPronto = true;
+            tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
+            if (tempoRestanteTotal == 0) tudoPronto = true;
 
             maior = Integer.MIN_VALUE;
             indexProcesso = -1;
         }
         System.out.println(); //pular linha
     }
+
     public void RoundRobin() throws CloneNotSupportedException {
         List<Processo> listaProcessos = copiaProcessos();
-        int tempoExecucaoTotal = listaProcessos.stream().mapToInt(Processo::getTempoExecucao).sum();
+        Scanner entrada = new Scanner(System.in);
+
+        int tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoExecucao).sum();
         int indexProcesso = 0;
-        //TODO Definir time slice
-        //TODO criar regra para troca de processo
-        //TODO Criar regra para retornar ao primeiro indice
+        int i = 1;
 
-        
-        for (int i = 1; i <= tempoExecucaoTotal; i++) {
-            if (listaProcessos.get(indexProcesso).getTempoRestante() == 0) indexProcesso++;
-            System.out.println("tempo[" + i + "]:" +
-                    " processo[" + indexProcesso + "]" +
-                    " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+        System.out.print("Digite o time slice: ");
+        int timeSlice = entrada.nextInt();
 
+        while (tempoRestanteTotal != 0) {
+            if (listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
+                for (int j = 0; j < timeSlice; j++) {
+                    if (listaProcessos.get(indexProcesso).getTempoRestante() == 0 ) break;
+
+                    System.out.println("tempo[" + i++ + "]:" +
+                            " processo[" + indexProcesso + "]" +
+                            " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+                }
+
+                if (indexProcesso == listaProcessos.size()) {
+                    indexProcesso = 0;
+                }else{
+                    indexProcesso++;
+                }
+            }
+            tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
         }
         System.out.println(); //pular linha
     }
-
 }
