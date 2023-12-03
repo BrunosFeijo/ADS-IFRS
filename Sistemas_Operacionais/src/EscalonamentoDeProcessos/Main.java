@@ -1,14 +1,12 @@
 package EscalonamentoDeProcessos;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) throws CloneNotSupportedException {
         Escalonador escalonador = new Escalonador();
         boolean continuar = true;
-        escalonador.processosAleatorios();
-        escalonador.processosAleatorios();
-        escalonador.processosAleatorios();
 
-        System.out.println(escalonador);
         while (continuar) {
             switch (menu()) {
                 case 1 -> {
@@ -53,19 +51,36 @@ public class Main {
                         System.out.println("Fila vazia");
                     }
                 }
-                case 7 -> System.out.println("Popular Escalonador");
-
+                case 7 -> {
+                    escalonador.popularFilaDeProcessos();
+                    System.out.println(escalonador);
+                }
                 case 8 -> {
                     escalonador.clear();
-                    System.out.println("Fila zerada.");
+                    System.out.println("Fila vazia");
                 }
                 case 9 -> continuar = false;
             }
         }
+        System.out.println("Fim do Programa!");
     }
 
     public static int menu() {
-        return 0;
+        Scanner entrada = new Scanner(System.in);
+
+        System.out.println("\n-------Menu-------");
+        System.out.println("1- FCFS");
+        System.out.println("2- SJF Preemptivo");
+        System.out.println("3- SJF Não Preemptivo");
+        System.out.println("4- Prioridade Preemptivo");
+        System.out.println("5- Prioridade Não Preemptivo");
+        System.out.println("6- Round Robin");
+        System.out.println("7- Popular processos");
+        System.out.println("8- Limpar processos");
+        System.out.println("9- Sair");
+        System.out.println("------------------");
+        System.out.print("Escolha uma opção: ");
+        return entrada.nextInt();
     }
 
 }

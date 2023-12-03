@@ -46,10 +46,7 @@ public class Escalonador {
         }
     }
 
-
-}
-
-    public void processosAleatorios() {
+    private void processosAleatorios() {
         Random random = new Random();
 
         adicionarProcesso(
@@ -59,7 +56,7 @@ public class Escalonador {
         );
     }
 
-    public void processosDefinidosUsuario() {
+    private void processosDefinidosUsuario() {
         Scanner entrada = new Scanner(System.in);
 
         System.out.print("Digite o Tempo de Execução do Processo: ");
