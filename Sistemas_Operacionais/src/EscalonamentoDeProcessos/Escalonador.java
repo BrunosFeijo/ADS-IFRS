@@ -113,8 +113,22 @@ public class Escalonador {
 
         }
         System.out.println(); //pular linha
-    }
 
+        tempoDeEsperaFCFS();
+    }
+    private void tempoDeEsperaFCFS(){
+        double media = 0;
+        int espera = 0;
+        System.out.println("processo[0]: tempo_espera: 0");
+        for (int i = 1;i < processos.size();i++){
+            espera += processos.get(i-1).getTempoExecucao();
+            processos.get(i).setTempoEspera(espera);
+            System.out.println("processo[" + i + "]: tempo_espera: " + espera);
+        }
+        media = espera/ (double)processos.size();
+
+        System.out.println("Tempo_espera médio: " + media);
+    }
 
     public void SJFPreemptivo() throws CloneNotSupportedException {
         List<Processo> listaProcessos = copiaProcessos();
