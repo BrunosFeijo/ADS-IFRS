@@ -19,6 +19,36 @@ public class Escalonador {
         return listaProcessos;
     }
 
+    public void popularFilaDeProcessos() {
+        Scanner entrada = new Scanner(System.in);
+
+        System.out.print("Quantos processos deseja adicionar a fila? ");
+        int qtd = entrada.nextInt();
+        boolean continuar = true;
+        String opcao;
+
+        while (continuar) {
+            System.out.println("Deseja popular a fila aleatoriamente? (y/n)");
+            opcao = entrada.next();
+            if (opcao.equals("y")) {
+                for (int i = 0; i < qtd; i++) {
+                    processosAleatorios();
+                }
+                continuar = false;
+            } else if (opcao.equals("n")) {
+                for (int i = 0; i < qtd; i++) {
+                    processosDefinidosUsuario();
+                }
+                continuar = false;
+            } else {
+                System.out.println("Opção inválida.");
+            }
+        }
+    }
+
+
+}
+
     public void processosAleatorios() {
         Random random = new Random();
 
@@ -63,6 +93,14 @@ public class Escalonador {
         stringBuilder.append("}\n");
 
         return stringBuilder.toString();
+    }
+
+    public boolean isEmpty() {
+        return processos.isEmpty();
+    }
+
+    public void clear() {
+        processos.clear();
     }
 
     public void FCFS() throws CloneNotSupportedException {
