@@ -288,7 +288,7 @@ public class Escalonador {
 
         System.out.print("Digite o time slice: ");
         int timeSlice = entrada.nextInt();
-        
+
         while (tempoRestanteTotal != 0) {
             if (listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
                 for (int j = 0; j < timeSlice; j++) {
