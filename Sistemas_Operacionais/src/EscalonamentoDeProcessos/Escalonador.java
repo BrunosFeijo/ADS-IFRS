@@ -116,16 +116,17 @@ public class Escalonador {
 
         tempoDeEsperaFCFS();
     }
-    private void tempoDeEsperaFCFS(){
+
+    private void tempoDeEsperaFCFS() {
         double media = 0;
         int espera = 0;
         System.out.println("processo[0]: tempo_espera: 0");
-        for (int i = 1;i < processos.size();i++){
-            espera += processos.get(i-1).getTempoExecucao();
+        for (int i = 1; i < processos.size(); i++) {
+            espera += processos.get(i - 1).getTempoExecucao();
             processos.get(i).setTempoEspera(espera);
             System.out.println("processo[" + i + "]: tempo_espera: " + espera);
         }
-        media = espera/ (double)processos.size();
+        media = espera / (double) processos.size();
 
         System.out.println("Tempo_espera médio: " + media);
     }
@@ -285,18 +286,9 @@ public class Escalonador {
         int indexProcesso = 0;
         int i = 1;
 
-<<<<<<< Updated upstream
         System.out.print("Digite o time slice: ");
         int timeSlice = entrada.nextInt();
-=======
-
-        for (int i = 1; i <= tempoExecucaoTotal; i++) {
-            if (listaProcessos.get(indexProcesso).getTempoRestante() == 0) indexProcesso++;
-            System.out.println("tempo[" + i + "]:" +
-                    " processo[" + indexProcesso + "]" +
-                    " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
->>>>>>> Stashed changes
-
+        
         while (tempoRestanteTotal != 0) {
             if (listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
                 for (int j = 0; j < timeSlice; j++) {
@@ -318,3 +310,4 @@ public class Escalonador {
         System.out.println(); //pular linha
     }
 }
+
