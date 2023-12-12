@@ -7,7 +7,6 @@ public class Processo implements Comparable<Processo>, Cloneable {
     private int tempoChegada;
     private int prioridade;
     private int tempoEspera;
-    private boolean preemptivo;
 
     public Processo(int tempoExecucao,int tempoChegada, int prioridade) {
         this.tempoExecucao = tempoExecucao;
@@ -42,8 +41,11 @@ public class Processo implements Comparable<Processo>, Cloneable {
         this.tempoEspera = tempoEspera;
     }
 
-    public int DecrementarTempoRestante() {
+    public int decrementarTempoRestante() {
         return --this.tempoRestante;
+    }
+    public void incrementaTempoEspera(){
+        this.tempoEspera++;
     }
 
     @Override

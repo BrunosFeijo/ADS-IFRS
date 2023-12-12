@@ -1,7 +1,6 @@
 package EscalonamentoDeProcessos;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Escalonador {
     private final List<Processo> processos;
@@ -109,7 +108,7 @@ public class Escalonador {
             if (listaProcessos.get(indexProcesso).getTempoRestante() == 0) indexProcesso++;
             System.out.println("tempo[" + i + "]:" +
                     " processo[" + indexProcesso + "]" +
-                    " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+                    " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
 
         }
         System.out.println(); //pular linha
@@ -154,7 +153,7 @@ public class Escalonador {
             } else {
                 System.out.println("tempo[" + i + "]:" +
                         " processo[" + indexProcesso + "]" +
-                        " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+                        " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
             }
 
             tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
@@ -192,7 +191,7 @@ public class Escalonador {
                 while (listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
                     System.out.println("tempo[" + i++ + "]:" +
                             " processo[" + indexProcesso + "]" +
-                            " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+                            " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
                 }
             }
 
@@ -228,7 +227,7 @@ public class Escalonador {
             } else {
                 System.out.println("tempo[" + i + "]:" +
                         " processo[" + indexProcesso + "]" +
-                        " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+                        " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
             }
 
             tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
@@ -265,7 +264,7 @@ public class Escalonador {
                 while (listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
                     System.out.println("tempo[" + i++ + "]:" +
                             " processo[" + indexProcesso + "]" +
-                            " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+                            " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
                 }
             }
 
@@ -296,7 +295,7 @@ public class Escalonador {
 
                     System.out.println("tempo[" + i++ + "]:" +
                             " processo[" + indexProcesso + "]" +
-                            " restante[" + listaProcessos.get(indexProcesso).DecrementarTempoRestante() + "]");
+                            " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
                 }
             }
 
@@ -308,6 +307,27 @@ public class Escalonador {
             tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
         }
         System.out.println(); //pular linha
+    }
+
+    private void tempoDeEspera(List<Processo> processoList, int tempoAtual, int indexProcessoAtual) {
+        boolean chegou;
+        boolean terminado;
+        boolean processoAtual;
+        for (int i = 0; i < processoList.size(); i++) {
+            chegou = processoList.get(i).getTempoChegada() <= tempoAtual;
+            terminado = processoList.get(i).getTempoRestante() == 0;
+            processoAtual = i == indexProcessoAtual;
+
+            if (chegou && !terminado && !processoAtual){
+                processoList.get(i).incrementaTempoEspera();
+            }
+        }
+    }
+    private void imprimirTempoEspera(List<Processo> processoList){
+        double media;
+
+        
+
     }
 }
 
