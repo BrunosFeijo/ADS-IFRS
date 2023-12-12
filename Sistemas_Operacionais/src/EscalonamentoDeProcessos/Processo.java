@@ -41,6 +41,10 @@ public class Processo implements Comparable<Processo>, Cloneable {
         this.tempoEspera = tempoEspera;
     }
 
+    public void setTempoChegada(int tempoChegada) {
+        this.tempoChegada = tempoChegada;
+    }
+
     public int decrementarTempoRestante() {
         return --this.tempoRestante;
     }
