@@ -27,7 +27,7 @@ public class Escalonador {
         String opcao;
 
         while (continuar) {
-            System.out.println("Deseja popular a fila aleatoriamente? (y/n)");
+            System.out.print("Deseja popular a fila aleatoriamente? (y/n): ");
             opcao = entrada.next();
             if (opcao.equals("y")) {
                 for (int i = 0; i < qtd; i++) {
