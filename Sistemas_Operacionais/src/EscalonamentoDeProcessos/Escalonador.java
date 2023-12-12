@@ -36,7 +36,7 @@ public class Escalonador {
                 continuar = false;
             } else if (opcao.equals("n")) {
                 for (int i = 0; i < qtd; i++) {
-                    processosDefinidosUsuario();
+                    processosDefinidosUsuario(i);
                 }
                 continuar = false;
             } else {
@@ -55,16 +55,16 @@ public class Escalonador {
         );
     }
 
-    private void processosDefinidosUsuario() {
+    private void processosDefinidosUsuario(int i) {
         Scanner entrada = new Scanner(System.in);
 
-        System.out.print("Digite o Tempo de Execução do Processo: ");
+        System.out.print("Digite o Tempo de Execução do Processo[" + i + "]: ");
         int tempoExecucao = entrada.nextInt();
 
-        System.out.print("Digite o Tempo de Chegada do Processo: ");
+        System.out.print("Digite o Tempo de Chegada do Processo[" + i + "]: ");
         int tempoChegada = entrada.nextInt();
 
-        System.out.print("Digite a Prioridade do Processo: ");
+        System.out.print("Digite a Prioridade do Processo[" + i + "]: ");
         int prioridade = entrada.nextInt();
 
         adicionarProcesso(tempoExecucao, tempoChegada, prioridade);
