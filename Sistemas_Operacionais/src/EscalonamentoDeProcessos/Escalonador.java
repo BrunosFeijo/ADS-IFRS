@@ -113,10 +113,10 @@ public class Escalonador {
         }
         System.out.println(); //pular linha
 
-        tempoDeEsperaFCFS();
+        tempoDeEsperaFCFS(listaProcessos);
     }
 
-    private void tempoDeEsperaFCFS() {
+    private void tempoDeEsperaFCFS(List<Processo> listaProcessos) {
         double media = 0;
         int espera = 0;
         System.out.println("processo[0]: tempo_espera: 0");
@@ -125,7 +125,7 @@ public class Escalonador {
             processos.get(i).setTempoEspera(espera);
             System.out.println("processo[" + i + "]: tempo_espera: " + espera);
         }
-        media = espera / (double) processos.size();
+        media = listaProcessos.stream().mapToInt(Processo::getTempoEspera).sum() / (double) processos.size();
 
         System.out.println("Tempo_espera médio: " + media);
     }
