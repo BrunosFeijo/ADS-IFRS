@@ -164,7 +164,7 @@ public class Escalonador {
             menor = Integer.MAX_VALUE;
             indexProcesso = -1;
         }
-        System.out.println(); //pular linha
+        imprimirTempoEspera(listaProcessos);
     }
 
     public void SJFNaoPreemptivo() throws CloneNotSupportedException {
@@ -201,7 +201,7 @@ public class Escalonador {
             menor = Integer.MAX_VALUE;
             indexProcesso = -1;
         }
-        System.out.println(); //pular linha
+        imprimirTempoEspera(listaProcessos);
     }
 
     public void PrioridadePreemptivo() throws CloneNotSupportedException {
@@ -237,7 +237,7 @@ public class Escalonador {
             maior = Integer.MIN_VALUE;
             indexProcesso = -1;
         }
-        System.out.println(); //pular linha
+        imprimirTempoEspera(listaProcessos);
     }
 
     public void PrioridadeNaoPreemptivo() throws CloneNotSupportedException {
@@ -274,7 +274,7 @@ public class Escalonador {
             maior = Integer.MIN_VALUE;
             indexProcesso = -1;
         }
-        System.out.println(); //pular linha
+        imprimirTempoEspera(listaProcessos);
     }
 
     public void RoundRobin() throws CloneNotSupportedException {
@@ -306,7 +306,7 @@ public class Escalonador {
             }
             tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
         }
-        System.out.println(); //pular linha
+        imprimirTempoEspera(listaProcessos);
     }
 
     private void tempoDeEspera(List<Processo> processoList, int tempoAtual, int indexProcessoAtual) {
@@ -318,16 +318,32 @@ public class Escalonador {
             terminado = processoList.get(i).getTempoRestante() == 0;
             processoAtual = i == indexProcessoAtual;
 
-            if (chegou && !terminado && !processoAtual){
+            if (chegou && !terminado && !processoAtual) {
                 processoList.get(i).incrementaTempoEspera();
             }
         }
     }
-    private void imprimirTempoEspera(List<Processo> processoList){
-        double media;
 
-        
+    private void imprimirTempoEspera(List<Processo> listaProcessos) {
+        double soma = 0;
+        int tempoEspera;
+        StringBuilder stringBuilder = new StringBuilder();
 
+        for (int i = 0; i < listaProcessos.size(); i++) {
+            tempoEspera = listaProcessos.get(i).getTempoEspera();
+            stringBuilder.append("Processo[")
+                    .append(i)
+                    .append("]: tempo_espera = ")
+                    .append(tempoEspera)
+                    .append("\n");
+
+            soma += tempoEspera;
+        }
+        stringBuilder.append("Tempo médio de espera: ").
+                append(soma/listaProcessos.size()).
+                append("\n");
+
+        System.out.println(stringBuilder);
     }
 }
 
