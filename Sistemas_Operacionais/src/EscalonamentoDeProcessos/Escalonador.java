@@ -287,7 +287,7 @@ public class Escalonador {
     public void RoundRobin() throws CloneNotSupportedException {
         List<Processo> listaProcessos = copiaProcessos();
         Scanner entrada = new Scanner(System.in);
-        listaProcessos.stream().map(Processo::zerarChegada);
+        listaProcessos.forEach(Processo::zerarChegada);
 
         int tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoExecucao).sum();
         int indexProcesso = 0;
