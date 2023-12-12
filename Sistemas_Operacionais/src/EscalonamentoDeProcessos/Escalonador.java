@@ -154,6 +154,7 @@ public class Escalonador {
                 System.out.println("tempo[" + i + "]:" +
                         " processo[" + indexProcesso + "]" +
                         " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
+                tempoDeEspera(listaProcessos, i, indexProcesso);
             }
 
             tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
@@ -192,6 +193,7 @@ public class Escalonador {
                     System.out.println("tempo[" + i++ + "]:" +
                             " processo[" + indexProcesso + "]" +
                             " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
+                    tempoDeEspera(listaProcessos, i, indexProcesso);
                 }
             }
 
@@ -228,6 +230,7 @@ public class Escalonador {
                 System.out.println("tempo[" + i + "]:" +
                         " processo[" + indexProcesso + "]" +
                         " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
+                tempoDeEspera(listaProcessos, i, indexProcesso);
             }
 
             tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
@@ -265,6 +268,7 @@ public class Escalonador {
                     System.out.println("tempo[" + i++ + "]:" +
                             " processo[" + indexProcesso + "]" +
                             " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
+                    tempoDeEspera(listaProcessos, i, indexProcesso);
                 }
             }
 
@@ -296,6 +300,7 @@ public class Escalonador {
                     System.out.println("tempo[" + i++ + "]:" +
                             " processo[" + indexProcesso + "]" +
                             " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
+                    tempoDeEspera(listaProcessos, i, indexProcesso);
                 }
             }
 
