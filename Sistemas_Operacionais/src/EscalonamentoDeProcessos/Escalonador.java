@@ -1,5 +1,7 @@
 package EscalonamentoDeProcessos;
 
+import com.sun.security.jgss.GSSUtil;
+
 import java.util.*;
 
 public class Escalonador {
@@ -68,6 +70,7 @@ public class Escalonador {
         int prioridade = entrada.nextInt();
 
         adicionarProcesso(tempoExecucao, tempoChegada, prioridade);
+        System.out.println(); // pular linha
     }
 
     private void adicionarProcesso(int tempoExecucao, int tempoChegada, int prioridade) {
@@ -120,12 +123,12 @@ public class Escalonador {
         double media = 0;
         int espera = 0;
         System.out.println("processo[0]: tempo_espera: 0");
-        for (int i = 1; i < processos.size(); i++) {
-            espera += processos.get(i - 1).getTempoExecucao();
-            processos.get(i).setTempoEspera(espera);
+        for (int i = 1; i < listaProcessos.size(); i++) {
+            espera += listaProcessos.get(i - 1).getTempoExecucao();
+            listaProcessos.get(i).setTempoEspera(espera);
             System.out.println("processo[" + i + "]: tempo_espera: " + espera);
         }
-        media = listaProcessos.stream().mapToInt(Processo::getTempoEspera).sum() / (double) processos.size();
+        media = listaProcessos.stream().mapToInt(Processo::getTempoEspera).sum() / (double) listaProcessos.size();
 
         System.out.println("Tempo_espera médio: " + media);
     }
@@ -151,10 +154,10 @@ public class Escalonador {
             if (indexProcesso == -1) {
                 System.out.println("tempo[" + i + "]: " + "Nenhum processo está pronto");
             } else {
+                tempoDeEspera(listaProcessos, i, indexProcesso);
                 System.out.println("tempo[" + i + "]:" +
                         " processo[" + indexProcesso + "]" +
                         " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
-                tempoDeEspera(listaProcessos, i, indexProcesso);
             }
 
             tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
@@ -190,10 +193,10 @@ public class Escalonador {
                 System.out.println("tempo[" + i++ + "]: " + "Nenhum processo está pronto");
             } else {
                 while (listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
+                    tempoDeEspera(listaProcessos, i, indexProcesso);
                     System.out.println("tempo[" + i++ + "]:" +
                             " processo[" + indexProcesso + "]" +
                             " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
-                    tempoDeEspera(listaProcessos, i, indexProcesso);
                 }
             }
 
@@ -227,10 +230,10 @@ public class Escalonador {
             if (indexProcesso == -1) {
                 System.out.println("tempo[" + i + "]: " + "Nenhum processo está pronto");
             } else {
+                tempoDeEspera(listaProcessos, i, indexProcesso);
                 System.out.println("tempo[" + i + "]:" +
                         " processo[" + indexProcesso + "]" +
                         " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
-                tempoDeEspera(listaProcessos, i, indexProcesso);
             }
 
             tempoRestanteTotal = listaProcessos.stream().mapToInt(Processo::getTempoRestante).sum();
@@ -265,10 +268,10 @@ public class Escalonador {
                 System.out.println("tempo[" + i++ + "]: " + "Nenhum processo está pronto");
             } else {
                 while (listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
+                    tempoDeEspera(listaProcessos, i, indexProcesso);
                     System.out.println("tempo[" + i++ + "]:" +
                             " processo[" + indexProcesso + "]" +
                             " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
-                    tempoDeEspera(listaProcessos, i, indexProcesso);
                 }
             }
 
@@ -296,11 +299,10 @@ public class Escalonador {
             if (listaProcessos.get(indexProcesso).getTempoRestante() != 0) {
                 for (int j = 0; j < timeSlice; j++) {
                     if (listaProcessos.get(indexProcesso).getTempoRestante() == 0) break;
-
+                    tempoDeEspera(listaProcessos, i, indexProcesso);
                     System.out.println("tempo[" + i++ + "]:" +
                             " processo[" + indexProcesso + "]" +
                             " restante[" + listaProcessos.get(indexProcesso).decrementarTempoRestante() + "]");
-                    tempoDeEspera(listaProcessos, i, indexProcesso);
                 }
             }
 
